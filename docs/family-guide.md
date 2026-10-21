@@ -1,8 +1,9 @@
 # Playing The Unfolding Atlas
 
-Build and start the game with `npm run build` then `npm run preview` (Node 24+).
-Open `http://127.0.0.1:4173/`. Keep the preview running while playing. A published
-Pages copy uses the same game; no live URL has been created yet.
+Play at **https://phifin.github.io/fly-english-playground/**.
+For a local copy, build with `npm run build` then `npm run preview` (Node 24+),
+open `http://127.0.0.1:4173/` and keep that preview process running. Local and
+published copies have separate browser storage because their origins differ.
 
 ## Your traveler
 

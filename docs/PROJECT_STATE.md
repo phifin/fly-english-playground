@@ -1,5 +1,66 @@
 # Current execution state
 
+## Live deployment verified — latest state, 21 October 2026
+
+- Live URL **https://phifin.github.io/fly-english-playground/** returns the expected
+  release `f44aa06ace219f598cdf`; direct GET-only verification passed all public
+  hashes/byte counts and private404s. User enabled Pages and completed Firebase login.
+- Published full source (90 files) as `d56073044ee47afc3cf3d522176e288a8a32bfd3`,
+  then sandboxed-system-Chrome CI fix `43fed8be52f1e820b6583df40094cd51131f124f`.
+  Current remote tree `2610869ce65d6e2a168fc94dad6ed7c100882f37`. Never force-push.
+- **Actual successful run**: https://github.com/phifin/fly-english-playground/actions/runs/39537300956
+  All four jobs passed: build, firestore-rules, deploy, verify-production. Local/
+  hosted domain suite: 243 passes, two emulator checks separately executed. Actual
+  Auth+Firestore emulator job: two passes, zero skips, including real rules and
+  admission/owner isolation/immutable evidence/family sync and recovery.
+- Pre-deploy and live browser suites each passed all19 release checks: three modes,
+  five activity types, real IndexedDB/reload/drafts/backups, families, 390px touch/
+  keyboard, offline reload and no external requests with default configuration.
+  Axe reported no violations on journal, mobile activity, studio and settings.
+  Chrome155.0.8059.84 ran with `chromiumSandbox:true`, using the preinstalled stable
+  channel's existing Ubuntu24 AppArmor profile. No sandbox/security policy was
+  disabled. Root inspected actual desktop/mobile screenshots.
+- Verified production artifact12318466691 downloaded/checksummed, extracted privately
+  to `artifacts/production-39537300956/`. Reports/screenshots stay outside published
+  data. Current CLI integrity report is `artifacts/deployment-report.json`.
+- **Only remaining release blocker: production Firebase connection/configuration.**
+  Installed CLI15.34.0 is now present at
+  `C:/Users/nhuphi.vo_amaris/AppData/Local/npm-cache/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/bin/firebase.js`.
+  `npx ...@latest` still hits managed ENOTCACHED; invoke the existing Node entry
+  if needed. Its MCP startup initially failed writing ~/.cache. Supported
+  `FIREBASE_DEBUG_PATH=<workspace>/artifacts/firebase-mcp.log` permits startup without
+  changing protected directories. A real official MCP handshake and
+  `firebase_get_environment` succeeded and recognized the logged-in Google identity.
+  Do not read raw auth stores, print tokens or publish logs.
+- `firebase_list_projects` on that server failed because its normal SDK request
+  hits managed proxy127.0.0.1:9 (ECONNREFUSED). No Firebase project list, project ID,
+  billing plan, production provider or rules deployment has been verified. Do not
+  claim the user lacks projects. Public config remains disabled/blank. Never
+  override the managed proxy, disable sandboxing or copy credentials into source.
+- An async question is pending asking the owner what `/mcp` shows for Firebase
+  status; the owner answered **startup error**. A concrete launcher now exists at
+  `scripts/firebase-mcp.mjs`: it loads the installed official CLI package directly,
+  uses the supported workspace debug-log path, preserves credentials/network/
+  security settings and enables only core/auth/firestore development tools. Syntax
+  and the official server's `--help` pass. The remaining async request asks the
+  owner to register `atlas-firebase` from a normal terminal and resume this chat:
+  `codex mcp add atlas-firebase -- node "C:/Users/nhuphi.vo_amaris/Documents/my-english-learning-engine/scripts/firebase-mcp.mjs"`,
+  then `codex -c mcp_servers.atlas-firebase.startup_timeout_sec=120 resume`.
+  Codex user config is outside this agent's writable roots; do not edit it or
+  override the managed proxy. Verify the host tool actually connects and can list
+  projects before provisioning. The owner already completed login and Pages
+  enablement; do not repeatedly request those completed actions.
+
+Next: resolve only the Firebase host connection, list projects via official MCP,
+reuse an unambiguous game-specific Spark project or create a dedicated free one,
+configure Google provider/exact `phifin.github.io` domain, default-deny owner rules,
+public Web App identifiers and console-managed admission. Publish enabled public
+configuration only after rules/admission are ready, rerun actual CI and verify
+live cloud flows where feasible. Frontend deployment is done; do not restart it
+or weaken checks. The longer entries below preserve the earlier audit trail.
+
+---
+
 ## Production deployment continuation — 21 October 2026
 
 The owner created `phifin/fly-english-playground` and authorized publication,

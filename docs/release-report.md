@@ -1,5 +1,10 @@
 # The Unfolding Atlas — family release candidate
 
+> Historical 20 October local-release report. The game has since been published
+> and passed actual hosted CI/browser/emulator verification. Production Firebase
+> setup is still pending. See [current production status](production-status.md)
+> for the actual URL, successful Actions run and remaining account connection.
+
 20 October 2026 · version 0.1.0-rc.1
 
 The locally testable application and deployment configuration are implemented.

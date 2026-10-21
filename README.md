@@ -6,11 +6,13 @@ Kids uses direct movement and guided moments; Balanced uses route planning and
 exploration; Serious offers a study queue and text commands. Learning evidence
 and world accomplishments are tracked separately.
 
-**Status: locally testable release candidate.** The complete local journey and
-deployment configuration are implemented. Managed Windows restrictions prevent
-graphical browser execution here; the required browser and Firestore emulator CI
-gates have not run. No live site or cloud project has been provisioned. See the
-[release report](docs/release-report.md) for actual checks and remaining gates.
+**The game is deployed:** [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
+The production build, Auth/Firestore emulator checks, sandboxed browser suite,
+mobile/offline flows and deployed-file verification passed in
+[GitHub Actions](https://github.com/phifin/fly-english-playground/actions/runs/39537300956).
+Production Firebase configuration is still pending an operational account connection;
+the deployed game currently uses local profiles and saving. See
+[production status](docs/production-status.md) for evidence and the remaining blocker.
 
 ## Play locally
 
@@ -59,8 +61,8 @@ npm run measure
 `npm run test:browser` uses separately installed Playwright tooling against a
 running built preview. It downloads nothing. The included GitHub Actions workflow
 installs test-only tools and requires browser/axe and actual Firestore rules checks
-before deploying `dist/` to GitHub Pages. Repository creation and Pages settings
-still require owner access; no deployment URL is assumed.
+before deploying `dist/` to GitHub Pages. The repository and Pages setup are now
+complete; the post-deployment job checks the actual URL and expected release ID.
 
 Publish **only `dist/`**. Staging, docs, experiments, tests and learner exports
 must not be published. Public game content includes answer keys. Learner data
@@ -68,6 +70,7 @@ stays in browser storage unless explicitly exported or synchronized.
 
 - [Family guide](docs/family-guide.md)
 - [Release report and remaining setup](docs/release-report.md)
+- [Live deployment and cloud connection status](docs/production-status.md)
 - [Static deployment and optional cloud setup](cloud/DEPLOYMENT.md)
 - [Architecture](docs/architecture.md), [storage](docs/storage.md),
   [content and world contracts](docs/runtime-contract.md)
