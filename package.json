@@ -1,0 +1,19 @@
+{
+  "name": "the-unfolding-atlas",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "type": "module",
+  "description": "A private family English-learning world with persistent journeys across A1–C2.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test --test-isolation=none tests/*.test.mjs",
+    "test:browser": "node scripts/browser-release-check.mjs",
+    "test:p0": "node scripts/browser-check.mjs",
+    "validate:trial": "node scripts/validate-trial.mjs",
+    "validate:content": "node scripts/publish-content.mjs --check && node scripts/boards.mjs --check",
+    "measure": "node scripts/measure.mjs",
+    "preview": "node scripts/serve.mjs --dist"
+  },
+  "engines": { "node": ">=24" }
+}

@@ -1,0 +1,135 @@
+{
+  "evidenceVersion": "trial-evidence-1",
+  "batchId": "luna-e2e-001",
+  "inspectionDate": "2026-10-20",
+  "historicalTrialDate": "2026-10-16",
+  "outcome": "ordinary-run-pass-disposable-only",
+  "requestedSettings": {
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max"
+  },
+  "runtime": {
+    "sessionId": "01a14403-8886-7b13-b98b-4f59d34511cf",
+    "parentThreadId": "01a143d4-b0de-7f53-a090-a9b923a5a24e",
+    "agentPath": "/root/luna_e2e_trial",
+    "cliVersion": "0.163.0",
+    "sessionStartedAt": "2026-10-16T09:20:44.878Z",
+    "effectiveModel": "gpt-6-luna",
+    "effectiveEffort": "max",
+    "metadataObservedAt": "2026-10-16T09:20:48.132Z"
+  },
+  "tools": [
+    {
+      "operation": "search_query",
+      "callId": "call_b24d664287b7461d83d585c95fd02917",
+      "requestedAt": "2026-10-16T09:20:54.067Z",
+      "completedAt": "2026-10-16T09:20:57.813Z",
+      "success": true,
+      "sourceUrl": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/using-there-there-are?page=4"
+    },
+    {
+      "operation": "open",
+      "callId": "call_44dea9cdb605416185acf40065cd5f26",
+      "requestedAt": "2026-10-16T09:21:00.118Z",
+      "completedAt": "2026-10-16T09:21:03.054Z",
+      "success": true,
+      "sourceUrl": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/using-there-there-are?page=4"
+    }
+  ],
+  "traceReference": {
+    "filename": "rollout-2026-10-16T16-20-44-01a14403-8886-7b13-b98b-4f59d34511cf.jsonl",
+    "sha256": "5ce688d0ad4eb0bd0950221444608cc03cd2a55b1ed4a8b80d62e7e07fb16713",
+    "rawTraceCopied": false
+  },
+  "fileInventory": [
+    {
+      "path": "experiments/luna-trial/request.md",
+      "bytes": 2516,
+      "sha256": "ddaaf8ba100cd88b4a650076e21575cbb18d7b2d6bc773d2ab8b0a4b35308886"
+    },
+    {
+      "path": "experiments/luna-trial/schema.json",
+      "bytes": 2537,
+      "sha256": "5eb1627bc71e6b0ae9472f081391b1572d4ee25b16252fe0dcbceb4e3dd0f3fa"
+    },
+    {
+      "path": "experiments/luna-trial/staging/dataset.json",
+      "bytes": 1909,
+      "sha256": "a03277e3c7a7ff840934ca3803052ea75471ce37123cc00522a39b04e358c361"
+    },
+    {
+      "path": "experiments/luna-trial/staging/research-notes.md",
+      "bytes": 1402,
+      "sha256": "a2becf0f533efeb73a3b24f491bccff4fba6cb35184efd744cae9db63492d0a3"
+    }
+  ],
+  "workerSelfReport": {
+    "runtimeIdentityNotClaimedAsProof": true,
+    "successfulResearchClaimed": true,
+    "schemaValidationNotRunClaimed": true
+  },
+  "independentValidation": {
+    "valid": true,
+    "errors": [],
+    "semanticReview": "trial-specific-reviewed-snapshot",
+    "schemaKeywordsChecked": [
+      "$schema",
+      "title",
+      "type",
+      "additionalProperties",
+      "required",
+      "properties",
+      "const",
+      "minItems",
+      "maxItems",
+      "items",
+      "uniqueItems",
+      "minLength",
+      "maxLength",
+      "pattern",
+      "format"
+    ],
+    "scope": "All keywords used by the unchanged trial schema; not full JSON Schema conformance",
+    "records": 2,
+    "sources": 1,
+    "contentReview": [
+      {
+        "id": "trial-item-01",
+        "intendedAnswer": "is",
+        "englishExplanation": "reviewed-correct-for-this-bounded-task",
+        "vietnameseExplanation": "reviewed-consistent-with-English",
+        "explicitNumberCue": "one; singular count noun",
+        "completedPromptDuplicatedInRetrievedPage": false
+      },
+      {
+        "id": "trial-item-02",
+        "intendedAnswer": "are",
+        "englishExplanation": "reviewed-correct-for-this-bounded-task",
+        "vietnameseExplanation": "reviewed-consistent-with-English",
+        "explicitNumberCue": "six; plural count noun",
+        "completedPromptDuplicatedInRetrievedPage": false
+      }
+    ],
+    "originalityLimit": "No exact completed-example overlap in the retrieved reference page; not an exhaustive originality or rights audit"
+  },
+  "filesystem": {
+    "writeMechanismObserved": "tools.exec_command; PowerShell WriteAllText",
+    "observedOutputPaths": [
+      "experiments/luna-trial/staging/dataset.json",
+      "experiments/luna-trial/staging/research-notes.md"
+    ],
+    "stagingOnlyBoundary": "worker instruction, not an isolated filesystem sandbox",
+    "productionIntegration": false,
+    "publicBuildCopiesTrial": false
+  },
+  "untested": [
+    "interruption recovery",
+    "retry/repair cycle",
+    "native custom-role discovery",
+    "strict child filesystem isolation",
+    "bulk content reliability",
+    "production content quality",
+    "usage/cost projection"
+  ],
+  "workflow": "One authorized trial only; manual Luna handoff remains active; no production protocol change approved"
+}

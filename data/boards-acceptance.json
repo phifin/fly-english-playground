@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Sol",
+  "reviewedAt": "2026-10-20",
+  "path": "data/staging/launch-boards/boards.json",
+  "packHash": "63ca195b8a96d516d44da1311ebf521fba61c8f6b09eb9e1ede718518118f0ed",
+  "notes": "Parent read all24 EN/VI clues, hints, landmark choices and target rationales; corrected narrative roles, dry-sensor condition, map alignment and user coordinate format. Automated state-space search verifies all landmarks reachable, destination requires bridge activation, route<=40 and actual replay solves. World puzzles are game accomplishments, not language assessment.",
+  "boardHashes": [
+    {
+      "id": "a1-lantern-harbor-board",
+      "sha256": "623363cf49452508eb005037aeecfaef6fed9fab011b56b9d93e89f84ec1cc8a"
+    },
+    {
+      "id": "a1-lantern-harbor-shell-bell-board",
+      "sha256": "49306d16817f2f460cad4bb7062103fceb9403961c093fca9857a009ccf0c90a"
+    },
+    {
+      "id": "a1-lantern-harbor-color-teller-board",
+      "sha256": "d54d7ec17a9e5f87744368e0ba80e4bba9526be179c7b5f745b4ac5630f6bde7"
+    },
+    {
+      "id": "a1-lantern-harbor-rooftop-kites-board",
+      "sha256": "af7496e8c401c132ad3a1962f7bdbb5fa74eee264a2b6dc820acd478126e309e"
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-tin-board",
+      "sha256": "2ae494304c3d45b5c0ba8bb75ab7bfd9a4a83e63ef3600b1fe317bf078648475"
+    },
+    {
+      "id": "a2-wildseed-gardens-rain-plan-board",
+      "sha256": "5dedd1322fbda582d1b01c4fc4620691e11c3cf35af4d9df52a08b11ff6ea818"
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-sculpture-board",
+      "sha256": "e7eb5ee75a027a0b86dbfa75fa4aab25637cc6a9d9dfc6a9bf32040017239e4e"
+    },
+    {
+      "id": "a2-wildseed-gardens-garden-invitation-board",
+      "sha256": "8101932d45b80773976606cff383b6190bd3d534a145c837bbe3ec9268277524"
+    },
+    {
+      "id": "b1-tideglass-isles-chart-letter-board",
+      "sha256": "f23259eefc7b801fda85eae74d44188abba9b8fcb1c35fbc9c2851ac36f15126"
+    },
+    {
+      "id": "b1-tideglass-isles-two-paths-board",
+      "sha256": "5bf87d3206d3c54456e315b400f287557922b6d0d0b3dba531543041133747cb"
+    },
+    {
+      "id": "b1-tideglass-isles-moon-moth-model-board",
+      "sha256": "dfdd41a7727010fe0c06b4116d8363b72c239193f5a2dcf0509e8cb62dfd6c46"
+    },
+    {
+      "id": "b1-tideglass-isles-borrowed-tide-song-board",
+      "sha256": "32e1a1a0ad4637d034d91fb954b9f5cc344d661bcf509fed47d7b3877f2ca442"
+    },
+    {
+      "id": "b2-clockwork-canopy-board",
+      "sha256": "ebe0256b8c083810c3cf46c929425cc4fbcbee51addaab059b840e9937878449"
+    },
+    {
+      "id": "b2-clockwork-canopy-echoing-gears-board",
+      "sha256": "0d06f43fb1b1f02b61d20b14ab494dc7014b33538f1cbcc89460c64dd06d5578"
+    },
+    {
+      "id": "b2-clockwork-canopy-three-voices-board",
+      "sha256": "8fe23ab595d1104d9d95f8a099558a44ace046be811b7b7854741f3012a746a2"
+    },
+    {
+      "id": "b2-clockwork-canopy-review-or-manual-board",
+      "sha256": "5f10f1b921805adf959513772628fa7a8e192361afbfc94385dd71268165e9ba"
+    },
+    {
+      "id": "c1-prism-observatory-amber-line-board",
+      "sha256": "75e27ea8be70c64eaec45c2428342b2f835bf75da98d8fc9eb08009a6a197933"
+    },
+    {
+      "id": "c1-prism-observatory-mirror-report-board",
+      "sha256": "ccc7764401ff342ae69c171d84d52c478c61e09f032f1f3e8537cb386f8ecf11"
+    },
+    {
+      "id": "c1-prism-observatory-glass-choir-board",
+      "sha256": "6c5caec1428a1b036957e992fe6c2870b65833c714fff271a2370d3cd36420ad"
+    },
+    {
+      "id": "c1-prism-observatory-program-edit-board",
+      "sha256": "6f67d6ade74e0be99b320935dc0fc996f19d0d8e6036501566723a3aeceeb29e"
+    },
+    {
+      "id": "c2-unwritten-sky-margin-marks-board",
+      "sha256": "54cd0bbb382ce446f2bc1ee70a33113926beb363c88cfed6e551744903acee1a"
+    },
+    {
+      "id": "c2-unwritten-sky-quiet-caption-board",
+      "sha256": "fdc06953ee8fdaf2c77a10ab8caf71b4d3de4994a9ff2d5bd6eee92cedfdf694"
+    },
+    {
+      "id": "c2-unwritten-sky-museum-of-almosts-board",
+      "sha256": "cab12492e2df1f1de070295c56d38ad0c471cfb33a166477963f4e95de2f1138"
+    },
+    {
+      "id": "c2-unwritten-sky-editors-pencil-board",
+      "sha256": "a73dfc478059e67df5bfb346982b38bfb2353ad825efe6e330fbf1e053624e38"
+    }
+  ]
+}

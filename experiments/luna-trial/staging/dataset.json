@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "trial-1",
+  "batchId": "luna-e2e-001",
+  "status": "disposable-not-production",
+  "sources": [
+    {
+      "id": "source-1",
+      "title": "Using 'there is' and 'there are' | LearnEnglish",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/using-there-there-are?page=4",
+      "accessed": "2026-10-16",
+      "use": "reference-only-no-copied-exercises",
+      "finding": "The British Council explains that there is is used with singular nouns and there are with plural nouns. It also notes a separate informal pattern for lists, which these simple fixtures avoid."
+    }
+  ],
+  "records": [
+    {
+      "id": "trial-item-01",
+      "status": "synthetic-disposable",
+      "level": "A1-provisional-not-validated",
+      "type": "bounded-gap",
+      "prompt": "There ___ one orange in my lunch bag.",
+      "acceptedAnswers": ["is"],
+      "explanation": {
+        "en": "Use 'is' with the singular noun phrase 'one orange'. The word 'one' makes the number clear.",
+        "vi": "Dùng 'is' với cụm danh từ số ít 'one orange'. Từ 'one' cho biết rõ chỉ có một quả cam."
+      },
+      "sourceIds": ["source-1"],
+      "rights": "original-trial-example-reference-not-reproduced"
+    },
+    {
+      "id": "trial-item-02",
+      "status": "synthetic-disposable",
+      "level": "A1-provisional-not-validated",
+      "type": "bounded-gap",
+      "prompt": "There ___ six blue buttons on the desk.",
+      "acceptedAnswers": ["are"],
+      "explanation": {
+        "en": "Use 'are' with the plural noun phrase 'six blue buttons'. The phrase names more than one button.",
+        "vi": "Dùng 'are' với cụm danh từ số nhiều 'six blue buttons'. Cụm từ này nói đến nhiều hơn một chiếc cúc áo."
+      },
+      "sourceIds": ["source-1"],
+      "rights": "original-trial-example-reference-not-reproduced"
+    }
+  ]
+}

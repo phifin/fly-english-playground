@@ -1,0 +1,178 @@
+name: Validate and publish Atlas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  firestore-rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      ATLAS_REQUIRE_FIRESTORE_EMULATOR: 'true'
+      ATLAS_REQUIRE_CLOUD_EMULATORS: 'true'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install isolated Firebase verification tooling
+        run: npm install --prefix "$RUNNER_TEMP/atlas-firebase" --no-save --package-lock=false --ignore-scripts firebase-tools@15.34.0
+      - name: Test actual Auth, Firestore rules and family synchronization
+        run: >-
+          node "$RUNNER_TEMP/atlas-firebase/node_modules/firebase-tools/lib/bin/firebase.js"
+          --non-interactive emulators:exec --only auth,firestore --project demo-atlas-rules
+          --config cloud/firebase.json
+          'node --test --test-isolation=none tests/cloud-rules.test.mjs tests/cloud-emulator.test.mjs'
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      release_id: ${{ steps.release.outputs.release_id }}
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Domain, data, storage and release tests
+        run: node --test --test-isolation=none tests/*.test.mjs
+      - name: Build public static release
+        id: release
+        run: |
+          node scripts/publish-content.mjs --check
+          node scripts/boards.mjs --check
+          node scripts/build.mjs
+          node -e 'const fs=require("node:fs");const {releaseId}=JSON.parse(fs.readFileSync("dist/build-report.json","utf8"));if(!/^[a-f0-9]{20}$/.test(releaseId))throw new Error("Invalid build identity");fs.appendFileSync(process.env.GITHUB_OUTPUT,"release_id="+releaseId+"\n");'
+      - name: Install isolated browser verification tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
+          node "$RUNNER_TEMP/atlas-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Browser release checks
+        env:
+          ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
+          ATLAS_AXE_PATH: ${{ runner.temp }}/atlas-browser/node_modules/axe-core/axe.min.js
+          P0_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
+          ATLAS_BASE_PATH: /${{ github.event.repository.name }}/
+          ATLAS_URL: http://127.0.0.1:4173/${{ github.event.repository.name }}/
+          P0_URL: http://127.0.0.1:4173/${{ github.event.repository.name }}/
+          ATLAS_EXPECTED_RELEASE: ${{ steps.release.outputs.release_id }}
+          CI: 'true'
+        run: |
+          mkdir -p artifacts
+          node scripts/serve.mjs --dist > artifacts/atlas-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          preview_ready=false
+          for attempt in {1..40}; do
+            if curl --fail --silent "$ATLAS_URL" > /dev/null; then preview_ready=true; break; fi
+            sleep 0.25
+          done
+          if [[ "$preview_ready" != true ]]; then cat artifacts/atlas-preview.log; exit 1; fi
+          node scripts/verify-deployment.mjs
+          node scripts/browser-release-check.mjs
+      - name: Preserve browser verification evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: atlas-browser-evidence
+          path: |
+            artifacts/release-browser-report.json
+            artifacts/release-*.png
+            artifacts/deployment-report.json
+            artifacts/atlas-preview.log
+          if-no-files-found: warn
+          retention-days: 7
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: [build, firestore-rules]
+    runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy validated artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  verify-production:
+    if: github.event_name != 'pull_request'
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    env:
+      ATLAS_URL: ${{ needs.deploy.outputs.page_url }}
+      ATLAS_EXPECTED_RELEASE: ${{ needs.build.outputs.release_id }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify the actual deployed release and public-file integrity
+        run: |
+          for attempt in {1..6}; do
+            if node scripts/verify-deployment.mjs; then exit 0; fi
+            if [[ "$attempt" -lt 6 ]]; then sleep 5; fi
+          done
+          exit 1
+      - name: Install isolated browser verification tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
+          node "$RUNNER_TEMP/atlas-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Exercise the published game in fresh browser profiles
+        env:
+          ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
+          ATLAS_AXE_PATH: ${{ runner.temp }}/atlas-browser/node_modules/axe-core/axe.min.js
+        run: node scripts/browser-release-check.mjs
+      - name: Preserve production verification evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: atlas-production-evidence
+          path: |
+            artifacts/deployment-report.json
+            artifacts/release-browser-report.json
+            artifacts/release-*.png
+          if-no-files-found: warn
+          retention-days: 7

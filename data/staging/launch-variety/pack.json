@@ -1,0 +1,2196 @@
+{
+  "schemaVersion": 1,
+  "batchId": "launch-variety",
+  "provenance": [
+    {
+      "id": "coe-cefr-companion-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/common-european-framework-of-reference-for-languages-learning-teaching/16809ea0d4",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the framework's broad use and illustrative reading and creative-text descriptors. The official 2020 PDF was opened. All mission text, activities, options, keys, explanations and examples are original; no descriptor wording is copied and no CEFR calibration is claimed."
+    },
+    {
+      "id": "bc-a1-a2-grammar",
+      "title": "A1-A2 grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the British Council's A1-A2 grouping of comparative adjectives and countable and uncountable nouns. The page was opened. All task wording and examples are original; no exercise is copied."
+    },
+    {
+      "id": "bc-can-could",
+      "title": "'can' and 'could'",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/can-could",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for polite requests and suggestions with can and could. The full grammar reference was opened. All requests, contexts and examples in this pack are original; no source example is copied."
+    },
+    {
+      "id": "bc-past-tense",
+      "title": "Past tense",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/past-tense",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for distinguishing past narrative forms. The grammar reference was opened. All stories, sentences and keys are original; no example sentence is copied."
+    },
+    {
+      "id": "bc-reported-speech-statements",
+      "title": "Reported speech: statements",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/reported-speech-statements",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for standard backshift, pronoun shifts and time-word changes in reported statements. The full page was opened. The reporting tasks and all example language are original; no exercise or sentence is copied."
+    },
+    {
+      "id": "bc-contrasting-ideas",
+      "title": "Contrasting ideas: 'although', 'despite' and others",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/contrasting-ideas-although-despite-others",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for contrast and concession linkers and the different structures after them. The page was opened. All assessed language is original; no exercises or example sentences are copied."
+    },
+    {
+      "id": "bc-c1-grammar",
+      "title": "C1 grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/c1",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the British Council's C1 grouping of emphasis, cohesion and inversion topics. The page was opened. This is not evidence that the authored items are calibrated to C1."
+    },
+    {
+      "id": "bc-c1-negative-inversion",
+      "title": "Inversion after negative adverbials",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/c1/inversion-after-negative-adverbials",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for fronted negative adverbials, auxiliary inversion and formal emphasis. The full page was opened. All sentences and ordering tasks are original; no example is copied."
+    },
+    {
+      "id": "cambridge-negative-adverbs",
+      "title": "Negative adverbs: hardly, seldom, etc.",
+      "url": "https://dictionary.cambridge.org/uk/grammar/british-grammar/negative-adverbs-hardly-seldom-etc",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the general grammar of negative adverbials and inversion. A search-result summary was available, but direct opening returned HTTP 403, so the full page was not read. No wording or examples are copied."
+    },
+    {
+      "id": "cambridge-to-say-the-least",
+      "title": "To say the least",
+      "url": "https://dictionary.cambridge.org/us/dictionary/english/to-say-the-least",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for recognizing understatement as a pragmatic device while authoring the C2 material. The search-result summary was available, but direct opening returned HTTP 403, so the full entry was not read. No definition or example is copied."
+    }
+  ],
+  "missions": [
+    {
+      "id": "a1-lantern-harbor-color-teller",
+      "level": "A1",
+      "title": {
+        "en": "The Color-Teller Lantern",
+        "vi": "Chiếc đèn kể màu"
+      },
+      "summary": {
+        "en": "Friends choose lantern colors and make a tiny light show together.",
+        "vi": "Những người bạn chọn màu đèn và cùng làm một buổi trình diễn ánh sáng nhỏ."
+      },
+      "objective": {
+        "en": "Read personal choices and use simple subject pronouns and present verbs.",
+        "vi": "Đọc lựa chọn cá nhân và dùng đại từ chủ ngữ cùng động từ hiện tại đơn giản."
+      },
+      "skill": "reading",
+      "topic": "personal-choices-pronouns-present-verbs",
+      "reward": {
+        "en": "A color-teller card",
+        "vi": "Thẻ kể màu"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-a1-a2-grammar"
+      ],
+      "activities": [
+        {
+          "id": "a1-lantern-harbor-color-teller-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which color does Niko choose for his lantern?",
+          "context": "At the Lantern Harbor light studio, Niko says, ‘I like yellow because it looks warm.’ Lela says, ‘I like green.’ They hang both lanterns above the story stage, but Niko keeps the yellow one for his own window.",
+          "instruction": {
+            "en": "Choose the color Niko names as his favorite.",
+            "vi": "Chọn màu mà Niko nói là màu yêu thích của mình."
+          },
+          "explanation": {
+            "en": "Niko says he likes yellow and keeps the yellow lantern for his window. Lela chooses green.",
+            "vi": "Niko nói mình thích màu vàng và giữ chiếc đèn vàng cho cửa sổ. Lela chọn màu xanh lá."
+          },
+          "focus": "a1-identify-a-personal-choice",
+          "options": [
+            {
+              "id": "yellow",
+              "text": "Yellow"
+            },
+            {
+              "id": "green",
+              "text": "Green"
+            },
+            {
+              "id": "blue",
+              "text": "Blue"
+            }
+          ],
+          "answer": "yellow"
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the subject pronoun for ‘the paper tail’: The lantern has a paper tail. ___ moves when the door opens.",
+          "context": "Niko puts the finished lantern beside the studio door. Its paper tail moves whenever someone opens the door, so he watches it dance in the light.",
+          "instruction": {
+            "en": "Enter one subject pronoun that replaces the singular object named in the prompt.",
+            "vi": "Nhập một đại từ chủ ngữ thay cho danh từ số ít được nêu trong câu."
+          },
+          "explanation": {
+            "en": "The sentence refers to one object, the paper tail, so it needs a singular subject pronoun. The subject is the thing that moves.",
+            "vi": "Câu nhắc đến một đồ vật là phần đuôi giấy nên cần đại từ chủ ngữ số ít. Chủ ngữ là vật đang chuyển động."
+          },
+          "focus": "a1-use-a-subject-pronoun-for-an-object",
+          "accepted": [
+            "it"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each friend with the color they say they like.",
+          "context": "The light-show note records three choices: Rin likes a silver moon, Omar likes a green leaf, and Tia likes a blue wave. Each friend picks one shape for the wall.",
+          "instruction": {
+            "en": "Match each person to the color named in the note.",
+            "vi": "Nối mỗi người với màu được nêu trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note gives one different color choice to each friend: silver for Rin, green for Omar and blue for Tia.",
+            "vi": "Ghi chú nêu một màu khác nhau cho mỗi người: bạc cho Rin, xanh lá cho Omar và xanh dương cho Tia."
+          },
+          "focus": "a1-match-people-to-stated-choices",
+          "pairs": [
+            {
+              "id": "rin",
+              "left": "Rin says, ‘I like the silver moon.’",
+              "right": "Rin chooses silver."
+            },
+            {
+              "id": "omar",
+              "left": "Omar says, ‘I like the green leaf.’",
+              "right": "Omar chooses green."
+            },
+            {
+              "id": "tia",
+              "left": "Tia says, ‘I like the blue wave.’",
+              "right": "Tia chooses blue."
+            }
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Put the lantern-making steps in the order named in the studio note.",
+          "context": "The studio note gives a simple sequence for a paper lantern: first choose a paper color, next fold the paper, and last draw a moon on the lantern.",
+          "instruction": {
+            "en": "Use the note’s first, next and last clues to put the steps in order.",
+            "vi": "Dựa vào các từ first, next và last trong ghi chú để sắp xếp các bước."
+          },
+          "explanation": {
+            "en": "The note names choosing the color first, folding next and drawing the moon last. The time words allow only this order.",
+            "vi": "Ghi chú yêu cầu chọn màu trước, gấp giấy tiếp theo và vẽ mặt trăng sau cùng. Các từ chỉ trình tự chỉ cho phép thứ tự này."
+          },
+          "focus": "a1-follow-a-simple-making-sequence",
+          "tokens": [
+            {
+              "id": "color",
+              "text": "Choose a paper color."
+            },
+            {
+              "id": "fold",
+              "text": "Fold the paper."
+            },
+            {
+              "id": "moon",
+              "text": "Draw a moon on it."
+            }
+          ],
+          "answer": [
+            "color",
+            "fold",
+            "moon"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two short sentences about a color or shape you like. Say what you make with it.",
+          "context": "The light studio has paper in many colors and simple shapes. Everyone can choose a favorite and make something of their own.",
+          "instruction": {
+            "en": "Use ‘I like …’ and one simple present verb. Check that each sentence has a subject.",
+            "vi": "Dùng ‘I like …’ và một động từ hiện tại đơn giản. Kiểm tra để mỗi câu có chủ ngữ."
+          },
+          "explanation": {
+            "en": "A complete response names a personal preference and says what the writer makes. This is a self-review activity, not an automatically graded answer.",
+            "vi": "Câu trả lời hoàn chỉnh nêu một sở thích cá nhân và cho biết người viết làm gì. Đây là hoạt động tự xem lại, không được chấm đúng sai tự động."
+          },
+          "focus": "a1-write-about-a-personal-preference",
+          "rubric": [
+            {
+              "en": "I state a color or shape I like.",
+              "vi": "Tôi nêu một màu hoặc hình dạng mình thích."
+            },
+            {
+              "en": "I use a subject and a simple present verb in each sentence.",
+              "vi": "Tôi dùng chủ ngữ và động từ hiện tại đơn giản trong mỗi câu."
+            }
+          ],
+          "example": "I like blue circles. I draw one on my lantern."
+        }
+      ]
+    },
+    {
+      "id": "a1-lantern-harbor-rooftop-kites",
+      "level": "A1",
+      "title": {
+        "en": "The Rooftop Kite Club",
+        "vi": "Câu lạc bộ diều trên mái"
+      },
+      "summary": {
+        "en": "A small kite club shares favorite patterns, colors and simple actions.",
+        "vi": "Một câu lạc bộ diều nhỏ chia sẻ họa tiết, màu sắc và hoạt động yêu thích."
+      },
+      "objective": {
+        "en": "Read what people choose and use simple pronouns and verbs about familiar things.",
+        "vi": "Đọc lựa chọn của mọi người và dùng đại từ, động từ đơn giản về những vật quen thuộc."
+      },
+      "skill": "reading",
+      "topic": "kite-choices-and-basic-pronouns",
+      "reward": {
+        "en": "A paper kite tail",
+        "vi": "Đuôi diều giấy"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-a1-a2-grammar"
+      ],
+      "activities": [
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which kite pattern does Sami choose?",
+          "context": "At the rooftop kite club, Sami looks at dots, stripes and small clouds. His note says, ‘I choose stripes. They look like little waves.’ Jo chooses dots because they look like stars.",
+          "instruction": {
+            "en": "Choose the pattern named in Sami’s note.",
+            "vi": "Chọn họa tiết được nêu trong ghi chú của Sami."
+          },
+          "explanation": {
+            "en": "Sami writes that he chooses stripes. Jo chooses dots, so the two friends do not make the same choice.",
+            "vi": "Sami viết rằng mình chọn sọc. Jo chọn chấm bi nên hai người bạn không chọn giống nhau."
+          },
+          "focus": "a1-find-a-stated-personal-choice",
+          "options": [
+            {
+              "id": "dots",
+              "text": "Dots"
+            },
+            {
+              "id": "stripes",
+              "text": "Stripes"
+            },
+            {
+              "id": "clouds",
+              "text": "Small clouds"
+            }
+          ],
+          "answer": "stripes"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the subject pronoun for ‘Lio and May’: Lio and May make a round kite. ___ decorate it with paper dots.",
+          "context": "Lio and May work together at the kite club. They make one round kite and decorate it with small paper dots.",
+          "instruction": {
+            "en": "Enter one subject pronoun that replaces the two names.",
+            "vi": "Nhập một đại từ chủ ngữ thay cho hai cái tên."
+          },
+          "explanation": {
+            "en": "The subject names two people, so the sentence needs a plural subject pronoun. The verb ‘decorate’ agrees with that plural subject.",
+            "vi": "Chủ ngữ chỉ hai người nên câu cần đại từ chủ ngữ số nhiều. Động từ ‘decorate’ phù hợp với chủ ngữ số nhiều đó."
+          },
+          "focus": "a1-use-a-plural-subject-pronoun",
+          "accepted": [
+            "they"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each kite part to the action the club member chooses.",
+          "context": "The club’s making note says: ‘I tie the red ribbon to the tail. I draw a green circle on the sail. I add two small bells to the frame.’",
+          "instruction": {
+            "en": "Match each kite part to the action linked to it in the note.",
+            "vi": "Nối mỗi bộ phận của diều với hành động gắn với nó trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note connects the ribbon with tying, the sail with drawing a circle, and the frame with adding bells. Each action names a different part.",
+            "vi": "Ghi chú nối dải ruy băng với việc buộc, cánh diều với việc vẽ hình tròn và khung với việc gắn chuông. Mỗi hành động nói về một bộ phận khác nhau."
+          },
+          "focus": "a1-match-familiar-things-to-actions",
+          "pairs": [
+            {
+              "id": "ribbon",
+              "left": "The red ribbon",
+              "right": "I tie it to the tail."
+            },
+            {
+              "id": "sail",
+              "left": "The green circle",
+              "right": "I draw it on the sail."
+            },
+            {
+              "id": "bells",
+              "left": "The two small bells",
+              "right": "I add them to the frame."
+            }
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the kite steps as the club note describes them.",
+          "context": "The club note says: first choose a kite color, next fold two paper sheets together, and last add the long tail.",
+          "instruction": {
+            "en": "Follow the three sequence words in the note.",
+            "vi": "Làm theo ba từ chỉ trình tự trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note gives a single sequence: choose the color, fold the sheets, and add the tail.",
+            "vi": "Ghi chú nêu một trình tự duy nhất: chọn màu, gấp hai tờ giấy rồi gắn đuôi diều."
+          },
+          "focus": "a1-order-steps-from-sequence-words",
+          "tokens": [
+            {
+              "id": "choose",
+              "text": "Choose a kite color."
+            },
+            {
+              "id": "fold",
+              "text": "Fold two paper sheets."
+            },
+            {
+              "id": "tail",
+              "text": "Add the long tail."
+            }
+          ],
+          "answer": [
+            "choose",
+            "fold",
+            "tail"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two short sentences about a toy or game you like. Say what you do with it.",
+          "context": "The kite club members enjoy different toys and games. They use simple sentences to tell one another what they like to do.",
+          "instruction": {
+            "en": "Use ‘I like …’ and one basic action verb such as play, draw or fly.",
+            "vi": "Dùng ‘I like …’ và một động từ hoạt động cơ bản như play, draw hoặc fly."
+          },
+          "explanation": {
+            "en": "The writer can choose any suitable toy or game and describe an action. Use the rubric for self-review; the activity is not automatically graded.",
+            "vi": "Người viết có thể chọn bất kỳ món đồ chơi hoặc trò chơi phù hợp nào rồi mô tả một hành động. Dùng tiêu chí để tự xem lại; hoạt động không được chấm tự động."
+          },
+          "focus": "a1-write-simple-sentences-about-a-choice",
+          "rubric": [
+            {
+              "en": "I name a toy or game I like.",
+              "vi": "Tôi nêu một món đồ chơi hoặc trò chơi mình thích."
+            },
+            {
+              "en": "I use a simple present verb to say what I do.",
+              "vi": "Tôi dùng động từ hiện tại đơn giản để nói mình làm gì."
+            }
+          ],
+          "example": "I like my paper kite. I fly it with my cousin."
+        }
+      ]
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-sculpture",
+      "level": "A2",
+      "title": {
+        "en": "The Taller Seed Sculpture",
+        "vi": "Tác phẩm hạt giống cao hơn"
+      },
+      "summary": {
+        "en": "Compare growing sculptures and sort the garden materials used to make them.",
+        "vi": "So sánh các tác phẩm lấy cảm hứng từ cây cối và phân loại vật liệu làm nên chúng."
+      },
+      "objective": {
+        "en": "Use comparative adjectives and distinguish countable objects from uncountable materials.",
+        "vi": "Dùng tính từ so sánh và phân biệt vật đếm được với chất liệu không đếm được."
+      },
+      "skill": "reading",
+      "topic": "comparisons-and-countable-uncountable-nouns",
+      "reward": {
+        "en": "A seed-sculpture badge",
+        "vi": "Huy hiệu tác phẩm hạt giống"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-a1-a2-grammar"
+      ],
+      "activities": [
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which sculpture is the tallest?",
+          "context": "The garden studio measures three seed sculptures: Tall Acorn is 31 centimetres high, Paper Moon is 22 centimetres high, and Wide Nest is 18 centimetres high. The Wide Nest is broad but low.",
+          "instruction": {
+            "en": "Choose the sculpture with the greatest height.",
+            "vi": "Chọn tác phẩm có chiều cao lớn nhất."
+          },
+          "explanation": {
+            "en": "Tall Acorn is 31 centimetres high, compared with Paper Moon at 22 and Wide Nest at 18. It is the only sculpture with the greatest height.",
+            "vi": "Tall Acorn cao 31 cm, so với Paper Moon cao 22 cm và Wide Nest cao 18 cm. Đây là tác phẩm duy nhất có chiều cao lớn nhất."
+          },
+          "focus": "a2-compare-measured-heights",
+          "options": [
+            {
+              "id": "tall-acorn",
+              "text": "Tall Acorn"
+            },
+            {
+              "id": "paper-moon",
+              "text": "Paper Moon"
+            },
+            {
+              "id": "wide-nest",
+              "text": "Wide Nest"
+            }
+          ],
+          "answer": "tall-acorn"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the countable noun ‘flower’ in its plural form: The maker counted five yellow ___ on the model.",
+          "context": "The sculpture is covered with small paper flowers. Its maker counts each flower and writes the total in the garden notebook.",
+          "instruction": {
+            "en": "Enter the plural form of the countable noun given in the prompt.",
+            "vi": "Nhập dạng số nhiều của danh từ đếm được được nêu trong câu."
+          },
+          "explanation": {
+            "en": "The number five requires a plural countable noun. The prompt specifies the noun to change.",
+            "vi": "Số five yêu cầu danh từ đếm được ở dạng số nhiều. Câu hỏi đã nêu danh từ cần đổi dạng."
+          },
+          "focus": "a2-form-a-countable-plural",
+          "accepted": [
+            "flowers"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each quantity phrase to the material it is paired with in the making note.",
+          "context": "The making note pairs many with seed pods, a little with soil, and a few with clay bowls beside the finished garden sculptures.",
+          "instruction": {
+            "en": "Follow the three pairings stated in the note; do not choose a phrase merely because it could fit a noun grammatically.",
+            "vi": "Dựa theo ba cặp được nêu trong ghi chú; không chọn cụm chỉ vì nó có thể đi với danh từ về mặt ngữ pháp."
+          },
+          "explanation": {
+            "en": "This task checks whether you can recover the note's pairings, not whether a quantifier is the only grammatically possible one. Both many and a few can modify plural countable nouns; the note pairs many with seed pods and a few with clay bowls, while a little pairs with soil.",
+            "vi": "Bài tập kiểm tra khả năng tìm đúng các cặp trong ghi chú, không kiểm tra xem từ chỉ lượng nào là lựa chọn duy nhất đúng ngữ pháp. Cả many và a few đều có thể đi với danh từ đếm được số nhiều; ghi chú ghép many với seed pods, a few với clay bowls, còn a little đi với soil."
+          },
+          "focus": "a2-match-quantity-pairings-in-a-note",
+          "pairs": [
+            {
+              "id": "many",
+              "left": "many",
+              "right": "seed pods"
+            },
+            {
+              "id": "little",
+              "left": "a little",
+              "right": "soil"
+            },
+            {
+              "id": "few",
+              "left": "a few",
+              "right": "clay bowls"
+            }
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the four chunks to make the comparison printed on the workshop card.",
+          "context": "A workshop card compares the two garden frames. The spiral frame is wider than the round frame, so it can hold a line of seed pods.",
+          "instruction": {
+            "en": "Build the exact comparison sentence, keeping the comparative phrase before ‘than’.",
+            "vi": "Tạo câu so sánh chính xác, đặt cụm so sánh trước ‘than’."
+          },
+          "explanation": {
+            "en": "The subject comes first, followed by the comparative adjective, then than and the second frame.",
+            "vi": "Chủ ngữ đứng trước, tiếp theo là tính từ so sánh, rồi đến than và khung thứ hai."
+          },
+          "focus": "a2-order-a-comparative-sentence",
+          "tokens": [
+            {
+              "id": "spiral",
+              "text": "The spiral frame"
+            },
+            {
+              "id": "wider",
+              "text": "is wider"
+            },
+            {
+              "id": "than",
+              "text": "than"
+            },
+            {
+              "id": "round",
+              "text": "the round frame."
+            }
+          ],
+          "answer": [
+            "spiral",
+            "wider",
+            "than",
+            "round"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two sentences comparing two garden objects. Mention one countable object or one material.",
+          "context": "The garden studio has frames, clay bowls, soil, water and seed pods. Choose two objects or materials and describe one difference between them.",
+          "instruction": {
+            "en": "Use a comparative adjective and a quantity word that fits your noun.",
+            "vi": "Dùng một tính từ so sánh và từ chỉ lượng phù hợp với danh từ."
+          },
+          "explanation": {
+            "en": "A useful response compares two items and uses a fitting quantity expression. This model and rubric support self-review only; the engine does not grade the writing.",
+            "vi": "Câu trả lời nên so sánh hai vật và dùng cụm chỉ lượng phù hợp. Ví dụ và tiêu chí chỉ hỗ trợ tự xem lại; hệ thống không chấm bài viết."
+          },
+          "focus": "a2-write-a-comparison-with-quantity-language",
+          "rubric": [
+            {
+              "en": "I compare two garden objects or materials clearly.",
+              "vi": "Tôi so sánh rõ ràng hai đồ vật hoặc chất liệu trong vườn."
+            },
+            {
+              "en": "My quantity word fits a countable or uncountable noun.",
+              "vi": "Từ chỉ lượng phù hợp với danh từ đếm được hoặc không đếm được."
+            }
+          ],
+          "example": "The clay frame is heavier than the paper one. We use a little soil and many seed pods."
+        }
+      ]
+    },
+    {
+      "id": "a2-wildseed-gardens-garden-invitation",
+      "level": "A2",
+      "title": {
+        "en": "An Invitation to Make a Sound Garden",
+        "vi": "Lời mời làm khu vườn âm thanh"
+      },
+      "summary": {
+        "en": "A garden group makes a friendly plan and asks for help politely.",
+        "vi": "Một nhóm trong vườn lên kế hoạch thân thiện và lịch sự nhờ giúp đỡ."
+      },
+      "objective": {
+        "en": "Recognise polite requests, invitations and suggestions when making a simple plan.",
+        "vi": "Nhận biết lời nhờ, lời mời và gợi ý lịch sự khi lên một kế hoạch đơn giản."
+      },
+      "skill": "reading",
+      "topic": "polite-requests-invitations-and-plans",
+      "reward": {
+        "en": "A sound-garden invitation",
+        "vi": "Thiệp mời khu vườn âm thanh"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-can-could"
+      ],
+      "activities": [
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which message is the most polite request for help?",
+          "context": "Asha is inviting a new neighbor to help arrange clay birds in the sound garden. She wants to make a friendly request, not give an order or describe what the neighbor can do.",
+          "instruction": {
+            "en": "Choose the message that asks for help politely.",
+            "vi": "Chọn lời nhắn nhờ giúp đỡ một cách lịch sự."
+          },
+          "explanation": {
+            "en": "The question with Would you mind …? is a conventional polite request. The other messages sound like a direct command or a statement about ability.",
+            "vi": "Câu hỏi Would you mind …? là cách nhờ vả lịch sự thường dùng. Những lời nhắn khác giống mệnh lệnh trực tiếp hoặc câu nói về khả năng."
+          },
+          "focus": "a2-recognise-a-polite-request",
+          "options": [
+            {
+              "id": "order",
+              "text": "Move these bowls for me now."
+            },
+            {
+              "id": "polite",
+              "text": "Would you mind helping me arrange the clay birds?"
+            },
+            {
+              "id": "ability",
+              "text": "You can move bowls if you want."
+            }
+          ],
+          "answer": "polite"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the fixed polite question with one modal: ___ you mind lending me your leaf sketch for a moment?",
+          "context": "Asha has drawn a new sound garden and wants to borrow a neighbor’s leaf sketch briefly. Her note uses the polite formula with mind followed by an -ing verb.",
+          "instruction": {
+            "en": "Use the modal that completes the polite formula ‘___ you mind + -ing’.",
+            "vi": "Dùng động từ khiếm khuyết hoàn thành công thức lịch sự ‘___ you mind + động từ thêm -ing’."
+          },
+          "explanation": {
+            "en": "Would you mind is the fixed polite question form here. The following verb is in the -ing form.",
+            "vi": "Would you mind là cấu trúc câu hỏi lịch sự cố định ở đây. Động từ theo sau ở dạng thêm -ing."
+          },
+          "focus": "a2-form-a-polite-would-you-mind-question",
+          "accepted": [
+            "would"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each garden message to what the speaker is doing.",
+          "context": "The group shares three messages: ‘Could you carry this clay bird?’ ‘Would you like to join our paper garden?’ and ‘We could make a rain picture together.’",
+          "instruction": {
+            "en": "Match each message to its purpose in the group conversation.",
+            "vi": "Nối mỗi lời nhắn với mục đích của nó trong cuộc trò chuyện nhóm."
+          },
+          "explanation": {
+            "en": "Could you asks for help, Would you like to invites someone, and We could offers a possible shared plan.",
+            "vi": "Could you nhờ giúp đỡ, Would you like to mời ai đó, còn We could đưa ra một kế hoạch chung có thể thực hiện."
+          },
+          "focus": "a2-distinguish-requests-invitations-and-suggestions",
+          "pairs": [
+            {
+              "id": "request",
+              "left": "Could you carry this clay bird?",
+              "right": "A polite request for help"
+            },
+            {
+              "id": "invitation",
+              "left": "Would you like to join our paper garden?",
+              "right": "An invitation to take part"
+            },
+            {
+              "id": "suggestion",
+              "left": "We could make a rain picture together.",
+              "right": "A suggestion for a shared plan"
+            }
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the word groups to make the invitation on the garden card.",
+          "context": "A garden card invites a neighbor to join a creative activity. It asks whether the neighbor would like to paint a leaf pattern with the group.",
+          "instruction": {
+            "en": "Put the polite question in its usual word order and keep the question mark at the end.",
+            "vi": "Đặt câu hỏi lịch sự theo trật tự từ thông thường và để dấu hỏi ở cuối câu."
+          },
+          "explanation": {
+            "en": "The invitation begins with Would you like to, followed by the activity, then with us.",
+            "vi": "Lời mời bắt đầu bằng Would you like to, tiếp theo là hoạt động rồi đến with us."
+          },
+          "focus": "a2-order-a-polite-invitation",
+          "tokens": [
+            {
+              "id": "would",
+              "text": "Would you like to"
+            },
+            {
+              "id": "paint",
+              "text": "paint"
+            },
+            {
+              "id": "pattern",
+              "text": "a leaf pattern"
+            },
+            {
+              "id": "with",
+              "text": "with us?"
+            }
+          ],
+          "answer": [
+            "would",
+            "paint",
+            "pattern",
+            "with"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a short invitation to a friend for a creative activity. Include one polite question and one plan.",
+          "context": "The garden group wants to make a new activity that neighbors can enjoy together. It could involve painting, making sounds or building a paper scene.",
+          "instruction": {
+            "en": "Use ‘Would you like to …?’ or ‘Could we …?’ and say what you plan to do.",
+            "vi": "Dùng ‘Would you like to …?’ hoặc ‘Could we …?’ và nêu kế hoạch."
+          },
+          "explanation": {
+            "en": "A clear invitation names an activity and asks or suggests politely. Use the rubric to review your own writing; no answer is automatically scored.",
+            "vi": "Lời mời rõ ràng nêu hoạt động và hỏi hoặc gợi ý lịch sự. Dùng tiêu chí để tự xem lại; bài viết không được chấm tự động."
+          },
+          "focus": "a2-write-a-polite-plan",
+          "rubric": [
+            {
+              "en": "I include a polite question or suggestion.",
+              "vi": "Tôi có một câu hỏi hoặc gợi ý lịch sự."
+            },
+            {
+              "en": "I say what activity I plan or invite someone to do.",
+              "vi": "Tôi nói rõ hoạt động mình dự định làm hoặc mời người khác cùng làm."
+            }
+          ],
+          "example": "Would you like to make a rain picture with me? We could use blue paper and silver paint."
+        }
+      ]
+    },
+    {
+      "id": "b1-tideglass-isles-moon-moth-model",
+      "level": "B1",
+      "title": {
+        "en": "The Moon-Moth Model",
+        "vi": "Mô hình bướm đêm ánh trăng"
+      },
+      "summary": {
+        "en": "A paper model changes when its maker discovers what light can do.",
+        "vi": "Một mô hình giấy thay đổi khi người làm khám phá tác dụng của ánh sáng."
+      },
+      "objective": {
+        "en": "Follow a short past narrative and connect actions with reasons and intentions.",
+        "vi": "Theo dõi một câu chuyện ngắn ở quá khứ và nối hành động với lý do, mục đích."
+      },
+      "skill": "reading",
+      "topic": "past-narratives-reasons-and-intentions",
+      "reward": {
+        "en": "A moon-moth shadow",
+        "vi": "Bóng bướm đêm ánh trăng"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-past-tense"
+      ],
+      "activities": [
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Why did Eni leave the paper wings unpainted?",
+          "context": "During a Tideglass Isles art circle, Eni built a moon-moth from thin paper. She left its wings unpainted because she wanted the projector light to pass through. When the first blue beam touched the model, its shadow looked like a second, larger moth.",
+          "instruction": {
+            "en": "Choose the reason that Eni gives in the story.",
+            "vi": "Chọn lý do được Eni nêu trong câu chuyện."
+          },
+          "explanation": {
+            "en": "Eni wanted the projector light to pass through the thin paper, so she left the wings unpainted. The later shadow is a result of the light on the model.",
+            "vi": "Eni muốn ánh sáng máy chiếu xuyên qua lớp giấy mỏng nên để cánh không tô màu. Bóng lớn hơn xuất hiện khi ánh sáng chiếu vào mô hình."
+          },
+          "focus": "b1-understand-a-character's-reason",
+          "options": [
+            {
+              "id": "light",
+              "text": "She wanted light to pass through the wings."
+            },
+            {
+              "id": "heavy",
+              "text": "She wanted the model to feel heavier."
+            },
+            {
+              "id": "hidden",
+              "text": "She wanted the model to stay hidden in a box."
+            }
+          ],
+          "answer": "light"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete a three-word purpose phrase ending in to. Enter two words: Eni moved the lamp closer ___ to make the shadow larger.",
+          "context": "At first, the moth's shadow was small. Eni adjusted the lamp with the aim of making the shadow grow across the paper wall.",
+          "instruction": {
+            "en": "Enter the two words that complete a purpose phrase before the printed to. Do not add the final to.",
+            "vi": "Nhập hai từ tạo thành cụm chỉ mục đích trước từ to đã có sẵn. Không nhập thêm từ to ở cuối."
+          },
+          "explanation": {
+            "en": "The blank takes two words before the printed to, forming a purpose phrase that explains why Eni moved the lamp. Both accepted forms introduce her intention rather than a result caused by the action.",
+            "vi": "Chỗ trống cần hai từ đứng trước từ to đã có sẵn, tạo thành cụm chỉ mục đích giải thích vì sao Eni di chuyển chiếc đèn. Cả hai dạng được chấp nhận đều nêu ý định của Eni, không phải kết quả do hành động gây ra."
+          },
+          "focus": "b1-form-a-purpose-phrase-before-an-infinitive",
+          "accepted": [
+            "in order",
+            "so as"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each action to the intention stated in the story.",
+          "context": "Eni’s note says she left the wings unpainted to let light through, moved the lamp closer to enlarge the shadow, and asked Jo to trace the new shape for the story wall.",
+          "instruction": {
+            "en": "Match each action with the purpose that the note gives for it.",
+            "vi": "Nối mỗi hành động với mục đích được nêu trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note gives a different purpose for each action: light through the wings, a larger shadow, and a drawing for the story wall.",
+            "vi": "Ghi chú nêu mục đích riêng cho mỗi hành động: cho ánh sáng xuyên qua cánh, tạo bóng lớn hơn và vẽ lại hình để đưa lên tường kể chuyện."
+          },
+          "focus": "b1-match-actions-to-stated-purposes",
+          "pairs": [
+            {
+              "id": "wings",
+              "left": "Leave the wings unpainted",
+              "right": "Let projector light pass through"
+            },
+            {
+              "id": "lamp",
+              "left": "Move the lamp closer",
+              "right": "Make the shadow grow"
+            },
+            {
+              "id": "jo",
+              "left": "Ask Jo to trace the shape",
+              "right": "Add the new outline to the story wall"
+            }
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Put the events in the order they happen in Eni’s story.",
+          "context": "Eni first made the paper moth. A blue beam then lit its wings. After seeing the shadow, she moved the lamp; finally, Jo traced the new shape.",
+          "instruction": {
+            "en": "Follow the narrative order marked by first, then, after and finally.",
+            "vi": "Theo trình tự câu chuyện được đánh dấu bằng first, then, after và finally."
+          },
+          "explanation": {
+            "en": "The story moves from making the moth to lighting it, then adjusting the lamp, and finally tracing the shape.",
+            "vi": "Câu chuyện đi từ việc làm bướm giấy đến chiếu sáng, điều chỉnh đèn rồi cuối cùng là vẽ lại hình."
+          },
+          "focus": "b1-follow-events-in-a-past-narrative",
+          "tokens": [
+            {
+              "id": "make",
+              "text": "Eni made the paper moth."
+            },
+            {
+              "id": "beam",
+              "text": "A blue beam lit its wings."
+            },
+            {
+              "id": "lamp",
+              "text": "Eni moved the lamp closer."
+            },
+            {
+              "id": "trace",
+              "text": "Jo traced the new shape."
+            }
+          ],
+          "answer": [
+            "make",
+            "beam",
+            "lamp",
+            "trace"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write three sentences about a small discovery that changed a character’s plan. Include what happened and why.",
+          "context": "In Tideglass stories, a new sound, shadow or shape can give a character an idea. The character might change a drawing, a tune or a handmade object.",
+          "instruction": {
+            "en": "Use past-tense actions and one reason linker such as because. The character may be fictional.",
+            "vi": "Dùng hành động ở quá khứ và một từ nối chỉ lý do như because. Nhân vật có thể là hư cấu."
+          },
+          "explanation": {
+            "en": "A strong response gives a short sequence and explains the character’s reason for changing plans. This is reflective writing only and receives no automatic grade.",
+            "vi": "Câu trả lời tốt nêu một chuỗi sự việc ngắn và giải thích lý do nhân vật đổi kế hoạch. Đây chỉ là bài viết tự xem lại, không được chấm tự động."
+          },
+          "focus": "b1-write-a-narrative-with-a-reason",
+          "rubric": [
+            {
+              "en": "I describe events in a clear past-time sequence.",
+              "vi": "Tôi kể sự việc theo trình tự quá khứ rõ ràng."
+            },
+            {
+              "en": "I give a reason for the character’s choice or change of plan.",
+              "vi": "Tôi nêu lý do cho lựa chọn hoặc việc đổi kế hoạch của nhân vật."
+            }
+          ],
+          "example": "Mika heard a soft click inside the paper bird. She opened the wing because she wanted to find the sound. A tiny seed had become a little bell."
+        }
+      ]
+    },
+    {
+      "id": "b1-tideglass-isles-borrowed-tide-song",
+      "level": "B1",
+      "title": {
+        "en": "The Borrowed Tide Song",
+        "vi": "Khúc hát thủy triều được mượn"
+      },
+      "summary": {
+        "en": "An old recording gives a young songwriter an unexpected new sound.",
+        "vi": "Một bản thu cũ đem đến âm thanh mới bất ngờ cho người viết nhạc trẻ."
+      },
+      "objective": {
+        "en": "Read a past narrative, identify reasons and express purpose with an infinitive.",
+        "vi": "Đọc câu chuyện ở quá khứ, nhận diện lý do và diễn đạt mục đích bằng động từ nguyên mẫu."
+      },
+      "skill": "reading",
+      "topic": "narrative-intention-and-infinitive-of-purpose",
+      "reward": {
+        "en": "A new songbook verse",
+        "vi": "Một khổ mới trong tập bài hát"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-past-tense"
+      ],
+      "activities": [
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Why did Tavi leave the song’s last line open?",
+          "context": "At the Tideglass Isles sound library, Tavi borrowed an old recording of his grandmother humming a tide song. He planned to add a missing verse to the shared songbook. When a soft click joined the melody, he wrote a new verse and left its last line open for a future singer.",
+          "instruction": {
+            "en": "Choose the intention that explains Tavi’s final choice.",
+            "vi": "Chọn mục đích giải thích lựa chọn cuối cùng của Tavi."
+          },
+          "explanation": {
+            "en": "Tavi leaves space for someone who sings the song later to add another sound. The text says this is his purpose for leaving the line open.",
+            "vi": "Tavi chừa chỗ để người hát sau này có thể thêm một âm thanh khác. Câu chuyện nêu đây là mục đích của việc để trống dòng cuối."
+          },
+          "focus": "b1-infer-a-character's-intention",
+          "options": [
+            {
+              "id": "future",
+              "text": "He wanted a future singer to add another sound."
+            },
+            {
+              "id": "forget",
+              "text": "He wanted everyone to forget the old melody."
+            },
+            {
+              "id": "finish",
+              "text": "He wanted to finish the song before he heard it."
+            }
+          ],
+          "answer": "future"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the infinitive marker to show purpose: Tavi opened his notebook ___ record the sounds that joined the tune.",
+          "context": "Tavi wanted to remember the soft clicks that joined his grandmother’s recording, so he opened his notebook to record them.",
+          "instruction": {
+            "en": "Enter the one-word infinitive marker before the base verb.",
+            "vi": "Nhập từ đánh dấu động từ nguyên mẫu trước động từ dạng gốc."
+          },
+          "explanation": {
+            "en": "The infinitive phrase explains the purpose of opening the notebook. The task asks only for the marker before the base verb.",
+            "vi": "Cụm động từ nguyên mẫu giải thích mục đích mở sổ. Bài tập chỉ yêu cầu từ đứng trước động từ dạng gốc."
+          },
+          "focus": "b1-use-an-infinitive-of-purpose",
+          "accepted": [
+            "to"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each choice to the reason or intention given in Tavi’s note.",
+          "context": "Tavi explains that he borrowed the recording to remember the original tune, sat beside moving sea grass to compare its clicks with the melody, and left a line open for another singer.",
+          "instruction": {
+            "en": "Match each choice with its stated purpose.",
+            "vi": "Nối mỗi lựa chọn với mục đích được nêu."
+          },
+          "explanation": {
+            "en": "Each purpose belongs to one action: preserving the tune, comparing the clicks and inviting a later contribution.",
+            "vi": "Mỗi mục đích gắn với một hành động: giữ lại giai điệu, so sánh tiếng lách cách và mời người sau đóng góp."
+          },
+          "focus": "b1-connect-choices-and-purposes",
+          "pairs": [
+            {
+              "id": "recording",
+              "left": "Borrow the old recording",
+              "right": "Remember the original tune"
+            },
+            {
+              "id": "grass",
+              "left": "Sit beside the moving sea grass",
+              "right": "Compare its clicks with the melody"
+            },
+            {
+              "id": "open-line",
+              "left": "Leave the last line open",
+              "right": "Invite a future singer to add a sound"
+            }
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the events as Tavi experiences them.",
+          "context": "Tavi first borrowed the recording. He then played it near the moving sea grass, noticed the new clicks, and wrote a verse that left room for another singer.",
+          "instruction": {
+            "en": "Arrange the events from the beginning of the story to its ending.",
+            "vi": "Sắp xếp sự việc từ đầu đến cuối câu chuyện."
+          },
+          "explanation": {
+            "en": "Tavi borrows the recording before hearing the clicks, and he writes his new verse after noticing them.",
+            "vi": "Tavi mượn bản thu trước khi nghe tiếng lách cách rồi viết khổ mới sau khi nhận ra âm thanh đó."
+          },
+          "focus": "b1-order-narrative-events",
+          "tokens": [
+            {
+              "id": "borrow",
+              "text": "Tavi borrowed the old recording."
+            },
+            {
+              "id": "play",
+              "text": "He played it beside the sea grass."
+            },
+            {
+              "id": "click",
+              "text": "He noticed clicks in the melody."
+            },
+            {
+              "id": "verse",
+              "text": "He wrote a new verse."
+            }
+          ],
+          "answer": [
+            "borrow",
+            "play",
+            "click",
+            "verse"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write three sentences about a character who finds an unexpected sound or detail and changes a plan.",
+          "context": "A Tideglass Isles story may begin with a familiar tune, an ordinary object or a repeated activity. One new detail can give the character a reason to do something differently.",
+          "instruction": {
+            "en": "Use past-tense actions and explain the character’s purpose or reason.",
+            "vi": "Dùng hành động ở quá khứ và giải thích mục đích hoặc lý do của nhân vật."
+          },
+          "explanation": {
+            "en": "Use the rubric to check the sequence and the reason for the character’s choice. This is original reflective writing, not automatically graded.",
+            "vi": "Dùng tiêu chí để kiểm tra trình tự và lý do lựa chọn của nhân vật. Đây là bài viết phản hồi nguyên bản, không được chấm tự động."
+          },
+          "focus": "b1-write-a-story-about-a-change-of-plan",
+          "rubric": [
+            {
+              "en": "I describe the unexpected detail and the character’s response.",
+              "vi": "Tôi mô tả chi tiết bất ngờ và phản ứng của nhân vật."
+            },
+            {
+              "en": "I explain why the character changed the plan.",
+              "vi": "Tôi giải thích vì sao nhân vật đổi kế hoạch."
+            }
+          ],
+          "example": "Neri heard a click inside the painted shell. She opened it to find the hidden bell. Then she changed her picture into a song card."
+        }
+      ]
+    },
+    {
+      "id": "b2-clockwork-canopy-three-voices",
+      "level": "B2",
+      "title": {
+        "en": "A Listening Guide in Three Voices",
+        "vi": "Cẩm nang lắng nghe qua ba tiếng nói"
+      },
+      "summary": {
+        "en": "An editor combines makers’ metaphors without flattening their different viewpoints.",
+        "vi": "Một biên tập viên kết hợp ẩn dụ của các nghệ nhân mà vẫn giữ những góc nhìn khác nhau."
+      },
+      "objective": {
+        "en": "Interpret reported viewpoints, apply standard backshift and recognise precise collocations.",
+        "vi": "Diễn giải quan điểm được thuật lại, dùng lùi thì theo quy tắc và nhận biết kết hợp từ chính xác."
+      },
+      "skill": "reading",
+      "topic": "reported-viewpoints-collocations-and-review-voice",
+      "reward": {
+        "en": "A three-voice guide card",
+        "vi": "Thẻ cẩm nang ba tiếng nói"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-reported-speech-statements"
+      ],
+      "activities": [
+        {
+          "id": "b2-clockwork-canopy-three-voices-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which sentence reports Leta’s view without changing her metaphor into a literal fact?",
+          "context": "The listening guide gathers three makers’ comments. Leta writes, ‘The brass leaves do not imitate birds; they give the wind a vocabulary.’ The editor wants to report her contrast while preserving the figurative image.",
+          "instruction": {
+            "en": "Choose the report that keeps both the contrast and the speaker’s point of view.",
+            "vi": "Chọn câu thuật lại vẫn giữ sự tương phản và quan điểm của người nói."
+          },
+          "explanation": {
+            "en": "The accurate option attributes the metaphor to Leta and retains the contrast between imitation and giving the wind a vocabulary. The other choices reverse or flatten her view.",
+            "vi": "Đáp án phù hợp quy hình ảnh ẩn dụ cho Leta và giữ tương phản giữa việc bắt chước với việc trao cho gió một vốn từ. Các lựa chọn khác đảo ngược hoặc làm phẳng quan điểm."
+          },
+          "focus": "b2-preserve-a-reported-viewpoint",
+          "options": [
+            {
+              "id": "imitate",
+              "text": "Leta said that the brass leaves imitated every bird."
+            },
+            {
+              "id": "metaphor",
+              "text": "Leta said the leaves did not imitate birds but gave the wind a vocabulary."
+            },
+            {
+              "id": "literal",
+              "text": "Leta proved that the wind had learned human words."
+            },
+            {
+              "id": "apology",
+              "text": "Leta apologised because the leaves made too much noise."
+            }
+          ],
+          "answer": "metaphor"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Apply standard backshift from the present continuous to the past continuous: Ivo said that the makers ___ the wind bells that day.",
+          "context": "On Monday, Ivo said, ‘We are tuning the wind bells today.’ The bulletin is written on Tuesday, after the rehearsal has ended, so the report uses the standard backshift and a past time reference.",
+          "instruction": {
+            "en": "Enter the two-word past continuous form of tune. Use standard backshift because the note reports yesterday’s statement.",
+            "vi": "Nhập dạng quá khứ tiếp diễn gồm hai từ của tune. Dùng lùi thì theo quy tắc vì ghi chú thuật lại lời nói hôm qua."
+          },
+          "explanation": {
+            "en": "The direct statement uses are tuning. Standard backshift changes the present continuous to the past continuous; the makers are the plural subject.",
+            "vi": "Lời nói trực tiếp dùng are tuning. Lùi thì theo quy tắc đổi hiện tại tiếp diễn thành quá khứ tiếp diễn; the makers là chủ ngữ số nhiều."
+          },
+          "focus": "b2-backshift-a-present-continuous-report",
+          "accepted": [
+            "were tuning"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each review collocation to the meaning shown in the guide’s discussion.",
+          "context": "The editor writes that the essay draws a distinction between silence and a pause, that one comparison lends weight to a reading, and that a critic takes issue with the word ‘empty’.",
+          "instruction": {
+            "en": "Match each collocation to its function in the discussion.",
+            "vi": "Nối mỗi kết hợp từ với chức năng của nó trong phần thảo luận."
+          },
+          "explanation": {
+            "en": "Drawing a distinction separates related ideas, lending weight makes a reading more persuasive, and taking issue signals disagreement with a word or claim.",
+            "vi": "Draw a distinction phân biệt những ý gần nhau, lend weight làm cách diễn giải có sức thuyết phục hơn, còn take issue thể hiện sự bất đồng với một từ hoặc nhận định."
+          },
+          "focus": "b2-understand-editorial-collocations",
+          "pairs": [
+            {
+              "id": "distinction",
+              "left": "draw a distinction",
+              "right": "Separate two related ideas"
+            },
+            {
+              "id": "weight",
+              "left": "lend weight to a reading",
+              "right": "Make an interpretation more persuasive"
+            },
+            {
+              "id": "issue",
+              "left": "take issue with a label",
+              "right": "Disagree with a wording or claim"
+            }
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the blurb’s parts in the order set by its style note: cover claim, maker’s image, reviewer’s response.",
+          "context": "The guide blurb introduces its promise, gives one maker’s vivid description, and ends with the reviewer’s response to the difference between the two.",
+          "instruction": {
+            "en": "Use the three named rhetorical roles to order the chunks.",
+            "vi": "Dựa vào ba vai trò tu từ được nêu để sắp xếp các đoạn."
+          },
+          "explanation": {
+            "en": "The style note calls for the cover claim first, then a maker’s image, and finally the reviewer’s response. No other order follows the requested structure.",
+            "vi": "Ghi chú phong cách yêu cầu nêu lời giới thiệu trước, tiếp theo là hình ảnh của nghệ nhân, cuối cùng là phản hồi của người đánh giá. Thứ tự khác không theo cấu trúc đã yêu cầu."
+          },
+          "focus": "b2-organise-a-short-review-blurb",
+          "tokens": [
+            {
+              "id": "claim",
+              "text": "The guide promises a forest of new sounds."
+            },
+            {
+              "id": "image",
+              "text": "One maker calls the gears a wind choir."
+            },
+            {
+              "id": "response",
+              "text": "The reviewer welcomes the difference in viewpoints."
+            }
+          ],
+          "answer": [
+            "claim",
+            "image",
+            "response"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a two-sentence review that attributes one maker’s view and gives your response to it.",
+          "context": "The guide contains several distinct descriptions of the same sound sculpture. A review can report one maker’s image and then explain how that image affects the reader.",
+          "instruction": {
+            "en": "Use a reporting verb and one collocation from the lesson. Keep the maker’s view distinct from your response.",
+            "vi": "Dùng một động từ thuật lời và một kết hợp từ trong bài. Tách quan điểm của nghệ nhân khỏi phản hồi của bạn."
+          },
+          "explanation": {
+            "en": "Use the rubric to review attribution, viewpoint and collocation. This activity is reflective writing; the runtime does not mark it correct or award CEFR credit.",
+            "vi": "Dùng tiêu chí để tự xem lại việc quy nguồn, quan điểm và kết hợp từ. Đây là bài viết phản hồi; hệ thống không chấm đúng sai hoặc cấp điểm CEFR."
+          },
+          "focus": "b2-write-a-review-with-attributed-viewpoint",
+          "rubric": [
+            {
+              "en": "I clearly attribute the maker’s view.",
+              "vi": "Tôi quy rõ quan điểm cho nghệ nhân."
+            },
+            {
+              "en": "I distinguish that view from my own response and use a suitable collocation.",
+              "vi": "Tôi phân biệt quan điểm đó với phản hồi của mình và dùng kết hợp từ phù hợp."
+            }
+          ],
+          "example": "Leta argues that the brass leaves give the wind a vocabulary. That image lends weight to the guide’s playful tone."
+        }
+      ]
+    },
+    {
+      "id": "b2-clockwork-canopy-review-or-manual",
+      "level": "B2",
+      "title": {
+        "en": "Is It a Review or a Manual?",
+        "vi": "Đây là bài đánh giá hay hướng dẫn?"
+      },
+      "summary": {
+        "en": "A listening club sorts practical instructions from evaluative prose and collocations.",
+        "vi": "Câu lạc bộ lắng nghe phân biệt hướng dẫn thực hành với văn phong đánh giá và kết hợp từ."
+      },
+      "objective": {
+        "en": "Recognise genre purpose, understand a common collocation and organise a short review.",
+        "vi": "Nhận biết mục đích thể loại, hiểu kết hợp từ phổ biến và tổ chức một bài đánh giá ngắn."
+      },
+      "skill": "reading",
+      "topic": "genre-purpose-collocations-and-opinion",
+      "reward": {
+        "en": "A reviewer's bookmark",
+        "vi": "Thẻ đánh dấu của người đánh giá"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-reported-speech-statements"
+      ],
+      "activities": [
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which sentence belongs most naturally in a short review rather than a how-to card?",
+          "context": "A booklet about the Clockwork Canopy contains both practical instructions and short reviews. The editor wants one sentence that evaluates the listening experience, not one that tells the reader how to operate a device.",
+          "instruction": {
+            "en": "Choose the sentence that gives an evaluation of the work.",
+            "vi": "Chọn câu đưa ra đánh giá về tác phẩm."
+          },
+          "explanation": {
+            "en": "The review sentence makes an evaluative claim about the listening experience. The other choices give direct operating instructions or safety directions.",
+            "vi": "Câu đánh giá nêu nhận định về trải nghiệm lắng nghe. Các lựa chọn khác đưa ra chỉ dẫn sử dụng hoặc an toàn trực tiếp."
+          },
+          "focus": "b2-identify-evaluative-review-language",
+          "options": [
+            {
+              "id": "review",
+              "text": "The pauses make the final sequence more memorable than its title suggests."
+            },
+            {
+              "id": "switch",
+              "text": "Turn the small brass switch until the green mark appears."
+            },
+            {
+              "id": "hands",
+              "text": "Keep both hands away from the moving wheel."
+            }
+          ],
+          "answer": "review"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the common collocation: The quiet guide was a breath of fresh ___.",
+          "context": "Several readers say the guide feels different from the usual pages of diagrams and commands. They describe it as a welcome change in the style of the genre.",
+          "instruction": {
+            "en": "Enter the noun that completes the fixed expression ‘a breath of fresh …’.",
+            "vi": "Nhập danh từ hoàn thành cụm cố định ‘a breath of fresh …’."
+          },
+          "explanation": {
+            "en": "The expression is a breath of fresh air, used for something that feels like a welcome change. The task restricts the blank to its final noun.",
+            "vi": "Cụm từ là a breath of fresh air, dùng cho điều gì đó tạo cảm giác đổi mới đáng mừng. Bài tập giới hạn ô trống ở danh từ cuối."
+          },
+          "focus": "b2-complete-a-familiar-collocation",
+          "accepted": [
+            "air"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each text type to its main purpose in the booklet.",
+          "context": "The booklet includes a review of the sound sequence, a field manual that explains how to turn the dial, and a catalogue blurb that introduces the work in one short paragraph.",
+          "instruction": {
+            "en": "Match each text type to the purpose described in the booklet.",
+            "vi": "Nối mỗi loại văn bản với mục đích được mô tả trong tập sách."
+          },
+          "explanation": {
+            "en": "A review evaluates, a field manual gives practical instructions, and a catalogue blurb briefly introduces the work.",
+            "vi": "Bài đánh giá nhận xét, sổ tay thực địa đưa ra hướng dẫn thực hành, còn lời giới thiệu trong danh mục giới thiệu tác phẩm ngắn gọn."
+          },
+          "focus": "b2-distinguish-review-manual-and-blurb",
+          "pairs": [
+            {
+              "id": "review",
+              "left": "Review",
+              "right": "Evaluates the listener’s experience"
+            },
+            {
+              "id": "manual",
+              "left": "Field manual",
+              "right": "Explains how to use or handle something"
+            },
+            {
+              "id": "blurb",
+              "left": "Catalogue blurb",
+              "right": "Briefly introduces the work"
+            }
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the review elements as requested by the editor: response, supporting detail, final judgement.",
+          "context": "The editor’s style note asks the reviewer to state an initial response, support it with one detail from the listening, and finish with a short judgement.",
+          "instruction": {
+            "en": "Put the three parts in the exact sequence named in the style note.",
+            "vi": "Đặt ba phần theo đúng trình tự được nêu trong ghi chú phong cách."
+          },
+          "explanation": {
+            "en": "The response comes first, the detail supports it, and the final judgement closes the review. The instruction fixes the sequence.",
+            "vi": "Phản hồi đứng đầu, chi tiết hỗ trợ theo sau và nhận định cuối khép lại bài đánh giá. Hướng dẫn ấn định trình tự."
+          },
+          "focus": "b2-order-parts-of-a-short-review",
+          "tokens": [
+            {
+              "id": "response",
+              "text": "The quiet opening caught my attention."
+            },
+            {
+              "id": "detail",
+              "text": "A pause separates the two bell patterns."
+            },
+            {
+              "id": "judgement",
+              "text": "The contrast makes the piece worth hearing again."
+            }
+          ],
+          "answer": [
+            "response",
+            "detail",
+            "judgement"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a short review of an invented sound, object or performance. Include one clear evaluation and one supporting detail.",
+          "context": "The listening club enjoys both practical guides and expressive reviews. A review can describe what the audience experiences and explain why one feature matters.",
+          "instruction": {
+            "en": "Keep the text evaluative rather than instructional, and use one natural collocation.",
+            "vi": "Giữ văn bản ở dạng đánh giá thay vì hướng dẫn, và dùng một kết hợp từ tự nhiên."
+          },
+          "explanation": {
+            "en": "The rubric helps check genre, evaluation and support. The response is reflective only and is not automatically graded.",
+            "vi": "Tiêu chí giúp kiểm tra thể loại, nhận xét và chi tiết hỗ trợ. Câu trả lời chỉ để tự xem lại và không được chấm tự động."
+          },
+          "focus": "b2-write-a-supported-review",
+          "rubric": [
+            {
+              "en": "I give an evaluation rather than a set of instructions.",
+              "vi": "Tôi đưa ra đánh giá thay vì liệt kê hướng dẫn."
+            },
+            {
+              "en": "I support my evaluation with a detail and a suitable collocation.",
+              "vi": "Tôi hỗ trợ nhận xét bằng một chi tiết và kết hợp từ phù hợp."
+            }
+          ],
+          "example": "The glass drum has a surprisingly gentle sound. Its low notes lend warmth to the whole performance."
+        }
+      ]
+    },
+    {
+      "id": "c1-prism-observatory-glass-choir",
+      "level": "C1",
+      "title": {
+        "en": "The Glass Choir",
+        "vi": "Dàn hợp xướng thủy tinh"
+      },
+      "summary": {
+        "en": "A program note captures a performance through concession, contrast and inversion.",
+        "vi": "Lời giới thiệu chương trình nắm bắt buổi diễn bằng nhượng bộ, tương phản và đảo ngữ."
+      },
+      "objective": {
+        "en": "Interpret concessive linkers and recognise formal inversion in an artistic description.",
+        "vi": "Diễn giải liên từ nhượng bộ và nhận biết đảo ngữ trang trọng trong mô tả nghệ thuật."
+      },
+      "skill": "reading",
+      "topic": "concession-contrast-and-negative-inversion",
+      "reward": {
+        "en": "A glass-choir program card",
+        "vi": "Thẻ chương trình dàn hợp xướng thủy tinh"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-contrasting-ideas",
+        "bc-c1-negative-inversion",
+        "cambridge-negative-adverbs"
+      ],
+      "activities": [
+        {
+          "id": "c1-prism-observatory-glass-choir-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which program sentence best concedes a limitation while keeping the positive evaluation?",
+          "context": "The Prism Observatory’s glass choir uses short notes and long pauses. The curator wants to acknowledge the brief score while explaining why the performance still feels complete.",
+          "instruction": {
+            "en": "Choose the sentence that links a concession to the main positive point.",
+            "vi": "Chọn câu nối một điểm nhượng bộ với nhận xét tích cực chính."
+          },
+          "explanation": {
+            "en": "The best sentence grants that the score is brief, then keeps the main point that it feels complete. The other options either remove the concession or reverse the evaluation.",
+            "vi": "Câu phù hợp thừa nhận bản nhạc ngắn, sau đó vẫn giữ ý chính rằng tác phẩm có cảm giác trọn vẹn. Các lựa chọn khác bỏ phần nhượng bộ hoặc đảo ngược nhận xét."
+          },
+          "focus": "c1-read-a-concessive-evaluation",
+          "options": [
+            {
+              "id": "concession",
+              "text": "Although the score is brief, its final pause makes the performance feel complete."
+            },
+            {
+              "id": "no-concession",
+              "text": "The score is brief, so the performance cannot feel complete."
+            },
+            {
+              "id": "sequence",
+              "text": "The score is brief and the final pause begins after the last note."
+            }
+          ],
+          "answer": "concession"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete with even though or even if. The short notes are an established fact, not a hypothetical condition: ___ each note is short, the full sequence feels expansive.",
+          "context": "The score uses brief individual notes. Taken together, their spacing creates a broad effect for listeners in the observatory.",
+          "instruction": {
+            "en": "Choose between the two phrases in the prompt according to whether the clause presents a fact or a hypothetical condition.",
+            "vi": "Chọn giữa hai cụm trong yêu cầu dựa vào việc mệnh đề nêu sự thật hay điều kiện giả định."
+          },
+          "explanation": {
+            "en": "The gap needs a two-word subordinating concessive phrase followed by the full clause 'each note is short'. The prompt excludes a hypothetical conditional reading; the accepted phrase treats the short notes as an established fact.",
+            "vi": "Chỗ trống cần một cụm nhượng bộ gồm hai từ, theo sau là mệnh đề đầy đủ 'each note is short'. Yêu cầu loại trừ cách đọc như một điều kiện giả định; cụm được chấp nhận xem các nốt ngắn là sự thật đã được xác lập."
+          },
+          "focus": "c1-use-a-two-word-concessive-linker-for-a-fact",
+          "accepted": [
+            "even though"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each linking phrase to the structure that follows it.",
+          "context": "The program contains three descriptions: ‘Despite the loose brushwork, the image feels precise’; ‘Although the brushwork is loose, the image feels precise’; and ‘Whereas the first panel is quiet, the second is bright.’",
+          "instruction": {
+            "en": "Match each phrase with the grammatical structure shown after it.",
+            "vi": "Nối mỗi cụm nối với cấu trúc ngữ pháp theo sau."
+          },
+          "explanation": {
+            "en": "Despite is followed here by a noun phrase; although introduces a full clause; whereas links two contrasting clauses. Each structure is visible in the program sentences.",
+            "vi": "Despite được theo sau bởi cụm danh từ; although mở đầu mệnh đề đầy đủ; whereas nối hai mệnh đề tương phản. Mỗi cấu trúc đều thể hiện trong câu chương trình."
+          },
+          "focus": "c1-distinguish-linker-structures",
+          "pairs": [
+            {
+              "id": "despite",
+              "left": "Despite",
+              "right": "A noun phrase: the loose brushwork"
+            },
+            {
+              "id": "although",
+              "left": "Although",
+              "right": "A full clause: the brushwork is loose"
+            },
+            {
+              "id": "whereas",
+              "left": "Whereas",
+              "right": "Two contrasting clauses"
+            }
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the formal caption with the fronted time phrase first and the inverted clause after it.",
+          "context": "The performance notes say that the prism settled into blue only after the final note faded. The curator wants to foreground that time condition in a formal caption.",
+          "instruction": {
+            "en": "Use the ‘Only after … did …’ structure; place the auxiliary before the subject.",
+            "vi": "Dùng cấu trúc ‘Only after … did …’; đặt trợ động từ trước chủ ngữ."
+          },
+          "explanation": {
+            "en": "A fronted Only after phrase takes auxiliary inversion in the main clause. The main verb stays in its base form after did.",
+            "vi": "Cụm Only after đứng đầu câu đi với đảo trợ động từ ở mệnh đề chính. Động từ chính giữ dạng nguyên mẫu sau did."
+          },
+          "focus": "c1-order-a-fronted-only-after-construction",
+          "tokens": [
+            {
+              "id": "time",
+              "text": "Only after the final note faded"
+            },
+            {
+              "id": "aux",
+              "text": "did"
+            },
+            {
+              "id": "subject",
+              "text": "the prism"
+            },
+            {
+              "id": "verb",
+              "text": "settle into blue."
+            }
+          ],
+          "answer": [
+            "time",
+            "aux",
+            "subject",
+            "verb"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a two-sentence program note about an artwork or performance. Concede one feature, then give the main evaluation.",
+          "context": "A program note can acknowledge a constraint in a work and still describe what the audience experiences as a whole.",
+          "instruction": {
+            "en": "Use one concessive linker and keep the main point clear. You may use an invented work.",
+            "vi": "Dùng một liên từ nhượng bộ và diễn đạt rõ ý chính. Bạn có thể viết về tác phẩm hư cấu."
+          },
+          "explanation": {
+            "en": "The rubric supports a self-check of concession and evaluation. The example is original; writing is not automatically graded.",
+            "vi": "Tiêu chí hỗ trợ tự kiểm tra phần nhượng bộ và đánh giá. Ví dụ là nguyên bản; bài viết không được chấm tự động."
+          },
+          "focus": "c1-write-a-concessive-program-note",
+          "rubric": [
+            {
+              "en": "I acknowledge a real feature or limitation of the work.",
+              "vi": "Tôi thừa nhận một đặc điểm hoặc giới hạn thực sự của tác phẩm."
+            },
+            {
+              "en": "My main evaluation remains clear after the concession.",
+              "vi": "Nhận xét chính vẫn rõ sau phần nhượng bộ."
+            }
+          ],
+          "example": "Although the glass notes are spare, their pauses shape a vivid sense of distance. The final chord leaves the room feeling unexpectedly warm."
+        }
+      ]
+    },
+    {
+      "id": "c1-prism-observatory-program-edit",
+      "level": "C1",
+      "title": {
+        "en": "The Program Editor’s Pencil",
+        "vi": "Bút chì của biên tập viên chương trình"
+      },
+      "summary": {
+        "en": "A careful edit improves register and cohesion across an exhibition program.",
+        "vi": "Một lần biên tập cẩn thận cải thiện văn phong và sự liên kết trong chương trình triển lãm."
+      },
+      "objective": {
+        "en": "Choose formal evaluative language, form emphatic inversion and follow cohesive links.",
+        "vi": "Chọn ngôn ngữ đánh giá trang trọng, tạo đảo ngữ nhấn mạnh và theo dõi liên kết văn bản."
+      },
+      "skill": "reading",
+      "topic": "register-cohesion-and-emphatic-inversion",
+      "reward": {
+        "en": "A polished program proof",
+        "vi": "Bản in thử chương trình đã chỉnh sửa"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "bc-c1-grammar",
+        "bc-c1-negative-inversion"
+      ],
+      "activities": [
+        {
+          "id": "c1-prism-observatory-program-edit-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which revision best suits a formal exhibition program?",
+          "context": "The draft says, ‘The sound piece is pretty cool and the ending is really nice.’ The editor wants a concise, formal sentence that keeps the positive evaluation without using conversational praise.",
+          "instruction": {
+            "en": "Choose the revision with the most suitable register and precise evaluation.",
+            "vi": "Chọn cách sửa có văn phong phù hợp và nhận xét chính xác nhất."
+          },
+          "explanation": {
+            "en": "The selected revision uses measured evaluative language suitable for a program. The other versions are either conversational or overly vague.",
+            "vi": "Cách sửa được chọn dùng ngôn ngữ đánh giá chừng mực, phù hợp với chương trình. Các lựa chọn khác quá khẩu ngữ hoặc mơ hồ."
+          },
+          "focus": "c1-select-formal-evaluative-register",
+          "options": [
+            {
+              "id": "formal",
+              "text": "The sound piece is notably restrained, and its closing passage is finely balanced."
+            },
+            {
+              "id": "casual",
+              "text": "The sound piece is super cool, and the ending is really nice."
+            },
+            {
+              "id": "vague",
+              "text": "The sound piece is good, and the ending is good too."
+            }
+          ],
+          "answer": "formal"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the emphatic construction: Not only ___ the artist return to circles, but she also altered their scale.",
+          "context": "The program discusses a retrospective show from last year. It says the artist returned to circular forms and also changed their size, making the contrast a point of emphasis.",
+          "instruction": {
+            "en": "Use the auxiliary for a past simple verb after fronted ‘Not only’; keep the main verb in its base form.",
+            "vi": "Dùng trợ động từ cho động từ quá khứ đơn sau ‘Not only’ đứng đầu; giữ động từ chính ở dạng nguyên mẫu."
+          },
+          "explanation": {
+            "en": "Fronted Not only requires inversion. Because the program describes a past show, the auxiliary is past did and the main verb remains return.",
+            "vi": "Not only đứng đầu câu cần đảo ngữ. Vì chương trình nói về buổi trưng bày trong quá khứ, trợ động từ là did và động từ chính giữ dạng return."
+          },
+          "focus": "c1-form-not-only-inversion-in-the-past",
+          "accepted": [
+            "did"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each cohesive phrase to the job it performs in the edited program.",
+          "context": "The editor writes: \"The first panel uses a circle motif. This motif appears again in the final room. Whereas the opening is still, the ending moves.\"",
+          "instruction": {
+            "en": "Match each phrase to the relationship it signals.",
+            "vi": "Nối mỗi cụm với mối liên hệ mà nó thể hiện."
+          },
+          "explanation": {
+            "en": "This motif points back to the previously mentioned circle motif; whereas introduces a contrast, and in the final room places the recurrence elsewhere in the exhibition.",
+            "vi": "This motif nhắc lại họa tiết hình tròn đã được nêu trước đó; whereas mở đầu một ý tương phản, còn in the final room đặt sự lặp lại ở một khu vực khác của triển lãm."
+          },
+          "focus": "c1-follow-reference-and-contrast-in-a-text",
+          "pairs": [
+            {
+              "id": "reference",
+              "left": "This motif",
+              "right": "Refers back to an earlier idea"
+            },
+            {
+              "id": "contrast",
+              "left": "Whereas",
+              "right": "Introduces a contrast between clauses"
+            },
+            {
+              "id": "location",
+              "left": "In the final room",
+              "right": "Locates a detail in another section"
+            }
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the catalogue paragraph as topic statement, contrasting caption, then synthesis.",
+          "context": "The catalogue describes a motif that changes across three rooms. Its style note requests one topic sentence, one contrasting detail, and a final sentence that draws the two descriptions together.",
+          "instruction": {
+            "en": "Put the topic first, the contrast next and the synthesis last, as the style note requires.",
+            "vi": "Đặt câu chủ đề trước, ý tương phản tiếp theo và câu tổng hợp cuối cùng theo yêu cầu."
+          },
+          "explanation": {
+            "en": "The first chunk introduces the motif, the second provides the contrast, and the final chunk synthesises both images without claiming that one caused the other.",
+            "vi": "Đoạn đầu giới thiệu họa tiết, đoạn thứ hai nêu tương phản và đoạn cuối tổng hợp cả hai hình ảnh mà không khẳng định cái này gây ra cái kia."
+          },
+          "focus": "c1-organise-cohesive-paragraph-movement",
+          "tokens": [
+            {
+              "id": "topic",
+              "text": "The final panel uses an open circle."
+            },
+            {
+              "id": "contrast",
+              "text": "By contrast, the first caption follows a single line."
+            },
+            {
+              "id": "synthesis",
+              "text": "Together, the images show how the motif changes."
+            }
+          ],
+          "answer": [
+            "topic",
+            "contrast",
+            "synthesis"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Rewrite an informal program description as a short formal paragraph. Use one connective and one clear reference to an earlier idea.",
+          "context": "The draft says that one panel is quiet and another is bright. The editor wants a connected paragraph that compares them and avoids repeating the same nouns unnecessarily.",
+          "instruction": {
+            "en": "Keep the meaning, improve the register and use a cohesive phrase such as ‘this contrast’ or ‘whereas’.",
+            "vi": "Giữ nguyên ý, cải thiện văn phong và dùng cụm liên kết như ‘this contrast’ hoặc ‘whereas’."
+          },
+          "explanation": {
+            "en": "The rubric is for reflective review of register and cohesion. The writing example is original and is not automatically marked.",
+            "vi": "Tiêu chí dùng để tự xem lại văn phong và liên kết. Ví dụ viết là nguyên bản và không được chấm tự động."
+          },
+          "focus": "c1-write-a-cohesive-formal-program-note",
+          "rubric": [
+            {
+              "en": "I compare the two descriptions without changing their meaning.",
+              "vi": "Tôi so sánh hai mô tả mà không làm đổi ý nghĩa."
+            },
+            {
+              "en": "I use a formal connective or reference phrase to link the ideas.",
+              "vi": "Tôi dùng từ nối hoặc cụm quy chiếu trang trọng để liên kết các ý."
+            }
+          ],
+          "example": "Whereas the first panel is quiet, the second is bright. This contrast gives the sequence a clear progression."
+        }
+      ]
+    },
+    {
+      "id": "c2-unwritten-sky-museum-of-almosts",
+      "level": "C2",
+      "title": {
+        "en": "The Museum of Almosts",
+        "vi": "Bảo tàng những điều suýt thành"
+      },
+      "summary": {
+        "en": "A literary museum note invites a close reading of praise, omission and withheld endorsement.",
+        "vi": "Một ghi chú văn chương trong bảo tàng gợi cách đọc kỹ lời khen, sự lược bỏ và sự tán thành chưa nói ra."
+      },
+      "objective": {
+        "en": "Interpret subtle editorial stance, qualified evaluation and an implied voice in literary prose.",
+        "vi": "Diễn giải lập trường biên tập tinh tế, nhận xét có giới hạn và giọng văn hàm ý trong văn xuôi văn chương."
+      },
+      "skill": "reading",
+      "topic": "pragmatic-stance-figurative-voice-editorial-nuance",
+      "reward": {
+        "en": "A museum note with a hidden fold",
+        "vi": "Ghi chú bảo tàng có nếp gấp kín"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "cambridge-to-say-the-least"
+      ],
+      "activities": [
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What does the narrator imply by calling the catalogue’s label accurate, if a little too generous?",
+          "context": "On the opening weekend, the museum displayed Mara Vale’s six-line note beside the wind-up swan she had promised to repair. The catalogue called it an apology, which is not quite inaccurate, provided one allows the word to cover a weather report, a reference to the key’s unfortunate exposure to rain, and a sentence about how silence can be expressive. The rain fell after Mara misplaced the key; this chronology was common knowledge, although the note gave it no room. In a separate letter, not chosen for the case, she praised her apprentice’s patient work and wondered aloud whether the next exhibition might benefit from a younger eye. The apprentice kept that page, but not as evidence. On guided tours, visitors are told that Mara’s restraint was characteristic. The swan still turns in its glass case when the floor trembles. Its brass beak opens, but the mechanism no longer sings. A new label says that the artist ‘left the music to the room.’ One could call this generous. One could also call it the sort of generosity that is easiest to offer on someone else’s behalf.",
+          "instruction": {
+            "en": "Choose the reading that best captures the narrator’s qualified praise and implied criticism.",
+            "vi": "Chọn cách hiểu nắm bắt tốt nhất lời khen có giới hạn và ý phê bình hàm ý của người kể."
+          },
+          "explanation": {
+            "en": "The narrator’s courteous wording questions whether the label truly counts as an apology and whether the museum’s generosity comes at someone else’s expense. The passage never says the apprentice caused the damage or that Mara’s note fully accepts responsibility.",
+            "vi": "Cách nói lịch sự của người kể đặt câu hỏi liệu tấm nhãn có thực sự là lời xin lỗi và sự rộng lượng của bảo tàng có khiến người khác phải gánh phần thiệt hay không. Đoạn văn không nói người học việc gây ra hư hỏng hoặc ghi chú của Mara hoàn toàn nhận trách nhiệm."
+          },
+          "focus": "c2-infer-qualified-praise-and-implied-censure",
+          "options": [
+            {
+              "id": "qualified-censure",
+              "text": "The narrator suggests that the label turns a partial apology into polished praise, while the museum’s generosity costs it little and may polish its own image."
+            },
+            {
+              "id": "sincere-apology",
+              "text": "The narrator regards the short note as a complete and unusually sincere apology."
+            },
+            {
+              "id": "literal-weather",
+              "text": "The narrator argues that rain caused the key to be lost before Mara misplaced it."
+            },
+            {
+              "id": "apprentice-blame",
+              "text": "The narrator implies that the apprentice damaged the swan and hid the evidence."
+            }
+          ],
+          "answer": "qualified-censure"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the adjective beginning with e that describes wording open to two readings: The editor leaves the label ___, neither endorsing nor directly criticizing the omission.",
+          "context": "The printer’s proof shows that a paragraph was removed before the curator saw it. The final label gives no reason for the removal, so its polite wording can sound either approving or quietly critical.",
+          "instruction": {
+            "en": "Enter one adjective beginning with the letter e.",
+            "vi": "Nhập một tính từ bắt đầu bằng chữ e."
+          },
+          "explanation": {
+            "en": "Equivocal describes wording that can be read in more than one way. Here the label leaves the editor’s stance open.",
+            "vi": "Equivocal mô tả cách diễn đạt có thể được hiểu theo hơn một cách. Ở đây, tấm nhãn để ngỏ lập trường của biên tập viên."
+          },
+          "focus": "c2-name-an-equivocal-editorial-stance",
+          "accepted": [
+            "equivocal"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each editorial phrase to the stance it conveys in context.",
+          "context": "Three draft labels read: ‘The display is tidy, if a shade too eager’; ‘By every measure, the display is a triumph’; and ‘The display contains eight panels in two rooms.’",
+          "instruction": {
+            "en": "Match each phrase to the most accurate description of its tone.",
+            "vi": "Nối mỗi cụm với mô tả chính xác nhất về sắc thái của nó."
+          },
+          "explanation": {
+            "en": "The first line praises the display while adding a mild reservation, the second offers unqualified praise, and the third reports a neutral count.",
+            "vi": "Câu đầu khen triển lãm nhưng thêm một dè dặt nhẹ, câu thứ hai khen hoàn toàn, còn câu thứ ba nêu số lượng trung tính."
+          },
+          "focus": "c2-distinguish-qualified-praise-from-neutral-description",
+          "pairs": [
+            {
+              "id": "qualified",
+              "left": "Tidy, if a shade too eager",
+              "right": "Qualified praise with a mild reservation"
+            },
+            {
+              "id": "unqualified",
+              "left": "A triumph by every measure",
+              "right": "Unreserved positive evaluation"
+            },
+            {
+              "id": "neutral",
+              "left": "Eight panels in two rooms",
+              "right": "Neutral factual description"
+            }
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the editorial note as description, apparent praise, then qualification.",
+          "context": "The editor’s plan for the note is explicit: describe what the visitor sees, report the generous-sounding interpretation, and then qualify what that interpretation leaves unsaid.",
+          "instruction": {
+            "en": "Follow the three rhetorical steps in the editor’s plan.",
+            "vi": "Làm theo ba bước tu từ trong kế hoạch của biên tập viên."
+          },
+          "explanation": {
+            "en": "The note begins with the visible object, adds the generous interpretation, and ends by limiting that interpretation. The instruction fixes this order.",
+            "vi": "Ghi chú bắt đầu bằng vật thể nhìn thấy, thêm cách diễn giải rộng lượng rồi kết thúc bằng việc giới hạn cách diễn giải đó. Hướng dẫn ấn định thứ tự này."
+          },
+          "focus": "c2-order-a-qualified-editorial-note",
+          "tokens": [
+            {
+              "id": "description",
+              "text": "The swan turns in its glass case."
+            },
+            {
+              "id": "praise",
+              "text": "The label calls its silence a gift."
+            },
+            {
+              "id": "qualification",
+              "text": "The word may credit the museum more than the maker."
+            }
+          ],
+          "answer": [
+            "description",
+            "praise",
+            "qualification"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a three-sentence museum note that gives a qualified evaluation of an invented artwork or label.",
+          "context": "The Unwritten Sky invites visitors to read both what a caption says and what its phrasing may leave open. Your note may describe a real feature and a possible implication.",
+          "instruction": {
+            "en": "Use one precise qualifier and let the reader distinguish a stated fact from your interpretation.",
+            "vi": "Dùng một từ giới hạn chính xác và giúp người đọc phân biệt dữ kiện được nêu với cách diễn giải của bạn."
+          },
+          "explanation": {
+            "en": "A careful note can preserve a fact while signalling that its interpretation is not settled. Self-review only; this writing has no automatic correctness or CEFR credit.",
+            "vi": "Ghi chú cẩn trọng có thể giữ nguyên dữ kiện đồng thời cho thấy cách diễn giải chưa được xác quyết. Chỉ tự xem lại; bài viết không được chấm đúng sai tự động hay cấp điểm CEFR."
+          },
+          "focus": "c2-write-a-qualified-museum-note",
+          "rubric": [
+            {
+              "en": "I separate the artwork’s stated feature from an interpretation.",
+              "vi": "Tôi tách đặc điểm được nêu của tác phẩm khỏi cách diễn giải."
+            },
+            {
+              "en": "My qualifier makes the degree or scope of my evaluation precise.",
+              "vi": "Từ giới hạn làm rõ mức độ hoặc phạm vi nhận xét của tôi."
+            }
+          ],
+          "example": "The swan turns when the floor moves. Its silence may be read as deliberate, although the broken mechanism remains visible. The label leaves the maker’s intention open."
+        }
+      ]
+    },
+    {
+      "id": "c2-unwritten-sky-editors-pencil",
+      "level": "C2",
+      "title": {
+        "en": "The Editor’s Pencil",
+        "vi": "Bút chì của biên tập viên"
+      },
+      "summary": {
+        "en": "A revised caption gives a blank space a figurative voice without claiming to know its maker’s motive.",
+        "vi": "Lời chú thích được sửa trao cho khoảng trống một giọng nghĩa bóng mà không khẳng định động cơ của tác giả."
+      },
+      "objective": {
+        "en": "Interpret figurative reframing, pragmatic stance and the limits of editorial wording.",
+        "vi": "Diễn giải cách tái định khung nghĩa bóng, lập trường ngữ dụng và giới hạn của lời biên tập."
+      },
+      "skill": "reading",
+      "topic": "figurative-voice-pragmatic-stance-editorial-nuance",
+      "reward": {
+        "en": "A pencil mark in the margin",
+        "vi": "Dấu bút chì bên lề"
+      },
+      "sources": [
+        "coe-cefr-companion-2020",
+        "cambridge-to-say-the-least"
+      ],
+      "activities": [
+        {
+          "id": "c2-unwritten-sky-editors-pencil-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What changes when the editor revises the caption from ‘an omission’ to ‘a breathing space’?",
+          "context": "A poem in the Unwritten Sky contains a wide blank at its centre. The first caption calls the blank an omission. In the revised caption, the editor calls it a breathing space, then adds that the phrase describes a reader’s response rather than the poet’s documented intention.",
+          "instruction": {
+            "en": "Choose the interpretation that accounts for both the metaphor and the editor’s qualification.",
+            "vi": "Chọn cách hiểu giải thích được cả ẩn dụ lẫn phần giới hạn của biên tập viên."
+          },
+          "explanation": {
+            "en": "The new phrase gives the blank a hospitable, active role for a reader, but the editor avoids claiming that the poet deliberately intended that effect. The revision shifts the frame while limiting the claim about motive.",
+            "vi": "Cụm mới trao cho khoảng trống vai trò cởi mở, có tác dụng với người đọc, nhưng biên tập viên tránh khẳng định nhà thơ cố ý tạo hiệu quả ấy. Cách sửa đổi khung diễn giải đồng thời giới hạn nhận định về động cơ."
+          },
+          "focus": "c2-infer-a-figurative-editorial-reframing",
+          "options": [
+            {
+              "id": "reader-effect",
+              "text": "It presents the blank as potentially useful to readers while withholding a claim about the poet’s intention."
+            },
+            {
+              "id": "literal",
+              "text": "It establishes that the poem has a literal opening through which air can pass."
+            },
+            {
+              "id": "certainty",
+              "text": "It proves that the poet deliberately inserted the blank to guide every reader’s reaction."
+            },
+            {
+              "id": "rejection",
+              "text": "It removes the blank from the poem and rejects all interpretations of it."
+            }
+          ],
+          "answer": "reader-effect"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete with an adverb formed from figurative or metaphorical: The caption calls the blank a breathing space. Since the paper cannot breathe, the phrase is used ___.",
+          "context": "The poem’s blank area remains visible on the page. The editor uses a human action to describe the pause a reader may experience, not a physical action by the paper.",
+          "instruction": {
+            "en": "Use one of the two word families specified in the prompt. Other non-literal descriptions may be meaningful, but this task checks these adverb forms.",
+            "vi": "Dùng một trong hai họ từ nêu trong yêu cầu. Cách mô tả phi nghĩa đen khác có thể hợp lý, nhưng bài này kiểm tra hai dạng trạng từ đó."
+          },
+          "explanation": {
+            "en": "Figuratively and metaphorically are the adverbs formed from the specified adjectives. Both identify the non-literal use of breathing space. This restricted form task does not imply that other descriptions such as non-literally are wrong in ordinary English.",
+            "vi": "Figuratively và metaphorically là trạng từ tạo từ hai tính từ được nêu. Cả hai chỉ cách dùng breathing space không theo nghĩa đen. Bài kiểm tra dạng từ giới hạn này không có nghĩa là cách mô tả khác như non-literally sai trong tiếng Anh thông thường."
+          },
+          "focus": "c2-name-a-non-literal-editorial-phrase",
+          "accepted": [
+            "figuratively",
+            "metaphorically"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each stance phrase to what it does to the editor’s claim.",
+          "context": "The margin contains three alternatives: ‘could be read as an invitation’; ‘is nothing more than a pause’; and ‘serves as a welcome pause for some readers’. Each phrase takes a different stance toward the blank.",
+          "instruction": {
+            "en": "Match each wording to its pragmatic effect.",
+            "vi": "Nối mỗi cách diễn đạt với tác dụng ngữ dụng của nó."
+          },
+          "explanation": {
+            "en": "Could be read as leaves interpretation open, nothing more than reduces the significance, and serves as a welcome pause directly gives a positive evaluation limited to some readers.",
+            "vi": "Could be read as để ngỏ cách hiểu, nothing more than hạ thấp ý nghĩa, còn serves as a welcome pause trực tiếp đưa ra nhận xét tích cực nhưng giới hạn ở một số độc giả."
+          },
+          "focus": "c2-distinguish-pragmatic-effects-of-editorial-phrases",
+          "pairs": [
+            {
+              "id": "open",
+              "left": "Could be read as an invitation",
+              "right": "Leaves the interpretation open"
+            },
+            {
+              "id": "downgrade",
+              "left": "Is nothing more than a pause",
+              "right": "Reduces the feature’s significance"
+            },
+            {
+              "id": "endorse",
+              "left": "Serves as a welcome pause for some readers",
+              "right": "Gives a positive but limited evaluation"
+            }
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the editor’s note as physical description, possible reader effect, then limit on the claim.",
+          "context": "The editor wants visitors to notice what is printed, consider what the blank may do for a reader, and avoid treating that response as proof of the poet’s intention.",
+          "instruction": {
+            "en": "Follow the three rhetorical roles in the prompt.",
+            "vi": "Làm theo ba vai trò tu từ trong yêu cầu."
+          },
+          "explanation": {
+            "en": "The note first describes the page, next offers a possible effect, and finally avoids claiming that the poet intended that response. This sequence preserves the difference between observation and interpretation.",
+            "vi": "Ghi chú trước hết mô tả trang giấy, tiếp theo nêu hiệu ứng có thể có, rồi cuối cùng tránh khẳng định rằng nhà thơ có chủ ý tạo ra phản ứng ấy. Trình tự này giữ khác biệt giữa quan sát và diễn giải."
+          },
+          "focus": "c2-order-observation-interpretation-and-limit",
+          "tokens": [
+            {
+              "id": "page",
+              "text": "On the page, the blank remains an absence."
+            },
+            {
+              "id": "reader",
+              "text": "For a reader, it may function as a pause."
+            },
+            {
+              "id": "limit",
+              "text": "The caption does not claim that the poet intended that response."
+            }
+          ],
+          "answer": [
+            "page",
+            "reader",
+            "limit"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Revise a blunt museum caption into two nuanced sentences about an ambiguous feature.",
+          "context": "A label says, ‘The artist left a blank because they wanted visitors to feel calm.’ The record confirms the blank but does not explain why the artist included it.",
+          "instruction": {
+            "en": "Keep the visible fact, soften the unsupported claim about intention, and consider a figurative description.",
+            "vi": "Giữ dữ kiện nhìn thấy được, giảm mức khẳng định chưa có căn cứ về ý định và cân nhắc mô tả nghĩa bóng."
+          },
+          "explanation": {
+            "en": "The rubric checks whether a revision preserves observation while marking interpretation as interpretation. It is a reflective writing task with no automatic correctness or CEFR credit.",
+            "vi": "Tiêu chí kiểm tra việc giữ quan sát đồng thời đánh dấu cách diễn giải là cách diễn giải. Đây là bài viết tự xem lại, không được chấm đúng sai tự động hoặc cấp điểm CEFR."
+          },
+          "focus": "c2-revise-an-overconfident-editorial-caption",
+          "rubric": [
+            {
+              "en": "I preserve the observable fact about the artwork.",
+              "vi": "Tôi giữ lại dữ kiện có thể quan sát về tác phẩm."
+            },
+            {
+              "en": "I avoid stating an unrecorded intention as a fact.",
+              "vi": "Tôi tránh nêu ý định chưa được ghi nhận như một sự thật."
+            }
+          ],
+          "example": "The artist left a wide blank at the centre of the page. Some visitors may experience it as a breathing space, although the record gives no reason for its inclusion."
+        }
+      ]
+    }
+  ]
+}

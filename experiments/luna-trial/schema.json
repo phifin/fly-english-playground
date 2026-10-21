@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Disposable two-record Luna feasibility dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "status", "sources", "records"],
+  "properties": {
+    "schemaVersion": { "const": "trial-1" },
+    "batchId": { "const": "luna-e2e-001" },
+    "status": { "const": "disposable-not-production" },
+    "sources": {
+      "type": "array", "minItems": 1, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "title", "url", "accessed", "use", "finding"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^source-[12]$" },
+          "title": { "type": "string", "minLength": 5, "maxLength": 180 },
+          "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "accessed": { "type": "string", "format": "date" },
+          "use": { "const": "reference-only-no-copied-exercises" },
+          "finding": { "type": "string", "minLength": 20, "maxLength": 400 }
+        }
+      }
+    },
+    "records": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "status", "level", "type", "prompt", "acceptedAnswers", "explanation", "sourceIds", "rights"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^trial-item-0[12]$" },
+          "status": { "const": "synthetic-disposable" },
+          "level": { "const": "A1-provisional-not-validated" },
+          "type": { "const": "bounded-gap" },
+          "prompt": { "type": "string", "minLength": 8, "maxLength": 160 },
+          "acceptedAnswers": {
+            "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1, "maxLength": 20 }
+          },
+          "explanation": {
+            "type": "object", "additionalProperties": false, "required": ["en", "vi"],
+            "properties": {
+              "en": { "type": "string", "minLength": 15, "maxLength": 250 },
+              "vi": { "type": "string", "minLength": 15, "maxLength": 300 }
+            }
+          },
+          "sourceIds": {
+            "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^source-[12]$" }
+          },
+          "rights": { "const": "original-trial-example-reference-not-reproduced" }
+        }
+      }
+    }
+  }
+}

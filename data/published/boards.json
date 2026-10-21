@@ -1,0 +1,2367 @@
+{
+  "schemaVersion": 1,
+  "batchId": "launch-boards",
+  "provenance": [
+    {
+      "id": "coe-cefr-companion-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/common-european-framework-of-reference-for-languages-learning-teaching/16809ea0d4",
+      "accessed": "2026-10-20",
+      "usage": "Framework reference only for broad language-demand organization; board narratives, clues, and names are original. No descriptors are reproduced and no CEFR calibration is claimed."
+    }
+  ],
+  "boards": [
+    {
+      "id": "a1-lantern-harbor-board",
+      "missionId": "a1-lantern-harbor",
+      "level": "A1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "blue-gate",
+          "name": "Blue Gate",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "boathouse",
+          "name": "Boathouse",
+          "at": [
+            5,
+            1
+          ]
+        },
+        {
+          "id": "little-lighthouse",
+          "name": "Little Lighthouse",
+          "at": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "silver-bell",
+          "name": "Silver Bell",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "boathouse",
+      "clue": {
+        "en": "The harbor boats rest here. Find this place.",
+        "vi": "Thuyền trong bến nghỉ ở đây. Hãy tìm nơi này."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a1-lantern-harbor-shell-bell-board",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "level": "A1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "bridges": [
+        [
+          4,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "shell-hut",
+          "name": "Shell Hut",
+          "at": [
+            4,
+            0
+          ]
+        },
+        {
+          "id": "blue-door",
+          "name": "Blue Door",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "bench",
+          "name": "Bench",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "tide-pool",
+          "name": "Tide Pool",
+          "at": [
+            6,
+            1
+          ]
+        }
+      ],
+      "goal": "shell-hut",
+      "clue": {
+        "en": "The small bell is inside the little hut made from shells. Find that hut.",
+        "vi": "Chiếc chuông nhỏ ở bên trong căn lều nhỏ làm bằng vỏ sò. Hãy tìm căn lều đó."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a1-lantern-harbor-color-teller-board",
+      "missionId": "a1-lantern-harbor-color-teller",
+      "level": "A1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            1
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "yellow-lantern",
+          "name": "Yellow Lantern",
+          "at": [
+            4,
+            3
+          ]
+        },
+        {
+          "id": "green-leaf",
+          "name": "Green Leaf",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "blue-wave",
+          "name": "Blue Wave",
+          "at": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "silver-moon",
+          "name": "Silver Moon",
+          "at": [
+            5,
+            0
+          ]
+        }
+      ],
+      "goal": "yellow-lantern",
+      "clue": {
+        "en": "Niko keeps the warm yellow light for his window. Find the light he likes.",
+        "vi": "Niko giữ chiếc đèn màu vàng ấm áp cho cửa sổ của mình. Hãy tìm chiếc đèn cậu ấy thích."
+      },
+      "hint": {
+        "en": "The switch is at B2. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B2. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a1-lantern-harbor-rooftop-kites-board",
+      "missionId": "a1-lantern-harbor-rooftop-kites",
+      "level": "A1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          4,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "striped-kite",
+          "name": "Striped Kite",
+          "at": [
+            5,
+            2
+          ]
+        },
+        {
+          "id": "dot-kite",
+          "name": "Dot Kite",
+          "at": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "red-ribbon",
+          "name": "Red Ribbon",
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "paper-drum",
+          "name": "Paper Drum",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "striped-kite",
+      "clue": {
+        "en": "Sami chooses the kite with stripes; Jo chooses the one with dots. Find Sami’s kite.",
+        "vi": "Sami chọn con diều có sọc; Jo chọn con có chấm. Hãy tìm con diều của Sami."
+      },
+      "hint": {
+        "en": "The switch is at C3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại C3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-tin-board",
+      "missionId": "a2-wildseed-gardens-seed-tin",
+      "level": "A2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "bridges": [
+        [
+          5,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "blue-seed-tin",
+          "name": "Blue Seed Tin",
+          "at": [
+            6,
+            0
+          ]
+        },
+        {
+          "id": "old-bench",
+          "name": "Old Bench",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "blue-cart",
+          "name": "Blue Cart",
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "id": "north-gate",
+          "name": "North Gate",
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "goal": "blue-seed-tin",
+      "clue": {
+        "en": "At noon, Asha found the blue tin under the old bench; later, she carried it to the cart. Find the tin from her note.",
+        "vi": "Buổi trưa, Asha tìm thấy chiếc hộp màu xanh dưới chiếc ghế cũ; sau đó, cô mang nó đến xe đẩy. Hãy tìm chiếc hộp trong lời ghi chú."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a2-wildseed-gardens-rain-plan-board",
+      "missionId": "a2-wildseed-gardens-rain-plan",
+      "level": "A2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "pond-map",
+          "name": "Pond Map",
+          "at": [
+            5,
+            3
+          ]
+        },
+        {
+          "id": "bean-bed",
+          "name": "Bean Bed",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "rain-jar",
+          "name": "Rain Jar",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "garden-gate",
+          "name": "Garden Gate",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ],
+      "goal": "pond-map",
+      "clue": {
+        "en": "Lio will show the visitors the picture of the pond this afternoon. The jars hold water, while the bean bed holds seeds. Find the picture he plans to show.",
+        "vi": "Chiều nay Lio sẽ cho khách xem bức tranh cái ao. Những chiếc lọ đựng nước, còn luống đậu thì có hạt giống. Hãy tìm bức tranh cậu ấy định cho xem."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-sculpture-board",
+      "missionId": "a2-wildseed-gardens-seed-sculpture",
+      "level": "A2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            4
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "wide-nest",
+          "name": "Wide Nest",
+          "at": [
+            5,
+            1
+          ]
+        },
+        {
+          "id": "tall-acorn",
+          "name": "Tall Acorn",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "paper-moon",
+          "name": "Paper Moon",
+          "at": [
+            6,
+            0
+          ]
+        },
+        {
+          "id": "water-bowl",
+          "name": "Water Bowl",
+          "at": [
+            4,
+            4
+          ]
+        }
+      ],
+      "goal": "wide-nest",
+      "clue": {
+        "en": "The note says Tall Acorn is tallest and Paper Moon is narrowest. Wide Nest is wider than Paper Moon but shorter than Tall Acorn. Find the sculpture described by both comparisons.",
+        "vi": "Ghi chú nói Tall Acorn cao nhất còn Paper Moon hẹp nhất. Wide Nest rộng hơn Paper Moon nhưng thấp hơn Tall Acorn. Hãy tìm tác phẩm được mô tả bằng cả hai phép so sánh."
+      },
+      "hint": {
+        "en": "The switch is at B5. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B5. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "a2-wildseed-gardens-garden-invitation-board",
+      "missionId": "a2-wildseed-gardens-garden-invitation",
+      "level": "A2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            1
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "clay-birds",
+          "name": "Clay Birds",
+          "at": [
+            3,
+            1
+          ]
+        },
+        {
+          "id": "leaf-sketch",
+          "name": "Leaf Sketch",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "paper-garden",
+          "name": "Paper Garden",
+          "at": [
+            5,
+            4
+          ]
+        },
+        {
+          "id": "rain-picture",
+          "name": "Rain Picture",
+          "at": [
+            6,
+            3
+          ]
+        }
+      ],
+      "goal": "clay-birds",
+      "clue": {
+        "en": "The group politely asks a neighbor to help arrange the small animal shapes. Find the shapes they want to arrange together.",
+        "vi": "Nhóm bạn lịch sự nhờ một người hàng xóm giúp sắp xếp những hình con vật nhỏ. Hãy tìm các hình mà họ muốn cùng nhau sắp xếp."
+      },
+      "hint": {
+        "en": "The switch is at B2. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B2. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b1-tideglass-isles-chart-letter-board",
+      "missionId": "b1-tideglass-isles-chart-letter",
+      "level": "B1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          4,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "folded-canvas",
+          "name": "Folded Canvas",
+          "at": [
+            5,
+            1
+          ]
+        },
+        {
+          "id": "tide-chart",
+          "name": "Tide Chart",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "bell-cord",
+          "name": "Bell Cord",
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "air-window",
+          "name": "Air Window",
+          "at": [
+            6,
+            3
+          ]
+        }
+      ],
+      "goal": "folded-canvas",
+      "clue": {
+        "en": "Neri first guessed that someone had taken the chart. In a later note, she found it beneath the canvas she had left folded. Find the object that hid it.",
+        "vi": "Ban đầu Neri đoán có người đã lấy tấm hải đồ. Trong ghi chú sau đó, cô tìm thấy nó dưới tấm vải bạt mà mình đã gấp lại. Hãy tìm vật đã che tấm hải đồ."
+      },
+      "hint": {
+        "en": "The switch is at C3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại C3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b1-tideglass-isles-two-paths-board",
+      "missionId": "b1-tideglass-isles-two-paths",
+      "level": "B1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "ridge-posts",
+          "name": "Ridge Posts",
+          "at": [
+            6,
+            0
+          ]
+        },
+        {
+          "id": "pebble-path",
+          "name": "Pebble Path",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "tide-compass",
+          "name": "Tide Compass",
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "id": "island-box",
+          "name": "Island Box",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "ridge-posts",
+      "clue": {
+        "en": "For a visitor arriving after noon, the longer route is safer: its markers stay above the rising water. Find the markers the guide recommends.",
+        "vi": "Với khách đến sau buổi trưa, con đường dài hơn sẽ an toàn hơn: các cọc chỉ đường vẫn ở trên mặt nước đang dâng. Hãy tìm những cọc mà người hướng dẫn khuyên dùng."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b1-tideglass-isles-moon-moth-model-board",
+      "missionId": "b1-tideglass-isles-moon-moth-model",
+      "level": "B1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "story-wall",
+          "name": "Story Wall",
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "id": "paper-moth",
+          "name": "Paper Moth",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "blue-lamp",
+          "name": "Blue Lamp",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "color-box",
+          "name": "Color Box",
+          "at": [
+            5,
+            0
+          ]
+        }
+      ],
+      "goal": "story-wall",
+      "clue": {
+        "en": "Eni moved the lamp closer so the moth’s shadow would grow on the story wall. Jo later traced its new shape there. Find the wall prepared for the tale.",
+        "vi": "Eni đưa ngọn đèn lại gần để bóng của con bướm đêm lớn hơn trên bức tường kể chuyện. Sau đó, Jo vẽ lại hình bóng mới ở đó. Hãy tìm bức tường được chuẩn bị cho câu chuyện."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b1-tideglass-isles-borrowed-tide-song-board",
+      "missionId": "b1-tideglass-isles-borrowed-tide-song",
+      "level": "B1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "bridges": [
+        [
+          1,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            2,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "open-songbook",
+          "name": "Open Songbook",
+          "at": [
+            4,
+            0
+          ]
+        },
+        {
+          "id": "old-recording",
+          "name": "Old Recording",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "moving-sea-grass",
+          "name": "Moving Sea Grass",
+          "at": [
+            5,
+            4
+          ]
+        },
+        {
+          "id": "tide-shell",
+          "name": "Tide Shell",
+          "at": [
+            6,
+            3
+          ]
+        }
+      ],
+      "goal": "open-songbook",
+      "clue": {
+        "en": "Tavi leaves the last line blank so that a later singer can add another sound to the shared song. Find the place where the unfinished song is kept.",
+        "vi": "Tavi để trống dòng cuối để một ca sĩ sau này có thể thêm âm thanh khác vào bài hát chung. Hãy tìm nơi lưu giữ bài hát còn dang dở."
+      },
+      "hint": {
+        "en": "The switch is at C4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại C4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b2-clockwork-canopy-board",
+      "missionId": "b2-clockwork-canopy",
+      "level": "B2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          4,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "rule-card",
+          "name": "Rule Card",
+          "at": [
+            5,
+            3
+          ]
+        },
+        {
+          "id": "leaf-sensors",
+          "name": "Leaf Sensors",
+          "at": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "wind-ribbons",
+          "name": "Wind Ribbons",
+          "at": [
+            3,
+            0
+          ]
+        },
+        {
+          "id": "test-glider",
+          "name": "Test Glider",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "rule-card",
+      "clue": {
+        "en": "The card says a glider test is allowed only when both leaf sensors read dry at the same check. Find the card that states this rule, not either sensor or the glider.",
+        "vi": "Tấm thẻ nói chỉ được thử tàu lượn khi cả hai cảm biến lá đều ghi nhận trạng thái khô trong cùng một lần kiểm tra. Hãy tìm tấm thẻ nêu quy tắc này, không phải cảm biến hay tàu lượn."
+      },
+      "hint": {
+        "en": "The switch is at C3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại C3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b2-clockwork-canopy-echoing-gears-board",
+      "missionId": "b2-clockwork-canopy-echoing-gears",
+      "level": "B2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "bridges": [
+        [
+          5,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            4
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "lower-chamber",
+          "name": "Lower Chamber",
+          "at": [
+            5,
+            1
+          ]
+        },
+        {
+          "id": "west-gear",
+          "name": "West Gear",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "pulse-log",
+          "name": "Pulse Log",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "spare-tooth",
+          "name": "Spare Tooth",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ],
+      "goal": "lower-chamber",
+      "clue": {
+        "en": "Rowan said that the lower chamber returned the bell’s note, though he left the west gear as another possible source. Find the place named in his reported observation.",
+        "vi": "Rowan nói rằng căn phòng phía dưới vọng lại tiếng chuông, dù cậu vẫn để ngỏ khả năng bánh răng phía tây là một nguồn khác. Hãy tìm nơi được nêu trong quan sát gián tiếp của cậu."
+      },
+      "hint": {
+        "en": "The switch is at B5. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B5. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b2-clockwork-canopy-three-voices-board",
+      "missionId": "b2-clockwork-canopy-three-voices",
+      "level": "B2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "brass-leaves",
+          "name": "Brass Leaves",
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "id": "wind-bell",
+          "name": "Wind Bell",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "paper-guide",
+          "name": "Paper Guide",
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bird-mask",
+          "name": "Bird Mask",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "brass-leaves",
+      "clue": {
+        "en": "Leta rejected the claim that metal leaves imitate birds; she said instead that the leaves give the wind a vocabulary. Find the object described by her revised view.",
+        "vi": "Leta bác bỏ ý kiến cho rằng những chiếc lá kim loại bắt chước chim; thay vào đó, cô nói chúng trao cho gió một vốn từ. Hãy tìm vật được mô tả trong quan điểm đã được cô điều chỉnh."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "b2-clockwork-canopy-review-or-manual-board",
+      "missionId": "b2-clockwork-canopy-review-or-manual",
+      "level": "B2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "bridges": [
+        [
+          5,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "listening-review",
+          "name": "Listening Review",
+          "at": [
+            4,
+            1
+          ]
+        },
+        {
+          "id": "dial-card",
+          "name": "Dial Card",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "safety-note",
+          "name": "Safety Note",
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "id": "catalog-blurb",
+          "name": "Catalog Blurb",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ],
+      "goal": "listening-review",
+      "clue": {
+        "en": "Among the display’s texts, only one evaluates the visitor’s listening experience and praises the pauses. The dial card gives operating steps, the safety note warns about the wheel, and the catalog blurb lists dimensions. Find the text that judges how the work feels to hear.",
+        "vi": "Trong các văn bản trưng bày, chỉ một văn bản đánh giá trải nghiệm nghe của khách và khen những khoảng lặng. Thẻ núm xoay nêu các bước sử dụng, ghi chú an toàn cảnh báo về bánh xe, còn phần giới thiệu liệt kê kích thước. Hãy tìm văn bản nhận xét cảm giác khi nghe tác phẩm."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c1-prism-observatory-amber-line-board",
+      "missionId": "c1-prism-observatory-amber-line",
+      "level": "C1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "amber-line",
+          "name": "Amber Line",
+          "at": [
+            5,
+            3
+          ]
+        },
+        {
+          "id": "silver-frame",
+          "name": "Silver Frame",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "cool-lens",
+          "name": "Cool Lens",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "shadow-panel",
+          "name": "Shadow Panel",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ],
+      "goal": "amber-line",
+      "clue": {
+        "en": "Although the frame is the most conspicuous part of the display, the note foregrounds a fine line that shifts slightly in the amber light. Find that observed feature, not the frame around it.",
+        "vi": "Dù khung là phần nổi bật nhất của vật trưng bày, ghi chú lại nhấn mạnh một đường nét mảnh dịch chuyển nhẹ dưới ánh sáng màu hổ phách. Hãy tìm đặc điểm được quan sát ấy, không phải chiếc khung bao quanh."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c1-prism-observatory-mirror-report-board",
+      "missionId": "c1-prism-observatory-mirror-report",
+      "level": "C1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            4
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "lower-bound",
+          "name": "Lower Bound",
+          "at": [
+            5,
+            0
+          ]
+        },
+        {
+          "id": "second-mirror",
+          "name": "Second Mirror",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "first-mark",
+          "name": "First Mark",
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "id": "glass-key",
+          "name": "Glass Key",
+          "at": [
+            6,
+            1
+          ]
+        }
+      ],
+      "goal": "lower-bound",
+      "clue": {
+        "en": "The newer reading replaces the earlier estimate, yet the first value remains the minimum the report is prepared to stand behind. Find the term for that surviving limit.",
+        "vi": "Số đo mới thay thế ước lượng trước đó, nhưng giá trị ban đầu vẫn là mức tối thiểu mà báo cáo sẵn sàng xác nhận. Hãy tìm thuật ngữ chỉ giới hạn còn giữ lại ấy."
+      },
+      "hint": {
+        "en": "The switch is at B5. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B5. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c1-prism-observatory-glass-choir-board",
+      "missionId": "c1-prism-observatory-glass-choir",
+      "level": "C1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            1
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "blue-prism",
+          "name": "Blue Prism",
+          "at": [
+            5,
+            2
+          ]
+        },
+        {
+          "id": "last-note",
+          "name": "Last Note",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "glass-frame",
+          "name": "Glass Frame",
+          "at": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "open-stage",
+          "name": "Open Stage",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "blue-prism",
+      "clue": {
+        "en": "Only after the final note faded did the prism’s blue settle into its final shade. Find the blue prism whose appearance changed after the sound had ended.",
+        "vi": "Chỉ sau khi nốt nhạc cuối cùng lắng xuống, sắc xanh của lăng kính mới ổn định. Hãy tìm lăng kính xanh có diện mạo thay đổi sau khi âm thanh kết thúc."
+      },
+      "hint": {
+        "en": "The switch is at B2. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B2. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c1-prism-observatory-program-edit-board",
+      "missionId": "c1-prism-observatory-program-edit",
+      "level": "C1",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          1
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            4
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "final-panel",
+          "name": "Final Panel",
+          "at": [
+            4,
+            0
+          ]
+        },
+        {
+          "id": "open-circle",
+          "name": "Open Circle",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "single-line",
+          "name": "Single Line",
+          "at": [
+            3,
+            2
+          ]
+        },
+        {
+          "id": "opening-caption",
+          "name": "Opening Caption",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "final-panel",
+      "clue": {
+        "en": "Whereas the opening caption follows a single line, the last panel returns to the open-circle motif. Find the place that gathers the sequence’s final image.",
+        "vi": "Trong khi chú thích mở đầu đi theo một đường đơn, khung cuối quay lại mô-típ vòng tròn mở. Hãy tìm nơi tập hợp hình ảnh cuối cùng của chuỗi."
+      },
+      "hint": {
+        "en": "The switch is at B5. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B5. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c2-unwritten-sky-margin-marks-board",
+      "missionId": "c2-unwritten-sky-margin-marks",
+      "level": "C2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "bridges": [
+        [
+          3,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "margin-mark",
+          "name": "Margin Mark",
+          "at": [
+            6,
+            0
+          ]
+        },
+        {
+          "id": "northern-copy",
+          "name": "Northern Copy",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "coastal-map",
+          "name": "Coastal Map",
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "id": "six-later-copies",
+          "name": "Six Later Copies",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "margin-mark",
+      "clue": {
+        "en": "When the curator calls the marks’ influence “not inconsiderable,” the restrained phrasing grants them real weight. The note then traces the same small sign through later copies. It treats that recurrence as the point worth acknowledging, rather than as decoration. Find the feature whose repetition prompted that measured praise.",
+        "vi": "Khi người phụ trách gọi ảnh hưởng của những dấu này là “không thể xem là nhỏ”, cách diễn đạt dè dặt vẫn thừa nhận tầm quan trọng thực sự của chúng. Ghi chú sau đó lần theo cùng một dấu nhỏ qua các bản sao về sau. Sự lặp lại ấy là điều đáng ghi nhận, chứ không chỉ để trang trí. Hãy tìm đặc điểm được nhắc lại và nhận lời khen có chừng mực ấy."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c2-unwritten-sky-quiet-caption-board",
+      "missionId": "c2-unwritten-sky-quiet-caption",
+      "level": "C2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          4,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "side-light-inscription",
+          "name": "Side-Light Inscription",
+          "at": [
+            5,
+            1
+          ]
+        },
+        {
+          "id": "old-chart",
+          "name": "Old Chart",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "north-route",
+          "name": "North Route",
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "id": "gallery-lamp",
+          "name": "Gallery Lamp",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "side-light-inscription",
+      "clue": {
+        "en": "The caption calls the inscription all but unreadable in ordinary light; only the angled side-light lets its letters emerge. The label explains that the faint script becomes legible as a visitor moves around the display. Find the inscription, rather than the lamp that reveals it or the route that points north.",
+        "vi": "Chú thích nói dòng chữ gần như không thể đọc được dưới ánh sáng thường; chỉ ánh sáng chiếu xiên từ bên cạnh mới làm các chữ hiện ra. Nhãn giải thích rằng nét chữ mờ trở nên dễ đọc khi khách di chuyển quanh vật trưng bày. Hãy tìm dòng chữ, không phải chiếc đèn làm lộ chữ hay con đường chỉ hướng bắc."
+      },
+      "hint": {
+        "en": "The switch is at C3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại C3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c2-unwritten-sky-museum-of-almosts-board",
+      "missionId": "c2-unwritten-sky-museum-of-almosts",
+      "level": "C2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bridges": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            2
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "visitor-book",
+          "name": "Visitor Book",
+          "at": [
+            6,
+            3
+          ]
+        },
+        {
+          "id": "glass-swan",
+          "name": "Glass Swan",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "brass-key",
+          "name": "Brass Key",
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "six-line-note",
+          "name": "Six-Line Note",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ],
+      "goal": "visitor-book",
+      "clue": {
+        "en": "The apprentice keeps a page after the swan’s note has been displayed, but not to prove who was at fault. It is folded into the book in which guests leave their own words. Read the gesture as a private response rather than evidence, then find the object that receives visitors’ writing.",
+        "vi": "Người học việc giữ lại một trang sau khi ghi chú về con thiên nga được trưng bày, nhưng không phải để chứng minh ai có lỗi. Trang giấy được gấp vào cuốn sổ để khách viết lời của mình. Hãy hiểu hành động ấy như một hồi đáp riêng tư chứ không phải bằng chứng, rồi tìm vật nhận lời viết của khách."
+      },
+      "hint": {
+        "en": "The switch is at B3. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B3. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    },
+    {
+      "id": "c2-unwritten-sky-editors-pencil-board",
+      "missionId": "c2-unwritten-sky-editors-pencil",
+      "level": "C2",
+      "width": 7,
+      "height": 5,
+      "start": [
+        0,
+        4
+      ],
+      "water": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "bridges": [
+        [
+          5,
+          2
+        ]
+      ],
+      "switches": [
+        {
+          "id": "switch",
+          "at": [
+            1,
+            3
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "blank-page",
+          "name": "Blank Page",
+          "at": [
+            6,
+            0
+          ]
+        },
+        {
+          "id": "red-pencil",
+          "name": "Red Pencil",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "poem-case",
+          "name": "Poem Case",
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "id": "margin-note",
+          "name": "Margin Note",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ],
+      "goal": "blank-page",
+      "clue": {
+        "en": "The revised caption calls the empty centre a “breathing space.” The metaphor offers the reader a possible pause; it does not claim that the poet intended that response. Find the printed feature being reframed, rather than the editor’s mark or the case around it.",
+        "vi": "Chú thích đã sửa gọi khoảng trống ở giữa là “khoảng thở”. Ẩn dụ này gợi cho người đọc một nhịp dừng có thể có; nó không khẳng định rằng nhà thơ có chủ ý tạo ra phản ứng ấy. Hãy tìm phần được định nghĩa lại, không phải dấu bút của biên tập viên hay chiếc hộp bao quanh."
+      },
+      "hint": {
+        "en": "The switch is at B4. X works on that tile or from a neighboring tile; the bridge stays closed until you use it.",
+        "vi": "Công tắc nằm tại B4. Lệnh X dùng được khi đứng trên ô đó hoặc ô kế bên; cầu vẫn đóng cho đến khi bạn kích hoạt."
+      }
+    }
+  ]
+}

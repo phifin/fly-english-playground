@@ -1,0 +1,14 @@
+node_modules/
+dist/
+artifacts/
+.tools/
+*.log
+.codex/
+.agents/
+.aws/
+.firebase/
+.env
+.env.*
+!.env.example
+unfolding-atlas-*.json
+firepit-log.txt

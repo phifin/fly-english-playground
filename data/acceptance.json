@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Sol",
+  "reviewedAt": "2026-10-20",
+  "notes": "Parent read all120 English activities, keys and explanations, reviewed bilingual guidance for equivalence/answer leakage; an independent Sol reviewer also examined20 C1/C2 variety items. Luna corrected ambiguity, leaked answer, causation, roles, comparisons and grammatical variants before acceptance. CEFR author alignment is not independently calibrated; finite foundation library. Cambridge full-page retrieval was sometimes403, honestly recorded. No submitted approval field was accepted.",
+  "batches": [
+    {
+      "path": "data/staging/launch-sample/pack.json",
+      "packHash": "d65f16f99678d7545bcaf5c073656d295f4664b9c014a4b916da6fe85d9a768e",
+      "activityHashes": [
+        {
+          "id": "a1-lantern-harbor-01",
+          "sha256": "26237c9d69bde888617e8bf1cdcc81a2ffe53a3b0d4eee2de17bf88e4b8b1fdb"
+        },
+        {
+          "id": "a1-lantern-harbor-02",
+          "sha256": "d9f2df0a23775101c8b08312d7ee18d00c6cc4c9fc795deacd7b470b09c5ef8c"
+        },
+        {
+          "id": "a1-lantern-harbor-03",
+          "sha256": "b49039a6ed542ffd57cc577a2c4c6dd57a0640749b14c2e59984c50c31b7ca25"
+        },
+        {
+          "id": "a1-lantern-harbor-04",
+          "sha256": "360c438cadb53e6bba6e5bc578a3967ab985c08739748864974de7aa86d69583"
+        },
+        {
+          "id": "a1-lantern-harbor-05",
+          "sha256": "930fb236077a56526451b840faafda7d1ad6936924d1a6c39937302faed7db76"
+        },
+        {
+          "id": "b2-clockwork-canopy-01",
+          "sha256": "05f30e511c6d877714a2a0e4ef60570c8f9a84acbde0f051162624d7c4f158ec"
+        },
+        {
+          "id": "b2-clockwork-canopy-02",
+          "sha256": "439c63086a99992fd20ef07bf16a30add59f6bbea217df1f9518be91330add66"
+        },
+        {
+          "id": "b2-clockwork-canopy-03",
+          "sha256": "2d96748dad989cd12eb8c3c6ede7fb1f8759f20aa2c41d8c073be5c4f782aa29"
+        },
+        {
+          "id": "b2-clockwork-canopy-04",
+          "sha256": "0f3264d5e9a884144ec21679d56266740bb2130a900105e2e22815c543189a91"
+        },
+        {
+          "id": "b2-clockwork-canopy-05",
+          "sha256": "f72cb1971ecb3419d53b020f9ecc2ce771b8339ebb7337281edb76d01b19ce10"
+        }
+      ]
+    },
+    {
+      "path": "data/staging/launch-core/pack.json",
+      "packHash": "50d086f16b07b0a35fdd8fb59bf0aec2d16ad8f696886866c6f35863547e8564",
+      "activityHashes": [
+        {
+          "id": "a1-lantern-harbor-shell-bell-01",
+          "sha256": "97e4c8288f5f86cd564e81fb9ebb0b8896209863b78ea977b53c75307e8a18a5"
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-02",
+          "sha256": "4aaa0469614f46f3e88ebce2b83897ea0096c8e1b95e2357063cb864140eaa8a"
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-03",
+          "sha256": "254208ba4e9d017c8b42dcf0f5d8fae98cd97ee006e95897947db18fd1f47d0d"
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-04",
+          "sha256": "db57c05acc550eb1d4a3dbe029f054fd60d7f3a2054435c0f78ef6a42b900f6f"
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-05",
+          "sha256": "a73ba5ab545643c9f70a95ef6f3f34e497ad10a6e36042b0564e635ac1a6ced3"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-01",
+          "sha256": "cbbde6c591449d1a0035073c52bb34d00bcaf2f5ed2330827d0e4a111f3d9e0b"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-02",
+          "sha256": "1dfb9328169f2246641942ecab5d177a2660725cb461657faec992db932f1a94"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-03",
+          "sha256": "d17b6b66655242f5e1c16ec99acbd23ee3dedce896b8543e68d8057157bbae61"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-04",
+          "sha256": "72a66a37d77a5567c6d1b3fb8bd8b510ee1d95510ca4845d439149058774a048"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-05",
+          "sha256": "afd57ba4f131409f0710a7200467497ef153b9d049672d256ac3013c9f88b49f"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-01",
+          "sha256": "5612879d87c00956d727507d167a18fd390bac3c8d81ec9e2e782d3a57c258b2"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-02",
+          "sha256": "ded8fc888a4fcdcd605e6b1b08173a9a730dd1acf34546aa28d98e3efb9dd939"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-03",
+          "sha256": "d049323f31f9da754d2303f61a4f6e2c15612c6b083515084438f0b2e041ff4b"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-04",
+          "sha256": "fa9f8da28731e3e912c22df1efa91afcf4355374feff3b8cc05b316d78b510ed"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-05",
+          "sha256": "518423dec70303dce9f18a61d57b01b45db99730121faf716c952e3ade450f49"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-01",
+          "sha256": "fb26beca051b11bba72cac9eb6537ef6efd75601b1955bba0fb8fe106ca87926"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-02",
+          "sha256": "a6f125ac50eaccbbe0edc6f549bd2e06698e35feb7a904db3ebaafecb07b5a87"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-03",
+          "sha256": "5e1226f77b39d69e2e169b746bd0b36ec1cbe94c323fdab51a33ec170b0bdb08"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-04",
+          "sha256": "d05489194789da6c88486a600906f483c4647b0f16d2cfb71e06efa2568b6fcd"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-05",
+          "sha256": "4fc2a0f65a7910fb1ce21b4d4d6389825488a102c285fab0b3db00dc3dcae9e9"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-01",
+          "sha256": "48581bbc80d41964396978b1b7611cb183eab4922c75620e0b3c66dc1f6b3dc6"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-02",
+          "sha256": "2a45348de8735c777e01f78e77f9db8e89447d8c76db22d6859db22fd5a61a7f"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-03",
+          "sha256": "97bacde0b92d9137bd4ace9afa765fa31c8f3d59757e685d808ac39acc5ef39d"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-04",
+          "sha256": "737860b863c7040bc7bec2ae31020424f58312d5ef5d04b56b80d792eea9109b"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-05",
+          "sha256": "ea01f47d621deb30358e999adb27e3b34510f24cae852ba395780116e984a253"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-01",
+          "sha256": "62000ecce0f98e3416960ed6ae38ba8e2d3db0b3198fea1cf4fbe305bacefe3f"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-02",
+          "sha256": "58bf1ae951cca8745c5396b7196a7cd4c8512cd395d71afd6e498872f272b310"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-03",
+          "sha256": "cac5c0a3ffab3c8caa99cf11c74d735242912b85878489225980eeabe663296f"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-04",
+          "sha256": "b4a86df1de253a80fa8ca9853599fda4c86e028b8eb188b1e8f6ca5d10886f9f"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-05",
+          "sha256": "9c514432f68cd98dbef0adbd29fcd66f0028f3b8e89b652380e68778c2b0e271"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-01",
+          "sha256": "af0b43a414ffb22eaa1717c7d668deed8092c1a2205310b8fe4496a09cc62234"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-02",
+          "sha256": "179eebdaa067dc6fb6a381f7c5ab3e16395a3cee17e1e0ffe94e64dc0151db59"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-03",
+          "sha256": "d8cf10b82930620a2299512d55226186cfc3cb8f71f46b134a0478909c7c3cb9"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-04",
+          "sha256": "1cb078a6318b2ef6d1f22ad7f6748b9e21bc55013b73b8ad19ed9c3024f171d4"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-05",
+          "sha256": "48678701237e8f904f845a4e167d02ab1f5beec97dcf4ea1c793237435f1593f"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-01",
+          "sha256": "86a08ad143efdc428057aed4b12aba0fae7b5012f5bfaca6a9714bc21ff89b34"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-02",
+          "sha256": "63bf29bad53f8275788327c5039273c9c90e593b4258c20cfcb64c494872dd97"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-03",
+          "sha256": "77cc0c7dff89fc9d3f03359f4741d3119f918cf7943bd7fd705bc4ab2b7c37ec"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-04",
+          "sha256": "0e3fef353aac12b0786883d10484fcff63d169cfbd5183c0991e51ddfabc3d7a"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-05",
+          "sha256": "0d39154183f5c9d7eb1ed2507d2ab32f11c7db9923775143154f63cd7a58db4e"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-01",
+          "sha256": "f87f821484359278d06657987725282733208b394c1a312ac8087ebe3c4700f4"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-02",
+          "sha256": "a6d603cb65c2950e05052d4a61b9a119350f58bec6f2d136f61c487180a90d8a"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-03",
+          "sha256": "be721c2bc8e2d1b1dacf97c1c3ce44fa06d942d70c09929c655f86af93180cb1"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-04",
+          "sha256": "5c2ff6269d6f30ce649c7c50a001b5e6e8601b85523f2a289589d219fc3acced"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-05",
+          "sha256": "d2d1a8418e016e10e2cc92fa5b0e133b327f035073b24a5dd29ebff7bfb314e5"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-01",
+          "sha256": "3c60ed0d5177add8da60b20f27c51f395e61ee4a81677d7322ccbe7b65e3d1c0"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-02",
+          "sha256": "af6912ae8db05ba4ec7969241dac6c91b954db389b96901a7fe80e4960139225"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-03",
+          "sha256": "1953151843249adf05ac3243115a899fff453373ea6e0f8c357ba43262e8a53c"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-04",
+          "sha256": "96c7f76a8c81ad3566d2043cffee4ee29cd09bc321f0a6b047bf8a25c24ebe97"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-05",
+          "sha256": "0eb9a4ba3ea94a349713c6b3a59d87359af36ac73d23294d4a7d8b71943f1cc9"
+        }
+      ]
+    },
+    {
+      "path": "data/staging/launch-variety/pack.json",
+      "packHash": "86b6131a6355bd15696b500d939db12e62d12589239c787bd6d526d013956e1b",
+      "activityHashes": [
+        {
+          "id": "a1-lantern-harbor-color-teller-01",
+          "sha256": "368df3d03ba4772e36d7a6f3d2a2a230663bd5451645468d3890d6fab802d135"
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-02",
+          "sha256": "9b875b3160ee2f9acf46e239878664fc601f357bb74baef337c10f017061a6e2"
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-03",
+          "sha256": "12070e6d9e94f42b1f7b6245371eb9c70b3eb7bd366c10dc81de678424b9e503"
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-04",
+          "sha256": "ce64fcf024f523dbf9dbed159eff99e4d8d17b9715a31a16db85ca4f8067a7ae"
+        },
+        {
+          "id": "a1-lantern-harbor-color-teller-05",
+          "sha256": "f5c2d811378588fd727cba2c3ee69d5cf5d92dd73355ea28ca1f0a6f11542b9a"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-01",
+          "sha256": "2c8a1b8964bc260ce2f55634fcf19493777094343158c8095ca517e3cb307681"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-02",
+          "sha256": "f3b2e3d08276c379c0f72abe5ca411ce1a92d4c1ad7405d843467c030c170129"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-03",
+          "sha256": "8bd66a5ada88c8ecafef48f09bcd5fb50d3f64cc7d958139c947a8237c95f036"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-04",
+          "sha256": "9feaa3cc57822f29dc1fe8bd351c5e63ae605e21161f128362169d492e50aa48"
+        },
+        {
+          "id": "a1-lantern-harbor-rooftop-kites-05",
+          "sha256": "3d3dbc2f7eaf17482070ed7e4ffffcaa481d1274a558f1711490cfec5f7b349a"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-01",
+          "sha256": "8d18ec61af12bcfbfc8ba4e037dbe0850fe25ef6f88103a309cd72f046444c23"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-02",
+          "sha256": "022aead32217259c0c8720aea1c4193d7addc71a00e252caa8d591efdc83ba38"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-03",
+          "sha256": "4d5d395decd056f1551a9b9aced6e947bd28d2d0866042e4bd14704284cde960"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-04",
+          "sha256": "b21d3135eecbae5aaa22c6a86c918e13b146da8244373e6e0735d614932e621a"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-sculpture-05",
+          "sha256": "e7b9f79ea19b34410df10337994df02449cfb3e63992a3062717cbf13cf853db"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-01",
+          "sha256": "56980f752fed7892c375ce673065633b2e94d051d1b0d8721d1f407342a22573"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-02",
+          "sha256": "81b3cee47b147fb31f820fe71385c552c25d35827133658af33f446d62f49c3c"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-03",
+          "sha256": "609f173f368e54c9338bf77693569e334a9097ab371e0a25f9e7bbd1a3f76b1a"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-04",
+          "sha256": "ee6be104db0cc1568b7e2290b21af65d633c721d4843ae431eab99db31c904b3"
+        },
+        {
+          "id": "a2-wildseed-gardens-garden-invitation-05",
+          "sha256": "2625797a8d888de7e156a7cb790bff7b2a5ee4b335e1980cae32ea870ebf9404"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-01",
+          "sha256": "168ecc964afb76adddba26135ef6fbd17a86fd2d77aed4d0f9a24e69f40c7f7a"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-02",
+          "sha256": "a402a11e64997bf40ac624ead5edc6e4dff1700f05cddf48c9c986e129b65a0d"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-03",
+          "sha256": "ec1aab563a0a4ee8748e2899fc00e6175363437af333b9f716817695d4651650"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-04",
+          "sha256": "4cae349cf269a0dee6889ce4df8d010459521dee34e4ad11e9c7103eddca7847"
+        },
+        {
+          "id": "b1-tideglass-isles-moon-moth-model-05",
+          "sha256": "c2c3e31303fb5ea176ea4271a640b0ec5c0a3c7c4079019db0b776241bec33ee"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-01",
+          "sha256": "a3b40fce70e2e172bbad2eabb77f8645a5b80833b78e24ad559246c7e0fb7122"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-02",
+          "sha256": "e6a18beda2cb4896bc5a19fd0cc8a7319e6d77199db55ed298cd26ab3c3c9bae"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-03",
+          "sha256": "a1215eba86f3b773ecadcb0e35a93ca305fd8d55fc0742edbb148fb9be8b13da"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-04",
+          "sha256": "6b10f61a1b9725487424911c98a4cfad8a198bdf4ec87b7596c4e93f4822c9a4"
+        },
+        {
+          "id": "b1-tideglass-isles-borrowed-tide-song-05",
+          "sha256": "b18766e0723ecbd5b026a58a206f9a9bf6e30726fdf9c54c5e95f07b983e8556"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-01",
+          "sha256": "096fe8a839f6f27ad873f2f4d2c3c50e59a874419207f967461e570f998e3645"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-02",
+          "sha256": "7706b4a17e3357d5d388ba1f5a0520643f4f4716babf57495f68ffd0c4e194ca"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-03",
+          "sha256": "ae7d253529c48ac42f46626e91738cea6b8412df60353d7e47e954315d417cac"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-04",
+          "sha256": "cc9cdf851fab589f3557a98ff408cd44199ddee1f3a12900c6286352d652bb0c"
+        },
+        {
+          "id": "b2-clockwork-canopy-three-voices-05",
+          "sha256": "ec4790b35ccb673fa018425b3f810b3ecbb9edcede67d8b14b663c3db591b071"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-01",
+          "sha256": "b8b95a58579078259d7b7980f42b0cb23a0afb799454c0ab12655d32bd88a1ed"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-02",
+          "sha256": "001e46ba1d769856ee55c8f60eb8ca03747a13ccb49193fa800229d95e62d104"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-03",
+          "sha256": "261bcf062f152a5caddedd5ae2f9f20bb393521e5e4c9c85300e654019b9a1b3"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-04",
+          "sha256": "c30875badb4fd7ba11b0e16311c35e63b3019264b9f34b613a051c3b728fa631"
+        },
+        {
+          "id": "b2-clockwork-canopy-review-or-manual-05",
+          "sha256": "9b69e1cfe3b8c6211ac4fba364a59fbb32228d95da79b25935b61a22c9700c50"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-01",
+          "sha256": "8c1e486785272d0a905194c637a6a70f6e108ce589a252554701994de02ce8f6"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-02",
+          "sha256": "df896a687a18d3e308c72262d088b88eed3e7e2259f9d6f0efbf6393492afced"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-03",
+          "sha256": "661be38d6a48d2c08f3105dcfda121e2e47389716d88ad326e8374aa8d9d7740"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-04",
+          "sha256": "2240ec072ff8b00bf23836fdf606f0a131a2ba2584094a6444f3852b1b27bd02"
+        },
+        {
+          "id": "c1-prism-observatory-glass-choir-05",
+          "sha256": "095839ee0fa5b6b6c3bd676c145e1e3947c121862ab77f3abd9f9402f4297dae"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-01",
+          "sha256": "9372ffd74a7920e1e4542c6fc1cd39caa17bb78a12a4dad8b99eb2d4c5289f1c"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-02",
+          "sha256": "73845691bbe98b2312efa93e5ce26a32fb4b7a50590a1ec6262c35835ac66de8"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-03",
+          "sha256": "0fbb5be3ef3a7e08e17faa3985d28ee366ef7d8c3b6dfe02a65042dafa08f319"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-04",
+          "sha256": "bc51859440c44d4ba61d97c6d387be115d85d443d3a6e40c6f12f919c8e0b1cd"
+        },
+        {
+          "id": "c1-prism-observatory-program-edit-05",
+          "sha256": "01b22cbadcb172c267e57643f2c345838b331aacd311591b4df0a431787298fb"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-01",
+          "sha256": "3bc8c0e8a815f069be4757a786b3e5356a627091a0e8ff9335d86b7675950fde"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-02",
+          "sha256": "2e0ae6acab9b5760a3c71ca65f223408667ecb375858e37cf69b40ebecdc7714"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-03",
+          "sha256": "175270e107c2371bfe80a8cd6f6ce24815f358e2bca4c9c43697d32a50a9e1c1"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-04",
+          "sha256": "8afa82e54d10b53696a139c3e6b1caa12219f335f697952712c80e2368c740f5"
+        },
+        {
+          "id": "c2-unwritten-sky-museum-of-almosts-05",
+          "sha256": "d4ce1aff35e19eb349c50191234b0066b61791fd340245423126ecff2110adc0"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-01",
+          "sha256": "aa58d95a28afb947e47ffdb7dd467ca50cc3308f3ad754d5c6d3cf492a926ba3"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-02",
+          "sha256": "5399204fd9de32c665fce54740ee5f6c8b99f823fd3dd007dab70a7c79b5226c"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-03",
+          "sha256": "6f0970b6deefccbadc23de2c6a18b6d48b404d478419764daf64faf140030a86"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-04",
+          "sha256": "dc35ba728007fc6ff6606cd28dda586c45799e510d270b1b3308fafd932091bb"
+        },
+        {
+          "id": "c2-unwritten-sky-editors-pencil-05",
+          "sha256": "a31138950fa71fbdb18972a641b8e973a0f32ac1b1865f2f007d54de58a254c2"
+        }
+      ]
+    }
+  ]
+}

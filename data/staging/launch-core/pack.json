@@ -1,0 +1,1869 @@
+{
+  "schemaVersion": 1,
+  "batchId": "launch-core",
+  "provenance": [
+    {
+      "id": "coe-cefr-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for illustrative reading and language-use descriptors across bands. All stories, tasks, explanations and keys are original; no descriptor text is reproduced."
+    },
+    {
+      "id": "bc-there-dummy-subject",
+      "title": "'it' and 'there' as dummy subjects",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/it-there-dummy-subjects",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the existence/location use of there. All assessment material is original; no examples or exercises are copied."
+    },
+    {
+      "id": "bc-past-continuous-simple",
+      "title": "Past continuous and past simple",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/past-continuous-past-simple",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for past-event sequencing and ongoing background actions. All assessment material is original; no examples or exercises are copied."
+    },
+    {
+      "id": "bc-contrasting-ideas",
+      "title": "Contrasting ideas: 'although', 'despite' and others",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/contrasting-ideas-although-despite-others",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for contrast linkers and the different structures they take. All assessment material is original; no examples or exercises are copied."
+    },
+    {
+      "id": "bc-c1-participle-clauses",
+      "title": "Participle clauses",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/c1/participle-clauses",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for perfect participle clauses and concise written style. All assessment material is original; no examples or exercises are copied."
+    },
+    {
+      "id": "bc-c1-advanced-passives",
+      "title": "Advanced passives review",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/c1/advanced-passives-review",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for impersonal passive reporting forms in formal prose. All assessment material is original; no examples or exercises are copied."
+    },
+    {
+      "id": "cambridge-inconsiderable",
+      "title": "Cambridge English Dictionary: inconsiderable",
+      "url": "https://dictionary.cambridge.org/dictionary/english/inconsiderable",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the understated phrase not inconsiderable. All assessment material is original; no dictionary example is copied and no reuse license is claimed."
+    },
+    {
+      "id": "cambridge-face-of-it",
+      "title": "Cambridge English Dictionary: on the face of it",
+      "url": "https://dictionary.cambridge.org/dictionary/english/on-the-face-of-it",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the C2 idiom's first-impression meaning. All assessment material is original; no dictionary example is copied and no reuse license is claimed."
+    },
+    {
+      "id": "cambridge-all-but",
+      "title": "Cambridge English Dictionary: all but",
+      "url": "https://dictionary.cambridge.org/dictionary/english/all-but",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for the idiomatic degree meaning 'almost'. All assessment material is original; no dictionary example is copied and no reuse license is claimed."
+    },
+    {
+      "id": "bc-reported-speech",
+      "title": "Reported speech: statements",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/reported-speech-statements",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for backshift in reported statements. All assessment material is original; no examples or exercises are copied."
+    }
+  ],
+  "missions": [
+    {
+      "id": "a1-lantern-harbor-shell-bell",
+      "level": "A1",
+      "title": {
+        "en": "The Shell Bell's New Song",
+        "vi": "Khúc hát mới của Chuông Vỏ Sò"
+      },
+      "summary": {
+        "en": "A tiny harbor map helps you find a shell bell before the morning boats arrive.",
+        "vi": "Một tấm bản đồ bến cảng nhỏ giúp bạn tìm chiếc chuông vỏ sò trước khi thuyền buổi sáng cập bến."
+      },
+      "objective": {
+        "en": "Read simple location clues and describe what is at Lantern Harbor.",
+        "vi": "Đọc các gợi ý vị trí đơn giản và mô tả những gì có ở Cảng Đèn Lồng."
+      },
+      "skill": "reading",
+      "topic": "harbor-locations-and-there-be",
+      "reward": {
+        "en": "A shell-shaped map pin",
+        "vi": "Chiếc ghim bản đồ hình vỏ sò"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-there-dummy-subject"
+      ],
+      "activities": [
+        {
+          "id": "a1-lantern-harbor-shell-bell-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Where is the small bell?",
+          "context": "The shell hut is beside the blue gate. The small bell is inside the shell hut. Two white shells are under the bench.",
+          "instruction": {
+            "en": "Read the harbor clues and choose the bell's place.",
+            "vi": "Đọc các gợi ý ở bến cảng rồi chọn vị trí của chiếc chuông."
+          },
+          "explanation": {
+            "en": "The note says the bell is inside the shell hut. The shells, not the bell, are under the bench.",
+            "vi": "Ghi chú cho biết chuông ở bên trong nhà vỏ sò. Những chiếc vỏ sò, chứ không phải chuông, nằm dưới ghế dài."
+          },
+          "focus": "a1-find-a-place-in-a-short-note",
+          "options": [
+            {
+              "id": "inside-hut",
+              "text": "Inside the shell hut"
+            },
+            {
+              "id": "under-bench",
+              "text": "Under the bench"
+            },
+            {
+              "id": "beside-gate",
+              "text": "Beside the blue gate"
+            }
+          ],
+          "answer": "inside-hut"
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the harbor sign with the present form of be. Enter one word: There ___ two white shells under the bench.",
+          "context": "Tari counts one blue lamp and two white shells under the bench beside the little tide pool.",
+          "instruction": {
+            "en": "Use the present form of be and write one word.",
+            "vi": "Dùng dạng hiện tại của động từ be và viết một từ."
+          },
+          "explanation": {
+            "en": "Use are because shells is plural. The sentence describes two shells.",
+            "vi": "Dùng are vì shells là danh từ số nhiều. Câu đang nói về hai chiếc vỏ sò."
+          },
+          "focus": "a1-there-are-with-plural-nouns",
+          "accepted": [
+            "are"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each harbor object to its place in the note.",
+          "context": "The harbor note says: A blue lamp is above the door. A rope is beside the pier. The shell bell is inside the hut.",
+          "instruction": {
+            "en": "Match each object with the place named in the note.",
+            "vi": "Nối mỗi vật với vị trí được nêu trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note gives one different place for each object: above the door, beside the pier and inside the hut.",
+            "vi": "Ghi chú nêu một vị trí riêng cho mỗi vật: phía trên cửa, cạnh cầu tàu và bên trong nhà."
+          },
+          "focus": "a1-match-things-to-locations",
+          "pairs": [
+            {
+              "id": "lamp",
+              "left": "The blue lamp",
+              "right": "Above the door"
+            },
+            {
+              "id": "rope",
+              "left": "The rope",
+              "right": "Beside the pier"
+            },
+            {
+              "id": "bell",
+              "left": "The shell bell",
+              "right": "Inside the hut"
+            }
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Put the directions in the order shown: first, next, then.",
+          "context": "Mina's route note says: First, stand by the blue gate. Next, walk to the shell hut. Then, look inside for the bell.",
+          "instruction": {
+            "en": "Follow Mina's route note and order the three steps.",
+            "vi": "Dựa theo ghi chú chỉ đường của Mina và sắp xếp ba bước."
+          },
+          "explanation": {
+            "en": "The route starts at the gate, goes to the hut and ends with looking inside for the bell.",
+            "vi": "Lộ trình bắt đầu ở cổng, đi đến nhà vỏ sò rồi kết thúc bằng việc tìm chuông bên trong."
+          },
+          "focus": "a1-follow-three-simple-directions",
+          "tokens": [
+            {
+              "id": "gate",
+              "text": "Stand by the blue gate."
+            },
+            {
+              "id": "hut",
+              "text": "Walk to the shell hut."
+            },
+            {
+              "id": "bell",
+              "text": "Look inside for the bell."
+            }
+          ],
+          "answer": [
+            "gate",
+            "hut",
+            "bell"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "a1-lantern-harbor-shell-bell-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two short map sentences. Say what is at the harbor and where one object is.",
+          "context": "A visitor wants two simple clues before walking from the blue gate to the pier.",
+          "instruction": {
+            "en": "Use there is/there are and one place word. Check that your place matches the note.",
+            "vi": "Dùng there is/there are và một từ chỉ vị trí. Kiểm tra xem vị trí bạn viết có khớp với ghi chú không."
+          },
+          "explanation": {
+            "en": "A helpful map sentence names an object and gives its place. Use there is for one thing and there are for more than one.",
+            "vi": "Một câu bản đồ hữu ích cần nêu vật và vị trí của vật đó. Dùng there is cho một vật và there are cho nhiều vật."
+          },
+          "focus": "a1-write-short-map-clues",
+          "rubric": [
+            {
+              "en": "I use there is/there are to match one object or more than one.",
+              "vi": "Tôi dùng there is/there are phù hợp với một vật hoặc nhiều vật."
+            },
+            {
+              "en": "I give one clear and accurate place clue.",
+              "vi": "Tôi nêu một gợi ý vị trí rõ ràng và chính xác."
+            }
+          ],
+          "example": "There is a shell bell inside the hut. There are two white shells under the bench."
+        }
+      ]
+    },
+    {
+      "id": "a2-wildseed-gardens-seed-tin",
+      "level": "A2",
+      "title": {
+        "en": "The Seed Tin's Return",
+        "vi": "Chiếc hộp hạt giống trở về"
+      },
+      "summary": {
+        "en": "A short garden diary tells how a missing seed tin found its way back to the planting table.",
+        "vi": "Một trang nhật ký làm vườn kể chiếc hộp hạt giống thất lạc đã trở về bàn gieo trồng như thế nào."
+      },
+      "objective": {
+        "en": "Read a simple past-time account, locate details and retell events in sequence.",
+        "vi": "Đọc một câu chuyện ngắn về quá khứ, tìm chi tiết và kể lại sự việc theo trình tự."
+      },
+      "skill": "reading",
+      "topic": "past-events-and-garden-notes",
+      "reward": {
+        "en": "A pressed-leaf bookmark",
+        "vi": "Dấu sách lá ép"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-past-continuous-simple"
+      ],
+      "activities": [
+        {
+          "id": "a2-wildseed-gardens-seed-tin-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Where did Asha find the blue seed tin at noon?",
+          "context": "On Monday, the blue tin stood beside the north gate. At noon, Asha found it under the old bench. After lunch, she carried it to the garden cart.",
+          "instruction": {
+            "en": "Read the diary entry and choose the place at noon.",
+            "vi": "Đọc nhật ký rồi chọn địa điểm vào buổi trưa."
+          },
+          "explanation": {
+            "en": "The diary says Asha found the tin under the old bench at noon; she moved it to the cart later.",
+            "vi": "Nhật ký ghi Asha tìm thấy hộp dưới chiếc ghế cũ vào buổi trưa; sau đó cô mới chuyển hộp lên xe đẩy."
+          },
+          "focus": "a2-locate-a-detail-in-a-diary",
+          "options": [
+            {
+              "id": "north-gate",
+              "text": "Beside the north gate"
+            },
+            {
+              "id": "old-bench",
+              "text": "Under the old bench"
+            },
+            {
+              "id": "garden-cart",
+              "text": "On the garden cart"
+            }
+          ],
+          "answer": "old-bench"
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the past simple form of find. Enter one word: At noon, Asha ___ the blue tin under the bench.",
+          "context": "The diary is about Monday. Later that day, Asha carried the tin back to the garden cart.",
+          "instruction": {
+            "en": "Write the past simple form of the verb in the sentence.",
+            "vi": "Viết dạng quá khứ đơn của động từ trong câu."
+          },
+          "explanation": {
+            "en": "Find is irregular; its past simple form is found.",
+            "vi": "Find là động từ bất quy tắc; dạng quá khứ đơn là found."
+          },
+          "focus": "a2-past-simple-irregular-verb",
+          "accepted": [
+            "found"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each seed to the place named on its garden label.",
+          "context": "The planting board says: Moon beans need a warm box. Silver mint grows best in shade. Star thyme belongs in the pot beside the fountain.",
+          "instruction": {
+            "en": "Use the planting board to match each seed and place.",
+            "vi": "Dùng bảng gieo trồng để nối từng loại hạt với vị trí phù hợp."
+          },
+          "explanation": {
+            "en": "Each label gives a distinct place: the warm box, the shade and the pot beside the fountain.",
+            "vi": "Mỗi nhãn nêu một vị trí riêng: hộp ấm, chỗ râm và chậu cạnh đài phun nước."
+          },
+          "focus": "a2-read-short-practical-descriptions",
+          "pairs": [
+            {
+              "id": "moon-beans",
+              "left": "Moon beans",
+              "right": "A warm box"
+            },
+            {
+              "id": "silver-mint",
+              "left": "Silver mint",
+              "right": "A shady place"
+            },
+            {
+              "id": "star-thyme",
+              "left": "Star thyme",
+              "right": "The pot beside the fountain"
+            }
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order Asha's actions by the time words in the diary: morning, noon, after lunch.",
+          "context": "Asha's diary: In the morning I checked the north gate. At noon I found the tin under the bench. After lunch I carried it to the cart.",
+          "instruction": {
+            "en": "Follow the three time clues and order the actions.",
+            "vi": "Dựa vào ba mốc thời gian và sắp xếp các hành động."
+          },
+          "explanation": {
+            "en": "The diary gives a clear sequence: check the gate, find the tin, then carry it to the cart.",
+            "vi": "Nhật ký nêu trình tự rõ ràng: kiểm tra cổng, tìm thấy hộp rồi mang hộp lên xe đẩy."
+          },
+          "focus": "a2-sequence-past-events-from-time-markers",
+          "tokens": [
+            {
+              "id": "check",
+              "text": "Asha checked the north gate."
+            },
+            {
+              "id": "find",
+              "text": "Asha found the tin under the bench."
+            },
+            {
+              "id": "carry",
+              "text": "Asha carried it to the cart."
+            }
+          ],
+          "answer": [
+            "check",
+            "find",
+            "carry"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "a2-wildseed-gardens-seed-tin-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two diary sentences about finding an object. Include when you found it and what you did next.",
+          "context": "Asha is adding one final note to the garden diary before returning the tin to the shelf.",
+          "instruction": {
+            "en": "Use a past-time word and put the two actions in a clear order.",
+            "vi": "Dùng một từ chỉ thời gian quá khứ và sắp xếp hai hành động cho rõ ràng."
+          },
+          "explanation": {
+            "en": "A useful diary note makes the time and next action easy to follow. This writing is for self-review, not automatic scoring.",
+            "vi": "Một dòng nhật ký hữu ích giúp người đọc dễ theo dõi thời gian và hành động tiếp theo. Bài viết này để tự xem lại, không được chấm tự động."
+          },
+          "focus": "a2-write-a-short-past-account",
+          "rubric": [
+            {
+              "en": "I use a past-time marker and a past verb form.",
+              "vi": "Tôi dùng từ chỉ thời gian quá khứ và động từ ở dạng quá khứ."
+            },
+            {
+              "en": "My next action follows the event I describe.",
+              "vi": "Hành động tiếp theo phù hợp với sự việc tôi kể."
+            }
+          ],
+          "example": "Yesterday, I found a blue seed tin under the bench. After lunch, I put it on the garden cart."
+        }
+      ]
+    },
+    {
+      "id": "a2-wildseed-gardens-rain-plan",
+      "level": "A2",
+      "title": {
+        "en": "The Rain Jar Schedule",
+        "vi": "Lịch làm việc với những chiếc lọ mưa"
+      },
+      "summary": {
+        "en": "A garden notice sets out the next day's small jobs before a gentle rain arrives.",
+        "vi": "Một tờ thông báo trong vườn nêu các việc nhỏ của ngày hôm sau trước khi cơn mưa nhẹ đến."
+      },
+      "objective": {
+        "en": "Use a short schedule and future-time clues to follow the garden's plan.",
+        "vi": "Dùng lịch trình ngắn và dấu hiệu thời gian tương lai để theo dõi kế hoạch trong vườn."
+      },
+      "skill": "reading",
+      "topic": "future-plans-and-garden-schedules",
+      "reward": {
+        "en": "A rain-drop garden tag",
+        "vi": "Thẻ khu vườn hình giọt mưa"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-past-continuous-simple"
+      ],
+      "activities": [
+        {
+          "id": "a2-wildseed-gardens-rain-plan-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What will Lio do after lunch?",
+          "context": "Saturday garden notice: The gate opens at nine. The seed walk starts at ten. After lunch, Lio will show visitors the pond map. The garden closes at four.",
+          "instruction": {
+            "en": "Read the Saturday notice and choose Lio's afternoon job.",
+            "vi": "Đọc thông báo thứ Bảy và chọn công việc buổi chiều của Lio."
+          },
+          "explanation": {
+            "en": "The notice says Lio will show the pond map after lunch. The seed walk is earlier, at ten.",
+            "vi": "Thông báo ghi Lio sẽ giới thiệu bản đồ ao sau bữa trưa. Buổi đi dạo xem hạt giống diễn ra sớm hơn, lúc mười giờ."
+          },
+          "focus": "a2-find-a-future-plan-in-a-notice",
+          "options": [
+            {
+              "id": "open-gate",
+              "text": "Open the gate"
+            },
+            {
+              "id": "lead-seed-walk",
+              "text": "Lead the seed walk"
+            },
+            {
+              "id": "show-map",
+              "text": "Show the pond map"
+            }
+          ],
+          "answer": "show-map"
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use will + the verb in brackets to complete the future plan. Enter two words: Tomorrow, the garden team ___ (check) the rain jars before opening.",
+          "context": "The caretaker has written tomorrow's jobs on a fresh sign. The team is not at the garden tonight.",
+          "instruction": {
+            "en": "Complete the sentence with will and the base form of the verb.",
+            "vi": "Hoàn thành câu bằng will và dạng nguyên mẫu của động từ."
+          },
+          "explanation": {
+            "en": "A future statement uses will followed by the base form check.",
+            "vi": "Câu nói về tương lai dùng will theo sau bởi dạng nguyên mẫu check."
+          },
+          "focus": "a2-form-a-simple-future-statement",
+          "accepted": [
+            "will check"
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each job to the time named on the garden notice.",
+          "context": "The notice reads: At nine the gate opens. At ten the seed walk begins. After lunch, Lio shows the pond map. At four, the garden closes.",
+          "instruction": {
+            "en": "Match the garden job or event with its time.",
+            "vi": "Nối công việc hoặc sự kiện trong vườn với thời gian tương ứng."
+          },
+          "explanation": {
+            "en": "Each job has one stated time: opening, the walk, the map visit and closing.",
+            "vi": "Mỗi công việc có một mốc thời gian riêng: mở cổng, đi dạo, xem bản đồ và đóng cửa."
+          },
+          "focus": "a2-match-events-to-schedule-times",
+          "pairs": [
+            {
+              "id": "opening",
+              "left": "The gate opens",
+              "right": "At nine"
+            },
+            {
+              "id": "seed-walk",
+              "left": "The seed walk begins",
+              "right": "At ten"
+            },
+            {
+              "id": "pond-map",
+              "left": "Lio shows the pond map",
+              "right": "After lunch"
+            },
+            {
+              "id": "closing",
+              "left": "The garden closes",
+              "right": "At four"
+            }
+          ]
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Put the setup jobs in the order given by the notice: first, then, last.",
+          "context": "The caretaker's plan says: First fill the rain jars. Then cover the bean bed. Last, place the garden sign beside the gate.",
+          "instruction": {
+            "en": "Use the order words in the caretaker's plan.",
+            "vi": "Dựa vào các từ chỉ thứ tự trong kế hoạch của người chăm vườn."
+          },
+          "explanation": {
+            "en": "The plan marks the jars first, the bean bed second and the sign last.",
+            "vi": "Kế hoạch yêu cầu chuẩn bị các lọ trước, che luống đậu tiếp theo và đặt biển sau cùng."
+          },
+          "focus": "a2-follow-ordered-preparation-instructions",
+          "tokens": [
+            {
+              "id": "jars",
+              "text": "Fill the rain jars."
+            },
+            {
+              "id": "beans",
+              "text": "Cover the bean bed."
+            },
+            {
+              "id": "sign",
+              "text": "Place the sign beside the gate."
+            }
+          ],
+          "answer": [
+            "jars",
+            "beans",
+            "sign"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "a2-wildseed-gardens-rain-plan-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two short sentences about a garden plan for tomorrow. Name one job and when it will happen.",
+          "context": "A visitor wants to know what the garden team plans to do before the afternoon rain.",
+          "instruction": {
+            "en": "Use will or a clear time phrase from the notice. Check that the time fits the job.",
+            "vi": "Dùng will hoặc một cụm thời gian rõ ràng trong thông báo. Kiểm tra xem thời gian có phù hợp với công việc không."
+          },
+          "explanation": {
+            "en": "A clear plan names an action and a time. Review your own sentences; they are not automatically graded.",
+            "vi": "Một kế hoạch rõ ràng nêu hành động và thời gian. Hãy tự xem lại câu của mình; bài không được chấm tự động."
+          },
+          "focus": "a2-write-a-simple-future-plan",
+          "rubric": [
+            {
+              "en": "I name a garden job and a future time.",
+              "vi": "Tôi nêu một công việc trong vườn và thời gian tương lai."
+            },
+            {
+              "en": "My future verb form is clear and my time fits the job.",
+              "vi": "Động từ tương lai rõ ràng và thời gian phù hợp với công việc."
+            }
+          ],
+          "example": "Tomorrow, the team will check the rain jars at nine. After lunch, Lio will show the pond map."
+        }
+      ]
+    },
+    {
+      "id": "b1-tideglass-isles-chart-letter",
+      "level": "B1",
+      "title": {
+        "en": "The Chart Room Letter",
+        "vi": "Bức thư từ phòng bản đồ"
+      },
+      "summary": {
+        "en": "A keeper's letter revisits a mistaken guess about a missing tide chart and the clues that changed her mind.",
+        "vi": "Một bức thư của người trông coi kể lại phán đoán nhầm về tấm hải đồ thất lạc và những manh mối khiến cô đổi ý."
+      },
+      "objective": {
+        "en": "Follow a short narrative, connect an ongoing action with an event and distinguish a first guess from later evidence.",
+        "vi": "Theo dõi một câu chuyện ngắn, nối hành động đang diễn ra với một sự kiện và phân biệt phán đoán ban đầu với bằng chứng về sau."
+      },
+      "skill": "reading",
+      "topic": "narrative-sequence-and-revising-an-opinion",
+      "reward": {
+        "en": "A tideglass letter seal",
+        "vi": "Con dấu thư thủy tinh thủy triều"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-past-continuous-simple"
+      ],
+      "activities": [
+        {
+          "id": "b1-tideglass-isles-chart-letter-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "How does Neri view her first guess that the chart was stolen?",
+          "context": "Neri writes: 'I was sure someone had taken the tide chart. Then I found it under the folded canvas, where I had left it while the room was being aired. I felt relieved, and a little foolish.'",
+          "instruction": {
+            "en": "Read Neri's letter and choose the view that best fits her words.",
+            "vi": "Đọc thư của Neri và chọn cách hiểu phù hợp nhất với lời cô ấy."
+          },
+          "explanation": {
+            "en": "Neri says she is relieved but a little foolish, so she recognises that her first suspicion was mistaken.",
+            "vi": "Neri nói cô nhẹ nhõm nhưng hơi ngượng, cho thấy cô nhận ra nghi ngờ ban đầu của mình là sai."
+          },
+          "focus": "b1-infer-a-writers-reaction",
+          "options": [
+            {
+              "id": "still-certain",
+              "text": "She still believes someone stole it."
+            },
+            {
+              "id": "relieved-embarrassed",
+              "text": "She is relieved and mildly embarrassed by her guess."
+            },
+            {
+              "id": "angry-helper",
+              "text": "She is angry that a helper hid it."
+            }
+          ],
+          "answer": "relieved-embarrassed"
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the past continuous form of copy. Enter two words: At 7:40, Neri ___ the tide chart when the bell rang.",
+          "context": "Neri was already in the chart room at 7:30. The bell rang at 7:40, and she later found the chart under the folded canvas.",
+          "instruction": {
+            "en": "Complete the ongoing past action with the past continuous form of the verb.",
+            "vi": "Hoàn thành hành động đang diễn ra trong quá khứ bằng thì quá khứ tiếp diễn của động từ."
+          },
+          "explanation": {
+            "en": "The copying was in progress when the bell rang: was plus the -ing form, copying.",
+            "vi": "Việc sao chép đang diễn ra khi chuông reo: was đi với dạng -ing là copying."
+          },
+          "focus": "b1-use-past-continuous-for-background-action",
+          "accepted": [
+            "was copying"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each island writer with the view expressed in the note.",
+          "context": "Three notes are pinned up: Neri says, 'I blamed a visitor, but I had left the chart under canvas.' Jin says, 'The west path is short, but its marker needs a brighter arrow.' Vale says, 'The echo makes the bell seem farther away than it is.'",
+          "instruction": {
+            "en": "Match each writer to the idea in their note.",
+            "vi": "Nối mỗi người viết với ý kiến trong ghi chú của họ."
+          },
+          "explanation": {
+            "en": "Neri corrects her own suspicion, Jin suggests a practical improvement and Vale explains why the bell sounded distant.",
+            "vi": "Neri đính chính nghi ngờ của chính mình, Jin đề xuất cải thiện thực tế, còn Vale giải thích vì sao tiếng chuông nghe có vẻ xa."
+          },
+          "focus": "b1-connect-viewpoints-with-their-reasons",
+          "pairs": [
+            {
+              "id": "neri-view",
+              "left": "Neri",
+              "right": "She revises her first suspicion."
+            },
+            {
+              "id": "jin-view",
+              "left": "Jin",
+              "right": "He recommends improving a path marker."
+            },
+            {
+              "id": "vale-view",
+              "left": "Vale",
+              "right": "She explains a misleading sound."
+            }
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the events using the letter's time clues: 7:30, 7:40, later.",
+          "context": "Neri's note records: At 7:30 she entered the chart room. At 7:40 the bell rang while she was copying. Later she found the chart under the canvas.",
+          "instruction": {
+            "en": "Arrange the events from earliest to latest.",
+            "vi": "Sắp xếp các sự việc từ sớm nhất đến muộn nhất."
+          },
+          "explanation": {
+            "en": "The note gives three explicit times: enter at 7:30, hear the bell at 7:40, then find the chart later.",
+            "vi": "Ghi chú nêu ba mốc rõ ràng: vào phòng lúc 7:30, nghe chuông lúc 7:40 rồi tìm thấy hải đồ sau đó."
+          },
+          "focus": "b1-order-a-narrative-from-time-markers",
+          "tokens": [
+            {
+              "id": "entered",
+              "text": "Neri entered the chart room."
+            },
+            {
+              "id": "bell",
+              "text": "The bell rang while she copied."
+            },
+            {
+              "id": "found",
+              "text": "She found the chart under the canvas."
+            }
+          ],
+          "answer": [
+            "entered",
+            "bell",
+            "found"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "b1-tideglass-isles-chart-letter-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two or three sentences about a time you changed your mind after finding new evidence. Include your first view and the clue that changed it.",
+          "context": "Neri is adding a final reflection to the shared chart-room letter for the next keeper.",
+          "instruction": {
+            "en": "Give your view and one reason. Check that the evidence really supports the change you describe.",
+            "vi": "Nêu ý kiến và một lý do. Kiểm tra xem bằng chứng có thực sự giải thích việc bạn đổi ý không."
+          },
+          "explanation": {
+            "en": "A clear reflection distinguishes an initial view from the evidence that led to a new one. This is for self-review, not automatic scoring.",
+            "vi": "Một đoạn tự nhìn lại rõ ràng phân biệt ý kiến ban đầu với bằng chứng khiến người viết đổi ý. Bài này để tự xem lại, không được chấm tự động."
+          },
+          "focus": "b1-write-an-evidence-based-opinion",
+          "rubric": [
+            {
+              "en": "I state an initial view and a later view.",
+              "vi": "Tôi nêu ý kiến ban đầu và ý kiến sau đó."
+            },
+            {
+              "en": "I include one specific clue that explains the change.",
+              "vi": "Tôi nêu một manh mối cụ thể giải thích sự thay đổi."
+            }
+          ],
+          "example": "I thought the chart was missing, but I found it under the canvas. That clue showed me I had put it there myself."
+        }
+      ]
+    },
+    {
+      "id": "b1-tideglass-isles-two-paths",
+      "level": "B1",
+      "title": {
+        "en": "Two Paths After Noon",
+        "vi": "Hai lối đi sau buổi trưa"
+      },
+      "summary": {
+        "en": "Two field notes disagree about the easiest island path, so the guide compares their reasons before choosing a route.",
+        "vi": "Hai ghi chép thực địa đưa ra ý kiến khác nhau về lối đi dễ nhất trên đảo; người hướng dẫn cân nhắc lý do trước khi chọn đường."
+      },
+      "objective": {
+        "en": "Compare short viewpoints, follow a narrative route note and express a supported preference.",
+        "vi": "So sánh các ý kiến ngắn, theo dõi ghi chú về lộ trình và nêu lựa chọn có căn cứ."
+      },
+      "skill": "reading",
+      "topic": "contrasting-viewpoints-and-route-notes",
+      "reward": {
+        "en": "A double-sided tide compass",
+        "vi": "La bàn thủy triều hai mặt"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-contrasting-ideas"
+      ],
+      "activities": [
+        {
+          "id": "b1-tideglass-isles-two-paths-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Why does the guide prefer the ridge path for visitors arriving after noon?",
+          "context": "Neri's note says the pebble path is quick at low tide, but its markers disappear when the water rises. Jin's note says the ridge path takes longer, although its blue posts remain visible all day. The guide recommends the ridge after noon.",
+          "instruction": {
+            "en": "Compare both notes and choose the reason that supports the guide.",
+            "vi": "So sánh hai ghi chú và chọn lý do ủng hộ lựa chọn của người hướng dẫn."
+          },
+          "explanation": {
+            "en": "After noon the tide can hide the pebble-path markers; the ridge posts stay visible throughout the day.",
+            "vi": "Sau buổi trưa, thủy triều có thể che các dấu đường sỏi; cọc xanh trên sống đồi vẫn nhìn thấy suốt ngày."
+          },
+          "focus": "b1-compare-two-viewpoints-and-reasons",
+          "options": [
+            {
+              "id": "shortest",
+              "text": "It is always the shortest route."
+            },
+            {
+              "id": "visible",
+              "text": "Its markers remain visible after the tide rises."
+            },
+            {
+              "id": "low-tide-only",
+              "text": "It is safe only at low tide."
+            }
+          ],
+          "answer": "visible"
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the contrast with a linker followed by a full clause. Accepted forms may be one or two words: ___ the tide hides the pebble-path markers after noon, the ridge posts stay visible.",
+          "context": "The field notes compare one short route that becomes hard to follow with a longer route that stays marked.",
+          "instruction": {
+            "en": "Use a linker that can introduce a contrasting full clause before the subject and verb “the tide hides”. Five forms are accepted.",
+            "vi": "Dùng từ nối có thể mở đầu một mệnh đề đầy đủ mang ý tương phản, đứng trước chủ ngữ và động từ “the tide hides”. Có năm đáp án được chấp nhận."
+          },
+          "explanation": {
+            "en": "Although, even though and though mark a concession here; while and whereas can contrast two facts. All five can precede a full clause in this sentence. Despite would require a noun, pronoun or -ing form instead.",
+            "vi": "Although, even though và though thể hiện ý nhượng bộ ở đây; while và whereas có thể nối hai sự việc tương phản. Cả năm từ nối đều có thể đứng trước mệnh đề đầy đủ trong câu này. Sau despite cần danh từ, đại từ hoặc dạng -ing."
+          },
+          "focus": "b1-choose-a-contrast-linker-by-structure",
+          "accepted": [
+            "although",
+            "even though",
+            "though",
+            "while",
+            "whereas"
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each note to the evidence its writer uses.",
+          "context": "The route notes say: Neri chooses the pebble path because it is quick when the water is low. Jin prefers the ridge because the blue posts stay above the water. The guide suggests the ridge for late arrivals.",
+          "instruction": {
+            "en": "Match each writer with the reason stated in the notes.",
+            "vi": "Nối mỗi người viết với lý do được nêu trong ghi chú."
+          },
+          "explanation": {
+            "en": "Neri focuses on speed at low tide, Jin on visible markers, and the guide on the needs of late arrivals.",
+            "vi": "Neri chú ý đến tốc độ khi thủy triều thấp, Jin chú ý đến dấu đường dễ thấy, còn người hướng dẫn cân nhắc người đến muộn."
+          },
+          "focus": "b1-match-viewpoints-to-supporting-details",
+          "pairs": [
+            {
+              "id": "neri-path",
+              "left": "Neri's preference",
+              "right": "The path is quick at low tide."
+            },
+            {
+              "id": "jin-path",
+              "left": "Jin's preference",
+              "right": "The blue posts stay above the water."
+            },
+            {
+              "id": "guide-path",
+              "left": "The guide's recommendation",
+              "right": "It suits visitors arriving later in the day."
+            }
+          ]
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the route note by the time clues: before noon, after noon, at the end.",
+          "context": "The travel note says: Before noon, take the pebble path while its markers are clear. After noon, follow the ridge posts. At the end, leave the compass in the island box.",
+          "instruction": {
+            "en": "Put the directions in the sequence given by the note.",
+            "vi": "Sắp xếp chỉ dẫn theo trình tự trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note assigns the pebble path to the earlier part of the day, the ridge to later and the compass return to the end.",
+            "vi": "Ghi chú dành đường sỏi cho đầu ngày, sống đồi cho buổi muộn và việc trả la bàn vào cuối lộ trình."
+          },
+          "focus": "b1-follow-a-route-that-changes-by-time",
+          "tokens": [
+            {
+              "id": "before",
+              "text": "Use the pebble path before noon."
+            },
+            {
+              "id": "after",
+              "text": "Follow the ridge posts after noon."
+            },
+            {
+              "id": "end",
+              "text": "Leave the compass in the island box."
+            }
+          ],
+          "answer": [
+            "before",
+            "after",
+            "end"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "b1-tideglass-isles-two-paths-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a short recommendation for a visitor who arrives after noon. State your preferred path and give one reason from the notes.",
+          "context": "The island guide wants a brief note for visitors who have not yet chosen between the pebble path and ridge path.",
+          "instruction": {
+            "en": "Make your preference clear and support it with one detail from either note.",
+            "vi": "Nêu rõ lựa chọn và hỗ trợ bằng một chi tiết từ một trong hai ghi chú."
+          },
+          "explanation": {
+            "en": "A supported recommendation connects a preference to a relevant detail. Review your own reasoning; it is not automatically graded.",
+            "vi": "Một đề xuất có căn cứ nối lựa chọn với chi tiết phù hợp. Hãy tự xem lại lý do của mình; bài không được chấm tự động."
+          },
+          "focus": "b1-write-a-supported-recommendation",
+          "rubric": [
+            {
+              "en": "I name one route clearly.",
+              "vi": "Tôi nêu rõ một lộ trình."
+            },
+            {
+              "en": "I use a relevant detail to explain why it fits the visitor.",
+              "vi": "Tôi dùng chi tiết phù hợp để giải thích vì sao đường đó phù hợp với khách."
+            }
+          ],
+          "example": "I recommend the ridge path after noon because its blue posts stay visible when the tide rises."
+        }
+      ]
+    },
+    {
+      "id": "b2-clockwork-canopy-echoing-gears",
+      "level": "B2",
+      "title": {
+        "en": "The Echoing Gears",
+        "vi": "Những bánh răng vọng âm"
+      },
+      "summary": {
+        "en": "A clockwork test returns one pulse fewer than expected. Follow a technician’s statement and distinguish it from measured evidence.",
+        "vi": "Một lần thử bộ máy chỉ phát ra ít hơn một nhịp so với dự kiến. Hãy theo dõi lời thuật của kỹ thuật viên và phân biệt lời ấy với bằng chứng đo được."
+      },
+      "objective": {
+        "en": "Interpret a qualified technical report, separate a witness’s reported view from observation and preserve uncertainty.",
+        "vi": "Diễn giải báo cáo kỹ thuật có nêu giới hạn, phân biệt lời thuật lại của nhân chứng với quan sát và giữ nguyên mức độ chưa chắc chắn."
+      },
+      "skill": "reading",
+      "topic": "reported-viewpoints-and-evidence",
+      "reward": {
+        "en": "An echo-tuned gear token",
+        "vi": "Thẻ bánh răng chỉnh âm vọng"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-reported-speech"
+      ],
+      "activities": [
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which conclusion best matches the report's evidence?",
+          "context": "The chamber returned three pulses instead of four. The west gear's enamel mark had faded before the test; a spare tooth was fitted the next morning. The report says the missing pulse may have come from the gear or from the chamber's echo.",
+          "instruction": {
+            "en": "Choose the conclusion that keeps the report's uncertainty and evidence in view.",
+            "vi": "Chọn kết luận vừa giữ được mức độ chưa chắc chắn vừa bám sát bằng chứng."
+          },
+          "explanation": {
+            "en": "The report offers two possible causes and no comparison that settles between them, so a single-cause claim would be too strong.",
+            "vi": "Báo cáo nêu hai nguyên nhân có thể có nhưng chưa có phép so sánh để phân định, nên khẳng định một nguyên nhân duy nhất là quá chắc chắn."
+          },
+          "focus": "b2-read-a-qualified-technical-conclusion",
+          "options": [
+            {
+              "id": "gear-proved",
+              "text": "The faded gear mark proves that the gear caused the missing pulse."
+            },
+            {
+              "id": "two-causes",
+              "text": "The gear and chamber remain possible causes; the report does not settle which one."
+            },
+            {
+              "id": "echo-proved",
+              "text": "The chamber echo definitely caused the missing pulse."
+            }
+          ],
+          "answer": "two-causes"
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the indirect report using standard backshift to the past continuous. Enter two words: Rowan said that the lower chamber ___ the echo.",
+          "context": "Before the trial, Rowan told the recorder, “The lower chamber is returning an echo, but I cannot rule out the west gear.” The note was copied the next morning.",
+          "instruction": {
+            "en": "Use standard backshift from present continuous to past continuous after the past reporting verb said. Enter the two-word verb phrase.",
+            "vi": "Dùng cách lùi thì thông thường từ hiện tại tiếp diễn sang quá khứ tiếp diễn sau động từ tường thuật said ở quá khứ. Nhập cụm động từ gồm hai từ."
+          },
+          "explanation": {
+            "en": "The task specifically requests standard backshift: the quoted present continuous is reported in the past continuous, so is returning becomes was returning. If the speaker’s statement were still true, English can sometimes keep the original tense, but that is outside this restricted task.",
+            "vi": "Bài tập yêu cầu rõ cách lùi thì thông thường: hiện tại tiếp diễn trong lời trích dẫn được thuật lại bằng quá khứ tiếp diễn, nên is returning thành was returning. Nếu lời nói vẫn đúng ở hiện tại, tiếng Anh đôi khi giữ nguyên thì, nhưng dạng đó nằm ngoài yêu cầu giới hạn của bài này."
+          },
+          "focus": "b2-backshift-reported-present-continuous",
+          "accepted": [
+            "was returning"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each report detail with what it can and cannot establish.",
+          "context": "The report includes three observations: the chamber returned three pulses; the west gear mark was faded; and the repair happened the next morning. It does not include a repeat trial with a repaired gear.",
+          "instruction": {
+            "en": "Match each observation to its most careful interpretation.",
+            "vi": "Nối mỗi quan sát với cách diễn giải thận trọng nhất."
+          },
+          "explanation": {
+            "en": "The pulse count records the outcome; the faded mark suggests a possible issue; the later repair cannot prove what caused the earlier result.",
+            "vi": "Số nhịp ghi lại kết quả; dấu mờ gợi ý một vấn đề có thể có; việc sửa sau đó không chứng minh nguyên nhân của kết quả trước đó."
+          },
+          "focus": "b2-distinguish-observation-from-inference",
+          "pairs": [
+            {
+              "id": "pulse-count",
+              "left": "Three pulses returned",
+              "right": "It records the result of the trial."
+            },
+            {
+              "id": "faded-mark",
+              "left": "The enamel mark was faded",
+              "right": "It suggests a possible gear issue, not proof."
+            },
+            {
+              "id": "later-repair",
+              "left": "The tooth was replaced next morning",
+              "right": "It does not isolate the cause of the earlier result."
+            }
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Order the investigation note by its time markers: before trial, during trial, next morning.",
+          "context": "The clockwork log records: Before the trial, the west gear mark was already faint. During the trial, only three pulses returned. The next morning, the team fitted a spare tooth.",
+          "instruction": {
+            "en": "Arrange the events from the earliest log entry to the latest.",
+            "vi": "Sắp xếp các sự việc từ ghi chép sớm nhất đến muộn nhất."
+          },
+          "explanation": {
+            "en": "The time markers fix the sequence: faint mark, three-pulse trial, then the repair.",
+            "vi": "Các mốc thời gian xác định trình tự: dấu mờ, lần thử có ba nhịp rồi đến việc sửa chữa."
+          },
+          "focus": "b2-sequence-evidence-in-a-technical-report",
+          "tokens": [
+            {
+              "id": "mark",
+              "text": "The west gear mark was faint."
+            },
+            {
+              "id": "pulses",
+              "text": "Three pulses returned during the trial."
+            },
+            {
+              "id": "repair",
+              "text": "The team fitted a spare tooth."
+            }
+          ],
+          "answer": [
+            "mark",
+            "pulses",
+            "repair"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "b2-clockwork-canopy-echoing-gears-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a short evidence note that reports Rowan’s view without presenting it as confirmed fact. Include one observation and one limitation.",
+          "context": "The report records three pulses instead of four and a faded mark on the west gear. Rowan suspects an echo from the lower chamber but says the gear has not been ruled out. No repeat trial has separated the two possibilities.",
+          "instruction": {
+            "en": "Use one reporting verb, identify which idea is Rowan’s, and distinguish it from a recorded observation.",
+            "vi": "Dùng một động từ tường thuật, cho biết ý nào là của Rowan và phân biệt ý đó với quan sát đã được ghi nhận."
+          },
+          "explanation": {
+            "en": "A careful note attributes Rowan’s explanation, states the measured pulse count and keeps the cause open. Self-review only; not automatically scored.",
+            "vi": "Một ghi chú thận trọng gắn lời giải thích với Rowan, nêu số nhịp đã đo và không chốt nguyên nhân. Chỉ tự xem lại; không chấm tự động."
+          },
+          "focus": "b2-write-a-reported-evidence-note",
+          "rubric": [
+            {
+              "en": "I attribute the proposed explanation to Rowan rather than state it as established fact.",
+              "vi": "Tôi gắn cách giải thích được đề xuất với Rowan thay vì trình bày như sự thật đã được xác lập."
+            },
+            {
+              "en": "I include an accurate observation and one limit on what the report proves.",
+              "vi": "Tôi nêu một quan sát chính xác và một giới hạn về điều báo cáo có thể chứng minh."
+            }
+          ],
+          "example": "Rowan said that the lower chamber was returning an echo, although he could not rule out the west gear. The trial returned three pulses, and no repeat has separated the two possible causes."
+        }
+      ]
+    },
+    {
+      "id": "c1-prism-observatory-amber-line",
+      "level": "C1",
+      "title": {
+        "en": "The Amber Line Report",
+        "vi": "Báo cáo về vệt sáng hổ phách"
+      },
+      "summary": {
+        "en": "Two observations suggest that a prism shifted, but the mount and room temperature have not been checked independently.",
+        "vi": "Hai quan sát gợi ý lăng kính đã dịch chuyển, nhưng chân đỡ và nhiệt độ phòng chưa được kiểm tra độc lập."
+      },
+      "objective": {
+        "en": "Read a cautious report, distinguish evidence from attribution and use concise formal phrasing.",
+        "vi": "Đọc báo cáo có cách diễn đạt thận trọng, phân biệt bằng chứng với việc quy nguyên nhân và dùng lối diễn đạt trang trọng, súc tích."
+      },
+      "skill": "reading",
+      "topic": "hedging-evidence-and-concise-reporting",
+      "reward": {
+        "en": "An amber prism seal",
+        "vi": "Con dấu lăng kính hổ phách"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-c1-participle-clauses"
+      ],
+      "activities": [
+        {
+          "id": "c1-prism-observatory-amber-line-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which summary preserves the report's degree of certainty?",
+          "context": "Preliminary note: In two morning scans, the upper prism line moved by about two millimetres. A second team has not repeated the scan, and lens temperature also changed.",
+          "instruction": {
+            "en": "Choose the summary that reports the finding without overstating its cause or certainty.",
+            "vi": "Chọn câu tóm tắt kết quả mà không khẳng định quá mức nguyên nhân hoặc độ chắc chắn."
+          },
+          "explanation": {
+            "en": "The scans suggest a small shift, but there is no independent repeat and temperature changed too. The other summaries add certainty the evidence does not provide.",
+            "vi": "Các lần quét gợi ý một dịch chuyển nhỏ, nhưng chưa có lần lặp độc lập và nhiệt độ cũng thay đổi. Các câu còn lại khẳng định nhiều hơn mức bằng chứng cho phép."
+          },
+          "focus": "c1-preserve-hedging-in-a-summary",
+          "options": [
+            {
+              "id": "proved",
+              "text": "The prism definitely shifted because the lens warmed."
+            },
+            {
+              "id": "suggests",
+              "text": "The scans suggest a small shift, but its cause remains unconfirmed."
+            },
+            {
+              "id": "no-change",
+              "text": "The scans show that the prism did not move."
+            },
+            {
+              "id": "confirmed",
+              "text": "A second team confirmed the shift independently."
+            }
+          ],
+          "answer": "suggests"
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the perfect participle of compare to show that the review finished first. Enter two words: ___ all three scans, the curator marked the result provisional.",
+          "context": "The curator checked three separate scans before writing a short note about the line's movement.",
+          "instruction": {
+            "en": "Complete the introductory perfect participle clause with the two-word form of compare.",
+            "vi": "Hoàn thành mệnh đề phân từ hoàn thành đứng đầu câu bằng dạng hai từ của compare."
+          },
+          "explanation": {
+            "en": "Having compared shows that the curator completed the comparison before marking the result provisional. The main clause has the same subject, the curator.",
+            "vi": "Having compared cho biết người phụ trách đã hoàn tất việc so sánh trước khi đánh dấu kết quả là tạm thời. Chủ thể của mệnh đề chính cũng là curator."
+          },
+          "focus": "c1-use-a-perfect-participle-clause",
+          "accepted": [
+            "having compared"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each report statement with the strength of evidence it represents.",
+          "context": "The draft uses three formulations: 'The line moved in two scans'; 'The prism may have shifted'; and 'The shift is established.' Only the first observation is directly recorded, and no independent repeat exists.",
+          "instruction": {
+            "en": "Match each statement to its evidential role in the draft.",
+            "vi": "Nối mỗi câu với vai trò bằng chứng của nó trong bản thảo."
+          },
+          "explanation": {
+            "en": "A recorded movement is an observation; may have shifted is a cautious inference; established overstates the draft's limited evidence.",
+            "vi": "Vệt dịch chuyển được ghi lại là quan sát; may have shifted là suy luận thận trọng; established khẳng định quá mức so với bằng chứng hạn chế."
+          },
+          "focus": "c1-distinguish-claim-strengths",
+          "pairs": [
+            {
+              "id": "observed",
+              "left": "The line moved in two scans.",
+              "right": "A direct observation recorded twice."
+            },
+            {
+              "id": "inference",
+              "left": "The prism may have shifted.",
+              "right": "A possible explanation, not yet confirmed."
+            },
+            {
+              "id": "overclaim",
+              "left": "The shift is established.",
+              "right": "A claim stronger than the available evidence."
+            }
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the report as: qualified opening, two observations in either order, closing limitation.",
+          "context": "The upper line moved slightly in two scans under amber light. The lower line also moved slightly under cool light. The mount was not checked independently, so the source of the shifts remains uncertain.",
+          "instruction": {
+            "en": "Place the opening claim first, either observation next, and the limitation last. The two observations may switch places.",
+            "vi": "Đặt nhận định mở đầu trước, hai quan sát ở giữa và giới hạn cuối cùng. Có thể đổi chỗ hai quan sát."
+          },
+          "explanation": {
+            "en": "The report first offers a qualified claim, then gives two parallel observations whose order does not change the reasoning, and ends with the unresolved limitation.",
+            "vi": "Báo cáo mở đầu bằng nhận định có giới hạn, tiếp đến là hai quan sát song song có thể đổi thứ tự mà không đổi lập luận, rồi kết thúc bằng giới hạn chưa được giải quyết."
+          },
+          "focus": "c1-organise-a-cautious-evidence-summary",
+          "tokens": [
+            {
+              "id": "claim",
+              "text": "The scans suggest a small optical shift."
+            },
+            {
+              "id": "amber",
+              "text": "The upper line moved slightly under amber light."
+            },
+            {
+              "id": "cool",
+              "text": "The lower line moved slightly under cool light."
+            },
+            {
+              "id": "limit",
+              "text": "Because the mount was not checked, the source remains uncertain."
+            }
+          ],
+          "answer": [
+            "claim",
+            "amber",
+            "cool",
+            "limit"
+          ],
+          "alternatives": [
+            [
+              "claim",
+              "cool",
+              "amber",
+              "limit"
+            ]
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-amber-line-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a three-sentence note for the observatory record. Include a cautious finding, one recorded observation and one limitation.",
+          "context": "The observatory director wants a concise note that future readers can distinguish from a confirmed calibration result.",
+          "instruction": {
+            "en": "Use a measured reporting verb or modal, and keep observation separate from explanation.",
+            "vi": "Dùng động từ tường thuật hoặc động từ khuyết thiếu thể hiện mức độ thận trọng; tách quan sát khỏi lời giải thích."
+          },
+          "explanation": {
+            "en": "A concise C1-style record signals how strong the evidence is and names what remains unchecked. Review your own wording; it is not automatically graded.",
+            "vi": "Một ghi chép súc tích cần cho biết bằng chứng mạnh đến đâu và nêu điều chưa được kiểm tra. Hãy tự xem lại cách diễn đạt; bài không được chấm tự động."
+          },
+          "focus": "c1-write-a-qualified-formal-note",
+          "rubric": [
+            {
+              "en": "I signal uncertainty without hiding the recorded observation.",
+              "vi": "Tôi thể hiện sự chưa chắc chắn nhưng vẫn nêu rõ quan sát đã được ghi nhận."
+            },
+            {
+              "en": "I state one limitation and do not claim an untested cause.",
+              "vi": "Tôi nêu một giới hạn và không khẳng định nguyên nhân chưa được kiểm tra."
+            }
+          ],
+          "example": "The scans suggest a small optical shift. The upper line moved by about two millimetres in amber light. As the mount was not checked independently, the cause remains uncertain."
+        }
+      ]
+    },
+    {
+      "id": "c1-prism-observatory-mirror-report",
+      "level": "C1",
+      "title": {
+        "en": "The Mirror's Earlier Signal",
+        "vi": "Tín hiệu cũ trong gương"
+      },
+      "summary": {
+        "en": "An editor revises a formal observatory note so that its passive report and evidence limit are both clear.",
+        "vi": "Một biên tập viên sửa ghi chú trang trọng của đài quan sát để câu tường thuật bị động và giới hạn bằng chứng đều rõ ràng."
+      },
+      "objective": {
+        "en": "Interpret formal reporting language and use a perfect infinitive to distinguish an earlier event from a present report.",
+        "vi": "Diễn giải lối tường thuật trang trọng và dùng nguyên mẫu hoàn thành để phân biệt sự kiện xảy ra trước với báo cáo hiện tại."
+      },
+      "skill": "reading",
+      "topic": "formal-reporting-and-evidence-limits",
+      "reward": {
+        "en": "A mirror-script quill",
+        "vi": "Bút lông ghi chữ gương"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "bc-c1-advanced-passives"
+      ],
+      "activities": [
+        {
+          "id": "c1-prism-observatory-mirror-report-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What does the editor's revision preserve about the earlier estimate?",
+          "context": "The first note read, 'The estimate is wrong.' The revised note reads, 'The estimate is superseded by the second reading, though it remains a useful lower bound.'",
+          "instruction": {
+            "en": "Choose the interpretation that matches the revised wording and its concession.",
+            "vi": "Chọn cách diễn giải đúng với câu chữ đã sửa và ý nhượng bộ trong đó."
+          },
+          "explanation": {
+            "en": "The estimate is no longer the best value, but it still provides a useful minimum. The editor has qualified its use rather than calling it wholly false.",
+            "vi": "Ước tính không còn là giá trị tốt nhất, nhưng vẫn hữu ích như một mức tối thiểu. Biên tập viên giới hạn cách dùng chứ không nói nó hoàn toàn sai."
+          },
+          "focus": "c1-interpret-a-qualified-formal-correction",
+          "options": [
+            {
+              "id": "discard",
+              "text": "The estimate is entirely false and should be erased."
+            },
+            {
+              "id": "lower-bound",
+              "text": "A later value replaces it, but it still has a limited use."
+            },
+            {
+              "id": "confirm",
+              "text": "The second reading confirms the estimate exactly."
+            }
+          ],
+          "answer": "lower-bound"
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Use the perfect infinitive of affect in the impersonal passive. Enter three words: The earlier signal is believed ___ the prism's recorded angle before the second scan.",
+          "context": "The second scan was made after the earlier signal. The report does not say the signal was the only influence on the prism.",
+          "instruction": {
+            "en": "Complete the reporting phrase with to + have + the past participle of affect.",
+            "vi": "Hoàn thành cụm tường thuật bằng to + have + quá khứ phân từ của affect."
+          },
+          "explanation": {
+            "en": "To have affected marks the influence as earlier than the present report. The passive reporting frame is is believed to have affected.",
+            "vi": "To have affected cho biết ảnh hưởng xảy ra trước báo cáo hiện tại. Cấu trúc tường thuật bị động là is believed to have affected."
+          },
+          "focus": "c1-use-perfect-infinitive-in-impersonal-passive",
+          "accepted": [
+            "to have affected"
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each editorial phrase to the role it plays in the revised note.",
+          "context": "The revised note says: 'The first estimate is superseded by the second reading, though it remains a useful lower bound; the signal is believed to have affected the angle.'",
+          "instruction": {
+            "en": "Match the quoted phrase to its function in the report.",
+            "vi": "Nối cụm được trích với chức năng của nó trong báo cáo."
+          },
+          "explanation": {
+            "en": "Superseded marks a replacement; though introduces a concession about continued use; is believed to have affected reports an attributed earlier influence without naming a certain cause.",
+            "vi": "Superseded đánh dấu sự thay thế; though mở ý nhượng bộ về giá trị còn lại; is believed to have affected tường thuật ảnh hưởng được cho là đã xảy ra mà không khẳng định nguyên nhân chắc chắn."
+          },
+          "focus": "c1-read-functions-of-formal-reporting-phrases",
+          "pairs": [
+            {
+              "id": "replacement",
+              "left": "is superseded by",
+              "right": "Signals that a newer estimate takes its place."
+            },
+            {
+              "id": "concession",
+              "left": "though it remains useful",
+              "right": "Limits the correction by retaining one valid use."
+            },
+            {
+              "id": "attribution",
+              "left": "is believed to have affected",
+              "right": "Reports an attributed earlier influence without direct certainty."
+            }
+          ]
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the paragraph as finding, qualification, recommendation.",
+          "context": "The record contains a second reading that replaces the first estimate. The first remains a useful lower bound. A repeat scan is recommended before the angle is treated as final.",
+          "instruction": {
+            "en": "Place the new finding first, its qualification second and the next step last.",
+            "vi": "Đặt kết quả mới trước, phần giới hạn tiếp theo và bước kế tiếp ở cuối."
+          },
+          "explanation": {
+            "en": "The note first reports the replacement, then preserves the earlier estimate's limited value, and ends with the action needed before a final claim.",
+            "vi": "Ghi chú nêu giá trị thay thế trước, giữ lại giá trị hạn chế của ước tính cũ rồi kết thúc bằng hành động cần làm trước khi kết luận."
+          },
+          "focus": "c1-sequence-a-formal-report-structure",
+          "tokens": [
+            {
+              "id": "finding",
+              "text": "The second reading supersedes the first estimate."
+            },
+            {
+              "id": "qualification",
+              "text": "The first remains useful as a lower bound."
+            },
+            {
+              "id": "recommendation",
+              "text": "Repeat the scan before treating the angle as final."
+            }
+          ],
+          "answer": [
+            "finding",
+            "qualification",
+            "recommendation"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "c1-prism-observatory-mirror-report-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a brief formal correction to an observatory label. Replace an overconfident claim with a qualified statement and keep one useful detail.",
+          "context": "The label says, 'The first measurement is false.' A later reading is more precise, but the first still gives a reliable minimum.",
+          "instruction": {
+            "en": "Use a measured reporting phrase and make the limit of the correction explicit.",
+            "vi": "Dùng cụm tường thuật có chừng mực và nêu rõ giới hạn của việc đính chính."
+          },
+          "explanation": {
+            "en": "Good formal editing corrects the claim without removing information that remains useful. Self-review only; the engine does not assign automatic correctness or CEFR credit.",
+            "vi": "Biên tập trang trọng tốt cần sửa nhận định nhưng giữ lại thông tin vẫn hữu ích. Chỉ tự xem lại; hệ thống không tự chấm đúng sai hay cấp điểm CEFR."
+          },
+          "focus": "c1-edit-an-overclaim-with-a-qualification",
+          "rubric": [
+            {
+              "en": "I replace absolute wording with a suitably measured report.",
+              "vi": "Tôi thay cách nói tuyệt đối bằng câu tường thuật có mức độ phù hợp."
+            },
+            {
+              "en": "I retain one detail that is still useful and accurate.",
+              "vi": "Tôi giữ lại một chi tiết vẫn hữu ích và chính xác."
+            }
+          ],
+          "example": "The second measurement supersedes the first, though the earlier value remains a useful lower bound. A repeat scan will clarify whether the prism's angle has changed."
+        }
+      ]
+    },
+    {
+      "id": "c2-unwritten-sky-margin-marks",
+      "level": "C2",
+      "title": {
+        "en": "The Margin Marks",
+        "vi": "Những dấu ghi bên lề"
+      },
+      "summary": {
+        "en": "A curator weighs two tiny marks whose repeated appearance may matter more than their size suggests.",
+        "vi": "Một người phụ trách cân nhắc hai dấu nhỏ xuất hiện lặp lại, có thể quan trọng hơn vẻ ngoài của chúng."
+      },
+      "objective": {
+        "en": "Interpret understated wording, fixed idioms and the limits a writer places on a claim.",
+        "vi": "Diễn giải cách nói giảm nhẹ, thành ngữ cố định và giới hạn người viết đặt ra cho một nhận định."
+      },
+      "skill": "reading",
+      "topic": "understatement-idiom-and-implication",
+      "reward": {
+        "en": "A marginalia lens",
+        "vi": "Kính lúp đọc ghi chú bên lề"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "cambridge-inconsiderable",
+        "cambridge-face-of-it"
+      ],
+      "activities": [
+        {
+          "id": "c2-unwritten-sky-margin-marks-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What does the curator imply by calling the marks' influence 'not inconsiderable'?",
+          "context": "The atlas contains only two margin marks, but both recur in six later copies. The curator writes that their influence on later mapmaking was 'not inconsiderable'.",
+          "instruction": {
+            "en": "Choose the implication that best fits the understated phrase and the context.",
+            "vi": "Chọn hàm ý phù hợp nhất với cách nói giảm nhẹ và ngữ cảnh."
+          },
+          "explanation": {
+            "en": "Not inconsiderable understates a meaningful or substantial influence. It does not claim that the marks were the sole cause of later changes.",
+            "vi": "Not inconsiderable nói giảm về một ảnh hưởng đáng kể. Cụm này không khẳng định các dấu là nguyên nhân duy nhất của thay đổi về sau."
+          },
+          "focus": "c2-interpret-understated-evaluation",
+          "options": [
+            {
+              "id": "meaningful",
+              "text": "The influence was substantial enough to matter, though phrased with restraint."
+            },
+            {
+              "id": "trivial",
+              "text": "The influence was too small to deserve attention."
+            },
+            {
+              "id": "sole-cause",
+              "text": "The marks were proven to be the sole cause of every later change."
+            }
+          ],
+          "answer": "meaningful"
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete this fixed idiom about a first impression: On the ___ of it, the map looks complete, though a note questions the eastern route.",
+          "context": "At first glance the atlas appears finished. A small note on the back says that nobody checked its eastern route.",
+          "instruction": {
+            "en": "Enter the noun that completes this fixed idiom about a first impression.",
+            "vi": "Nhập danh từ hoàn thành thành ngữ cố định nói về ấn tượng ban đầu."
+          },
+          "explanation": {
+            "en": "On the face of it describes how something seems at first, before further information changes or qualifies that impression.",
+            "vi": "On the face of it diễn tả vẻ ngoài của sự việc khi mới xem xét, trước khi thông tin thêm thay đổi hoặc giới hạn ấn tượng đó."
+          },
+          "focus": "c2-understand-a-first-impression-idiom",
+          "accepted": [
+            "face"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each editorial term to the function shown by the note.",
+          "context": "The editor labels three notes: 'The mark may be original'; 'In these two copies, the mark appears only in the margin'; and 'Though small, the mark recurs in later maps.'",
+          "instruction": {
+            "en": "Match each term to the wording that demonstrates its meaning.",
+            "vi": "Nối mỗi thuật ngữ với câu chữ thể hiện ý nghĩa của nó."
+          },
+          "explanation": {
+            "en": "May be original is tentative; in these two copies limits the claim's scope; though small concedes size while keeping the recurrence relevant.",
+            "vi": "May be original thể hiện sự dè dặt; in these two copies giới hạn phạm vi nhận định; though small nhượng bộ về kích thước nhưng vẫn giữ tính lặp lại là điểm đáng chú ý."
+          },
+          "focus": "c2-match-pragmatic-functions-to-wording",
+          "pairs": [
+            {
+              "id": "tentative",
+              "left": "Tentative wording",
+              "right": "The mark may be original."
+            },
+            {
+              "id": "qualified",
+              "left": "A limited-scope claim",
+              "right": "In these two copies, the mark appears only in the margin."
+            },
+            {
+              "id": "concessive",
+              "left": "A concession that preserves the main point",
+              "right": "Though small, the mark recurs in later maps."
+            }
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the note as an initial claim, two supporting observations in either order, then a qualified conclusion.",
+          "context": "The symbol appears in a copy from the northern archive and in a later map from the coast. The curator says the symbol may have influenced later mapmakers, although the two surviving copies cannot establish where it began.",
+          "instruction": {
+            "en": "Put the claim first, either supporting observation next, and the qualification last. Both middle orders are valid.",
+            "vi": "Đặt nhận định trước, một trong hai quan sát hỗ trợ ở giữa và phần giới hạn sau cùng. Cả hai thứ tự ở giữa đều hợp lệ."
+          },
+          "explanation": {
+            "en": "The two location observations support the same claim and are independent, so they may switch places. The final clause limits what the copies can establish.",
+            "vi": "Hai quan sát về địa điểm cùng hỗ trợ nhận định và độc lập với nhau nên có thể đổi chỗ. Mệnh đề cuối giới hạn điều các bản sao có thể chứng minh."
+          },
+          "focus": "c2-organise-evidence-with-a-qualified-conclusion",
+          "tokens": [
+            {
+              "id": "claim",
+              "text": "The symbol may have influenced later mapmakers."
+            },
+            {
+              "id": "north",
+              "text": "It appears in a copy from the northern archive."
+            },
+            {
+              "id": "coast",
+              "text": "It also appears in a later coastal map."
+            },
+            {
+              "id": "limit",
+              "text": "The copies cannot establish where the symbol began."
+            }
+          ],
+          "answer": [
+            "claim",
+            "north",
+            "coast",
+            "limit"
+          ],
+          "alternatives": [
+            [
+              "claim",
+              "coast",
+              "north",
+              "limit"
+            ]
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-margin-marks-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a short curator's note that distinguishes what the marks suggest from what the surviving copies cannot prove.",
+          "context": "The atlas team is preparing a public label for readers who may mistake a repeated mark for proof of a single origin.",
+          "instruction": {
+            "en": "Use a careful qualifier and mention one supported implication and one limit.",
+            "vi": "Dùng từ ngữ có chừng mực và nêu một hàm ý có căn cứ cùng một giới hạn."
+          },
+          "explanation": {
+            "en": "A precise note can describe a meaningful pattern without turning it into a claim about a single cause. Self-review only; no automatic correctness or CEFR credit.",
+            "vi": "Một ghi chú chính xác có thể mô tả quy luật đáng chú ý mà không biến nó thành khẳng định về một nguyên nhân duy nhất. Chỉ tự xem lại; không tự chấm đúng sai hay cấp điểm CEFR."
+          },
+          "focus": "c2-write-a-nuanced-curatorial-note",
+          "rubric": [
+            {
+              "en": "I distinguish a supported implication from an unproved origin or cause.",
+              "vi": "Tôi phân biệt hàm ý được bằng chứng hỗ trợ với nguồn gốc hoặc nguyên nhân chưa được chứng minh."
+            },
+            {
+              "en": "My wording signals the scope and degree of certainty precisely.",
+              "vi": "Cách diễn đạt thể hiện chính xác phạm vi và mức độ chắc chắn."
+            }
+          ],
+          "example": "The repeated marks may have influenced later maps. The surviving copies make that influence plausible, though they do not establish where the symbol originated."
+        }
+      ]
+    },
+    {
+      "id": "c2-unwritten-sky-quiet-caption",
+      "level": "C2",
+      "title": {
+        "en": "The Quiet Caption",
+        "vi": "Lời chú thích kín đáo"
+      },
+      "summary": {
+        "en": "A small change in a gallery caption shifts its implication without changing the chart's facts.",
+        "vi": "Một thay đổi nhỏ trong lời chú thích làm đổi hàm ý mà không làm thay đổi dữ kiện trên hải đồ."
+      },
+      "objective": {
+        "en": "Read fine pragmatic distinctions, interpret idiomatic degree and preserve nuance while editing a short caption.",
+        "vi": "Đọc các khác biệt ngữ dụng tinh tế, hiểu thành ngữ chỉ mức độ và giữ sắc thái khi biên tập lời chú thích ngắn."
+      },
+      "skill": "reading",
+      "topic": "pragmatic-nuance-and-idiomatic-degree",
+      "reward": {
+        "en": "A quiet-ink caption card",
+        "vi": "Thẻ chú thích bằng mực tĩnh lặng"
+      },
+      "sources": [
+        "coe-cefr-2020",
+        "cambridge-all-but",
+        "cambridge-face-of-it"
+      ],
+      "activities": [
+        {
+          "id": "c2-unwritten-sky-quiet-caption-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What does the editor clarify by changing the caption to 'The chart isn't inaccurate; it belongs to an earlier season'?",
+          "context": "The first caption says, 'The chart is wrong.' The editor revises it: 'The chart isn't inaccurate; it belongs to an earlier season.'",
+          "instruction": {
+            "en": "Choose the interpretation that preserves the correction's narrow scope.",
+            "vi": "Chọn cách hiểu giữ đúng phạm vi hẹp của lời đính chính."
+          },
+          "explanation": {
+            "en": "The revised caption preserves the chart's accuracy for its own season while suggesting that it may not answer a present-day question.",
+            "vi": "Lời chú thích mới giữ lại tính chính xác của hải đồ đối với mùa tương ứng, đồng thời cho thấy nó có thể không trả lời câu hỏi hiện tại."
+          },
+          "focus": "c2-infer-the-scope-of-a-correction",
+          "options": [
+            {
+              "id": "false-chart",
+              "text": "The chart is false in every season."
+            },
+            {
+              "id": "earlier-use",
+              "text": "The chart may be accurate for its period but less relevant now."
+            },
+            {
+              "id": "no-change",
+              "text": "The editor has made no change to the claim."
+            }
+          ],
+          "answer": "earlier-use"
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the fixed degree expression with one word: The inscription is all ___ unreadable under ordinary light.",
+          "context": "Side-light reveals the individual letters, but ordinary gallery light leaves the inscription almost impossible to read.",
+          "instruction": {
+            "en": "Enter the word that makes the fixed expression mean 'almost'.",
+            "vi": "Nhập từ tạo thành cụm cố định có nghĩa là 'gần như'."
+          },
+          "explanation": {
+            "en": "All but unreadable means almost unreadable, not completely unreadable. The side-light detail confirms that some letters remain visible.",
+            "vi": "All but unreadable có nghĩa là gần như không đọc được, chứ không phải hoàn toàn không đọc được. Chi tiết ánh sáng xiên xác nhận vẫn nhìn thấy một số chữ."
+          },
+          "focus": "c2-interpret-the-idiom-all-but",
+          "accepted": [
+            "but"
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each caption phrase to the implication it carries in context.",
+          "context": "Three captions read: 'The mark is not necessarily original'; 'The comparison is hardly conclusive'; 'The night map is nothing short of remarkable.'",
+          "instruction": {
+            "en": "Match each phrase with its pragmatic force, not just its general topic.",
+            "vi": "Nối mỗi cụm với sắc thái ngữ dụng của nó, không chỉ dựa trên chủ đề chung."
+          },
+          "explanation": {
+            "en": "Not necessarily original leaves origin open; hardly conclusive says the comparison falls well short of settling the matter; nothing short of remarkable is emphatic praise.",
+            "vi": "Not necessarily original để ngỏ nguồn gốc; hardly conclusive cho biết phép so sánh còn xa mới giải quyết được vấn đề; nothing short of remarkable là lời khen nhấn mạnh."
+          },
+          "focus": "c2-match-pragmatic-force-to-phrasing",
+          "pairs": [
+            {
+              "id": "origin-open",
+              "left": "not necessarily original",
+              "right": "Origin remains possible but unestablished."
+            },
+            {
+              "id": "inconclusive",
+              "left": "hardly conclusive",
+              "right": "The comparison does not settle the question."
+            },
+            {
+              "id": "emphatic-praise",
+              "left": "nothing short of remarkable",
+              "right": "A strongly positive evaluation."
+            }
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the caption as an initial observation, two independent details in either order, then a carefully limited implication.",
+          "context": "The northern route is absent from the printed chart. A handwritten note names a northern landing place; a faded compass mark points in the same direction. Neither detail records whether the route was used.",
+          "instruction": {
+            "en": "Put the observation first, either detail next, and the limit on interpretation last. Both middle orders are valid.",
+            "vi": "Đặt quan sát trước, một trong hai chi tiết tiếp theo và giới hạn diễn giải ở cuối. Cả hai thứ tự ở giữa đều hợp lệ."
+          },
+          "explanation": {
+            "en": "The note and compass mark independently point north, so they can switch places. The final sentence must limit the inference because neither shows that the route was used.",
+            "vi": "Ghi chú và dấu la bàn cùng chỉ về phía bắc một cách độc lập nên có thể đổi chỗ. Câu cuối phải giới hạn suy luận vì không chi tiết nào cho biết tuyến đường đã được sử dụng."
+          },
+          "focus": "c2-order-independent-evidence-before-a-limited-inference",
+          "tokens": [
+            {
+              "id": "observation",
+              "text": "The printed chart omits the northern route."
+            },
+            {
+              "id": "note",
+              "text": "A handwritten note names a northern landing place."
+            },
+            {
+              "id": "compass",
+              "text": "A faded compass mark points in that direction."
+            },
+            {
+              "id": "limit",
+              "text": "These clues suggest a route, but do not show that it was used."
+            }
+          ],
+          "answer": [
+            "observation",
+            "note",
+            "compass",
+            "limit"
+          ],
+          "alternatives": [
+            [
+              "observation",
+              "compass",
+              "note",
+              "limit"
+            ]
+          ]
+        },
+        {
+          "id": "c2-unwritten-sky-quiet-caption-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a two-sentence gallery caption that keeps the chart's facts while signalling what remains uncertain.",
+          "context": "Visitors will read the caption beside a chart whose northern route is omitted but hinted at by two marginal clues.",
+          "instruction": {
+            "en": "Use one precise qualifier and separate what the chart shows from what the clues may imply.",
+            "vi": "Dùng một từ giới hạn chính xác và tách điều hải đồ thể hiện khỏi điều các manh mối có thể gợi ý."
+          },
+          "explanation": {
+            "en": "A nuanced caption reports the omission, acknowledges the clues and avoids claiming that they prove travel on the route. Self-review only; not automatically graded.",
+            "vi": "Lời chú thích có sắc thái nêu việc thiếu tuyến đường, ghi nhận các manh mối và tránh khẳng định chúng chứng minh tuyến đã được đi qua. Chỉ tự xem lại; không chấm tự động."
+          },
+          "focus": "c2-write-a-nuanced-gallery-caption",
+          "rubric": [
+            {
+              "en": "I accurately distinguish the chart's recorded content from an inference.",
+              "vi": "Tôi phân biệt chính xác nội dung được ghi trên hải đồ với suy luận."
+            },
+            {
+              "en": "My qualifier makes the remaining uncertainty clear without dismissing the clues.",
+              "vi": "Từ ngữ giới hạn làm rõ điều chưa chắc chắn mà không phủ nhận các manh mối."
+            }
+          ],
+          "example": "The printed chart omits a northern route. Two marginal clues may point to one, though they do not establish that it was travelled."
+        }
+      ]
+    }
+  ]
+}

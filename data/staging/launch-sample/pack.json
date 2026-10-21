@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "batchId": "launch-sample",
+  "provenance": [
+    {
+      "id": "coe-cefr-companion-volume",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for broad reading-descriptor alignment. All mission text, contexts, items, explanations and keys are original; no descriptor text is reproduced in activities."
+    },
+    {
+      "id": "british-council-there-is-are",
+      "title": "'it' and 'there' as dummy subjects",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/it-there-dummy-subjects",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for using there to describe existence or location. All mission text, contexts, items, explanations and keys are original; no exercise or example sentence is copied."
+    },
+    {
+      "id": "british-council-conditionals",
+      "title": "Conditionals: third and mixed",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/conditionals-third-mixed",
+      "accessed": "2026-10-20",
+      "usage": "Reference only for third-conditional form and unreal past meaning. All mission text, contexts, items, explanations and keys are original; no exercise or example sentence is copied."
+    }
+  ],
+  "missions": [
+    {
+      "id": "a1-lantern-harbor",
+      "level": "A1",
+      "title": {
+        "en": "The Lantern Harbor Map",
+        "vi": "Bản đồ Cảng Đèn Lồng"
+      },
+      "summary": {
+        "en": "A simple harbor map leads you to the silver bell and a bright little lighthouse.",
+        "vi": "Một tấm bản đồ bến cảng đơn giản dẫn bạn đến chiếc chuông bạc và ngọn hải đăng nhỏ rực sáng."
+      },
+      "objective": {
+        "en": "Read short place clues and use there is/there are to guide a visitor around Lantern Harbor.",
+        "vi": "Đọc các gợi ý ngắn về vị trí và dùng there is/there are để chỉ đường cho khách tham quan Cảng Đèn Lồng."
+      },
+      "skill": "reading",
+      "topic": "harbor-map-and-location-language",
+      "reward": {
+        "en": "A silver map charm",
+        "vi": "Mặt dây chuyền bản đồ bạc"
+      },
+      "sources": [
+        "coe-cefr-companion-volume",
+        "british-council-there-is-are"
+      ],
+      "activities": [
+        {
+          "id": "a1-lantern-harbor-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "Which place is opposite the blue gate?",
+          "context": "Welcome to Lantern Harbor. The blue gate is next to the pier. The boathouse is opposite the gate. The little lighthouse is behind the boathouse. A silver bell is inside the lighthouse.",
+          "instruction": {
+            "en": "Read the harbor note, then choose the place it describes.",
+            "vi": "Đọc ghi chú về bến cảng rồi chọn địa điểm được nhắc đến."
+          },
+          "explanation": {
+            "en": "The note says the boathouse is opposite the gate, so it is across from the blue gate.",
+            "vi": "Ghi chú cho biết nhà thuyền nằm đối diện cổng, tức là ở phía bên kia cổng xanh."
+          },
+          "focus": "a1-read-place-clues",
+          "options": [
+            {
+              "id": "boathouse",
+              "text": "The boathouse"
+            },
+            {
+              "id": "pier",
+              "text": "The pier"
+            },
+            {
+              "id": "lighthouse",
+              "text": "The little lighthouse"
+            }
+          ],
+          "answer": "boathouse"
+        },
+        {
+          "id": "a1-lantern-harbor-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete the map sentence with the present form of be. Enter one word: There ___ one lighthouse near the pier.",
+          "context": "Mira's map lists a lighthouse, a boathouse, two blue ropes and three small boats.",
+          "instruction": {
+            "en": "Complete the sentence using the present form of be. Enter one word.",
+            "vi": "Hoàn thành câu bằng dạng hiện tại của động từ be. Nhập một từ."
+          },
+          "explanation": {
+            "en": "Use is because the map names one lighthouse. Use are with plural nouns.",
+            "vi": "Dùng is vì trên bản đồ chỉ có một ngọn hải đăng. Dùng are với danh từ số nhiều."
+          },
+          "focus": "a1-there-be-singular",
+          "accepted": [
+            "is"
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each harbor object to the place named in the note.",
+          "context": "The harbor note says: A red lantern is above the gate. The bell is inside the lighthouse. Three blue boats are beside the pier.",
+          "instruction": {
+            "en": "Match each object to its place in the note.",
+            "vi": "Nối mỗi vật với vị trí của nó trong ghi chú."
+          },
+          "explanation": {
+            "en": "The note places the red lantern above the gate, the bell inside the lighthouse and the boats beside the pier.",
+            "vi": "Ghi chú đặt đèn lồng đỏ phía trên cổng, chiếc chuông bên trong hải đăng và các con thuyền cạnh cầu tàu."
+          },
+          "focus": "a1-match-object-and-place",
+          "pairs": [
+            {
+              "id": "lantern-place",
+              "left": "The red lantern",
+              "right": "Above the gate"
+            },
+            {
+              "id": "bell-place",
+              "left": "The bell",
+              "right": "Inside the lighthouse"
+            },
+            {
+              "id": "boats-place",
+              "left": "The three blue boats",
+              "right": "Beside the pier"
+            }
+          ]
+        },
+        {
+          "id": "a1-lantern-harbor-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Put the three route steps in the order shown by the note: first, next, then.",
+          "context": "Mira's route note gives three steps: First, go to the blue gate. Next, walk to the boathouse. Then, look behind the boathouse for the lighthouse.",
+          "instruction": {
+            "en": "Follow the route note and place the steps in order.",
+            "vi": "Dựa vào ghi chú chỉ đường và sắp xếp các bước theo đúng thứ tự."
+          },
+          "explanation": {
+            "en": "The note says to go to the blue gate first, the boathouse next and the lighthouse last.",
+            "vi": "Ghi chú hướng dẫn đến cổng xanh trước, đến nhà thuyền tiếp theo và tìm hải đăng sau cùng."
+          },
+          "focus": "a1-follow-simple-route",
+          "tokens": [
+            {
+              "id": "gate-first",
+              "text": "Go to the blue gate."
+            },
+            {
+              "id": "boathouse-next",
+              "text": "Walk to the boathouse."
+            },
+            {
+              "id": "lighthouse-then",
+              "text": "Look behind the boathouse for the lighthouse."
+            }
+          ],
+          "answer": [
+            "gate-first",
+            "boathouse-next",
+            "lighthouse-then"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "a1-lantern-harbor-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write two short sentences for a visitor. Use there is/there are and one place word from the map.",
+          "context": "A visitor asks for two easy map clues before walking around Lantern Harbor.",
+          "instruction": {
+            "en": "Write two short sentences for the visitor. Use there is/there are and one place word from the map.",
+            "vi": "Viết hai câu ngắn cho khách tham quan. Dùng there is/there are và một từ chỉ vị trí trên bản đồ."
+          },
+          "explanation": {
+            "en": "A clear map clue names a harbor object and gives its place; use there is with one thing and there are with more than one.",
+            "vi": "Một gợi ý bản đồ rõ ràng cần nêu vật ở bến cảng và vị trí của nó; dùng there is với một vật và there are với nhiều vật."
+          },
+          "focus": "a1-write-location-sentences",
+          "rubric": [
+            {
+              "en": "I use there is/there are correctly for one thing or more than one thing.",
+              "vi": "Tôi dùng đúng there is/there are cho một vật hoặc nhiều vật."
+            },
+            {
+              "en": "I give at least one accurate place clue from the harbor map.",
+              "vi": "Tôi nêu ít nhất một vị trí chính xác theo bản đồ bến cảng."
+            }
+          ],
+          "example": "There is a silver bell inside the lighthouse. There are three blue boats beside the pier."
+        }
+      ]
+    },
+    {
+      "id": "b2-clockwork-canopy",
+      "level": "B2",
+      "title": {
+        "en": "The Clockwork Canopy",
+        "vi": "Tán Cây Cơ Khí"
+      },
+      "summary": {
+        "en": "A changing set of readings puts the canopy's seed-glider demonstration on hold. Read the rules and logs to decide what the evidence allows.",
+        "vi": "Các số đo thay đổi khiến buổi trình diễn tàu lượn gieo hạt trên tán cây phải tạm dừng. Hãy đọc quy tắc và nhật ký để quyết định bằng chứng cho phép điều gì."
+      },
+      "objective": {
+        "en": "Use conditional rules and recorded evidence to decide when the canopy demonstration can go ahead.",
+        "vi": "Dùng câu điều kiện và dữ liệu ghi lại để quyết định khi nào buổi trình diễn trên tán cây có thể tiếp tục."
+      },
+      "skill": "reading",
+      "topic": "conditional-rules-and-evidence",
+      "reward": {
+        "en": "A calibrated compass badge",
+        "vi": "Huy hiệu la bàn đã hiệu chỉnh"
+      },
+      "sources": [
+        "coe-cefr-companion-volume",
+        "british-council-conditionals"
+      ],
+      "activities": [
+        {
+          "id": "b2-clockwork-canopy-01",
+          "type": "choice",
+          "skill": "reading",
+          "prompt": "What does the rule require at 10:00?",
+          "context": "Trial rule: If the west and east leaf sensors are both dry at the same check, the team may release one test glider. If either sensor is damp or has no reading, the team must wait for a new check. At 10:00, the west sensor is dry. The east display is blank, and nobody has confirmed its reading.",
+          "instruction": {
+            "en": "Read the trial rule and the 10:00 log, then choose the supported decision.",
+            "vi": "Đọc quy tắc thử nghiệm và nhật ký lúc 10:00, rồi chọn quyết định có căn cứ."
+          },
+          "explanation": {
+            "en": "The rule requires two dry readings at the same check. A blank east display does not confirm that condition, so the team must wait.",
+            "vi": "Theo quy tắc, cả hai cảm biến phải ghi nhận khô trong cùng một lần kiểm tra. Màn hình phía đông bị trống nên chưa xác nhận được điều kiện này; nhóm cần chờ lần kiểm tra mới."
+          },
+          "focus": "b2-interpret-conditional-evidence",
+          "options": [
+            {
+              "id": "release-now",
+              "text": "Release one test glider; one dry reading is enough."
+            },
+            {
+              "id": "wait-for-check",
+              "text": "Wait for another check; the two-dry condition is not confirmed."
+            },
+            {
+              "id": "cancel-all",
+              "text": "Cancel every future trial because the east sensor has failed."
+            },
+            {
+              "id": "replace-west",
+              "text": "Replace the west sensor before using it."
+            }
+          ],
+          "answer": "wait-for-check"
+        },
+        {
+          "id": "b2-clockwork-canopy-02",
+          "type": "gap",
+          "skill": "language",
+          "prompt": "Complete this unreal past sentence. Put the verb in brackets into the past perfect. Enter two words: If the team ___ (test) the seal before the flight, rain would not have reached the gears.",
+          "context": "During last year's flight, a thin wax seal let rain into the brass gears. The checklist shows that nobody tested the seal beforehand.",
+          "instruction": {
+            "en": "Complete the if-clause with the past perfect form of the verb in brackets. Enter two words.",
+            "vi": "Hoàn thành mệnh đề if bằng thì quá khứ hoàn thành của động từ trong ngoặc. Nhập hai từ."
+          },
+          "explanation": {
+            "en": "The checklist records that the team did not test the seal before the past flight. A third conditional imagines a different past: the if-clause uses past perfect, had tested.",
+            "vi": "Danh sách kiểm tra ghi nhận nhóm đã không thử lớp niêm phong trước chuyến bay trong quá khứ. Câu điều kiện loại ba giả định một quá khứ khác; mệnh đề if dùng thì quá khứ hoàn thành: had tested."
+          },
+          "focus": "b2-third-conditional-past-counterfactual",
+          "accepted": [
+            "had tested"
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-03",
+          "type": "match",
+          "skill": "reading",
+          "prompt": "Match each log to the one statement that names its decisive status.",
+          "context": "Release rule: Before a public flight, the rehearsal needs three checks. The signal must be steady at 09:00 and 09:15, both wind ribbons must point north, and the backup clock must be within two minutes of the reference clock. Any missing or failed check keeps the rehearsal amber. Log A: the signal is steady at both times, both ribbons point north, and the clock is one minute slow. Log B: the signal is steady at both times, the west ribbon points north, the east ribbon is not recorded, and the clock is one minute slow. Log C: the signal is steady at 09:00, the 09:15 check is missing, both ribbons point north, and the clock is one minute slow. Log D: the signal is steady at both times, both ribbons point north, and the clock is four minutes slow.",
+          "instruction": {
+            "en": "Match each log to its decisive status under the release rule.",
+            "vi": "Nối mỗi nhật ký với tình trạng quyết định theo quy tắc cho phép bay."
+          },
+          "explanation": {
+            "en": "Log A meets all three checks. Log B has no east-ribbon reading, Log C lacks the 09:15 signal check and Log D is four minutes off, beyond the two-minute limit.",
+            "vi": "Nhật ký A đạt cả ba yêu cầu. Nhật ký B thiếu số đo dải ruy-băng phía đông, nhật ký C thiếu lần kiểm tra tín hiệu lúc 09:15, còn đồng hồ ở nhật ký D lệch bốn phút, vượt giới hạn hai phút."
+          },
+          "focus": "b2-match-evidence-to-rule-status",
+          "pairs": [
+            {
+              "id": "log-a-status",
+              "left": "Log A",
+              "right": "All three requirements are met."
+            },
+            {
+              "id": "log-b-status",
+              "left": "Log B",
+              "right": "The east-ribbon reading is missing."
+            },
+            {
+              "id": "log-c-status",
+              "left": "Log C",
+              "right": "The 09:15 signal check is missing."
+            },
+            {
+              "id": "log-d-status",
+              "left": "Log D",
+              "right": "The clock is outside the two-minute limit."
+            }
+          ]
+        },
+        {
+          "id": "b2-clockwork-canopy-04",
+          "type": "order",
+          "skill": "reading",
+          "prompt": "Arrange the reasoning as a decision chain: observed fact, rule result, next action.",
+          "context": "Rule card: A rehearsal is green only when the signal is steady at two checks, both wind ribbons point north, and the backup clock is within two minutes of the reference clock. Only green rehearsals may be scheduled for a public glider flight. If any required check fails, the coordinator must wait. At noon, the signal is steady twice and the clock is one minute slow; the east ribbon points south.",
+          "instruction": {
+            "en": "Put the three statements in the requested chain: observed fact, rule result, next action.",
+            "vi": "Sắp xếp ba câu theo chuỗi được yêu cầu: dữ kiện quan sát được, kết quả áp dụng quy tắc, hành động tiếp theo."
+          },
+          "explanation": {
+            "en": "Start with the recorded fact about the ribbon, apply the rule to conclude that the rehearsal is not green, then state the required wait before scheduling a public flight.",
+            "vi": "Bắt đầu bằng dữ kiện đã ghi về dải ruy-băng, áp dụng quy tắc để kết luận buổi thử chưa đạt trạng thái xanh, rồi nêu yêu cầu chờ trước khi xếp lịch bay công khai."
+          },
+          "focus": "b2-sequence-evidence-reasoning",
+          "tokens": [
+            {
+              "id": "observed-fact",
+              "text": "The east ribbon points south."
+            },
+            {
+              "id": "rule-result",
+              "text": "One wind requirement fails, so the rehearsal is not green."
+            },
+            {
+              "id": "next-action",
+              "text": "Wait before scheduling a public flight."
+            }
+          ],
+          "answer": [
+            "observed-fact",
+            "rule-result",
+            "next-action"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "b2-clockwork-canopy-05",
+          "type": "writing",
+          "skill": "writing",
+          "prompt": "Write a 2–3 sentence recommendation to the canopy team. Use one conditional sentence and cite two details from the log. Recommend a next step for the demonstration.",
+          "context": "Today's canopy log shows steady signals at 09:00 and 09:15. Both wind ribbons point north. The backup clock is three minutes slow; the rule allows a difference of no more than two minutes.",
+          "instruction": {
+            "en": "Use only the recorded evidence. Link a condition to an action and check that your recommendation follows the rule.",
+            "vi": "Chỉ dùng bằng chứng đã ghi. Hãy nối một điều kiện với hành động và kiểm tra xem đề xuất của bạn có phù hợp với quy tắc không."
+          },
+          "explanation": {
+            "en": "A sound recommendation connects a condition to an action and uses the recorded checks instead of inventing new results.",
+            "vi": "Một đề xuất hợp lý nối điều kiện với hành động và dựa trên các lần kiểm tra đã ghi, không tự thêm kết quả mới."
+          },
+          "focus": "b2-write-evidence-based-recommendation",
+          "rubric": [
+            {
+              "en": "My conditional links a stated condition to a reasonable action.",
+              "vi": "Câu điều kiện của tôi nối một điều kiện đã nêu với hành động hợp lý."
+            },
+            {
+              "en": "My recommendation cites two accurate details from the log and follows the team's rule.",
+              "vi": "Đề xuất của tôi nêu đúng hai chi tiết trong nhật ký và tuân theo quy tắc của nhóm."
+            }
+          ],
+          "example": "If the team cannot reset the clock to within two minutes, it should wait before scheduling the flight. The signal was steady twice, but the clock was three minutes slow."
+        }
+      ]
+    }
+  ]
+}
