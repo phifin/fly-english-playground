@@ -43,7 +43,7 @@ jobs:
           'node --test --test-isolation=none tests/cloud-rules.test.mjs tests/cloud-emulator.test.mjs'
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     outputs:
       release_id: ${{ steps.release.outputs.release_id }}
@@ -70,11 +70,14 @@ jobs:
       - name: Install isolated browser verification tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
-          node "$RUNNER_TEMP/atlas-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          # Stable Chrome is preinstalled and covered by Ubuntu's AppArmor profile.
+          # Keep its sandbox; downloaded Chromium lacks that profile on this image.
+          google-chrome --version
       - name: Browser release checks
         env:
           ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
           ATLAS_AXE_PATH: ${{ runner.temp }}/atlas-browser/node_modules/axe-core/axe.min.js
+          ATLAS_BROWSER_CHANNEL: chrome
           P0_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
           ATLAS_BASE_PATH: /${{ github.event.repository.name }}/
           ATLAS_URL: http://127.0.0.1:4173/${{ github.event.repository.name }}/
@@ -133,7 +136,7 @@ jobs:
   verify-production:
     if: github.event_name != 'pull_request'
     needs: [build, deploy]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read
@@ -159,11 +162,12 @@ jobs:
       - name: Install isolated browser verification tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
-          node "$RUNNER_TEMP/atlas-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          google-chrome --version
       - name: Exercise the published game in fresh browser profiles
         env:
           ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
           ATLAS_AXE_PATH: ${{ runner.temp }}/atlas-browser/node_modules/axe-core/axe.min.js
+          ATLAS_BROWSER_CHANNEL: chrome
         run: node scripts/browser-release-check.mjs
       - name: Preserve production verification evidence
         if: always()

@@ -82,9 +82,11 @@ try {
   if (axePath) await access(axePath);
   else report.limitations.push('axe-core is not installed; automated axe checks were skipped. Manual/DOM interaction checks still run.');
   if (process.env.CI) assert.ok(axePath, 'CI must install axe-core and run the accessibility checks; skipping is not permitted.');
-  const options = { headless: true, chromiumSandbox: true,
-    ...(process.platform === 'win32' ? { channel: 'msedge' } : {}) };
+  const channel = process.env.ATLAS_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : undefined);
+  const options = { headless: true, chromiumSandbox: true, ...(channel ? { channel } : {}) };
   if (process.env.ATLAS_BROWSER_EXECUTABLE) { options.executablePath = process.env.ATLAS_BROWSER_EXECUTABLE; delete options.channel; }
+  report.launch = { channel: options.channel ?? (options.executablePath ? 'explicit-executable' : 'bundled-chromium'),
+    chromiumSandbox: options.chromiumSandbox, connection: process.env.ATLAS_CDP_URL ? 'cdp' : 'local' };
   browser = process.env.ATLAS_CDP_URL
     ? await playwright.chromium.connectOverCDP(process.env.ATLAS_CDP_URL)
     : await playwright.chromium.launch(options);
