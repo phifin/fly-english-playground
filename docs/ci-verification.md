@@ -13,7 +13,7 @@ including when browser verification fails. Automated checks do not certify WCAG
 compliance or replace family-device and screen-reader testing.
 
 The rules job installs Firebase CLI into the runner's temporary directory and
-starts only Firestore with project `demo-atlas-rules`. Java 21 is explicit. The REST
+starts Auth and Firestore with project `demo-atlas-rules`. Java 21 is explicit. The REST
 test requires a loopback emulator and synthetic identities; the CI flag makes a
 missing emulator fail instead of skipping. No Firebase login, live project,
 credentials or billing activation is involved. Firebase recommends demo IDs to
@@ -30,7 +30,16 @@ New verification-tool pins checked against publisher sources on 20 October 2026:
 | axe browser engine | `axe-core@4.14.0` | [Deque release](https://github.com/dequelabs/axe-core/releases/tag/v4.14.0), [published package definition](https://raw.githubusercontent.com/dequelabs/axe-core/v4.14.0/package.json) |
 | Evidence upload | `actions/upload-artifact@v7.0.2` | [GitHub release](https://github.com/actions/upload-artifact/releases/tag/v7.0.2) |
 
-These are development verification tools, outside the dependency-free game
-runtime. The managed Windows workspace has not executed the Firestore emulator
-or a successful graphical browser run. Its browser process launch returns EPERM;
-the Linux Actions gates remain unexecuted until the repository workflow is run.
+These are development verification tools, outside the dependency-free local game
+runtime. The managed Windows workspace's browser process launch returns EPERM.
+GitHub-hosted CI has now passed both actual emulator tests and preview/live
+browser checks, for example [run39541377960](https://github.com/phifin/fly-english-playground/actions/runs/39541377960).
+Chrome uses its existing Ubuntu AppArmor profile with its sandbox enabled.
+
+The cloud-enabled release adds a fresh-context credential-free SDK gate to both
+browser runs. It reads the deployed public config, loads actual pinned app/auth/
+Firestore Lite modules, checks emitted CSP and successful repeated preparation,
+and rejects unexpected authentication/data calls or popups. Malformed enabled
+config fails the build. Disabled cloud must still make zero external requests.
+Consult the current run's `cloudSdk` browser-report evidence for the actual result;
+this gate never proves Google consent, approved admission or live synchronization.

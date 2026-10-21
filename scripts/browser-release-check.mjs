@@ -5,8 +5,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { deriveProgress } from '../src/learning.js';
 import { deriveExpeditions, findRoute, validateBoard } from '../src/expedition.js';
-import { cloudConfig } from '../public-config.js';
 import { deploymentUrl } from './verify-deployment.mjs';
+import { verifyCloudSdk } from './cloud-sdk-check.mjs';
 
 // Verification tooling only. This script neither installs packages nor provisions
 // services. Every traveler, response and backup belongs to a fresh test context.
@@ -18,7 +18,7 @@ await mkdir(directory, { recursive: true });
 const report = {
   date: new Date().toISOString(), url: base.href, expectedRelease: expectedRelease ?? null, checks: [], errors: [],
   limitations: ['Chromium with a mobile viewport is not a real low-end phone.',
-    'No live Google sign-in, cloud project, educational efficacy or complete WCAG certification is tested.'],
+    'No live Google sign-in, cloud data synchronization, educational efficacy or complete WCAG certification is tested.'],
 };
 const check = message => { report.checks.push(message); console.log(`PASS: ${message}`); };
 const localModule = value => value.startsWith('file:') ? value : pathToFileURL(resolve(value)).href;
@@ -274,6 +274,14 @@ try {
       'The actual browser must load the expected deployed release, not an older cached shell.');
     check('The browser loaded the expected release at its configured project URL.');
   }
+  const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
+  try {
+    await cloudPage.goto(base.href); await ready(cloudPage);
+    report.cloudSdk = await verifyCloudSdk(cloudPage, { requireCsp: Boolean(process.env.CI || expectedRelease) });
+  } finally { await cloudContext.close(); contexts.splice(contexts.indexOf(cloudContext), 1); }
+  check(report.cloudSdk.configured
+    ? 'The deployed Firebase SDK prepares under its actual CSP using pinned CDN modules, without sign-in, popups or cloud data requests.'
+    : 'The deployed disabled cloud prepares without external SDK or service requests.');
   const mainName = 'River CI', otherName = 'Sky CI', childName = 'Moss CI';
   const mainId = await createProfile(mainName, { mode: 'balanced', language: 'vi' });
   await settings({ quality: 'eco', motion: 'reduced' });
@@ -491,18 +499,18 @@ try {
     const text = await (await fetch(new URL(path, base))).text();
     assert.doesNotMatch(text, /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|"private_key"\s*:\s*"[^"\s]+|"type"\s*:\s*"service_account"/);
   }
-  if (cloudConfig.enabled !== true) {
+  if (!report.cloudSdk.configured) {
     assert.deepEqual(external, [], 'Default local play must not contact external SDK, tracking, auth or cloud services.');
   } else {
     const allowed = new Set(['https://www.gstatic.com', 'https://apis.google.com',
       'https://identitytoolkit.googleapis.com', 'https://securetoken.googleapis.com',
       'https://firestore.googleapis.com', 'https://www.googleapis.com',
-      `https://${cloudConfig.firebase.authDomain}`, 'https://accounts.google.com']);
+      `https://${report.cloudSdk.authDomain}`, 'https://accounts.google.com']);
     assert.deepEqual([...new Set(external)].filter(origin => !allowed.has(origin)), [], 'Configured cloud may contact only its explicit SDK/auth/API origins.');
-    report.limitations.push('Optional cloud is configured: SDK loading was allowed, but sign-in and live cloud operations were not exercised.');
+    report.limitations.push('Optional cloud is configured: real CDN SDK preparation and CSP were checked, but Google sign-in and live cloud data operations were not exercised.');
   }
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
-  check(`${cloudConfig.enabled === true ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
+  check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
   report.passed = true;
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);
 } catch (error) {

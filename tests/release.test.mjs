@@ -71,6 +71,27 @@ test('build refuses suspicious public inputs or unknown dist files before changi
   await assert.rejects(build({ sourceRoot: directory, config: disabled }), /Unexpected file in a public input/);
 });
 
+test('build rejects malformed enabled cloud before changing the release and emits matching CSP for valid configuration', async t => {
+  const directory = await scratch(t);
+  await build({ sourceRoot: directory, config: disabled });
+  const before = await readFile(join(directory, 'dist', 'index.html'), 'utf8');
+  const configured = { enabled: true, firebase: { apiKey: 'public-example-key', appId: 'public-example-app',
+    projectId: 'demo-atlas', authDomain: 'demo-atlas.firebaseapp.com' } };
+  for (const value of [ { enabled: true },
+    { ...configured, firebase: { ...configured.firebase, apiKey: '' } },
+    { ...configured, firebase: { ...configured.firebase, appId: '' } },
+    { ...configured, firebase: { ...configured.firebase, authDomain: 'other-project.firebaseapp.com' } } ]) {
+    await assert.rejects(build({ sourceRoot: directory, config: value }), /complete and internally consistent/);
+    assert.equal(await readFile(join(directory, 'dist', 'index.html'), 'utf8'), before,
+      'Invalid cloud configuration must preserve the previous usable release.');
+  }
+  await writeFile(join(directory, 'public-config.js'), `export const cloudConfig=${JSON.stringify(configured)};`);
+  const result = await build({ sourceRoot: directory });
+  assert.equal(result.cloudConfigured, true);
+  const html = await readFile(join(directory, 'dist', 'index.html'), 'utf8');
+  assert.ok(html.includes(contentSecurityPolicy(configured).replaceAll('&', '&amp;').replaceAll('"', '&quot;')));
+});
+
 test('preview serves reviewed content and returns 404 instead of HTML for absent JSON', async t => {
   const directory = await scratch(t);
   const server = await startServer({ directory, port: 0 });

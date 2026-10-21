@@ -1,5 +1,52 @@
 # Current execution state
 
+## Production Firebase provisioned — 21 October 2026, latest continuation
+
+- Owner connected `atlas-firebase`; its20 tools are now actually exposed. Account
+  project listing succeeded, showing only unrelated `phi-login`. Preserve it.
+- Created dedicated `unfolding-atlas-phifin` (projectNumber98369051475), selected
+  it and registered Web App `1:98369051475:web:bb3e301135aae3689adfa6`. Before and
+  after provisioning Firebase explicitly reports **Billing Enabled: No**.
+- Official MCP auth initialization and deployment job1792556405176 succeeded
+  for `firestore,auth`. Explicit Standard default database configuration uses
+  `asia-southeast1`; reviewed rules/index body exemptions were preserved.
+  Readback exactly matches normalized reviewed rule source. Three actual live
+  anonymous probes (profile read/write, self-admission write) returned403.
+  Google provider URI requests return200 with Google Accounts URLs.
+- Public config now contains real public identifiers and `enabled:true`, ready
+  for account enrollment. No private credentials were read or published. The
+  temporary Google support address configuration is kept only in ignored
+  `artifacts/firebase-production-provisioning.json`; tracked cloud/firebase.json
+  retains Firestore/emulator config. Do not deploy auth from an empty provider
+  template or introduce billing, bootstrap rules or service-account keys.
+- Two installed-tool gaps require owner console work: CLI15.34 auth deployment
+  ignores authorizedDomains; core/auth MCP has no domain mutation or Firestore
+  document write. Public Auth config currently lists only the Firebase domains,
+  so **phifin.github.io must be added**. Auth users were empty at last check.
+  First real Google sign-in must create an identity, then owner creates
+  `access/UID {approved:true}`. Full concise checklist in production-status.md.
+  Do not ask for login/reinstall/another Firebase project.
+- SDK/browser review added `scripts/cloud-sdk-check.mjs`, validator regressions,
+  build fail-fast for malformed enabled config, and integration in both existing
+  browser gates. Real pinned CDN modules, CSP, successful prepare and signed-out
+  state are required; no Google credentials or private data calls. Changes still
+  need actual GitHub CI/browser execution; do not call that new gate passed yet.
+- Latest full local suite:262 tests,260 passed, two actual-emulator tests skipped,
+  no failures. Enabled production build `781ccc010e492f72f2b0`,26 public files,
+  74834 gzip JavaScript bytes. Latest previously verified deployment run39541377960
+  is the prior local-only release. Preserve source/history on the next publication.
+- Sanitized evidence is in artifacts/firebase-provisioning.json,
+  firebase-auth-public-config.json, firebase-google-provider-check.json,
+  firebase-live-anonymous-rules.json. Never publish raw Firebase logs/auth stores.
+
+Next: publish these scoped changes through the GitHub connector with a fresh
+parent and non-forced update, run/inspect actual CI, fix SDK/browser failures.
+Then consolidate owner domain/enrollment/admission actions while continuing all
+independent work. Positive live OAuth and approved two-browser synchronization
+remain unverified; do not claim the full cloud-backed family release complete.
+
+---
+
 ## Firebase MCP startup diagnosed — 21 October 2026, latest continuation
 
 - Frontend remains live at https://phifin.github.io/fly-english-playground/.

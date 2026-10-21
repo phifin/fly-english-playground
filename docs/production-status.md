@@ -1,111 +1,93 @@
 # Production deployment status
 
-Verified 21 October 2026.
+Updated 21 October 2026. The active task remains a usable cloud-backed family release.
 
-**Working game:** https://phifin.github.io/fly-english-playground/
+**Game:** https://phifin.github.io/fly-english-playground/
 
-**Successful deployment and verification:**
-https://github.com/phifin/fly-english-playground/actions/runs/39537300956
+**Actions:** https://github.com/phifin/fly-english-playground/actions
 
-The frontend is deployed and verified. The full family release is not yet complete:
-production Firebase configuration remains blocked on the account's host connection.
-The deployed app deliberately keeps cloud disabled and uses persistent local
-profiles, downloaded activities and private export/import. No Firebase project or
-provider has been claimed as provisioned.
+The frontend is deployed. The dedicated Firebase service is now provisioned;
+first-account enrollment and positive live synchronization verification remain.
+The app retains local play, saving, exports and installed offline activities.
 
-## Verified access and publication
+## Firebase provisioned
 
-The GitHub connector authenticated as the repository owner and reported admin/push
-permissions. Actual publication confirmed write access: initial commit
-`07b435bdb2ddebb06beecd32425a358434d9946b`, full source commit
-`d56073044ee47afc3cf3d522176e288a8a32bfd3`, then CI fix
-`43fed8be52f1e820b6583df40094cd51131f124f`. All existing history was retained;
-no forced update was used. The owner enabled Pages with GitHub Actions.
-
-The build uses project-relative assets and the verified
-`/fly-english-playground/` prefix. Only the public static allowlist is deployed.
-The expected release is `f44aa06ace219f598cdf`: 24 missions, 120 activities,
-24 boards, 24 manifest entries and 553,256 raw cached asset bytes. An independent
-GET-only check confirmed every manifest hash/byte count, service-worker release
-identity and five private/missing paths returning404.
-
-## Actual automated checks
-
-All four jobs in the linked run passed:
-
-| Job | Actual result |
+| Component | Verified state |
 | --- | --- |
-| build | Domain/content/storage tests, build, project-prefix integrity and sandboxed browser checks passed. The general suite had243 passes and2 emulator skips; the dedicated emulator job executed those two checks. |
-| firestore-rules | Real Auth and Firestore emulators:2 tests passed,0 failed,0 skipped. Synthetic identities exercised admission, owner isolation, immutable events, guardian/dependent recovery, device-local drafts, offline merging, lost acknowledgements, revocation and deleted-ID protection. |
-| deploy | GitHub Pages deployment succeeded. |
-| verify-production | Expected release/integrity verification and the browser suite passed against the action's actual Pages URL. |
+| Project | `unfolding-atlas-phifin`, number98369051475, newly created for this game; unrelated `phi-login` preserved. |
+| Cost | Firebase reports **Billing Enabled: No**, before and after provisioning. No paid services or runtime AI enabled. |
+| Web App | `1:98369051475:web:bb3e301135aae3689adfa6`; public identifiers retrieved through the authenticated MCP server. |
+| Authentication | Google provider deployed. Public provider-URI requests return200 and Google Accounts URLs. No Auth users existed at the last check. |
+| Firestore | Successful deployment with explicit default database, Standard edition and Singapore `asia-southeast1` configuration. Body-field index exemptions preserved. |
+| Rules | Live readback matches the reviewed source after newline normalization. No client admission writes, cross-owner access or mutable learning events are allowed. |
+| Live denial checks | Anonymous profile read, profile write and self-admission write each returned403 `PERMISSION_DENIED`. |
 
-Both the prefixed preview and live site passed19 browser checks. These exercised
-the three gameplay modes, all five activity types, actual browser IndexedDB,
-settings and draft recovery, separate family profiles, validated backup UI,
-390px touch/keyboard layouts, text escaping and installed offline reload.
-The live report recorded no browser errors. Axe found no violations on the
-journal, mobile activity, mobile Echo Studio and settings screens.
+The official Firebase MCP connection now works. Project listing, creation,
+selection, Web App registration, provider setup and deployment were performed
+through its supported tools. Deployment job1792556405176 completed successfully.
+No raw credential store, token, service-account key or proxy override was used.
+The support address used for OAuth provisioning remains in ignored local artifacts.
 
-The first run failed before browser interactions because downloaded Chromium
-lacked a usable sandbox on the runner. The fix uses preinstalled stable Chrome's
-existing Ubuntu AppArmor profile, with `chromiumSandbox:true`. No AppArmor,
-namespace or browser-sandbox protection was disabled. The successful report records
-Chrome155.0.8059.84. Root inspected the actual desktop and mobile screenshots.
+The committed public config enables the connection for enrollment. Until admission
+is granted, Google identities cannot read or write private game records. The
+public Firebase API key is a client identifier, not an administrator credential.
 
-These are not full WCAG certification, educational efficacy, low-end hardware or
-live Google OAuth tests. The cloud emulator uses the actual controller and local
-validation through a REST test transport; it does not prove production CDN SDK/
-popup behavior. Screenshots and reports are retained as private workspace
-artifacts and in the run's short-lived GitHub evidence artifacts.
+## Required owner enrollment
 
-## Firebase authentication and remaining blocker
+These operations are absent from the installed core/auth MCP tool set. CLI15.34.0
+also ignores `auth.authorizedDomains` during provider deployment; adding that field
+would not fix the live setting. Do not reinstall or repeat Firebase CLI login.
 
-The official Firebase plugin and CLI15.34.0 are installed. The owner's login is
-recognized by the official MCP server's environment tool. Server startup was
-recovered using its supported writable development-log path; a real MCP handshake
-succeeded. This verifies recognized local identity, not remote project permission.
+1. Open [Authentication settings](https://console.firebase.google.com/project/unfolding-atlas-phifin/authentication/settings).
+   In **Authorized domains**, add exactly `phifin.github.io`, without protocol or path.
+2. Open the game after the cloud-enabled deployment, create/select a traveler,
+   and use **Settings → Sign in with Google**. An unapproved-account message is
+   expected initially; the sign-in creates the Firebase identity without granting data access.
+3. In [Authentication users](https://console.firebase.google.com/project/unfolding-atlas-phifin/authentication/users),
+   copy that identity's UID. In [Firestore](https://console.firebase.google.com/project/unfolding-atlas-phifin/firestore),
+   create collection `access`, document **that UID**, and Boolean field `approved`
+   set to **true**. Sign in again in the game, then explicitly link and sync a traveler.
 
-The project-list tool currently fails through the managed SDK network path at
-proxy127.0.0.1:9 with ECONNREFUSED. No project list or Spark plan could be read, so
-it is unknown whether the intended project already exists. No new billing,
-project, credentials, production database, OAuth provider or admission grant has
-been created by the agent.
+Never use an email address as the admission document ID. No permissive temporary
+rules or password sharing are necessary. Guardian-managed dependents use the
+guardian's identity; each independent adult requires their own explicit admission.
 
-The owner confirmed both Firebase entries fail after restart. Investigation
-found unavailable bare Node/npx commands and reproduced a separate Firestore
-remote tool-discovery error. The corrected `scripts/firebase-mcp.mjs` starts
-the installed official package with core/auth discovery and keeps development
-logs in the writable workspace. Actual stdin/stdout initialize and tools/list
-passed with20 tools and zero non-protocol stdout lines. The original Firestore
-setting returned error-32603 and zero tools. See
-[the diagnostic report](firebase-mcp-troubleshooting.md).
+After enrollment, verify the live popup/admission, upload and restore on a second
+trusted browser, retry after disconnection, and deleted-profile protection.
+Those positive production flows have not yet been claimed as passing.
 
-Registering the corrected `atlas-firebase` host connection requires one command
-in a normal owner terminal, because Codex user configuration is outside the
-agent's writable roots. Use the stable absolute Node executable; the restarted
-environment does not resolve bare `node` or `npx`:
+## Actual quality evidence
 
-```powershell
-codex mcp add atlas-firebase -- "C:\Users\nhuphi.vo_amaris\AppData\Roaming\fnm\node-versions\v24.22.0\installation\node.exe" "C:\Users\nhuphi.vo_amaris\Documents\my-english-learning-engine\scripts\firebase-mcp.mjs"
-```
+The last fully verified local-only deployment was
+[run39541377960](https://github.com/phifin/fly-english-playground/actions/runs/39541377960)
+at commit `b0987b578f98a9926145bdd10136ca0d86c8c96e`. All four jobs passed:
+build, real Auth/Firestore emulators, Pages deployment and live browser/integrity
+verification. Both preview and live passed19 browser checks, covering all three
+modes, all five activity types, IndexedDB/reload/drafts, profile isolation,
+backup/import,390px touch/keyboard, text escaping and installed offline reload.
+Axe found no violations on four checked screens. Root inspected desktop/mobile
+screenshots. This is not WCAG certification or actual low-end-phone testing.
 
-Restart/resume this project's conversation and check `/mcp` for `atlas-firebase`.
-No proxy, sandbox or account permissions are weakened by the launcher. Its
-actual remote connection and project-list call must still be verified.
-Installing a plugin is not itself authentication. This installed server uses CLI
-credentials over stdio; the applicable Google login is Firebase CLI login, not
-`codex mcp login firebase`. The owner has already completed that login and does
-not need to repeat it unless a supported tool explicitly requests authorization.
-[Firebase MCP credential model](https://firebase.google.com/docs/ai-assistance/mcp-server),
-[Firebase CLI login](https://firebase.google.com/docs/cli#log-in-test-cli).
+The cloud-enabled changes add fail-fast validation of enabled public config and
+a real-browser SDK gate. The gate loads actual pinned Firebase modules, checks
+successful repeated preparation, matching emitted CSP, signed-out state and no
+unexpected authentication/data calls or popups. Disabled config still requires
+zero external requests. It neither mocks the SDK nor supplies Google credentials.
+Its actual preview/live result must be read from the new Actions run before claiming
+it passed. The latest local suite passed260 tests, with two actual emulator tests
+skipped locally and required separately in CI. The enabled production build passed.
 
-Once remote access is operational, remaining work is to inspect existing projects,
-keep/reuse a clearly matching Spark project or create a dedicated free project,
-register its Web App, enable Google sign-in for `phifin.github.io`, deploy the
-reviewed rules/indexes, establish approved guardian identities and verify actual
-cloud isolation/synchronization. Only public client identifiers go into the site.
-No private credentials or paid runtime AI are required. Keep billing disabled.
+CI uses preinstalled stable Chrome with its existing Ubuntu AppArmor profile and
+`chromiumSandbox:true`. No browser sandbox or operating-system protection was
+disabled. Private artifacts include `firebase-provisioning.json`, public Auth
+configuration/provider checks, live denial checks, and release browser evidence.
+They are excluded from the static build and repository publication.
 
-The game can currently be opened and used locally in the published origin; the
-owner requested a complete cloud-backed release, so that task remains active.
+## Limits
+
+Real Google consent, approved cloud synchronization and actual family Safari/iOS
+behavior still need verification after enrollment. Emulator tests use real rules
+and the actual synchronization controller through a REST transport; they do not
+prove the production popup or CDN adapter. Content remains a reviewed finite
+foundation:24 missions,120 activities and24 boards across A1–C2, rather than a
+complete course or certified assessment. No paid speech/AI scoring is claimed.

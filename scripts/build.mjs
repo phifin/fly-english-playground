@@ -7,6 +7,7 @@ import { isPublicRelative, contentSecurityPolicy } from './public-files.mjs';
 import {acceptedContent} from './publish-content.mjs';
 import {acceptedBoards} from './boards.mjs';
 import {contentHash} from './content.mjs';
+import { validCloudConfig } from '../src/cloud.js';
 
 const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 const hash = body => createHash('sha256').update(body).digest('hex');
@@ -36,6 +37,7 @@ export async function build({ sourceRoot = defaultRoot, config = null } = {}) {
   try { if ((await lstat(destination)).isSymbolicLink()) throw new Error('dist must not be a symbolic link.'); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
   if (!config) config = (await import(`${pathToFileURL(join(sourceRoot, 'public-config.js')).href}?build=${Date.now()}`)).cloudConfig;
+  if (config?.enabled === true && !validCloudConfig(config)) throw new Error('Enabled cloud configuration must be complete and internally consistent before publishing.');
   const paths = [];
   for (const rootFile of ['index.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js']) {
     try {

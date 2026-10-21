@@ -1,8 +1,15 @@
 # Static release and optional family cloud
 
 Local play, profiles, saving, exports and reviewed public content do not require
-Firebase. The committed `public-config.js` disables cloud. No project, credentials,
-live synchronization, billing activation or published site is assumed to exist.
+Firebase. The game is deployed at https://phifin.github.io/fly-english-playground/.
+Production project `unfolding-atlas-phifin` and its Web App have been created;
+billing is disabled. Google sign-in and Standard Firestore rules/indexes were
+deployed successfully through the authenticated official MCP server. Reviewed
+rules match live readback; anonymous reads, writes and self-admission are denied.
+`public-config.js` contains only the actual public Web App identifiers and enables
+the connection for account enrollment. See [current status](../docs/production-status.md)
+for the remaining Pages-domain and initial admission actions. Actual approved
+Google sign-in and live synchronization still require verification.
 
 ## GitHub Pages
 
@@ -62,7 +69,20 @@ allows the new version to activate. Rollback means redeploying a previous valida
 artifact and letting its worker follow the same update path. Export before clearing
 site storage; clearing it removes local learner records as well as offline assets.
 
-## Optional Firebase setup (owner action)
+## Reproducing Firebase setup
+
+The following records the setup process; do not create another project or repeat
+login for this release. The existing project is on Spark with default Standard
+database in `asia-southeast1`. Its reviewed rules and body index exemptions were
+deployed with job1792556405176. The owner support address used for Google provider
+provisioning is retained only in ignored local provisioning artifacts.
+
+CLI15.34.0's auth deployment enables the Google provider but does **not** apply an
+`auth.authorizedDomains` field. Source inspection and the public Auth configuration
+confirmed this limitation. Set the exact Pages hostname through Authentication
+Settings; do not assume adding an ignored JSON field deployed it. Current core/auth
+MCP tools also lack Firestore document writes, so the initial server-managed grant
+uses the owner's Firestore console. No permissive bootstrap rules are needed.
 
 1. Create a Firebase project on **Spark**, with no linked billing account. Do not
    enable paid Cloud Functions, Cloud Storage uploads, runtime AI or paid backups.
@@ -118,8 +138,9 @@ Auth uses memory persistence and Firestore Lite uses network requests without an
 additional persistent Firestore cache. The app requests Google identity only, not
 Drive, email or contacts scopes. SDK/CDN/proxy restrictions can still prevent
 sign-in. No credential or private API response enters the service-worker cache.
-Official documentation was checked on 20 October 2026; direct CDN modules and live
-OAuth were not executed in this environment.
+The release browser harness now includes a credential-free check of real pinned
+CDN modules, preparation, emitted CSP and signed-out state. Consult actual Actions
+evidence for its result; it does not establish live Google consent or approved sync.
 [Firebase web setup](https://firebase.google.com/docs/web/setup),
 [CDN setup](https://firebase.google.com/docs/web/alt-setup),
 [Firestore Lite CDN example](https://firebase.blog/posts/2023/03/trim-javascript-bundles-firestore-lite),
@@ -220,7 +241,8 @@ offline merging, lost connectivity, export/restore and profile deletion on actua
 family browsers. No live-cloud or emulator pass is claimed until those checks run.
 The Pages workflow also prepares a required, credential-free Firestore emulator
 job. Its explicit CI flag fails if the emulator is missing rather than skipping
-the rules test. The configured job has not been executed in this managed Windows
-workspace; see [CI verification](../docs/ci-verification.md) for tool pins and gates.
+the rules test. The combined emulator job passed in GitHub-hosted CI; see
+[CI verification](../docs/ci-verification.md) for tool pins and gates. Those results
+do not establish positive production authentication or data synchronization.
 [Firestore rule conditions](https://firebase.google.com/docs/firestore/security/rules-conditions),
 [Rule field validation](https://firebase.google.com/docs/firestore/security/rules-fields)

@@ -9,10 +9,11 @@ and world accomplishments are tracked separately.
 **The game is deployed:** [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
 The production build, Auth/Firestore emulator checks, sandboxed browser suite,
 mobile/offline flows and deployed-file verification passed in
-[GitHub Actions](https://github.com/phifin/fly-english-playground/actions/runs/39537300956).
-Production Firebase configuration is still pending an operational account connection;
-the deployed game currently uses local profiles and saving. See
-[production status](docs/production-status.md) for evidence and the remaining blocker.
+[GitHub Actions](https://github.com/phifin/fly-english-playground/actions).
+The dedicated Firebase Spark project, Google provider and private Firestore rules
+are provisioned without billing. Owner enrollment still requires the Pages domain
+and first account admission described in [production status](docs/production-status.md).
+Local play, saving and exports work independently of cloud.
 
 ## Play locally
 
@@ -41,7 +42,7 @@ The preserved P0 light-and-mirror sandbox is at `/observatory.html`.
   motion preferences. Changing them preserves evidence and accomplishments.
 - IndexedDB profiles, guardian/dependent links, recoverable drafts, validated
   export/import and scoped offline assets after successful installation.
-- Optional allowlisted Google/Firebase synchronization, disabled by default.
+- Optional allowlisted Google/Firebase synchronization through the dedicated Spark project.
   A guardian manages dependent profiles under one cloud identity. Local profile
   selection is a convenience on a trusted browser, not a password boundary.
 - Ungraded synthesized listening/retelling studio; no recording or paid AI API.

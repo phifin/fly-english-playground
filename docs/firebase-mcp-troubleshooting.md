@@ -73,16 +73,15 @@ owner environment. It does not alter Codex configuration or call a listed tool.
 
 ## Remaining production work
 
-The corrected host connection still needs verification after registration.
-Project listing through the prior managed-shell connection failed at the managed
-proxy; no remote Firebase project or Spark plan has been established. Keep that
-network result separate from startup and account authentication. Do not bypass
-the proxy or read/copy authentication stores.
+The owner reconnected successfully. All20 core/auth tools are exposed; actual
+remote project listing, project/Web App creation, Google provider provisioning
+and Firestore deployment succeeded without billing. The previous managed-shell
+network failure did not prevent the corrected host connection from operating.
+No proxy or credential-policy workaround was used.
 
-Once host access works, inspect existing projects, reuse a clearly matching
-Spark project or create a dedicated free one, configure Google sign-in and the
-actual Pages domain, deploy reviewed default-deny rules, establish approved
-guardian identities, and verify cloud flows before enabling public config.
+See [production status](production-status.md) for remaining Pages-domain and
+first-account admission actions. These are distinct from MCP connection/login;
+do not repeat installation or CLI authentication.
 
 References: [Codex MCP configuration](https://learn.chatgpt.com/docs/extend/mcp?surface=cli),
 [Firebase MCP credential model](https://firebase.google.com/docs/ai-assistance/mcp-server).
