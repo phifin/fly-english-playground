@@ -72,18 +72,25 @@ it is unknown whether the intended project already exists. No new billing,
 project, credentials, production database, OAuth provider or admission grant has
 been created by the agent.
 
-The owner confirmed Firebase shows a startup error in `/mcp`. A checked launcher,
-`scripts/firebase-mcp.mjs`, now starts the installed official package directly
-and keeps development logs in the writable workspace. Registering the
-`atlas-firebase` host connection requires one command in a normal owner terminal,
-because Codex user configuration is outside the agent's writable roots:
+The owner confirmed both Firebase entries fail after restart. Investigation
+found unavailable bare Node/npx commands and reproduced a separate Firestore
+remote tool-discovery error. The corrected `scripts/firebase-mcp.mjs` starts
+the installed official package with core/auth discovery and keeps development
+logs in the writable workspace. Actual stdin/stdout initialize and tools/list
+passed with20 tools and zero non-protocol stdout lines. The original Firestore
+setting returned error-32603 and zero tools. See
+[the diagnostic report](firebase-mcp-troubleshooting.md).
+
+Registering the corrected `atlas-firebase` host connection requires one command
+in a normal owner terminal, because Codex user configuration is outside the
+agent's writable roots. Use the stable absolute Node executable; the restarted
+environment does not resolve bare `node` or `npx`:
 
 ```powershell
-codex mcp add atlas-firebase -- node "C:\Users\nhuphi.vo_amaris\Documents\my-english-learning-engine\scripts\firebase-mcp.mjs"
-codex -c mcp_servers.atlas-firebase.startup_timeout_sec=120 resume
+codex mcp add atlas-firebase -- "C:\Users\nhuphi.vo_amaris\AppData\Roaming\fnm\node-versions\v24.22.0\installation\node.exe" "C:\Users\nhuphi.vo_amaris\Documents\my-english-learning-engine\scripts\firebase-mcp.mjs"
 ```
 
-Resume this project's conversation and check `/mcp` for `atlas-firebase`.
+Restart/resume this project's conversation and check `/mcp` for `atlas-firebase`.
 No proxy, sandbox or account permissions are weakened by the launcher. Its
 actual remote connection and project-list call must still be verified.
 Installing a plugin is not itself authentication. This installed server uses CLI

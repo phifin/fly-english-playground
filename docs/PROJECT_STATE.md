@@ -1,5 +1,50 @@
 # Current execution state
 
+## Firebase MCP startup diagnosed — 21 October 2026, latest continuation
+
+- Frontend remains live at https://phifin.github.io/fly-english-playground/.
+  Latest verified Actions run39538430213 passed all four jobs at commit
+  `11db0dce872f82dda0e67d493bf643a1a2a67805`. Cloud remains disabled pending
+  real project/provider/rules setup; do not claim cloud deployment is finished.
+- Owner reports both local MCP entries failed after restart, with only
+  `Auth: Unsupported`. This is not evidence of a Google login failure.
+- Actual non-login environment resolves neither `node` nor `npx`. The custom
+  entry is still configured with bare `command = "node"`. A stable installed
+  runtime exists at `C:/Users/nhuphi.vo_amaris/AppData/Roaming/fnm/node-versions/v24.22.0/installation/node.exe`.
+  Register that absolute executable, avoiding ephemeral fnm shell PATH entries.
+- A second failure was reproduced: CLI15.34.0 `--only core,auth,firestore`
+  initializes, then `tools/list` returns error-32603 and zero tools because remote
+  Firestore OneMCP definitions cannot be fetched. The launcher now defaults to
+  `core,auth`, which includes project/app/init/rules/deployment operations and
+  avoids that remote discovery dependency. It also handles missing Windows
+  APPDATA variables and has opt-in stderr-only startup milestones.
+- **Actual stdin/stdout pipe verification passed:** protocol2025-06-18,
+  official server `firebase`0.3.0, initialize6843ms, tools/list7315ms,
+  **20 tools**, zero non-protocol stdout lines. Sanitized evidence:
+  `artifacts/firebase-mcp-stdio.json`; original-setting failure evidence:
+  `artifacts/firebase-mcp-firestore-discovery.json`. No explicit account/project
+  tool calls or mutations in these probes. Server discovery uses existing CLI
+  credentials internally; no credentials were printed or copied.
+- `scripts/check-firebase-mcp.mjs` is an optional repeatable MCP client probe
+  using the executing Node binary, with sanitized results under artifacts.
+  Its Node child-process launch hits managed EPERM here. The separate direct
+  PowerShell pipeline above succeeded without weakening any restriction.
+- Syntax checks and all15 targeted deployment/security tests passed. These are
+  development-tool changes; no application/cloud credentials or policy changed.
+- The remaining unavoidable owner action is to replace the custom MCP command
+  in the read-only-to-agent user configuration, then restart/resume Codex:
+  `codex mcp add atlas-firebase -- "C:/Users/nhuphi.vo_amaris/AppData/Roaming/fnm/node-versions/v24.22.0/installation/node.exe" "C:/Users/nhuphi.vo_amaris/Documents/my-english-learning-engine/scripts/firebase-mcp.mjs"`.
+  The host connection has not yet been retested with that registration. Do not
+  ask for reinstall/login again. See `docs/firebase-mcp-troubleshooting.md`.
+
+Next: verify the corrected host connection actually exposes tools, then list
+projects through it. Remote project authorization and Spark plan remain unknown.
+Continue existing production cloud work once connected; do not restart frontend
+development or bypass the managed proxy. Earlier registration instructions using
+bare `node` below are superseded by this diagnosis.
+
+---
+
 ## Live deployment verified — latest state, 21 October 2026
 
 - Live URL **https://phifin.github.io/fly-english-playground/** returns the expected
