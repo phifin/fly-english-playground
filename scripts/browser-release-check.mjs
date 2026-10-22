@@ -8,6 +8,7 @@ import { deriveExpeditions, findRoute, validateBoard } from '../src/expedition.j
 import { mergeExports } from '../src/storage.js';
 import { deploymentUrl } from './verify-deployment.mjs';
 import { verifyCloudSdk } from './cloud-sdk-check.mjs';
+import { pollAsyncResult } from './browser-poll.mjs';
 
 // Verification tooling only. This script neither installs packages nor provisions
 // services. Every traveler, response and backup belongs to a fresh test context.
@@ -70,6 +71,7 @@ async function readImportState({ expected = null, expectError = false } = {}) {
 
 let browser;
 let page;
+let failurePage;
 const contexts = [];
 try {
   let playwright;
@@ -251,8 +253,9 @@ try {
       });
       await target.locator('#import-file').setInputFiles({ name: 'browser-test-backup.json', mimeType: 'application/json',
         buffer: Buffer.from(typeof value === 'string' ? value : JSON.stringify(value)) });
-      const result = await target.waitForFunction(readImportState, { expected: canonical(savedData(expected)), expectError: malformed }, { polling: 100 });
-      const outcome = await result.jsonValue(); await result.dispose();
+      const outcome = await pollAsyncResult(() => target.evaluate(readImportState,
+        { expected: canonical(savedData(expected)), expectError: malformed }),
+      { timeoutMs: 15000, intervalMs: 100, description: 'committed import records and a completed native file-change action' });
       assert.equal(outcome.probe.inputEvents, 1, 'The actual selected file must deliver its native input event.');
       assert.equal(outcome.probe.changeEvents, 1, 'The actual selected file must deliver its native change event.');
       assert.equal(outcome.probe.connectedAtChange, true, 'The file input must remain connected through the background notification.');
@@ -264,7 +267,7 @@ try {
       report.imports.push({ url: target.url(), rejected: malformed, profiles: outcome.snapshot.profiles.length,
         events: outcome.snapshot.events.length, probe: outcome.probe, notices: outcome.notices, errors: outcome.errors });
     } catch (error) {
-      error.verificationPage = target;
+      failurePage = target;
       report.importFailure = { rejected: malformed, before, expected };
       try { report.importFailure.actual = await target.evaluate(readImportState); }
       catch (inspectionError) { report.importFailure.inspectionError = inspectionError.message; }
@@ -702,7 +705,7 @@ try {
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);
 } catch (error) {
   report.passed = false; report.failure = { message: error.message, stack: error.stack };
-  const failedPage = error.verificationPage ?? page;
+  const failedPage = failurePage ?? page;
   if (failedPage && !failedPage.isClosed()) {
     try {
       report.failure.url = failedPage.url();

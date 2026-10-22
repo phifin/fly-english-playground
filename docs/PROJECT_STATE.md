@@ -1,5 +1,24 @@
 # Current execution state
 
+## Async import verification corrected — 22 October 2026
+
+- Runtime release `7fc15238b5c21029f74a` remains verified by all four jobs in
+  run39707387386. The subsequent test-only commit `4b125cdf5cb01e9cbb1507f485dd173c57dbe6cf`
+  failed before deployment in run39708089124. Its artifact proves the actual import
+  committed all three profiles and37 events, delivered both native events, completed
+  the busy lifecycle and showed no application error.
+- Root cause of that later test failure: `waitForFunction` sampled an asynchronous
+  predicate as a truthy Promise before its false result resolved. The driver now
+  polls awaited `page.evaluate` reads with a bounded15-second budget. Exact committed
+  records, native event delivery, connected input, completed busy lifecycle and
+  rejection integrity remain mandatory. Notice text is diagnostic only.
+- Four deterministic polling regression tests cover delayed success, timeout,
+  a never-resolving read and propagation of an actual read error. Failure capture
+  retains the target page without attaching its internal Playwright object to errors.
+- This scoped helper/test update still requires a fresh complete CI run. Firebase
+  rules/runtime assets are unchanged. Authorized domain is verified; first game
+  Google identity/admission and positive live cloud synchronization remain unverified.
+
 ## Live import fix verified; stronger state assertion — 22 October 2026
 
 - **All four jobs actually passed** in run39707387386 at source
