@@ -1,5 +1,45 @@
 # Current execution state
 
+## Backup-input and CDN-outage regression — 22 October 2026, latest continuation
+
+- Published first form fix at `8f386c8d9b1284b1a96dbfc68837d80d8697ad5a`,
+  tree`ea54e2a7571aedfd1ebd2d1645276f85e44956a7`. Run39706514460 passed build,
+  Auth/Firestore emulators and Pages deploy. Live browser checks confirmed actual
+  SDK/CSP, successful create/rename/delete under deliberate notifications and
+  mode/mobile/backup behavior. The later quoted-backup import timed out waiting
+  for its merge notice; this run is **not** fully green.
+- Actual second failure artifact12395312941, SHA256
+  `b16b4158a84faa7169daa206429c4d4a2e5d42c173d6819b29614810d6dfa1f6`,
+  is under artifacts/production-failure-39706514460/. Earlier screenshots only
+  captured the main page, not the clean-context import target; the harness now
+  records the actual failed target's UI/form snapshot and screenshot.
+- Hidden native file input is now one persistent node **outside #app**, with a
+  direct shared change handler. Background renders cannot detach it between
+  native input/change events or dismiss its picker. Captured File is retained
+  locally while clearing input.value, allowing same-file reimport. Deterministic
+  browser regression emits an ordinary online notification between actual native
+  file events and still requires the real import/validation notice and evidence.
+- Cloud details now prepare only on a real closed-to-open transition. Recreating
+  an already-open panel after a failed SDK load must not loop through error/render/
+  toggle/retry. A separate fresh context returns503 for actual pinned CDN modules
+  and checks settled UI, preserved typed name/open sections, no automatic retries,
+  auth/data calls or popups. Normal offline and CSP gates stay enabled.
+- Current local build`7fc15238b5c21029f74a`,26 files,75558 gzip JS bytes.
+  Syntax and260 local tests passed before the final small direct-handler wiring;
+  actual fresh CI/browser checks for these additional fixes are still required.
+- Owner enrollment checklist was sent once through async input: add authorized
+  domain phifin.github.io, first game Google sign-in, then console-managed
+  access/UID Boolean approved=true. Await reply without repeating CLI login or
+  asking for unrelated technical choices. Public Auth config still lacks the
+  Pages domain at the last read. Continue independent verification meanwhile.
+
+Next: finish fresh checks, publish scoped main/browser/durable-state changes with
+current remote parent, monitor all four jobs and inspect actual evidence. Preserve
+the already provisioned no-billing Firebase backend and unrelated phi-login.
+Do not declare approved live synchronization or complete release until verified.
+
+---
+
 ## Profile-form production regression — 22 October 2026, latest continuation
 
 - Source/cloud activation was published at `d289243ac16047cba044b590c36282e7a1ed7be8`,

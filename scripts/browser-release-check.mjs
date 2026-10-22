@@ -92,9 +92,9 @@ try {
     : await playwright.chromium.launch(options);
   report.browser = await browser.version();
   const external = [];
-  async function newContext() {
+  async function newContext(options = {}) {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, hasTouch: true,
-      reducedMotion: 'reduce', acceptDownloads: true });
+      reducedMotion: 'reduce', acceptDownloads: true, ...options });
     contexts.push(context);
     if (axePath) await context.addInitScript({ path: axePath });
     context.on('request', request => { const url = new URL(request.url()); if (['http:', 'https:'].includes(url.protocol) && url.origin !== base.origin) external.push(url.origin); });
@@ -186,12 +186,20 @@ try {
     return JSON.parse(await readFile(await (await waiting).path(), 'utf8'));
   }
   async function upload(value, { malformed = false, target = page } = {}) {
-    await target.locator('#import-file').setInputFiles({ name: 'browser-test-backup.json', mimeType: 'application/json',
-      buffer: Buffer.from(typeof value === 'string' ? value : JSON.stringify(value)) });
-    await ready(target);
-    if (malformed) { await target.locator('.alert.error').waitFor({ state: 'visible' }); return; }
-    await noError(target);
-    await target.locator('.alert.notice').filter({ hasText: /validated and merged|kiểm tra và gộp/i }).waitFor({ state: 'visible' });
+    try {
+      // A native file input dispatches input before change. Deliver a real
+      // background notification in that interval: the selected file and its
+      // delegated change handler must survive the resulting UI update.
+      await target.locator('#import-file').evaluate(element => element.addEventListener('input', () => {
+        window.dispatchEvent(new Event('online'));
+      }, { once: true }));
+      await target.locator('#import-file').setInputFiles({ name: 'browser-test-backup.json', mimeType: 'application/json',
+        buffer: Buffer.from(typeof value === 'string' ? value : JSON.stringify(value)) });
+      await ready(target);
+      if (malformed) { await target.locator('.alert.error').waitFor({ state: 'visible' }); return; }
+      await noError(target);
+      await target.locator('.alert.notice').filter({ hasText: /validated and merged|kiểm tra và gộp/i }).waitFor({ state: 'visible' });
+    } catch (error) { error.verificationPage = target; throw error; }
   }
   async function journal(expected, target = page) {
     if (target === page) await action('journal');
@@ -309,6 +317,59 @@ try {
   check(report.cloudSdk.configured
     ? 'The deployed Firebase SDK prepares under its actual CSP using pinned CDN modules, without sign-in, popups or cloud data requests.'
     : 'The deployed disabled cloud prepares without external SDK or service requests.');
+  if (report.cloudSdk.configured) {
+    // This negative test has its own console collector because HTTP 503 module
+    // loads correctly produce browser console errors. Block service workers only
+    // in this fresh context so unrelated download-readiness notifications cannot
+    // be mistaken for a cloud-error render loop; normal offline checks run below.
+    const outageContext = await newContext({ serviceWorkers: 'block' });
+    const outagePage = await outageContext.newPage();
+    outagePage.setDefaultTimeout(15000); outagePage.setDefaultNavigationTimeout(45000);
+    const sdkRoot = `https://www.gstatic.com/firebasejs/${report.cloudSdk.sdkVersion}/`;
+    const requests = [], blocked = [], uncaught = [], consoleErrors = [];
+    let popups = 0;
+    outagePage.on('request', request => {
+      if (new URL(request.url()).origin !== base.origin) requests.push(request.url());
+    });
+    outagePage.on('pageerror', error => uncaught.push(error.message));
+    outagePage.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+    outagePage.on('popup', popup => { popups++; popup.close().catch(() => {}); });
+    await outageContext.route(`${sdkRoot}**`, async route => {
+      blocked.push(route.request().url());
+      await route.fulfill({ status: 503, contentType: 'application/javascript',
+        headers: { 'access-control-allow-origin': '*', 'cache-control': 'no-store' },
+        body: '/* Intentional SDK CDN outage for the browser regression. */' });
+    });
+    try {
+      await outagePage.goto(base.href); await ready(outagePage);
+      const form = outagePage.locator('[data-form="create-profile"]');
+      const name = 'CDN outage CI';
+      await form.locator('[name="name"]').fill(name);
+      await outagePage.locator('.cloud-panel > summary').click();
+      await outagePage.locator('.alert.error').waitFor({ state: 'visible' });
+      await outagePage.locator('.cloud-status').filter({ hasText: 'Cloud could not load.' }).waitFor({ state: 'visible' });
+      await ready(outagePage);
+      assert.ok(blocked.length > 0, 'The real adapter must attempt a pinned SDK load before the outage can be tested.');
+      const attempts = blocked.length;
+      const mutations = await outagePage.evaluate(() => new Promise(resolve => {
+        let changes = 0;
+        const observer = new MutationObserver(records => { changes += records.length; });
+        observer.observe(document.querySelector('#app'), { childList: true });
+        setTimeout(() => { observer.disconnect(); resolve(changes); }, 500);
+      }));
+      assert.equal(mutations, 0, 'An open cloud panel must settle after an SDK failure without repeating error renders.');
+      assert.equal(blocked.length, attempts, 'An SDK failure must not automatically repeat CDN load attempts.');
+      assert.equal(await form.locator('[name="name"]').inputValue(), name, 'An SDK outage must preserve the typed traveler name.');
+      assert.equal(await form.evaluate(element => element.closest('details').open), true, 'The create section must stay expanded after an SDK outage.');
+      assert.equal(await outagePage.locator('.cloud-panel').evaluate(element => element.open), true, 'The failed cloud panel must stay open so its status remains readable.');
+      assert.ok(requests.every(url => url.startsWith(sdkRoot)), 'The outage check must not contact authentication or learner-data services.');
+      assert.equal(popups, 0, 'Opening the cloud panel must not open a sign-in popup.');
+      assert.deepEqual(uncaught, [], 'Expected CDN errors must be handled by the app without uncaught exceptions.');
+      report.cloudOutage = { sdkRoot, blockedModules: [...new Set(blocked)], observationMs: 500,
+        appMutations: mutations, consoleErrors: consoleErrors.length, popups, uncaught };
+    } finally { await outageContext.close(); contexts.splice(contexts.indexOf(outageContext), 1); }
+    check('A real pinned-SDK HTTP 503 settles without error-render loops or automatic retries while preserving the typed traveler and readable open cloud panel.');
+  } else report.limitations.push('Cloud is disabled: the real SDK CDN-outage and open-panel recovery regression was skipped.');
   const mainName = 'River CI', otherName = 'Sky CI', childName = 'Moss CI';
   const mainId = await createProfile(mainName, { mode: 'balanced', language: 'vi' });
   check('Traveler creation preserves typed names, open sections, focus and selection through a background notification before successful submission.');
@@ -569,8 +630,16 @@ try {
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);
 } catch (error) {
   report.passed = false; report.failure = { message: error.message, stack: error.stack };
-  if (page && !page.isClosed()) {
-    try { await page.screenshot({ path: fileURLToPath(new URL('release-failure.png', directory)), fullPage: true }); } catch { /* Browser launch/closure may have failed. */ }
+  const failedPage = error.verificationPage ?? page;
+  if (failedPage && !failedPage.isClosed()) {
+    try {
+      report.failure.url = failedPage.url();
+      report.failure.ui = await failedPage.locator('#app').evaluate(element => ({ text: element.innerText,
+        forms: [...element.querySelectorAll('form')].map(form => ({ name: form.dataset.form,
+          fields: [...form.elements].filter(control => control.name && control.type !== 'file')
+            .map(control => ({ name: control.name, value: control.value })) })) }));
+      await failedPage.screenshot({ path: fileURLToPath(new URL('release-failure.png', directory)), fullPage: true });
+    } catch { /* Browser launch/closure may have failed. */ }
   }
   throw error;
 } finally {

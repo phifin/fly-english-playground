@@ -10,6 +10,11 @@ import {journeyProgress} from './journey.js';
 import {studioView} from './studio-view.js';
 
 const app=document.querySelector('#app');
+// Keep the native file chooser outside rebuilt views. Replacing/detaching it
+// between the browser's input/change events can otherwise drop an import.
+const importInput=document.createElement('input');
+Object.assign(importInput,{type:'file',id:'import-file',accept:'application/json,.json',hidden:true});
+app.after(importInput);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let store,pack,boards=[],profiles=[],profile=null,events=[],progress,cloud,qualityCleanup=()=>{},refreshGeneration=0,draftTimer=null,draftSave=Promise.resolve(),renderedContext=null;
 const ui={screen:'atlas',mission:null,activity:null,answer:null,feedback:null,supported:false,stage:'intro',busy:false,error:'',notice:'',showModel:false,review:false,placement:[],placementItems:[],placementIndex:0,cloudStatus:{state:'disabled',configured:false},draftKey:'',lastSaved:null};
@@ -181,7 +186,7 @@ function render(focusHeading=false){
  })):[];
  const screens={profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen};
  document.body.className=`mode-${profile?.settings.mode??'balanced'}`;
- app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.error?`<div class="alert error" role="alert">${esc(ui.error)} ${btn(t('Dismiss','Đóng'),'dismiss-error','','text-button')}</div>`:''}${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main>${footer()}<input type="file" id="import-file" accept="application/json,.json" hidden>`;
+ app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.error?`<div class="alert error" role="alert">${esc(ui.error)} ${btn(t('Dismiss','Đóng'),'dismiss-error','','text-button')}</div>`:''}${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main>${footer()}`;
  for(const saved of forms){
   const form=[...app.querySelectorAll('form[data-form]')].find(el=>el.dataset.form===saved.name);if(!form)continue;
   const controls=[...form.elements].filter(el=>el.name&&el.type!=='file');
@@ -283,16 +288,18 @@ app.addEventListener('input',e=>{
 });
 app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
-app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){ui.showCloud=e.target.open;if(e.target.open)cloud?.prepare().catch(reportError);}},true);
-app.addEventListener('change',e=>run(async()=>{
+app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
+const handleChange=e=>run(async()=>{
  const el=e.target;
  if(el.hasAttribute('data-studio-item')){ui.studioId=el.value;globalThis.speechSynthesis?.cancel();render();}
  if(el.dataset.setting){await saveDraft();profile=await store.updateProfile(profile.id,{settings:{[el.dataset.setting]:el.dataset.setting==='sound'?el.value==='true':el.value}});setPreferences();render();}
  if(el.dataset.journey){profile=await store.updateProfile(profile.id,{journey:{[el.dataset.journey]:el.value}});render();}
  if(el.dataset.match){ui.answer={...ui.answer,[el.dataset.match]:el.value};queueDraft();}
  if(el.dataset.check!==undefined){const set=new Set(ui.answer.checks);el.checked?set.add(Number(el.dataset.check)):set.delete(Number(el.dataset.check));ui.answer={...ui.answer,checks:[...set]};queueDraft();}
- if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>STORE_LIMITS.importBytes)throw new Error(t('Backup is too large.','Bản sao quá lớn.'));const data=JSON.parse(await file.text());await store.importAll(data);await refresh();ui.notice=t('Backup validated and merged. Existing history was preserved.','Bản sao đã kiểm tra và gộp. Lịch sử hiện có được giữ lại.');render();}
-}));
+ if(el.id==='import-file'&&el.files[0]){const file=el.files[0];el.value='';if(file.size>STORE_LIMITS.importBytes)throw new Error(t('Backup is too large.','Bản sao quá lớn.'));const data=JSON.parse(await file.text());await store.importAll(data);await refresh();ui.notice=t('Backup validated and merged. Existing history was preserved.','Bản sao đã kiểm tra và gộp. Lịch sử hiện có được giữ lại.');render();}
+});
+app.addEventListener('change',handleChange);
+importInput.addEventListener('change',handleChange);
 app.addEventListener('submit',e=>{e.preventDefault();const form=e.target,data=new FormData(form);run(async()=>{
  if(form.dataset.form==='create-profile'){const kind=data.get('kind');const p=await store.createProfile({name:data.get('name'),kind,guardianId:kind==='dependent'?data.get('guardianId'):null});await selectProfile(p.id);render(true);}
  if(form.dataset.form==='rename'){profile=await store.updateProfile(profile.id,{name:data.get('name')});await refresh();ui.notice=t('Name saved.','Đã lưu tên.');render();}
