@@ -414,28 +414,50 @@ try {
     const englishHeading = await arrivalPage.locator('.welcome h1').innerText();
     const languageButton = value => arrivalPage.locator(`.masthead [data-action="guidance-language"][data-value="${value}"]`);
     const start = arrivalPage.locator('.welcome [data-action="start-traveler"]');
-    const withinFirstViewport = async locator => locator.evaluate(element => {
-      const box = element.getBoundingClientRect();
-      const top = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
-      return { inViewport: box.left >= 0 && box.top >= 0 && box.right <= innerWidth && box.bottom <= innerHeight,
-        unobscured: Boolean(top && element.contains(top)), width: box.width, height: box.height };
-    });
+    report.arrivalObservations = [];
+    const withinFirstViewport = async locator => {
+      const expectedViewport = arrivalPage.viewportSize();
+      return pollAsyncResult(async () => {
+        const sample = await locator.evaluate(element => {
+          const box = element.getBoundingClientRect();
+          const top = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+          const style = getComputedStyle(element);
+          return { connected: element.isConnected, action: element.dataset.action, value: element.dataset.value ?? null,
+            rect: { x: box.x, y: box.y, top: box.top, left: box.left, right: box.right, bottom: box.bottom },
+            viewport: { width: innerWidth, height: innerHeight, scrollX, scrollY,
+              visualWidth: visualViewport?.width, visualHeight: visualViewport?.height },
+            hit: top ? { tag: top.tagName, id: top.id, classes: String(top.className),
+              action: top.dataset?.action ?? null, text: top.textContent?.trim().slice(0, 100) } : null,
+            style: { display: style.display, visibility: style.visibility, pointerEvents: style.pointerEvents },
+            inViewport: box.left >= 0 && box.top >= 0 && box.right <= innerWidth && box.bottom <= innerHeight,
+            unobscured: Boolean(top && element.contains(top)), width: box.width, height: box.height };
+        });
+        // A background readiness render can replace the locator's resolved node
+        // before evaluate runs. Only retry an invalid detached-node/resize
+        // observation; a connected bad layout or obstruction fails immediately.
+        report.arrivalObservations.push({ expectedViewport, ...sample });
+        return sample.connected && sample.viewport.width === expectedViewport.width && sample.viewport.height === expectedViewport.height
+          ? sample : false;
+      }, { timeoutMs: 15000, intervalMs: 100, description: 'a connected arrival control at the requested viewport size' });
+    };
     const appearance = [];
+    report.arrival = { appearance };
     for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
       await arrivalPage.setViewportSize(viewport);
       await arrivalPage.evaluate(() => scrollTo(0, 0));
       const callToAction = await withinFirstViewport(start);
+      appearance.push({ viewport, callToAction });
       assert.equal(callToAction.inViewport && callToAction.unobscured, true,
-        `The first action must be visible and unobscured on arrival at ${viewport.width}px.`);
+        `The first action must be visible and unobscured on arrival at ${viewport.width}px: ${JSON.stringify(callToAction)}`);
       assert.ok(callToAction.height >= 44, 'The primary entry action needs a full touch target.');
       for (const value of ['en', 'vi']) {
         const language = await withinFirstViewport(languageButton(value));
-        assert.equal(language.inViewport && language.unobscured, true, 'Both written language choices must be immediately discoverable.');
+        assert.equal(language.inViewport && language.unobscured, true,
+          `Both written language choices must be immediately discoverable: ${JSON.stringify(language)}`);
         assert.ok(language.height >= 44 && language.width >= 44, 'Header guidance choices need usable touch targets.');
       }
       assert.equal(await arrivalPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
         `The welcome screen must not overflow at ${viewport.width}px.`);
-      appearance.push({ viewport, callToAction });
       if (viewport.width === 1440) await arrivalPage.screenshot({ path: fileURLToPath(new URL('release-welcome-desktop.png', directory)), fullPage: true });
     }
     await languageButton('vi').focus(); await languageButton('vi').press('Enter'); await ready(arrivalPage);
