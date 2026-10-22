@@ -246,3 +246,30 @@ the rules test. The combined emulator job passed in GitHub-hosted CI; see
 do not establish positive production authentication or data synchronization.
 [Firestore rule conditions](https://firebase.google.com/docs/firestore/security/rules-conditions),
 [Rule field validation](https://firebase.google.com/docs/firestore/security/rules-fields)
+# In-game family approval (22 October 2026)
+
+The game now separates local travelers, Google sign-in and admission. Ordinary
+family members sign in, explicitly **Ask to join the family**, then use **Check
+family access** after approval. They never need to copy an identifier or use the
+Firebase console. Requests share only Google display name and verified email.
+
+The owner has one trusted setup step before managing future requests in the game:
+
+1. Deploy the reviewed rules from a regular authorized terminal in this repository:
+   `npx -y firebase-tools@15.34.0 deploy --project unfolding-atlas-phifin --config cloud/firebase.json --only firestore:rules`.
+2. Find your own game sign-in in Firebase Authentication users. In Firestore, set
+   `access/{your UID}` to Boolean `approved: true` and Boolean `familyOwner: true`.
+   Keep this owner role restricted to the account that actually manages the family.
+3. Choose **Check family access** in the game. Open **Welcome your family** to
+   review requests and allow or turn off each person's cloud access.
+
+This is a one-time project-owner bootstrap, not an ordinary family-member flow.
+Clients cannot promote owners, change owner records or access another learner's
+private progress. Requests are immutable, identity-bound and limited to one document
+per Google identity. The owner list is bounded to100 records. No public invitations,
+automatic approvals, Cloud Functions, billing or runtime AI are introduced.
+
+Until the reviewed rules are actually deployed, request submission deliberately
+fails closed with a readable setup message. Do not claim in-game approvals are live
+based only on the frontend deployment or emulator success.
+

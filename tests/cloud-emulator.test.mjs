@@ -112,8 +112,15 @@ test('Auth and Firestore emulators verify approved family synchronization and re
   await assert.rejects(request(`access/${outsider.uid}`, { token: outsider.token, method: 'PATCH', fields: { approved: true } }), { code: 'permission-denied' });
   const first = await openMemoryStore({ clock: () => AT }), second = await openMemoryStore({ clock: () => AT });
   const unapproved = createCloud({ store: second, config, loadBackend: async () => transport(outsiderSubject) });
-  await assert.rejects(unapproved.signIn(), { code: 'cloud/not-approved' });
-  assert.equal(unapproved.status().uid, null);
+  assert.equal((await unapproved.signIn()).state, 'pending');
+  assert.equal(unapproved.status().uid, outsider.uid);
+  await assert.rejects(unapproved.restoreProfiles(), { code: 'cloud/approval-required' });
+  await request(`access/${outsider.uid}`, { admin: true, method: 'PATCH', fields: { approved: true } });
+  assert.equal((await unapproved.refreshAccess()).state, 'ready', 'Server approval is recognized in the same authenticated session.');
+  assert.deepEqual(await unapproved.restoreProfiles(), []);
+  await request(`access/${outsider.uid}`, { admin: true, method: 'PATCH', fields: { approved: false } });
+  assert.equal((await unapproved.refreshAccess()).state, 'blocked');
+  await assert.rejects(unapproved.restoreProfiles(), { code: 'cloud/access-blocked' });
   const apiA = transport(ownerSubject), a = createCloud({ store: first, config, loadBackend: async () => apiA });
   const b = createCloud({ store: second, config, loadBackend: async () => transport(ownerSubject) });
   await a.signIn(); await b.signIn();
@@ -144,7 +151,7 @@ test('Auth and Firestore emulators verify approved family synchronization and re
   await assert.rejects(a.sync(child.id), /Synthetic lost acknowledgement/);
   assert.equal((await a.sync(child.id)).uploaded, 0);
   await request(`access/${owner.uid}`, { admin: true, method: 'PATCH', fields: { approved: false } });
-  const recovery = await first.exportAll(); await assert.rejects(a.sync(child.id), { code: 'permission-denied' });
+  const recovery = await first.exportAll(); await assert.rejects(a.sync(child.id), { code: 'cloud/access-blocked' });
   assert.deepEqual(await first.exportAll(), recovery);
   await request(`access/${owner.uid}`, { admin: true, method: 'PATCH', fields: { approved: true } });
   await assert.rejects(a.deleteRemoteProfile(guardian.id), { code: 'cloud/profile-in-use' });

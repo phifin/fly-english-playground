@@ -363,11 +363,12 @@ function api(backend, notices, clock = () => new Date().toISOString()) {
     async listProfiles() { return transact(['profiles'], 'readonly', async query => (await query.all('profiles')).sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id))); },
     async getProfile(profileId) { id(profileId); return transact(['profiles'], 'readonly', async query => (await query.get('profiles', profileId)) ?? null); },
     async createProfile(input) {
-      record(input, ['name'], ['name', 'kind', 'guardianId'], 'New profile');
+      record(input, ['name'], ['name', 'kind', 'guardianId', 'settings'], 'New profile');
+      if (own(input, 'settings')) settings(input.settings, true);
       const at = now();
       const profile = { id: `profile-${randomId()}`, name: typeof input.name === 'string' ? input.name.trim() : input.name,
         kind: input.kind ?? 'independent', guardianId: input.guardianId ?? null, createdAt: at, updatedAt: at, revision: 1,
-        settings: { ...DEFAULT_SETTINGS }, journey: { ...DEFAULT_JOURNEY }, cloudOwnerUid: null };
+        settings: { ...DEFAULT_SETTINGS, ...input.settings }, journey: { ...DEFAULT_JOURNEY }, cloudOwnerUid: null };
       validateProfile(profile);
       await transact(TABLES, 'readwrite', async query => {
         validateGraph([...(await query.all('profiles')), profile]);

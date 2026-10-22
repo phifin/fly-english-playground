@@ -1,5 +1,53 @@
 # Current execution state
 
+## UI/UX and family enrollment refinement in verification — 22 October 2026
+
+- User approved comprehensive autonomous polish for Issues001–003 and005.
+  Implemented visible arrival CTA, resumable traveler entry, written header EN/VI
+  controls before creation, remembered guidance inherited atomically by new travelers,
+  optional guardian/cloud/recovery disclosures and simplified mode onboarding.
+- Shared native controls retain OS menus; focused fields use a single edge,
+  spaced chevrons, larger touch targets and forced-color fallback. Header/mobile,
+  alerts, ordering controls, cloud states and long labels have shared refinements.
+- Auth identity now persists in pending/blocked states. Explicit request, access
+  refresh and protected owner approval/revocation UI use localized stable codes;
+  no Firebase/UID jargon in ordinary messages. No implicit history upload.
+- New reviewed rules permit identity-bound immutable join requests and admission-only
+  owner management. Owner authority must be provisioned externally once; clients
+  cannot create owners or read another learner's data. Current tool catalog exposes
+  no Firebase operations; source rules are not yet claimed deployed. Owner terminal
+  deployment plus bootstrap is documented in cloud/DEPLOYMENT.md, after CI review.
+- Local suite currently287 total,284 passes,3 emulator skips. Build and actual
+  preview/live browser verification remain to finish for this scoped refinement.
+  See docs/ui-ux-refinement.md. No production content or saved schema version changed.
+
+## Latest production verification passed — 22 October 2026
+
+- Current remote head `737800c64f38752308a9a722cfc039223fd2ab32`, tree
+  `9734e15664b83a0403bafae90672fd1bd044ca70`; run39708773134 completed successfully.
+  All four jobs passed: build119594879052, firestore-rules119594878805,
+  deploy119595098223, verify-production119595157590. No force update.
+- Actual Node suite:264 passes,2 emulator-dependent skips; separate real Auth and
+  Firestore emulator job:2 passes,0 skips. Preview and deployed-site browser runs
+  each passed all23 checks. Browser sandbox remained enabled.
+- Retrieved and independently SHA256-verified production artifact12395872667:
+  `71eb31ea6cc4ab5ce38bfe28837087ec41ebbde42f58020971a875c7275540fa`.
+  The six actual native import scenarios each delivered one input and one change
+  event, retained the connected file input and observed a completed busy lifecycle.
+  Idempotent/rejected/restored backups retained3 profiles and37 events. The second
+  quote-bearing backup import committed3 profiles and38 events exactly. No
+  unexpected application errors; zero axe violations on four checked interfaces.
+- Live release remains `7fc15238b5c21029f74a`:24 assets/555868 cached bytes,
+  24 missions/120 activities/24 boards,5 private paths return404. Actual deployed
+  Firebase13 SDK/CSP and a deliberate CDN503 recovery check passed.
+- CI failure is resolved. This final evidence entry is saved locally after the
+  published commit's completed run; no further application change is pending.
+- Remaining owner dependency: first Google sign-in through the game's cloud panel,
+  then owner-console admission at `access/{actual UID}` with Boolean `approved:true`.
+  Authorized domain was verified already. Positive live Google/cloud synchronization
+  is still unverified, despite the passing actual emulator integration. No additional
+  CLI login, domain change, plugin reinstall or paid service is needed.
+
 ## Async import verification corrected — 22 October 2026
 
 - Runtime release `7fc15238b5c21029f74a` remains verified by all four jobs in

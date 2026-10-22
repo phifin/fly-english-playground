@@ -19,7 +19,7 @@ function backend(data, account = 'ownerA') {
     currentUid: () => currentUid,
     async signIn() { currentUid = account; return { uid: account }; },
     async signOut() { currentUid = null; },
-    async getGrant(uid) { return { approved: data.approved.has(uid) }; },
+    async getGrant(uid) { return data.approved.has(uid) ? { approved: true } : null; },
     async isDeleted(uid, id) { authorize(uid); return data.deleted.has(key(uid, id)); },
     async getProfile(uid, id) { authorize(uid); return copy(data.profiles.get(key(uid, id)) || null); },
     async listProfiles(uid) { authorize(uid); return [...data.profiles].filter(([id]) => id.startsWith(uid + '/') && !data.deleted.has(id)).map(([, value]) => copy(value)); },
@@ -177,12 +177,14 @@ test('an SDK account change during admission cannot produce a ready controller f
   assert.equal(cloud.status().state, 'error'); assert.equal(cloud.status().uid, null); assert.equal(api.currentUid(), null);
 });
 
-test('unapproved Google identities never become ready or link a local profile', async () => {
+test('unapproved Google identities stay signed in for approval but never link a local profile', async () => {
   const db = await store(); const data = network(); const api = backend(data, 'outsider');
   const cloud = createCloud({ store: db, config, loadBackend: async () => api });
-  await assert.rejects(cloud.signIn(), error => error.code === 'cloud/not-approved');
-  assert.equal(cloud.status().uid, null); assert.equal(api.currentUid(), null);
-  await assert.rejects(cloud.linkProfile('missing'), error => error.code === 'cloud/session-changed');
+  assert.equal((await cloud.signIn()).state, 'pending');
+  assert.equal(cloud.status().approved, false);
+  assert.equal(cloud.status().uid, 'outsider'); assert.equal(api.currentUid(), 'outsider');
+  await assert.rejects(cloud.linkProfile('missing'), error => error.code === 'cloud/approval-required');
+  assert.equal(data.profiles.size, 0);
 });
 
 test('sync requires explicit linking and preserves owner binding after sign-out', async () => {

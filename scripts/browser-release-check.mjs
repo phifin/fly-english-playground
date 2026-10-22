@@ -155,6 +155,19 @@ try {
     if (await target.locator('.startup-error h1').count()) throw new Error(await target.locator('.startup-error').innerText());
   }
   async function noError(target = page) { assert.equal(await target.locator('.alert.error').count(), 0, await target.locator('.alert.error').allTextContents()); }
+  async function revealDetails(locator, target = page) {
+    // Follow the same disclosure path as a person. Never force clicks through
+    // hidden administrative sections or change their open state in page code.
+    const parents = locator.locator('xpath=ancestor::details');
+    for (let index = 0; index < await parents.count(); index++) {
+      if (await locator.isVisible()) break;
+      const parent = parents.nth(index);
+      if (!(await parent.evaluate(element => element.open))) {
+        await parent.locator(':scope > summary').click();
+        await ready(target);
+      }
+    }
+  }
   async function click(locator, { allowError = false, keyboard = false } = {}) {
     await ready();
     if (keyboard) { await locator.focus(); await page.keyboard.press('Enter'); }
@@ -170,7 +183,9 @@ try {
     await ready();
     const selector = `[data-form="${name}"]`, form = page.locator(selector);
     const control = form.locator(`[name="${focus}"]`);
-    const expanded = await form.evaluate(element => element.closest('details')?.open ?? null);
+    const expansion = element => ({ enclosing: element.closest('details')?.open ?? null,
+      nested: [...element.querySelectorAll('details')].map(detail => detail.open) });
+    const expanded = await form.evaluate(expansion);
     await control.focus();
     const selection = await control.evaluate(element => {
       element.setSelectionRange(1, Math.min(3, element.value.length));
@@ -185,7 +200,7 @@ try {
       assert.equal(await form.locator(`[name="${field}"]`).inputValue(), value,
         `A background connection notification must preserve the ${name} form's ${field}.`);
     }
-    assert.equal(await form.evaluate(element => element.closest('details')?.open ?? null), expanded,
+    assert.deepEqual(await form.evaluate(expansion), expanded,
       `A background notification must preserve the ${name} form's expanded section.`);
     assert.equal(await control.evaluate(element => element === document.activeElement), true,
       `A background notification must preserve focus in the ${name} form.`);
@@ -195,9 +210,11 @@ try {
   async function createProfile(name, { kind = 'independent', guardianId = '', mode = 'balanced', language = 'en' } = {}) {
     if (!(await page.locator('[data-form="create-profile"]').count())) await action('profiles');
     const form = page.locator('[data-form="create-profile"]');
-    if (!(await form.isVisible())) await page.locator('details').filter({ has: form }).first().locator('summary').first().click();
+    await revealDetails(form);
     await form.locator('[name="name"]').fill(name);
+    await revealDetails(form.locator('[name="kind"]'));
     await form.locator('[name="kind"]').selectOption(kind);
+    await ready();
     if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
     await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
     await click(form.locator('button[type="submit"]'));
@@ -371,9 +388,9 @@ try {
     check(`${mode} solves ${mission.level} through its own controls; saved path replay preserves discoveries after a reset.`);
   }
   async function noOverflow() { assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, 'The 390px layout must not overflow horizontally.'); }
-  async function axe(label) {
+  async function axe(label, target = page) {
     if (!axePath) return;
-    const result = await page.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
+    const result = await target.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
     report.axe ??= []; report.axe.push({ page: label, violations: result.violations.map(({ id, impact, nodes }) => ({ id, impact, targets: nodes.map(node => node.target) })) });
     assert.deepEqual(result.violations.filter(v => ['serious', 'critical'].includes(v.impact)).map(v => v.id), [], `Serious accessibility violations on ${label}`);
   }
@@ -384,6 +401,127 @@ try {
       'The actual browser must load the expected deployed release, not an older cached shell.');
     check('The browser loaded the expected release at its configured project URL.');
   }
+
+  // Keep this first-visit journey independent of the three travelers whose
+  // exact journals and backups are checked later. It uses only real controls
+  // and read-only inspection of records committed by the application.
+  const arrivalContext = await newContext({ locale: 'en-GB' });
+  const arrivalPage = await arrivalContext.newPage(); observe(arrivalPage);
+  arrivalPage.setDefaultTimeout(15000); arrivalPage.setDefaultNavigationTimeout(45000);
+  try {
+    await arrivalPage.goto(base.href); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'en');
+    const englishHeading = await arrivalPage.locator('.welcome h1').innerText();
+    const languageButton = value => arrivalPage.locator(`.masthead [data-action="guidance-language"][data-value="${value}"]`);
+    const start = arrivalPage.locator('.welcome [data-action="start-traveler"]');
+    const withinFirstViewport = async locator => locator.evaluate(element => {
+      const box = element.getBoundingClientRect();
+      const top = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+      return { inViewport: box.left >= 0 && box.top >= 0 && box.right <= innerWidth && box.bottom <= innerHeight,
+        unobscured: Boolean(top && element.contains(top)), width: box.width, height: box.height };
+    });
+    const appearance = [];
+    for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
+      await arrivalPage.setViewportSize(viewport);
+      await arrivalPage.evaluate(() => scrollTo(0, 0));
+      const callToAction = await withinFirstViewport(start);
+      assert.equal(callToAction.inViewport && callToAction.unobscured, true,
+        `The first action must be visible and unobscured on arrival at ${viewport.width}px.`);
+      assert.ok(callToAction.height >= 44, 'The primary entry action needs a full touch target.');
+      for (const value of ['en', 'vi']) {
+        const language = await withinFirstViewport(languageButton(value));
+        assert.equal(language.inViewport && language.unobscured, true, 'Both written language choices must be immediately discoverable.');
+        assert.ok(language.height >= 44 && language.width >= 44, 'Header guidance choices need usable touch targets.');
+      }
+      assert.equal(await arrivalPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
+        `The welcome screen must not overflow at ${viewport.width}px.`);
+      appearance.push({ viewport, callToAction });
+      if (viewport.width === 1440) await arrivalPage.screenshot({ path: fileURLToPath(new URL('release-welcome-desktop.png', directory)), fullPage: true });
+    }
+    await languageButton('vi').focus(); await languageButton('vi').press('Enter'); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi');
+    assert.equal(await languageButton('vi').getAttribute('aria-pressed'), 'true');
+    assert.notEqual(await arrivalPage.locator('.welcome h1').innerText(), englishHeading, 'Changing guidance must translate the welcome, not just its selector.');
+    await arrivalPage.reload({ waitUntil: 'domcontentloaded' }); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Pre-profile guidance must survive a fresh visit.');
+    assert.equal(await languageButton('vi').getAttribute('aria-pressed'), 'true');
+    await arrivalPage.setViewportSize({ width: 390, height: 844 });
+    await arrivalPage.screenshot({ path: fileURLToPath(new URL('release-welcome-vietnamese.png', directory)), fullPage: true });
+    await axe('Vietnamese welcome at 390px', arrivalPage);
+
+    await start.click(); await ready(arrivalPage);
+    const name = arrivalPage.locator('#traveler-name');
+    assert.equal(await name.evaluate(element => element === document.activeElement), true,
+      'Starting the adventure must open traveler creation and focus its name field.');
+    const travelerName = 'Mây UI CI';
+    await name.fill(travelerName);
+    const form = arrivalPage.locator('[data-form="create-profile"]');
+    assert.match(await form.locator('label').filter({ has: name }).innerText(), /Bạn|Tên|biệt danh/,
+      'Essential traveler guidance must be Vietnamese before profile creation.');
+    await languageButton('en').click(); await ready(arrivalPage);
+    assert.equal(await name.inputValue(), travelerName, 'Switching guidance must preserve a partly entered traveler name.');
+    assert.equal(await form.evaluate(element => element.closest('details').open), true);
+    await languageButton('vi').click(); await ready(arrivalPage);
+    assert.equal(await name.inputValue(), travelerName);
+    await revealDetails(form.locator('[name="kind"]'), arrivalPage);
+    const kind = form.locator('[name="kind"]');
+    await arrivalPage.keyboard.press('Tab');
+    await kind.focus();
+    const selectAppearance = await kind.evaluate(element => {
+      const style = getComputedStyle(element), bounds = element.getBoundingClientRect();
+      return { height: bounds.height, width: bounds.width, native: element.tagName === 'SELECT',
+        outline: style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+        shadow: style.boxShadow !== 'none', paddingRight: parseFloat(style.paddingRight) };
+    });
+    assert.equal(selectAppearance.native, true, 'Family profile selection must retain native keyboard and assistive-technology behavior.');
+    assert.ok(selectAppearance.height >= 44 && selectAppearance.width >= 44, 'Native selectors need comfortable control dimensions.');
+    assert.ok(selectAppearance.outline || selectAppearance.shadow, 'A focused native selector needs a visible focus treatment.');
+    assert.ok(selectAppearance.paddingRight >= 24, 'Selector text and arrow need room at the trailing edge.');
+    const familySummary = form.locator('.family-options > summary');
+    await familySummary.focus();
+    await arrivalPage.evaluate(() => window.dispatchEvent(new Event('online')));
+    await ready(arrivalPage);
+    assert.equal(await familySummary.evaluate(element => element === document.activeElement), true,
+      'A background notification must preserve focus on the nested family disclosure instead of moving it to the outer create section.');
+    assert.equal(await form.locator('.family-options').evaluate(element => element.open), true,
+      'The optional family controls must stay expanded while their summary is focused.');
+    assert.equal(await form.evaluate(element => element.closest('details').open), true);
+    assert.equal(await name.inputValue(), travelerName);
+    assert.equal(await kind.inputValue(), 'independent');
+    await axe('Vietnamese traveler creation at 390px', arrivalPage);
+    await form.locator('button[type="submit"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('[data-action="finish-onboard"]').waitFor({ state: 'visible' });
+    let committed = (await arrivalPage.evaluate(readImportState)).snapshot;
+    assert.equal(committed.profiles.length, 1);
+    const traveler = committed.profiles[0];
+    assert.equal(traveler.name, travelerName);
+    assert.equal(traveler.settings.language, 'vi', 'New travelers must inherit the guidance chosen before registration.');
+    assert.equal(committed.events.length, 0, 'Onboarding preferences must not manufacture learning evidence.');
+    await arrivalPage.locator('[data-action="mode"][data-value="kids"]').click(); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Play-first selection must not redefine guidance language.');
+    await arrivalPage.locator('[data-action="finish-onboard"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('.profile-pill').click(); await ready(arrivalPage);
+    const resume = arrivalPage.locator(`.welcome [data-action="choose-profile"][data-id="${traveler.id}"]`);
+    assert.equal((await withinFirstViewport(resume)).inViewport, true, 'Returning travelers need a visible resume action above the fold.');
+    await resume.click(); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('.main-nav [data-action="atlas"]').getAttribute('aria-current'), 'page');
+    await arrivalPage.reload({ waitUntil: 'domcontentloaded' }); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('.profile-pill').innerText().then(text => text.includes(travelerName)), true);
+    assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(), 0, 'Returning travelers must not repeat onboarding.');
+    committed = (await arrivalPage.evaluate(readImportState)).snapshot;
+    assert.equal(committed.profiles[0].id, traveler.id);
+    assert.equal(committed.profiles[0].settings.language, 'vi');
+    assert.equal(committed.profiles[0].settings.mode, 'kids');
+    assert.deepEqual(committed.events, [], 'Resume and mode changes must preserve the untouched learning journal.');
+    report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
+  } catch (error) { failurePage = arrivalPage; throw error; }
+  finally {
+    // Keep a failing page open for the outer evidence collector.
+    if (failurePage !== arrivalPage) { await arrivalContext.close(); contexts.splice(contexts.indexOf(arrivalContext), 1); }
+  }
+  check('First-view entry and written language choices work at 1440px, 390px and 320px; Vietnamese guidance persists before registration and is inherited without losing typed names.');
+  check('Native selectors retain visible focus and touch spacing; a new play-first traveler can resume directly without repeating onboarding or creating learning evidence.');
+
   const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
   try {
     await cloudPage.goto(base.href); await ready(cloudPage);
@@ -420,9 +558,12 @@ try {
       const form = outagePage.locator('[data-form="create-profile"]');
       const name = 'CDN outage CI';
       await form.locator('[name="name"]').fill(name);
+      await revealDetails(outagePage.locator('.cloud-panel > summary'), outagePage);
       await outagePage.locator('.cloud-panel > summary').click();
       await outagePage.locator('.alert.error').waitFor({ state: 'visible' });
-      await outagePage.locator('.cloud-status').filter({ hasText: 'Cloud could not load.' }).waitFor({ state: 'visible' });
+      await outagePage.locator('.cloud-status[data-cloud-state="error"]').waitFor({ state: 'visible' });
+      assert.ok((await outagePage.locator('.cloud-status').innerText()).trim().length > 12,
+        'A connection failure must show a useful readable explanation.');
       await ready(outagePage);
       assert.ok(blocked.length > 0, 'The real adapter must attempt a pinned SDK load before the outage can be tested.');
       const attempts = blocked.length;
@@ -546,6 +687,15 @@ try {
         await action('reveal');
         const draftText = 'browser draft awaiting revision';
         await page.locator('[data-answer="gap"]').fill(draftText);
+        const beforeLanguage = (await page.evaluate(readImportState)).snapshot;
+        await action('guidance-language', '[data-value="vi"]');
+        assert.equal(await page.locator('[data-answer="gap"]').inputValue(), draftText,
+          'In-activity guidance switching must preserve the actual response workspace.');
+        assert.equal(await page.locator('html').getAttribute('lang'), 'vi');
+        const afterLanguage = (await page.evaluate(readImportState)).snapshot;
+        assert.equal(canonical(afterLanguage.events.filter(event => event.kind !== 'draft')),
+          canonical(beforeLanguage.events.filter(event => event.kind !== 'draft')),
+          'Changing guidance must not submit, remove or rewrite assessed learning evidence.');
         await settings({ mode: 'serious', language: 'vi' });
         assert.equal(await page.locator('[data-setting="language"]').inputValue(), 'vi');
         await action('mode', '[data-value="balanced"]');
@@ -635,7 +785,7 @@ try {
 
   const cleanContext = await newContext(); const clean = await cleanContext.newPage(); observe(clean);
   await clean.goto(base.href); await ready(clean); await upload(familyBackup, { target: clean });
-  await clean.locator(`[data-action="choose-profile"][data-id="${mainId}"]`).click(); await ready(clean);
+  await clean.locator(`.profile-grid [data-action="choose-profile"][data-id="${mainId}"]`).click(); await ready(clean);
   await journal(expected, clean);
   await clean.locator('.main-nav [data-action="settings"]').click(); await ready(clean);
   assert.equal(canonical(savedData(await backup(clean))), canonical(savedData(familyBackup)));
@@ -666,11 +816,11 @@ try {
   const built = await page.locator('meta[name="atlas-release"]').count();
   if (process.env.CI) assert.equal(built, 1, 'CI must check the built release, not the source preview.');
   if (built) {
-    await page.waitForFunction(async () => {
+    await pollAsyncResult(() => page.evaluate(async () => {
       if (!navigator.serviceWorker) return false;
       const registration = await navigator.serviceWorker.ready;
       return registration.active?.state === 'activated' && Boolean(navigator.serviceWorker.controller);
-    }, null, { timeout: 120000 });
+    }), { timeoutMs: 120000, intervalMs: 100, description: 'the activated release worker controlling the actual page before offline reload' });
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' }); await ready();
     assert.equal(await activeId(), mainId);
