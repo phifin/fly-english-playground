@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { deriveProgress } from '../src/learning.js';
 import { deriveExpeditions, findRoute, validateBoard } from '../src/expedition.js';
+import { mergeExports } from '../src/storage.js';
 import { deploymentUrl } from './verify-deployment.mjs';
 import { verifyCloudSdk } from './cloud-sdk-check.mjs';
 
@@ -27,6 +28,45 @@ const canonical = value => JSON.stringify(value, (_, v) => v && typeof v === 'ob
 const savedData = value => ({ schemaVersion: value.schemaVersion,
   profiles: [...value.profiles].sort((a, b) => a.id.localeCompare(b.id)),
   events: [...value.events].sort((a, b) => a.id.localeCompare(b.id)) });
+
+// Runs in the browser: inspect an existing database through one read-only
+// transaction. No application store methods, test adapters or writes are used.
+async function readImportState({ expected = null, expectError = false } = {}) {
+  const name = 'unfolding-atlas-learning';
+  if (!(await indexedDB.databases()).some(database => database.name === name)) throw new Error('The actual learner database is missing.');
+  const database = await new Promise((resolve, reject) => {
+    const request = indexedDB.open(name);
+    request.onupgradeneeded = () => { request.transaction.abort(); };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+    request.onblocked = () => reject(new Error('The read-only import inspection is blocked.'));
+  });
+  let snapshot;
+  try {
+    snapshot = await new Promise((resolve, reject) => {
+      const transaction = database.transaction(['profiles', 'events'], 'readonly');
+      const profiles = transaction.objectStore('profiles').getAll(), events = transaction.objectStore('events').getAll();
+      transaction.oncomplete = () => resolve({ schemaVersion: 1, exportedAt: new Date().toISOString(),
+        profiles: profiles.result, events: events.result });
+      transaction.onabort = () => reject(transaction.error ?? new Error('Import inspection was aborted.'));
+    });
+  } finally { database.close(); }
+  const observed = window.__atlasImportProbe;
+  const probe = observed ? { inputEvents: observed.inputEvents, changeEvents: observed.changeEvents,
+    connectedAtChange: observed.connectedAtChange, sawBusy: observed.sawBusy } : null;
+  const state = { snapshot, probe, busy: document.querySelector('#app')?.getAttribute('aria-busy') !== 'false',
+    notices: [...document.querySelectorAll('.alert.notice')].map(element => element.innerText),
+    errors: [...document.querySelectorAll('.alert.error')].map(element => element.innerText) };
+  if (expected === null) return state;
+  if (!probe?.changeEvents || !probe.sawBusy || state.busy) return false;
+  if (state.errors.length) return state;
+  if (expectError) return false;
+  const canonical = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)
+    ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item);
+  const actual = { schemaVersion: snapshot.schemaVersion,
+    profiles: snapshot.profiles.sort((a, b) => a.id.localeCompare(b.id)), events: snapshot.events.sort((a, b) => a.id.localeCompare(b.id)) };
+  return canonical(actual) === expected ? state : false;
+}
 
 let browser;
 let page;
@@ -186,20 +226,52 @@ try {
     return JSON.parse(await readFile(await (await waiting).path(), 'utf8'));
   }
   async function upload(value, { malformed = false, target = page } = {}) {
+    let before, expected;
     try {
+      await ready(target);
+      before = (await target.evaluate(readImportState)).snapshot;
+      // This model handles newer revisions and obsolete draft pruning. Pure
+      // merge semantics have separate unit tests; here we verify the real UI
+      // committed the exact resulting records to browser IndexedDB.
+      expected = malformed ? before : mergeExports(before, value).data;
       // A native file input dispatches input before change. Deliver a real
       // background notification in that interval: the selected file and its
       // delegated change handler must survive the resulting UI update.
-      await target.locator('#import-file').evaluate(element => element.addEventListener('input', () => {
-        window.dispatchEvent(new Event('online'));
-      }, { once: true }));
+      await target.locator('#import-file').evaluate(element => {
+        const app = document.querySelector('#app');
+        const probe = { inputEvents: 0, changeEvents: 0, connectedAtChange: false, sawBusy: false };
+        const observer = new MutationObserver(records => {
+          if (app.getAttribute('aria-busy') === 'true' || records.some(record => record.oldValue === 'true')) probe.sawBusy = true;
+        });
+        observer.observe(app, { attributes: true, attributeFilter: ['aria-busy'], attributeOldValue: true });
+        element.addEventListener('input', () => { probe.inputEvents++; window.dispatchEvent(new Event('online')); }, { once: true });
+        element.addEventListener('change', () => { probe.changeEvents++; probe.connectedAtChange = element.isConnected; }, { once: true });
+        probe.dispose = () => observer.disconnect();
+        window.__atlasImportProbe = probe;
+      });
       await target.locator('#import-file').setInputFiles({ name: 'browser-test-backup.json', mimeType: 'application/json',
         buffer: Buffer.from(typeof value === 'string' ? value : JSON.stringify(value)) });
-      await ready(target);
-      if (malformed) { await target.locator('.alert.error').waitFor({ state: 'visible' }); return; }
-      await noError(target);
-      await target.locator('.alert.notice').filter({ hasText: /validated and merged|kiểm tra và gộp/i }).waitFor({ state: 'visible' });
-    } catch (error) { error.verificationPage = target; throw error; }
+      const result = await target.waitForFunction(readImportState, { expected: canonical(savedData(expected)), expectError: malformed }, { polling: 100 });
+      const outcome = await result.jsonValue(); await result.dispose();
+      assert.equal(outcome.probe.inputEvents, 1, 'The actual selected file must deliver its native input event.');
+      assert.equal(outcome.probe.changeEvents, 1, 'The actual selected file must deliver its native change event.');
+      assert.equal(outcome.probe.connectedAtChange, true, 'The file input must remain connected through the background notification.');
+      assert.equal(canonical(savedData(outcome.snapshot)), canonical(savedData(expected)),
+        malformed ? 'Rejected imports must leave the exact committed records unchanged.' : 'The UI import must commit the exact expected profiles and immutable event history.');
+      if (malformed) assert.ok(outcome.errors.length, 'A rejected import must explain the failure.');
+      else { assert.deepEqual(outcome.errors, [], 'A successful committed import must not display an error.'); await noError(target); }
+      report.imports ??= [];
+      report.imports.push({ url: target.url(), rejected: malformed, profiles: outcome.snapshot.profiles.length,
+        events: outcome.snapshot.events.length, probe: outcome.probe, notices: outcome.notices, errors: outcome.errors });
+    } catch (error) {
+      error.verificationPage = target;
+      report.importFailure = { rejected: malformed, before, expected };
+      try { report.importFailure.actual = await target.evaluate(readImportState); }
+      catch (inspectionError) { report.importFailure.inspectionError = inspectionError.message; }
+      throw error;
+    } finally {
+      await target.evaluate(() => { window.__atlasImportProbe?.dispose(); delete window.__atlasImportProbe; }).catch(() => {});
+    }
   }
   async function journal(expected, target = page) {
     if (target === page) await action('journal');

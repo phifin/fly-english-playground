@@ -1,5 +1,40 @@
 # Current execution state
 
+## Live import fix verified; stronger state assertion — 22 October 2026
+
+- **All four jobs actually passed** in run39707387386 at source
+  `f26fff5fa318c7419738005ccd42ce8db08ec584`, tree
+  `b211ed6f7cb1c792069fa131a60c170eb1f3460c`. Both preview and live passed23
+  browser checks: actual pinned SDK/CSP,503 failure settling, form preservation,
+  native-input notification interruption, repeated/malformed imports, fresh
+  restore and the previously failing second quoted-backup import. Domain/unit
+  suite260 passes; actual two-emulator checks passed separately. No sandbox bypass.
+- Independent GET-only verification of live release`7fc15238b5c21029f74a` passed:
+  24 manifest files/555868 cached bytes,24 missions/120 activities/24 boards,
+  5 private404s. Production backend/rules unchanged, billing not enabled.
+- Owner confirmed only domain action done and reported the earlier import failure.
+  Verified public Auth config now includes **phifin.github.io**. Do not ask to
+  add it again. First game Google identity/admission and positive sync remain
+  unverified; the already consolidated checklist's remaining steps are sign-in
+  and console `access/UID {approved:true}`. No CLI login/reinstall is needed.
+- User explicitly requests meaningful import state assertions instead of relying
+  exclusively on transient localized notice text. scripts/browser-release-check.mjs
+  now reads actual IndexedDB in read-only transactions, computes expected merge
+  from the pre-import snapshot, observes native input/change + foreground busy
+  lifecycle, and waits for exact committed profiles/events. Malformed imports
+  must explain the error and preserve the entire snapshot. Existing export,
+  journal, idempotency and quote-escaping checks remain. Notices are diagnostics.
+  On failure, actual/before/expected data, event delivery, notice/error text and
+  the actual target UI/screenshot are retained. Syntax and56 storage/model tests
+  passed; this final test update still requires actual CI/browser execution.
+
+Next: publish scoped browser-test/documentation update with preserved history,
+then inspect the latest four-job run until it is genuinely green. App assets and
+release ID stay unchanged by this test/docs update. Continue only blocked account
+enrollment once owner completes it; don't claim positive live sync as tested.
+
+---
+
 ## Backup-input and CDN-outage regression — 22 October 2026, latest continuation
 
 - Published first form fix at `8f386c8d9b1284b1a96dbfc68837d80d8697ad5a`,

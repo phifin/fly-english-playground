@@ -43,3 +43,10 @@ and rejects unexpected authentication/data calls or popups. Malformed enabled
 config fails the build. Disabled cloud must still make zero external requests.
 Consult the current run's `cloudSdk` browser-report evidence for the actual result;
 this gate never proves Google consent, approved admission or live synchronization.
+
+Backup import checks inspect the real IndexedDB profiles/events through read-only
+transactions and compare the exact expected merge. They require delivered native
+file events and completion of the foreground action, including idempotent imports;
+malformed inputs must leave records unchanged. Connectivity notifications are
+injected between native input/change events. Toast text is captured diagnostically,
+while exports, journals and quote-escaping assertions independently remain required.

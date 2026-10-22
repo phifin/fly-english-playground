@@ -87,7 +87,7 @@ An update waits until every atlas tab closes; it does not reload an active lesso
 
 ## Optional family sign-in
 
-The dedicated free cloud service is configured. The owner completes domain and
+The dedicated free cloud service and Pages domain are configured. The owner completes
 first-account enrollment in [production status](production-status.md). Sign in
 with an approved Google identity, explicitly link a traveler, then synchronize
 from Settings. Link
