@@ -1,5 +1,28 @@
 # Current execution state
 
+## UI/UX release deployed and verified — 22 October 2026
+
+- Source13970271f10a2328653e47789d9fd5573d80273d, tree
+  0d7cfec1255a2441e3fd064e7a05ad36c80cf738, releaseeea5e980e95ccf33ace8.
+  Run39711899094 all4jobs success: build119604924797,
+  firestore-rules119604924433, deploy119605130840, verify-production119605345859.
+-284 domain/unit passes; all3 actualAuth/Firestore emulator tests pass separately.
+  Preview+live25 browser checks passed,6 checked interfaces zeroaxe violations.
+  Desktop/mobileEN/VI screenshots visually reviewed. Strict firstviewport checks
+  require connected nodes and applied viewport dimensions; invalid samples only are
+  retried, never connected layout failures. Earlier firstsample lacked diagnostics,
+  so no definitive cause is claimed beyond correcting that invalid-sample risk.
+- Downloaded production artifact12397596720 and verifiedSHA256
+  14905afa72df8034f527bc24cd7e8bd83c8d2080fe68798d19d5b578ec7f2bde.
+  Actual GET-only verification passed27 files/602328 bytes and5private404s.
+- New family request/approval rules passed emulator privacy/escalation/revocation
+  tests. Production activation and ownerbootstrap are unverified. One consolidated
+  async owner checklist sent: regular-terminal deployrules command, then trusted
+  access/{ownUID} Booleanapproved:true,familyOwner:true. Do not repeat login/domain
+  setup. No Firebaseadmin operations are exposed this session; no proxy bypass.
+- Finishing documentation publication; inspect its actual newest workflow before
+  reporting latest-CI success. Runtime and reviewed data remain unchanged by docs.
+
 ## UI/UX and family enrollment refinement in verification — 22 October 2026
 
 - User approved comprehensive autonomous polish for Issues001–003 and005.

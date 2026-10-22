@@ -13,6 +13,9 @@ mobile/offline flows and deployed-file verification passed in
 The dedicated Firebase Spark project, Google provider and private Firestore rules
 are provisioned without billing. The Pages domain is authorized; first account
 enrollment is described in [production status](docs/production-status.md).
+The refined welcome includes a direct adventure/resume action and written English/
+Tiếng Việt guidance before registration. Secure family requests and owner approval
+are implemented; their new rules and trusted owner role require one-time activation.
 Local play, saving and exports work independently of cloud.
 
 ## Play locally
@@ -43,6 +46,8 @@ The preserved P0 light-and-mirror sandbox is at `/observatory.html`.
 - IndexedDB profiles, guardian/dependent links, recoverable drafts, validated
   export/import and scoped offline assets after successful installation.
 - Optional allowlisted Google/Firebase synchronization through the dedicated Spark project.
+  Pending users stay signed in, request family access and recheck approval. A trusted
+  owner can manage requests in the game once the reviewed rules are activated.
   A guardian manages dependent profiles under one cloud identity. Local profile
   selection is a convenience on a trusted browser, not a password boundary.
 - Ungraded synthesized listening/retelling studio; no recording or paid AI API.

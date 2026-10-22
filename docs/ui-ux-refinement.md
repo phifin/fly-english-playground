@@ -1,7 +1,10 @@
 # Family welcome and account refinement
 
-Implemented 22 October 2026. Production browser verification must be checked in
-the actual Actions run; this document does not itself establish a deployment.
+Implemented and deployed 22 October 2026. All four jobs passed in
+[run39711899094](https://github.com/phifin/fly-english-playground/actions/runs/39711899094)
+at source `13970271f10a2328653e47789d9fd5573d80273d`, release
+`eea5e980e95ccf33ace8`. Any later documentation publication must be checked in
+its own Actions run. Production activation of the new admission rules is separate.
 
 ## Arrival and onboarding
 
@@ -64,3 +67,12 @@ offline and account-isolation checks remain. Additional domain tests cover accou
 lifecycle, owner UI gating, new-profile defaults and request authorization. Actual
 Auth/Firestore emulator tests cover spoofing, escalation and revocation. Google
 consent and an approved production account remain a separate verification boundary.
+
+Actual results:284 domain/unit passes,3 local emulator-dependent skips; all3 real
+Auth/Firestore emulator tests passed in CI. Preview and live each passed25 browser
+checks. Six checked interfaces had zero axe violations. Screenshots were visually
+reviewed for desktop welcome, Vietnamese mobile welcome and mobile activity.
+Live GET-only verification matched all27 manifest files/602328 cached bytes and
+confirmed5 private paths unavailable. No browser sandbox was disabled. Native
+select rendering measured50px high with44.8px trailing padding and a visible focus
+outline; its open menu remains intentionally controlled by the operating system.

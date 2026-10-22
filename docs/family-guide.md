@@ -7,6 +7,11 @@ published copies have separate browser storage because their origins differ.
 
 ## Your traveler
 
+Choose **English** or **Tiếng Việt** in the header before you start. **Start my
+adventure** opens traveler creation and puts the cursor in the nickname field.
+Your new traveler keeps that guidance language. Existing travelers can resume
+directly, and each retains their own preferences and progress.
+
 Create a display name; a nickname is enough. Each traveler has separate answers,
 practice recommendations, settings and discoveries. An independent profile can
 be chosen as the guardian of dependent profiles. Guardians can open those journals
@@ -88,9 +93,15 @@ An update waits until every atlas tab closes; it does not reload an active lesso
 ## Optional family sign-in
 
 The dedicated free cloud service and Pages domain are configured. The owner completes
-first-account enrollment in [production status](production-status.md). Sign in
-with an approved Google identity, explicitly link a traveler, then synchronize
-from Settings. Link
+the one-time [family approval setup](../cloud/DEPLOYMENT.md). Open the welcome
+screen's **Already have a journey?** disclosure or the cloud panel in Settings.
+Google sign-in and family approval are separate: if access is pending, choose
+**Ask to join the family**. This shares only your Google display name and email
+with the family owner. Keep playing locally while you wait, then choose **Check
+family access** after approval; there is no need to sign out or copy an identifier.
+If the family setup is not activated yet, the panel explains that safely.
+
+Once approved, explicitly link a traveler and choose **Save & sync**. Link
 the guardian before dependent profiles. Sync is manual: retry after reconnecting.
 Drafts stay device-local; submitted responses, writing and profile metadata sync.
 
