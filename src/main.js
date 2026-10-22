@@ -11,7 +11,7 @@ import {studioView} from './studio-view.js';
 
 const app=document.querySelector('#app');
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let store,pack,boards=[],profiles=[],profile=null,events=[],progress,cloud,qualityCleanup=()=>{},refreshGeneration=0,draftTimer=null,draftSave=Promise.resolve();
+let store,pack,boards=[],profiles=[],profile=null,events=[],progress,cloud,qualityCleanup=()=>{},refreshGeneration=0,draftTimer=null,draftSave=Promise.resolve(),renderedContext=null;
 const ui={screen:'atlas',mission:null,activity:null,answer:null,feedback:null,supported:false,stage:'intro',busy:false,error:'',notice:'',showModel:false,review:false,placement:[],placementItems:[],placementIndex:0,cloudStatus:{state:'disabled',configured:false},draftKey:'',lastSaved:null};
 const t=(en,vi)=>profile?.settings.language==='vi'?vi:en;
 const loc=v=>v?.[profile?.settings.language??'en']??v?.en??'';
@@ -170,11 +170,32 @@ function placementScreen(){
 
 function render(focusHeading=false){
  const active=document.activeElement,focusKey=active?.dataset?.focusKey,selection=active&&'selectionStart'in active?[active.selectionStart,active.selectionEnd]:null;
- const screens={profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen};
  if(!profile&&ui.screen!=='profiles')ui.screen='profiles';
+ const context=`${ui.screen}:${profile?.id??''}`;
+ // Readiness/status notifications may rebuild this view while a person types.
+ // Keep transient profile forms only within the same view and learner. Explicit
+ // navigation and successful create/delete flows render with focusHeading=true.
+ const forms=!focusHeading&&context===renderedContext?[...app.querySelectorAll('form[data-form]')].map(form=>({
+  name:form.dataset.form,open:form.closest('details')?.open,
+  controls:[...form.elements].filter(el=>el.name&&el.type!=='file').map(el=>({name:el.name,type:el.type,value:el.value,checked:el.checked})),
+ })):[];
+ const screens={profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen};
  document.body.className=`mode-${profile?.settings.mode??'balanced'}`;
  app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.error?`<div class="alert error" role="alert">${esc(ui.error)} ${btn(t('Dismiss','Đóng'),'dismiss-error','','text-button')}</div>`:''}${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main>${footer()}<input type="file" id="import-file" accept="application/json,.json" hidden>`;
- app.querySelectorAll('button,input,select,textarea,summary,a').forEach((el,i)=>{el.dataset.focusKey=`${el.dataset.action??el.dataset.setting??el.dataset.answer??el.dataset.match??el.tagName}-${el.dataset.id??el.dataset.value??el.name??i}-${el.dataset.dir??''}`;});
+ for(const saved of forms){
+  const form=[...app.querySelectorAll('form[data-form]')].find(el=>el.dataset.form===saved.name);if(!form)continue;
+  const controls=[...form.elements].filter(el=>el.name&&el.type!=='file');
+  saved.controls.forEach((value,index)=>{const el=controls[index];if(!el||el.name!==value.name||el.type!==value.type)return;
+   if(el.tagName==='SELECT'&&![...el.options].some(option=>option.value===value.value))return;
+   el.value=value.value;if(el.type==='checkbox'||el.type==='radio')el.checked=value.checked;
+  });
+  const details=form.closest('details');if(details&&saved.open!==undefined)details.open=saved.open;
+ }
+ app.querySelectorAll('button,input,select,textarea,summary,a').forEach((el,i)=>{
+  const form=el.closest('form[data-form]')||(el.tagName==='SUMMARY'?el.parentElement.querySelector('form[data-form]'):null);
+  el.dataset.focusKey=form?`form-${form.dataset.form}-${el.name||el.tagName}`:`${el.dataset.action??el.dataset.setting??el.dataset.answer??el.dataset.match??el.tagName}-${el.dataset.id??el.dataset.value??el.name??i}-${el.dataset.dir??''}`;
+ });
+ renderedContext=context;
  if(focusHeading){const h=app.querySelector('h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true});}scrollTo({top:0,behavior:'instant'});}
  else if(focusKey){const target=[...app.querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===focusKey);if(target){target.focus({preventScroll:true});if(selection&&'setSelectionRange'in target&&target.type!=='checkbox')try{target.setSelectionRange(...selection);}catch{}}}
  app.setAttribute('aria-busy',String(ui.busy));
@@ -262,7 +283,7 @@ app.addEventListener('input',e=>{
 });
 app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
-app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&e.target.open)cloud?.prepare().catch(reportError);},true);
+app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){ui.showCloud=e.target.open;if(e.target.open)cloud?.prepare().catch(reportError);}},true);
 app.addEventListener('change',e=>run(async()=>{
  const el=e.target;
  if(el.hasAttribute('data-studio-item')){ui.studioId=el.value;globalThis.speechSynthesis?.cancel();render();}

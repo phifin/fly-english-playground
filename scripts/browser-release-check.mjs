@@ -124,6 +124,32 @@ try {
   async function select(selector, value) { await ready(); await page.locator(selector).selectOption(value); await ready(); await noError(); }
   async function chooseProfile(id) { await action('profiles'); await action('choose-profile', `[data-id="${id}"]`); }
   async function activeId() { return page.evaluate(() => localStorage.getItem('atlas-active-profile')); }
+  async function preserveFormThroughNotification(name, values, focus = 'name') {
+    await ready();
+    const selector = `[data-form="${name}"]`, form = page.locator(selector);
+    const control = form.locator(`[name="${focus}"]`);
+    const expanded = await form.evaluate(element => element.closest('details')?.open ?? null);
+    await control.focus();
+    const selection = await control.evaluate(element => {
+      element.setSelectionRange(1, Math.min(3, element.value.length));
+      return [element.selectionStart, element.selectionEnd];
+    });
+    // Deliver a browser connectivity notification through the real listener.
+    // No app state, storage, successful response or render function is mocked.
+    await page.evaluate(() => window.dispatchEvent(new Event('online')));
+    await ready(); await noError();
+    await page.locator('.alert.notice').filter({ hasText: /Connection restored|Đã kết nối lại/ }).waitFor({ state: 'visible' });
+    for (const [field, value] of Object.entries(values)) {
+      assert.equal(await form.locator(`[name="${field}"]`).inputValue(), value,
+        `A background connection notification must preserve the ${name} form's ${field}.`);
+    }
+    assert.equal(await form.evaluate(element => element.closest('details')?.open ?? null), expanded,
+      `A background notification must preserve the ${name} form's expanded section.`);
+    assert.equal(await control.evaluate(element => element === document.activeElement), true,
+      `A background notification must preserve focus in the ${name} form.`);
+    assert.deepEqual(await control.evaluate(element => [element.selectionStart, element.selectionEnd]), selection,
+      `A background notification must preserve the ${name} text selection.`);
+  }
   async function createProfile(name, { kind = 'independent', guardianId = '', mode = 'balanced', language = 'en' } = {}) {
     if (!(await page.locator('[data-form="create-profile"]').count())) await action('profiles');
     const form = page.locator('[data-form="create-profile"]');
@@ -131,6 +157,7 @@ try {
     await form.locator('[name="name"]').fill(name);
     await form.locator('[name="kind"]').selectOption(kind);
     if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
+    await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
     await click(form.locator('button[type="submit"]'));
     await button('finish-onboard').waitFor({ state: 'visible' });
     const id = await activeId();
@@ -284,6 +311,7 @@ try {
     : 'The deployed disabled cloud prepares without external SDK or service requests.');
   const mainName = 'River CI', otherName = 'Sky CI', childName = 'Moss CI';
   const mainId = await createProfile(mainName, { mode: 'balanced', language: 'vi' });
+  check('Traveler creation preserves typed names, open sections, focus and selection through a background notification before successful submission.');
   await settings({ quality: 'eco', motion: 'reduced' });
   await page.reload({ waitUntil: 'domcontentloaded' }); await ready();
   assert.equal(await activeId(), mainId);
@@ -293,6 +321,32 @@ try {
   assert.equal(await page.locator('html').getAttribute('data-motion'), 'reduced');
   await settings({ language: 'en' });
   check('Profile creation, onboarding, language, mode, quality and motion persist through reload.');
+
+  // Exercise ordinary rename/deletion on a disposable traveler, then return to
+  // the original profile. Unsaved controls must not leak across profile changes.
+  const disposableId = await createProfile('Form CI');
+  const renamed = 'Form CI renamed';
+  await settings();
+  const renameForm = page.locator('[data-form="rename"]');
+  await renameForm.locator('[name="name"]').fill(renamed);
+  await preserveFormThroughNotification('rename', { name: renamed });
+  await click(renameForm.locator('button[type="submit"]'));
+  assert.ok((await page.locator('.profile-pill').innerText()).includes(renamed), 'The preserved rename must actually save.');
+  const deleteForm = page.locator('[data-form="delete"]');
+  await page.locator('details').filter({ has: deleteForm }).locator('summary').click();
+  await deleteForm.locator('[name="confirm"]').fill(renamed);
+  await preserveFormThroughNotification('delete', { confirm: renamed }, 'confirm');
+  await click(deleteForm.locator('button[type="submit"]'));
+  await button('choose-profile', `[data-id="${mainId}"]`).waitFor({ state: 'visible' });
+  assert.equal(await page.locator(`[data-action="choose-profile"][data-id="${disposableId}"]`).count(), 0,
+    'Submitting the preserved deletion confirmation must remove the disposable traveler.');
+  await action('choose-profile', `[data-id="${mainId}"]`);
+  await settings();
+  assert.equal(await page.locator('[data-form="rename"] [name="name"]').inputValue(), mainName,
+    'The deleted traveler\'s form values must not leak into the restored active traveler.');
+  assert.equal(await page.locator('[data-form="delete"] [name="confirm"]').inputValue(), '',
+    'Deletion confirmation must reset when the active traveler changes.');
+  check('Rename and deletion confirmations retain input, expansion, focus and selection through background notifications; submissions work and profile changes reset them.');
 
   // A background storage failure must not release another action's lock. Keep
   // the device-storage request pending, then fault one real refresh read.

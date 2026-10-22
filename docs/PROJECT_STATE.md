@@ -1,5 +1,41 @@
 # Current execution state
 
+## Profile-form production regression — 22 October 2026, latest continuation
+
+- Source/cloud activation was published at `d289243ac16047cba044b590c36282e7a1ed7be8`,
+  tree`de78432b8fc020fb8201d7d102a8db94c37bcf6b`, without replacing history.
+  Run39544138986 passed build, actual Auth/Firestore emulators and deployment.
+  Preview passed20 browser checks including real pinned Firebase13 SDK/CSP;
+  live SDK preparation also passed. Live verification then failed at initial
+  traveler creation; do not call this run fully successful.
+- Verified live static release781ccc010e492f72f2b0 independently:24 manifest
+  files/553933 cached bytes,24 missions/120 activities/24 boards,5 private404s.
+- Downloaded actual failure artifact12320399156, SHA256
+  `0aa8544e8f607516a85361b452180448adde6e4eaa04a61aac25472f62adff31`,
+  under artifacts/production-failure-39544138986/. Root inspected its screenshot:
+  required name field is empty and shows native validation after the test filled
+  it. No app console errors. A readiness notification rebuilt/wiped the form.
+- Fixed src/main.js to preserve transient named profile-form fields, enclosing
+  details expansion, focus and selection on same-view/same-profile re-renders.
+  Explicit navigation and create/delete/profile changes reset them. Cloud-panel
+  toggle now retains its openness in UI state. No storage schema or cloud rule
+  changes. Regression harness deliberately dispatches ordinary online notifications
+  before actual create/rename/delete submissions, including dependent selection,
+  and checks no state leaks between learners. No larger timeout/test retry.
+- Syntax checks, all260 local tests (two emulator checks skipped locally), and
+  production build pass. New local release`2ec03a55e03b0244586a`,26 public files,
+  75370 gzip JavaScript bytes. Actual browser verification of this fix is pending
+  a fresh GitHub publication/run. Preserve and inspect any new failure artifacts.
+
+Next: publish main.js, browser regression and this durable state using fresh
+remote parent/non-forced update; monitor all four jobs, fix actual failures.
+Then complete the consolidated owner domain/first-Google-sign-in/admission
+checkpoint already detailed below. Cloud backend remains provisioned without
+billing, with reviewed deployed rules; don't recreate it or ask for CLI login.
+Approved live sync is still unverified. Only finish when actual gates pass.
+
+---
+
 ## Production Firebase provisioned — 21 October 2026, latest continuation
 
 - Owner connected `atlas-firebase`; its20 tools are now actually exposed. Account

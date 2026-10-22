@@ -41,8 +41,9 @@ debounces draft writes and surfaces save errors. Local profiles and guardian
 relationships are convenience controls, not password protection. See the
 [storage contract](storage.md) and [runtime contracts](runtime-contract.md).
 
-The optional cloud connection is disabled in committed
-[public-config.js](../public-config.js). It uses Google sign-in, a server-managed
+The optional cloud connection is enabled for the dedicated Spark project in
+[public-config.js](../public-config.js); local play remains independent of it.
+It uses Google sign-in, a server-managed
 approved-UID grant and owner-isolated Firestore paths enforced by
 [firestore.rules](../cloud/firestore.rules). Linking and synchronization are
 explicit; sign-out retains local work. Dependent profiles use their guardian's
