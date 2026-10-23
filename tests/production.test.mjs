@@ -28,7 +28,7 @@ test('all24 actual maps solve with a bounded accessible plan and are uniquely li
  for(const b of worlds.boards){assert.deepEqual(validateBoard(b),[]);const commands=findRoute(b);assert.ok(commands.includes('X'));assert.ok(commands.length<=40);assert.deepEqual(parseWorldPlan(commands.join(', ')),commands);}
  assert.throws(()=>parseWorldPlan('N, teleport'));assert.throws(()=>parseWorldPlan(Array(41).fill('N').join(' ')));
 });
-test('actual learning completion unlocks study but only verified exploration earns a world discovery',async()=>{
+test('legacy exploration rewards still require completed learning and a verified route',async()=>{
  const store=await openMemoryStore({database:createMemoryDatabase()}),profile=await store.createProfile({name:'World verifier'}),mission=pack.missions[0],board=worlds.boards.find(b=>b.missionId===mission.id);
  for(const [i,a] of mission.activities.entries()){const answer=authorAnswer(a);assert.equal(assess(a,answer).complete,true);await store.appendEvent(profile.id,{id:'activity-'+i,kind:'attempt',at:new Date(now+i*1000).toISOString(),payload:{activityId:a.id,answer,supported:false}});}
  let p=journeyProgress(await store.getEvents(profile.id),pack,worlds.boards,now);assert.ok(p.completedMissions.has(mission.id));assert.equal(p.rewards.size,0);
@@ -37,7 +37,7 @@ test('actual learning completion unlocks study but only verified exploration ear
  p=journeyProgress(await store.getEvents(profile.id),pack,worlds.boards,now);assert.equal(p.rewards.size,1);assert.deepEqual(p.worlds.states[board.id].commands,[]);assert.equal(p.independent,4);
  const clone=await openMemoryStore({database:createMemoryDatabase()});await clone.importAll(await store.exportAll());assert.deepEqual(journeyProgress(await clone.getEvents(profile.id),pack,worlds.boards,now),p);store.close();clone.close();
 });
-test('three experiences share rules but expose direct movement, queued routes and text planning',()=>{
+test('optional legacy routes retain direct movement, queued routes and text planning',()=>{
  const board=worlds.boards[0],mission=pack.missions.find(m=>m.id===board.missionId),progress=journeyProgress([],pack,worlds.boards,now),state={position:board.start,bridgeOpen:false,moves:0,visited:[],message:'ready'};
  const view=mode=>explorationView({board,state,mode,language:'en',mission,progress});
  assert.match(view('kids'),/direction-pad/);assert.doesNotMatch(view('kids'),/command-tray|data-world-plan/);

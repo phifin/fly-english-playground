@@ -1,5 +1,33 @@
 # Current execution state
 
+## Product redesign deployed and verified — 23 October 2026
+
+- Runtime redesign verified at commit77348772d7306de0823d614e56265029c808a1f4,
+  run39919088196: all four jobs passed (build, firestore-rules, deploy,
+  verify-production).296unit passes,3actual emulator passes,26preview+production
+  browser checks,8axe surfaces with zero violations. Original26-check evidence
+  downloaded and digest verified in artifacts/redesign-production/.
+- Verified live release6d4d3e245ab0b8392bd2:30manifest files/636418bytes,
+  24missions/120activities/24optional boards,5private404s. Public Auth domain and
+  anonymous data-denial checks pass. No production learner records touched.
+- See docs/product-redesign.md for actual product decisions, picture-content
+  acceptance and age/accessibility boundaries. New records retain old schema;
+  all assessed content unchanged. 6adult-assisted picture items stay separate
+  from learning evidence. Legacy routes and accomplishments remain compatible.
+- Screenshots reviewed: ENdesktop/VIphone welcome, integrated story desktop/phone,
+  VIpicture play. Browser checks caught two contrast defects, now fixed. Updated
+  test navigation follows the new first-visit flow; no timeout increase or skipped
+  assertions. Real child enjoyment, Safari/OS font matrix and live Google session
+  sync are not established by these checks.
+- Final small refinement prepared: remove the browser's focus rectangle from
+  noninteractive route headings while preserving interactive focus; clear stale
+  informational notices on mission entry. Release72baba4153a4b018d23b, targeted
+  12tests passed. Inspect its next actual CI run before declaring final completion.
+- Firebase server access/owner setup already confirmed complete by owner. Current
+  tool catalog has no privileged Firebase deploy operation. Retain secure in-game
+  requests/approval; no client bypass or unverified invitation rollout. No repeated
+  setup/login requests. Positive private Google sync remains unverified here.
+
 ## Product redesign underway — 23 October 2026
 
 - Active user directive: substantial play-driven redesign, not incremental CSS.

@@ -87,6 +87,7 @@ function shuffle(values,seed){
 async function beginMission(id,reviewActivity=null){
  await saveDraft();const mission=content().missions.get(id);if(!mission)throw new Error('Expedition unavailable');
  const item=availableMissions(pack,mission.level,progress).find(m=>m.mission.id===id);if(!reviewActivity&&!item.unlocked)throw new Error(t('Complete the preceding expedition first.','Hãy hoàn thành chuyến khám phá trước.'));
+ ui.notice='';ui.error='';
  ui.screen='mission';ui.mission=id;ui.review=Boolean(reviewActivity);ui.stage=reviewActivity?'activity':profile.settings.mode==='kids'?'intro':profile.settings.mode==='balanced'?'world':progress.completedMissions.has(id)?'world':'activity';ui.worldQueue=[];ui.worldPlan='';ui.worldTranslation=false;ui.worldHint=false;ui.worldRoute=null;ui.worldInspected=null;initActivity(reviewActivity??nextActivity(mission,progress));render(true);
 }
 
