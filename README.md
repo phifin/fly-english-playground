@@ -15,7 +15,8 @@ are provisioned without billing. The Pages domain is authorized; first account
 enrollment is described in [production status](docs/production-status.md).
 The refined welcome includes a direct adventure/resume action and written English/
 Tiếng Việt guidance before registration. Secure family requests and owner approval
-are implemented; their new rules and trusted owner role require one-time activation.
+are implemented; the owner reports the new rules and protected owner role activated.
+Live approved synchronization remains a separate verification step.
 Local play, saving and exports work independently of cloud.
 
 ## Play locally

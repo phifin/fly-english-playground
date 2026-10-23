@@ -1,5 +1,67 @@
 # Current execution state
 
+## Post-activation verification boundary — 23 October 2026
+
+- Owner confirmation is recorded: BOTH rules deployment and trusted owner bootstrap
+  complete. Do not repeat setup, login or domain instructions.
+- New scripts/verify-firebase-activation.mjs uses the installed official CLI's
+  existing auth and network stack in-process, no child launch, proxy override,
+  token export or player impersonation. Only exact rules/hash and a bounded role
+  projection are read; receipts exclude identities and learner records. Three
+  sanitization/strict-Boolean/hash tests passed; full suite290 total,287 pass,3
+  emulator-dependent skips. Actual three emulator checks remain required in CI.
+- Two bounded actual readback attempts recognized the existing CLI account but
+  failed at production-rules-readback withHTTP500. No credential/setup failure is
+  inferred. No more identical retries. Independent admin confirmation is unavailable
+  through this path. Report artifacts/firebase-activation-verification.json.
+- Today's public Auth/domain and anonymous403 checks, deployed27-file integrity and
+  private404 checks passed. No frontend/runtime change made; releaseeea5e980e95ccf33ace8.
+- One concise async in-game check requested: Check family access; Check requests &
+  family access; link selected traveler if needed and Save & sync. This needs the
+  owner's private signed-in browser session, which no active tool can control.
+  Accept their result when supplied; don't ask for tokens, screenshots or more
+  console/CLI setup. Until then positive live synchronization is unverified.
+- Publishing scoped diagnostic tooling/documentation; inspect actual newest CI
+  before reporting it green. No runtime dependency, billing or rule changes here.
+
+## Owner reports activation complete — 23 October 2026
+
+- User explicitly confirmed BOTH requested owner actions complete: deployment of
+  the reviewed Firestore enrollment rules and trusted owner document bootstrap.
+  Do not request those steps, Firebase login or authorized-domain setup again.
+- Current active tool catalog still exposes no Firebase administration or browser
+  operations. An independent same-process read-only probe through the installed
+  official Firebase CLI is being prepared; it must respect existing proxy/network
+  controls and never print credentials, arbitrary provider errors or learner data.
+- Today public checks passed: authorized Pages domain,403 PERMISSION_DENIED for
+  anonymous admission read, request listing and learner listing. GET-only release
+  verification matched all27 manifest files/602328 bytes, expected release
+  eea5e980e95ccf33ace8 and5 private404s. Latest recorded GitHub run39712400502 remains
+  success; no runtime changes have been made since that release.
+- Distinguish owner-reported activation from privileged independent readback and
+  actual signed-in Google/session/sync verification. Do not use CLI Google tokens
+  to impersonate a game session or ask for exported browser tokens. No raw stores.
+
+## Final UI/UX documentation deployment verified — 22 October 2026
+
+- Final remotehead3168c347a035792c297f9aafa91a59f9d0bcc02b, tree
+  98a40c0f27d6a63a93dd99244e4836941a3dd5f0. Latest run39712400502 all4jobs passed:
+  build119606544475, firestore-rules119606544308, deploy119606793828,
+  verify-production119606852056. This local checkpoint records the completed run
+  after the published documentation commit; no further application edit is pending.
+- Retrieved final production artifact12397642362, SHA256
+  e0d11c1795b787f984de64934322773881ac348e42586cef981463f2fe25e2b6.
+  Verified actual25 checks,6 axe interfaces zero violations,6 strict native import
+  scenarios, EN/VI inheritance/resume,44px controls and1440/390/320px entry visibility.
+  Runtime releaseeea5e980e95ccf33ace8 unchanged by docs.284unitpasses and3actual
+  Auth/Firestore emulator tests pass. No sandbox bypass or billing.
+- Owner activation still pending; do not claim the new enrollment rules or owner
+  role are provisioned. One async checklist already requests normal-terminal rules
+  deployment and trusted owner bootstrap; no user answer received at checkpoint.
+  Ordinary members then use in-game requests/approval, never copiedUIDs or console.
+  Continue blocked account verification when owner reports completion or authenticated
+  Firebase administration tools become available. Positive live Google sync unverified.
+
 ## UI/UX release deployed and verified — 22 October 2026
 
 - Source13970271f10a2328653e47789d9fd5573d80273d, tree

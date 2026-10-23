@@ -1,6 +1,11 @@
 # Production deployment status
 
-Updated22 October2026. [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
+Updated23 October2026. [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
+
+The owner has confirmed both enrollment setup actions complete: reviewed rules
+deployment and the protected owner-role bootstrap. Do not repeat those actions,
+CLI login or authorized-domain setup. Independent privileged readback and live
+approved client synchronization remain separate verification items.
 
 The UI/UX refinement is deployed. All four jobs passed in
 [run39711899094](https://github.com/phifin/fly-english-playground/actions/runs/39711899094),
@@ -45,26 +50,37 @@ at that provisioning checkpoint had SHA256
 The new enrollment rules have SHA256
 `8b447f5208f830025eb32f5ec1063849d4ffaaade02c0164d172626d97be362f`
 and passed actual emulator tests for identity spoofing, role escalation, request
-privacy, owner isolation and revocation. They are **not yet claimed deployed**.
-This session exposes no Firebase administration operations; normal terminal owner
-deployment and trusted bootstrap are the remaining account-side dependency.
+privacy, owner isolation and revocation. The owner reports these rules deployed
+and the owner role configured. The current session has no Firebase administration
+tools; a bounded read-only probe through the installed official CLI recognized its
+existing account but received HTTP500 at rules readback on two attempts. This is
+not evidence that Google login or the owner's deployment failed.
 
-See [exact owner setup](../cloud/DEPLOYMENT.md). After that one-time setup, ordinary
-members sign in, ask to join and check approval inside the game. The owner approves
+The [owner setup guide](../cloud/DEPLOYMENT.md) remains a recovery reference.
+Ordinary members sign in, ask to join and check approval inside the game. The owner approves
 or revokes them in the game. No ordinary member needs Firebase Console or a copied
 technical identifier. Owner authority cannot be created by a client. Owner access
 management never grants access to another learner's progress.
 
-Until activation, requests fail closed with localized setup guidance; local saving,
-exports, installed offline activities and previously approved sync remain available.
+Requests fail closed with localized guidance if server access is unavailable; local
+saving, exports and installed offline activities remain available.
 Google authentication no longer signs pending users out. No traveler is uploaded
 merely by signing in or asking to join. No billing, Cloud Functions or paid AI added.
 
 ## Remaining verification boundaries
 
-Actual Google consent, approved production cloud synchronization and owner decision
-UI need live verification after owner activation. Emulator results do not prove
-those production operations. Real Safari/iOS, screen readers and low-end hardware
+Today independent public checks confirmed the authorized Pages domain and403
+PERMISSION_DENIED for anonymous admission reads, request lists and learner lists.
+Live file integrity still matches releaseeea5e980e95ccf33ace8. These checks cannot
+establish a private owner role or approved synchronization. The new optional
+`node scripts/verify-firebase-activation.mjs` read-only administrative probe emits
+only rules hashes and bounded role counts, never credentials or learner content.
+Its report distinguishes owner confirmation from privileged readback.
+
+Actual approved production cloud synchronization and the owner decision UI still
+need verification from a signed-in game session. A single consolidated in-game
+check has been requested; no additional console setup is requested. Emulator
+results do not prove those production operations. Real Safari/iOS, screen readers and low-end hardware
 were not exhaustively tested. Automated axe checks are not WCAG certification.
 
 The educational library remains a finite reviewed foundation across six CEFR bands,
