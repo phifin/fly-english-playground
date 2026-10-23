@@ -402,7 +402,7 @@ try {
   async function axe(label, target = page) {
     if (!axePath) return;
     const result = await target.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
-    report.axe ??= []; report.axe.push({ page: label, violations: result.violations.map(({ id, impact, nodes }) => ({ id, impact, targets: nodes.map(node => node.target) })) });
+    report.axe ??= []; report.axe.push({ page: label, violations: result.violations.map(({ id, impact, nodes }) => ({ id, impact, targets: nodes.map(node => node.target), details:nodes.map(node=>({target:node.target,summary:node.failureSummary})) })) });
     assert.deepEqual(result.violations.filter(v => ['serious', 'critical'].includes(v.impact)).map(v => v.id), [], `Serious accessibility violations on ${label}`);
   }
 

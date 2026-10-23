@@ -12,7 +12,7 @@ adventure** opens traveler creation and puts the cursor in the nickname field.
 Your new traveler keeps that guidance language. Existing travelers can resume
 directly, and each retains their own preferences and progress.
 
-Create a display name; a nickname is enough. Each traveler has separate answers,
+Your nickname is optional. Pick a play style and start; there is no second setup form. Each traveler has separate answers,
 practice recommendations, settings and discoveries. An independent profile can
 be chosen as the guardian of dependent profiles. Guardians can open those journals
 from Settings. No birthday, microphone recording or contact list is collected.
@@ -28,22 +28,26 @@ visit every band without completing easier levels first.
 
 ## Explore, learn, discover
 
-Each region has four expeditions. Finish an expedition's learning activities to
-open the next study mission in that band. Read the English world clue, inspect
-the landmarks and help Nim reach the intended place. Water blocks the route;
-activate a switch while on or next to it to toggle the bridges.
+Each region has four expeditions. Open a scene and choose the highlighted stop.
+Its English clue and response controls stay together. A correct response or
+self-reviewed writing restores one connection. After all five are complete,
+choose **Bring this discovery home**. The next expedition then opens.
 
-- **Kids:** meet a clue, try an activity, see the world change, and move Nim with
-  direction buttons. The guided trail keeps one moment in view at a time.
-- **Balanced:** explore the map, choose activity objectives, queue direction
-  commands, then run your route.
-- **Serious:** use the direct study queue, review evidence, and enter route
-  commands as text when exploring. Commands are N, E, S, W and X (switch).
+- **Kids:** choose picture play with a grown-up, or a guided reading story with
+  Nim. Picture play uses six large illustrated targets and optional browser voice.
+  The adult can read the cue; the child may point, tap, listen or gesture. Reading
+  stories remain appropriate only when the learner can read or has reading help.
+- **Balanced:** choose a stop in the story scene, use its English clue, and see
+  the place gradually restored. There is no mandatory coordinate or command grid.
+- **Serious:** begin directly with focused practice, explanations, and an activity
+  strip. Optional world scenes and existing puzzles remain available.
 
 There is no timer, health loss, streak punishment or purchasable advantage.
-Resetting a route preserves discoveries. A world accomplishment needs both
-completed learning objectives and a replay-verified destination. It does not
-claim English mastery. Use the journal to see those two forms of progress apart.
+Picture collections save as shared practice and never count as CEFR results.
+Old routes and discoveries are preserved. The coordinate puzzles are now under
+**Optional route puzzle**; they are not required for new story discoveries.
+Discoveries do not certify English mastery. The journal separates accomplishments
+from actual responses and independent retrieval.
 
 Choice, constrained word gaps, ordering and matching have bounded answer keys.
 Read the task limits before answering; other wording can be natural outside a
@@ -65,7 +69,8 @@ with instructions and explanations; assessed passages remain English. Translatin
 a world clue is an explicit help action. Eco preserves every learning feature;
 Auto uses available capability signals and can reduce decoration after slow frames.
 
-Keyboard users can tab through controls. Use arrow keys while focused on the map;
+Keyboard users can tab through every scene stop and picture card. In the optional
+legacy route puzzle, use arrow keys while focused on the map;
 Kids moves directly and other modes add route commands. Every cell has an inspect
 button and the landmark legend remains available. Sentence ordering uses buttons,
 not mandatory dragging. Turn on reduced motion whenever preferred. Optional

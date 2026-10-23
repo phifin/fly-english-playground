@@ -1,10 +1,10 @@
 # The Unfolding Atlas
 
-A family English-learning game about restoring an unfinished world. Read a clue,
-guide Nim across bridges, recover discoveries, and revisit language over time.
-Kids uses direct movement and guided moments; Balanced uses route planning and
-exploration; Serious offers a study queue and text commands. Learning evidence
-and world accomplishments are tracked separately.
+A family English-learning game about restoring an unfinished world. Open a story,
+follow its interactive stops, repair messages and plans, and collect a discovery.
+Kids offers guided reading stories plus adult-assisted picture play; Balanced
+integrates language interactions into an expedition scene; Serious opens focused
+practice directly. Learning evidence and game accomplishments stay separate.
 
 **The game is deployed:** [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
 The production build, Auth/Firestore emulator checks, sandboxed browser suite,
@@ -36,7 +36,7 @@ The preserved P0 light-and-mirror sandbox is at `/observatory.html`.
 
 ## Included
 
-- Six regions, **24 expeditions, 120 activities and 24 exploration boards**:
+- Six regions, **24 expeditions, 120 activities and 24 optional route puzzles**:
   four expeditions and 20 activities in each A1–C2 practice band.
 - Choice, constrained gaps, sentence construction, contextual matching, and
   rubric-based writing. Writing is self-reviewed; it is not automatically scored.
@@ -51,6 +51,8 @@ The preserved P0 light-and-mirror sandbox is at `/observatory.html`.
   owner can manage requests in the game once the reviewed rules are activated.
   A guardian manages dependent profiles under one cloud identity. Local profile
   selection is a convenience on a trusted browser, not a password boundary.
+- Six original illustrated vocabulary items for adult-assisted shared play,
+  stored separately from assessed language evidence.
 - Ungraded synthesized listening/retelling studio; no recording or paid AI API.
 
 This is a finite foundation library, not an entire A1–C2 course. Listening,
