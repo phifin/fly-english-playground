@@ -206,7 +206,10 @@ try {
       `A background notification must preserve the ${name} text selection.`);
   }
   async function createProfile(name, { kind = 'independent', guardianId = '', mode = 'balanced', language = 'en' } = {}) {
-    if (!(await page.locator('[data-form="create-profile"]').count())) { await action('profiles'); await action('start-traveler'); }
+    if (!(await page.locator('[data-form="create-profile"]').count())) {
+      if(await button('profiles').count())await action('profiles');
+      await action('start-traveler');
+    }
     await action('guidance-language', `[data-value="${language}"]`);
     const form = page.locator('[data-form="create-profile"]');
     await form.locator('[name="name"]').fill(name);
