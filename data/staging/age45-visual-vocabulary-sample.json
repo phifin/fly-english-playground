@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "batchId": "age45-visual-vocabulary-sample",
+  "status": "staging-research-sample",
+  "purpose": {
+    "ageRange": "4-5",
+    "activity": "Adult-supported visual vocabulary practice",
+    "claimLimit": "Practice only; not a CEFR assessment, independent reading task, or validated learning intervention.",
+    "responseModes": ["point", "tap", "gesture", "listen", "say the word if the child chooses"],
+    "requiresAdult": true,
+    "requiresReading": false
+  },
+  "facilitation": {
+    "en": "Say one English cue, then pause. Let the child point, tap, gesture, or listen. Name the picture together; do not require the child to say the word.",
+    "vi": "Nói một câu gợi ý tiếng Anh rồi chờ. Hãy để trẻ chỉ, chạm, ra hiệu hoặc chỉ lắng nghe. Cùng gọi tên hình; không bắt trẻ phải nói theo.",
+    "presentation": "Show three large, unlabeled picture cards for one item. Keep the answer key and word labels out of the child's view. The adult may use the Vietnamese cue as support.",
+    "feedback": "Use warm, neutral feedback and allow another try without a timer or score.",
+    "runtime": "Staging concept only; requires an image-capable activity renderer and reviewed illustrations before implementation."
+  },
+  "provenance": [
+    {
+      "id": "atlas-a1-original-contexts",
+      "type": "workspace-content-reference",
+      "path": "data/published/atlas.json",
+      "activityIds": [
+        "a1-lantern-harbor-03",
+        "a1-lantern-harbor-shell-bell-01",
+        "a1-lantern-harbor-shell-bell-02",
+        "a1-lantern-harbor-color-teller-03",
+        "a1-lantern-harbor-rooftop-kites-01",
+        "a1-lantern-harbor-rooftop-kites-04"
+      ],
+      "usage": "Target words are drawn from original Atlas A1 contexts; only the concepts are reused. New cues and image descriptions are original."
+    },
+    {
+      "id": "coe-cefr-companion-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "accessed": "2026-10-23",
+      "usage": "Reference only for CEFR reading and young-learner descriptor scope; no descriptors reproduced."
+    },
+    {
+      "id": "aap-literacy-promotion-2024",
+      "title": "Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement",
+      "url": "https://publications.aap.org/pediatrics/article/154/6/e2024069090/199467/",
+      "accessed": "2026-10-23",
+      "usage": "Reference only for shared-reading and dialogic-reading design context; no text reproduced."
+    },
+    {
+      "id": "skene-guided-play-2022",
+      "title": "Can guidance during play enhance children’s learning and development in educational contexts? A systematic review and meta-analysis",
+      "url": "https://doi.org/10.1111/cdev.13730",
+      "accessed": "2026-10-23",
+      "usage": "Research findings summarized for design rationale; no text, table, or figure reproduced."
+    }
+  ],
+  "items": [
+    {
+      "id": "age45-lantern",
+      "word": {"en": "lantern", "vi": "đèn lồng"},
+      "adultCue": {"en": "Can you find the lantern?", "vi": "Con tìm chiếc đèn lồng nhé?"},
+      "visualOptions": [
+        {"id": "lantern", "role": "target", "concept": "One hanging paper lantern with a simple shape on a plain background."},
+        {"id": "boat", "role": "distractor", "concept": "One small blue boat, shown alone on a plain background."},
+        {"id": "shell", "role": "distractor", "concept": "One open seashell, shown alone on a plain background."}
+      ],
+      "answerId": "lantern",
+      "parentFacilitation": {"en": "Invite the child to point first; then name the lantern together.", "vi": "Mời trẻ chỉ vào hình trước, rồi cùng gọi tên chiếc đèn lồng."},
+      "sourceActivityIds": ["a1-lantern-harbor-03"]
+    },
+    {
+      "id": "age45-bell",
+      "word": {"en": "bell", "vi": "cái chuông"},
+      "adultCue": {"en": "Can you find the bell?", "vi": "Con tìm chiếc chuông nhé?"},
+      "visualOptions": [
+        {"id": "bell", "role": "target", "concept": "One small silver hand bell with a visible handle, shown alone on a plain background."},
+        {"id": "shell", "role": "distractor", "concept": "One open seashell, shown alone on a plain background."},
+        {"id": "leaf", "role": "distractor", "concept": "One broad green leaf, shown alone on a plain background."}
+      ],
+      "answerId": "bell",
+      "parentFacilitation": {"en": "Let the child point, tap, or make a ringing gesture; model the word without asking for repetition.", "vi": "Để trẻ chỉ, chạm hoặc làm điệu bộ rung chuông; nói mẫu từ này mà không yêu cầu trẻ lặp lại."},
+      "sourceActivityIds": ["a1-lantern-harbor-03", "a1-lantern-harbor-shell-bell-01"]
+    },
+    {
+      "id": "age45-boat",
+      "word": {"en": "boat", "vi": "chiếc thuyền"},
+      "adultCue": {"en": "Can you find the boat?", "vi": "Con tìm chiếc thuyền nhé?"},
+      "visualOptions": [
+        {"id": "boat", "role": "target", "concept": "One small blue harbor boat with a clear hull shape, shown alone on a plain background."},
+        {"id": "kite", "role": "distractor", "concept": "One colorful paper kite with a visible tail, shown alone on a plain background."},
+        {"id": "lantern", "role": "distractor", "concept": "One hanging paper lantern, shown alone on a plain background."}
+      ],
+      "answerId": "boat",
+      "parentFacilitation": {"en": "If useful, point out how the boat moves on water; keep the child's choice open.", "vi": "Nếu thấy hữu ích, hãy nói thuyền đi trên nước; để trẻ tự chọn."},
+      "sourceActivityIds": ["a1-lantern-harbor-03", "a1-lantern-harbor-shell-bell-03"]
+    },
+    {
+      "id": "age45-shell",
+      "word": {"en": "shell", "vi": "vỏ sò"},
+      "adultCue": {"en": "Can you find the shell?", "vi": "Con tìm chiếc vỏ sò nhé?"},
+      "visualOptions": [
+        {"id": "shell", "role": "target", "concept": "One white seashell with a simple spiral, shown alone on a plain background."},
+        {"id": "bell", "role": "distractor", "concept": "One small silver hand bell, shown alone on a plain background."},
+        {"id": "leaf", "role": "distractor", "concept": "One broad green leaf, shown alone on a plain background."}
+      ],
+      "answerId": "shell",
+      "parentFacilitation": {"en": "Invite the child to point or pretend to hold the shell; share its name together.", "vi": "Mời trẻ chỉ hoặc giả vờ cầm vỏ sò; cùng gọi tên vật."},
+      "sourceActivityIds": ["a1-lantern-harbor-shell-bell-01", "a1-lantern-harbor-shell-bell-02"]
+    },
+    {
+      "id": "age45-kite",
+      "word": {"en": "kite", "vi": "con diều"},
+      "adultCue": {"en": "Can you find the kite?", "vi": "Con tìm con diều nhé?"},
+      "visualOptions": [
+        {"id": "kite", "role": "target", "concept": "One diamond-shaped paper kite with a long tail, shown against a simple sky."},
+        {"id": "boat", "role": "distractor", "concept": "One small blue boat, shown alone on a plain background."},
+        {"id": "lantern", "role": "distractor", "concept": "One hanging paper lantern, shown alone on a plain background."}
+      ],
+      "answerId": "kite",
+      "parentFacilitation": {"en": "Ask what the child notices about the kite or its tail; accept pointing or talk in either language.", "vi": "Hỏi trẻ nhận ra điều gì ở con diều hoặc chiếc đuôi; chấp nhận trẻ chỉ hoặc nói bằng ngôn ngữ nào cũng được."},
+      "sourceActivityIds": ["a1-lantern-harbor-rooftop-kites-01", "a1-lantern-harbor-rooftop-kites-04"]
+    },
+    {
+      "id": "age45-leaf",
+      "word": {"en": "leaf", "vi": "chiếc lá"},
+      "adultCue": {"en": "Can you find the leaf?", "vi": "Con tìm chiếc lá nhé?"},
+      "visualOptions": [
+        {"id": "leaf", "role": "target", "concept": "One broad green leaf with a simple stem and outline, shown alone on a plain background."},
+        {"id": "shell", "role": "distractor", "concept": "One open seashell, shown alone on a plain background."},
+        {"id": "kite", "role": "distractor", "concept": "One colorful paper kite with a visible tail, shown alone on a plain background."}
+      ],
+      "answerId": "leaf",
+      "parentFacilitation": {"en": "Invite the child to find a leaf nearby too, if one is available; the picture choice is enough.", "vi": "Nếu có lá ở gần, mời trẻ tìm thêm; chỉ chọn hình cũng đã đủ."},
+      "sourceActivityIds": ["a1-lantern-harbor-color-teller-03"]
+    }
+  ],
+  "limitations": [
+    "No children or families have tried these items.",
+    "No illustrations or audio files are included or rights-cleared by this sample.",
+    "The sample has no CEFR level and provides no language-placement, learning-gain, or proficiency evidence."
+  ]
+}

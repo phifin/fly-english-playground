@@ -1,0 +1,41 @@
+# Developmental review: visual English play for ages 4–5
+
+**Status:** research and design guidance for staging; not a child-validation report or an approval to publish. Reviewed 2026-10-23.
+
+## Scope and recommendation
+
+I reviewed all 20 activities in the four published A1 missions: `a1-lantern-harbor` (01–05), `a1-lantern-harbor-shell-bell` (01–05), `a1-lantern-harbor-color-teller` (01–05), and `a1-lantern-harbor-rooftop-kites` (01–05) in [`data/published/atlas.json`](../published/atlas.json). These use English text prompts and contexts for choice, gap, matching, ordering, or short writing. Their words and settings are concrete, gentle, and all-ages, but the tasks still ask the learner to read English, reason over a written clue, manipulate sentence language, or write. The current data has no picture stimulus or recorded audio for these activities.
+
+Keep the existing A1–C2 journeys as language-learning missions with their stated reading and language demands. Offer 4–5-year-olds a separate, optional, adult-supported visual vocabulary play activity. It should be framed as exposure and shared practice, with pointing, tapping, gestures, and talk accepted. Do not put a CEFR band on the play sample, treat it as an intake test, or count it as independent reading, listening, speaking, or proficiency evidence.
+
+## Evidence and limits
+
+The Council of Europe’s CEFR Companion Volume describes A1 reading as handling very short, simple texts a phrase at a time, while its Pre-A1 reading descriptor concerns recognising familiar words with pictures. The Companion Volume’s collated young-learner descriptors cover ages 7–10 and 11–15, and explains that age-specific adaptations filter descriptors that exceed a group’s typical cognitive, social, or experiential capacity. It supplies no age 4–5 mapping. The picture-supported descriptor can inform a design discussion, but if an adult speaks the cue and the child picks an image, the observed response is spoken-cue comprehension, not reading. CEFR association alone cannot establish age suitability or calibrate this app’s tasks. ([CEFR Companion Volume, pp. 54 and 243–245](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4))
+
+The American Academy of Pediatrics recommends enjoyable, developmentally appropriate shared reading and describes interactive dialogic reading as a way to build reciprocal, language-rich interactions. This supports designing the adult as a warm partner and using pictures and conversation. It is guidance for shared reading and early literacy, not evidence that a screen-based vocabulary game replaces books or produces a particular English outcome. ([AAP policy statement, “Literacy Promotion”](https://publications.aap.org/pediatrics/article/154/6/e2024069090/199467/))
+
+A 2022 systematic review and meta-analysis covered 39 guided-play studies, with 17 studies and 3,893 children in the pooled analyses (ages 1–8). Results varied by outcome: guided play showed advantages for some outcomes, including spatial vocabulary compared with free play, while the review found no difference for literacy or receptive-vocabulary outcomes compared with direct instruction. The authors also report substantial variation between interventions. This supports trying flexible adult-supported play as a format; it does not establish effectiveness for English as an additional language, this six-item set, or a browser app. ([Skene et al., *Child Development*, DOI 10.1111/cdev.13730](https://onlinelibrary.wiley.com/doi/10.1111/cdev.13730))
+
+## Presentation guidance
+
+- Make the activity invitation explicit: “Play together” or “Ask an adult to help.” Do not infer a child’s age from a profile or make this the only path into the Atlas.
+- Present one short spoken cue with two or three large, clear pictures. A caregiver may say the English word, repeat it, and use the Vietnamese caregiver cue. Let the child point, tap, gesture, or simply listen; do not require reading, typing, spelling, or spoken repetition.
+- Follow the child’s attention. Wait, accept a nonverbal response, name the picture together, and invite talk about the object. Avoid timers, correction loops, streaks, and grades. If responses are recorded at all, label them as supported practice and keep them out of placement and CEFR evidence.
+- Keep word and image choices concrete and visually distinct. Show one object or a small natural group against a quiet background; avoid relying on color alone or on a detailed scene to identify the answer. The sample JSON supplies image concepts only, not image files.
+- Keep A1 reading missions available as written missions. A caregiver can read a passage aloud as access support, but the resulting supported response should not be counted as independent reading evidence. Label spoken-prompt image selection as practice with adult support.
+- There is no audio asset in the reviewed A1 set. The family guide describes optional synthesized speech in the echo studio. Browser speech synthesis exposes voices available on the current device, and the voice list can change after it loads; the browser API does not guarantee a consistent, reviewed voice. Keep any TTS optional and user-started. Do not call it reviewed listening content or score it as such. For a future listening mission, follow the content strategy: use reviewed, rights-cleared audio with a transcript and record text fallback as a different evidence domain. ([MDN: SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis); [MDN: `voiceschanged`](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/voiceschanged_event); [content strategy](../content-strategy.md))
+
+## Staged sample and review boundary
+
+[`age45-visual-vocabulary-sample.json`](age45-visual-vocabulary-sample.json) contains only six original illustration concepts for words already present in the reviewed A1 contexts: **lantern, bell, boat, shell, kite,** and **leaf**. Each record has English and Vietnamese caregiver cues, one correct visual target, two distractors, and a short facilitation prompt. It is a content sketch; the current runtime has no image-capable activity contract for it, and no illustration assets are included.
+
+The six concepts and their cues are original staging material. Target words were selected from original Atlas mission contexts and are referenced by activity ID in the JSON. The CEFR, AAP, and Skene sources above are cited for design reasoning only; no descriptor, passage, exercise, figure, or image was copied. Their rights remain with their respective publishers. The staged JSON contains no third-party media and makes no reuse-license claim. Any later illustration needs its own provenance, rights review, and accessibility description.
+
+This review is a desk review only. No children, families, early-childhood educators, or English-language specialists tested or approved the sample. Before presenting it as child-facing content, have its English/Vietnamese wording and images reviewed by competent bilingual and early-childhood reviewers, then observe use with families under an appropriate consent process. Keep the claims at “adult-supported visual vocabulary practice” unless further evidence supports more.
+
+## Sources
+
+- Council of Europe. *Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume* (2020). https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — reference only; no descriptor text copied.
+- American Academy of Pediatrics. “Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement” (2024). https://publications.aap.org/pediatrics/article/154/6/e2024069090/199467/ — reference only; no text copied.
+- Skene, K. et al. “Can guidance during play enhance children’s learning and development in educational contexts? A systematic review and meta-analysis.” *Child Development* (2022). https://doi.org/10.1111/cdev.13730 — findings summarized; no text, table, or figure copied.
+- MDN Web Docs. “SpeechSynthesis” and “SpeechSynthesis: voiceschanged event.” https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis and https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/voiceschanged_event — implementation reference only.

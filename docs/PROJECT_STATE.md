@@ -1,5 +1,38 @@
 # Current execution state
 
+## Product redesign underway — 23 October 2026
+
+- Active user directive: substantial play-driven redesign, not incremental CSS.
+- Implemented story scenes integrated with activities; mandatory route grid removed, optional legacy route preserved. Explicit story collection requires all five actual activities; no CEFR evidence fabrication.
+- Short optional-nickname entry, direct Google action, three play styles; new picture practice for adult-assisted pre-readers, independently accepted six Luna items (one source reference rejected). New receipts fit existing event envelopes, no schema migration.
+- Updated native controls/language switcher, system typography and translation opt-out. Cloud permissions unchanged; verified-email invitations deferred because no authenticated production-rule deploy tool is exposed. Owner already completed existing setup; do not repeat.
+- Local tests: 299 total / 296 pass / 3 emulator-dependent skips, no failures. Content and static build passed. Browser harness adapted; real CI browser verification and screenshots next, not yet claimed passed.
+- Read docs/product-redesign.md and staged research/acceptance script. Current remote before redesign is3c599f49817b043cc65a85733862655fd336332b. Publish only scoped files with expected-ref lease; preserve remote history.
+- Local graphical browsers remain sandbox-limited; use existing GitHub-hosted workflow without bypass. Pending private signed-in owner/sync check remains separately unverified.
+
+
+## Latest post-activation verification complete within available access — 23 October 2026
+
+- Current remotehead3c599f49817b043cc65a85733862655fd336332b, tree
+  1334b0197e1a045e004d06ff34a20f9d803bf53a. Latest run39883360590 all4jobs success:
+  build120185710580, firestore-rules120185710741, deploy120185947550,
+  verify-production120186008501.287domain/unitpasses,3actualemulatortests,
+  25preview+productionbrowserchecks. Runtime releaseeea5e980e95ccf33ace8 unchanged.
+- BOTH owner setup actions are completed per explicit owner confirmation.
+  No more setup/login/domain requests. Public live checks and27asset/5private404
+  verification passed. Same-process official-CLI readback recognized the existing
+  account but returnedHTTP500 twice; stop identical retries. No privileged rules
+  or owner readback was independently established; record that limitation.
+- One consolidated in-game session check is pending: Check family access;
+  Check requests & family access; link selected traveler if needed and Save & sync.
+  Only the owner can operate that private Google browser session with current
+  tooling. No tokens, screenshot, extra console setup or credential sharing needed.
+  Consume the answer when it arrives and continue any reported error autonomously.
+- Safe read-only probe and three regressions are published. Receipts in ignored
+  artifacts/post-owner-activation.json and firebase-activation-verification.json.
+  This local checkpoint records the completed workflow after publication, without
+  introducing another application change or documentation deployment loop.
+
 ## Post-activation verification boundary — 23 October 2026
 
 - Owner confirmation is recorded: BOTH rules deployment and trusted owner bootstrap

@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
-import { deriveProgress } from '../src/learning.js';
+import { journeyProgress } from '../src/journey.js';
 import { deriveExpeditions, findRoute, validateBoard } from '../src/expedition.js';
 import { mergeExports } from '../src/storage.js';
 import { deploymentUrl } from './verify-deployment.mjs';
@@ -98,9 +98,7 @@ try {
   }));
   assert.equal(boards.size, pack.missions.length, 'Every published mission needs its own distinct board.');
   function evidenceFor(events) {
-    const learning = deriveProgress(events, pack);
-    const world = deriveExpeditions(events, boardPack.boards);
-    return { ...learning, rewards: new Set([...learning.rewards].filter(id => world.solved.has(`${id}-board`))) };
+    return journeyProgress(events, pack, boardPack.boards);
   }
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const first = new Map(levels.map(level => [level, pack.missions.find(m => m.level === level)]));
@@ -208,21 +206,25 @@ try {
       `A background notification must preserve the ${name} text selection.`);
   }
   async function createProfile(name, { kind = 'independent', guardianId = '', mode = 'balanced', language = 'en' } = {}) {
-    if (!(await page.locator('[data-form="create-profile"]').count())) await action('profiles');
+    if (!(await page.locator('[data-form="create-profile"]').count())) { await action('profiles'); await action('start-traveler'); }
+    await action('guidance-language', `[data-value="${language}"]`);
     const form = page.locator('[data-form="create-profile"]');
-    await revealDetails(form);
     await form.locator('[name="name"]').fill(name);
+    await form.locator(`[name="mode"][value="${mode}"]`).check(); await ready();
     await revealDetails(form.locator('[name="kind"]'));
     await form.locator('[name="kind"]').selectOption(kind);
     await ready();
     if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
     await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
+    assert.equal(await form.locator(`[name="mode"][value="${mode}"]`).isChecked(), true,
+      'A background update must preserve the selected way to play.');
     await click(form.locator('button[type="submit"]'));
-    await button('finish-onboard').waitFor({ state: 'visible' });
     const id = await activeId();
-    await action('mode', `[data-value="${mode}"]`);
-    await select('[data-setting="language"]', language);
-    await action('finish-onboard');
+    assert.equal(await button('finish-onboard').count(), 0, 'New players must enter play without a second configuration page.');
+    assert.equal(await page.locator('body').evaluate((element, value) => element.classList.contains(`mode-${value}`), mode), true);
+    if (mode === 'kids') await button('picture-play').waitFor({ state: 'visible' });
+    else if (mode === 'balanced') await page.locator('.story-expedition').waitFor({ state: 'visible' });
+    else await button('submit').waitFor({ state: 'visible' });
     return id;
   }
   async function settings({ mode, language, quality, motion } = {}) {
@@ -310,10 +312,12 @@ try {
       await button('investigate').waitFor({ state: 'visible' });
       assert.equal(await button('submit').count(), 0);
       await action('investigate');
-      assert.ok(await button('ready').count() || await button('world-move').count() || await button('activity').count(), 'Kids investigation opens a discovery board or a clue scene.');
+      assert.ok(await button('ready').count(), 'Kids investigation opens a guided clue scene.');
       assert.equal(await button('submit').count(), 0, 'Kids investigates before entering the response workspace.');
     } else if (assertEntry && mode === 'balanced') {
-      assert.equal(await button('submit').count(), 0, 'Balanced begins with a mission board.');
+      assert.equal(await button('submit').count(), 0, 'Balanced begins with an interactive story scene.');
+      assert.equal(await page.locator('.story-expedition').count(), 1);
+      assert.equal(await page.locator('.expedition-grid').count(), 0, 'A coordinate puzzle must not block entry to the adventure.');
       assert.ok(await button('activity').count());
     } else if (assertEntry && mode === 'serious') {
       await button('submit').waitFor({ state: 'visible' });
@@ -367,6 +371,10 @@ try {
   async function solveWorld(mission, mode) {
     await openMission(mission, mode);
     if (await button('world').count()) await action('world');
+    // Legacy route games remain available by explicit choice, not as a gate.
+    if (!(await page.locator('[data-action="route-game"]').count())) await action('world');
+    await revealDetails(page.locator('[data-action="route-game"]'));
+    await action('route-game');
     await action('world-reset');
     const board = boards.get(mission.id), route = findRoute(board);
     assert.ok(route?.length && route.length <= 40, 'Accepted boards need a bounded route through a bridge switch.');
@@ -450,6 +458,8 @@ try {
       assert.equal(callToAction.inViewport && callToAction.unobscured, true,
         `The first action must be visible and unobscured on arrival at ${viewport.width}px: ${JSON.stringify(callToAction)}`);
       assert.ok(callToAction.height >= 44, 'The primary entry action needs a full touch target.');
+      const google = await withinFirstViewport(arrivalPage.locator('.welcome [data-action="cloud-signin"]'));
+      assert.equal(google.inViewport && google.unobscured,true,'Google sign-in must be discoverable in the first viewport alongside local play.');
       for (const value of ['en', 'vi']) {
         const language = await withinFirstViewport(languageButton(value));
         assert.equal(language.inViewport && language.unobscured, true,
@@ -470,6 +480,11 @@ try {
     await arrivalPage.setViewportSize({ width: 390, height: 844 });
     await arrivalPage.screenshot({ path: fileURLToPath(new URL('release-welcome-vietnamese.png', directory)), fullPage: true });
     await axe('Vietnamese welcome at 390px', arrivalPage);
+    const typography = await arrivalPage.locator('.welcome h1').evaluate(el=>{const st=getComputedStyle(el);return {text:el.textContent,spacing:st.letterSpacing,lineHeight:parseFloat(st.lineHeight),size:parseFloat(st.fontSize),font:st.fontFamily,translation:document.documentElement.translate};});
+    assert.equal(typography.spacing,'normal');assert.ok(typography.lineHeight>=typography.size*1.3);assert.equal(typography.translation,false);assert.equal(typography.text,typography.text.normalize('NFC'));
+    assert.doesNotMatch(typography.text,/\uFFFD/);report.typography=typography;
+    for(const value of ['en','vi'])assert.equal(await languageButton(value).evaluate(el=>getComputedStyle(el).borderTopWidth),'0px');
+
 
     await start.click(); await ready(arrivalPage);
     const name = arrivalPage.locator('#traveler-name');
@@ -478,11 +493,11 @@ try {
     const travelerName = 'Mây UI CI';
     await name.fill(travelerName);
     const form = arrivalPage.locator('[data-form="create-profile"]');
-    assert.match(await form.locator('label').filter({ has: name }).innerText(), /Bạn|Tên|biệt danh/,
+    assert.match(await form.locator('label').filter({ has: name }).innerText(), /Bạn|Tên|[Bb]iệt danh/,
       'Essential traveler guidance must be Vietnamese before profile creation.');
     await languageButton('en').click(); await ready(arrivalPage);
     assert.equal(await name.inputValue(), travelerName, 'Switching guidance must preserve a partly entered traveler name.');
-    assert.equal(await form.evaluate(element => element.closest('details').open), true);
+    assert.equal(await form.isVisible(), true, 'The entry form stays visible without a disclosure gate.');
     await languageButton('vi').click(); await ready(arrivalPage);
     assert.equal(await name.inputValue(), travelerName);
     await revealDetails(form.locator('[name="kind"]'), arrivalPage);
@@ -507,21 +522,24 @@ try {
       'A background notification must preserve focus on the nested family disclosure instead of moving it to the outer create section.');
     assert.equal(await form.locator('.family-options').evaluate(element => element.open), true,
       'The optional family controls must stay expanded while their summary is focused.');
-    assert.equal(await form.evaluate(element => element.closest('details').open), true);
+    assert.equal(await form.isVisible(), true, 'The entry form stays visible without a disclosure gate.');
     assert.equal(await name.inputValue(), travelerName);
     assert.equal(await kind.inputValue(), 'independent');
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
     await form.locator('button[type="submit"]').click(); await ready(arrivalPage);
-    await arrivalPage.locator('[data-action="finish-onboard"]').waitFor({ state: 'visible' });
+    await arrivalPage.locator('.story-expedition').waitFor({ state: 'visible' });
+    assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(),0);
+    assert.equal(await arrivalPage.locator('.expedition-grid').count(),0);
     let committed = (await arrivalPage.evaluate(readImportState)).snapshot;
     assert.equal(committed.profiles.length, 1);
     const traveler = committed.profiles[0];
     assert.equal(traveler.name, travelerName);
     assert.equal(traveler.settings.language, 'vi', 'New travelers must inherit the guidance chosen before registration.');
     assert.equal(committed.events.length, 0, 'Onboarding preferences must not manufacture learning evidence.');
+    await arrivalPage.locator('.main-nav [data-action="settings"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="mode"][data-value="kids"]').click(); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Play-first selection must not redefine guidance language.');
-    await arrivalPage.locator('[data-action="finish-onboard"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('.main-nav [data-action="atlas"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('.profile-pill').click(); await ready(arrivalPage);
     const resume = arrivalPage.locator(`.welcome [data-action="choose-profile"][data-id="${traveler.id}"]`);
     assert.equal((await withinFirstViewport(resume)).inViewport, true, 'Returning travelers need a visible resume action above the fold.');
@@ -536,6 +554,29 @@ try {
     assert.equal(committed.profiles[0].settings.mode, 'kids');
     assert.deepEqual(committed.events, [], 'Resume and mode changes must preserve the untouched learning journal.');
     report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
+    await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
+    const pictureWords=['lantern','bell','boat','shell','kite','leaf'];
+    await arrivalPage.screenshot({path:fileURLToPath(new URL('release-picture-play-vietnamese.png',directory)),fullPage:true});
+    await axe('Vietnamese assisted picture play at 390px',arrivalPage);
+    assert.equal(await arrivalPage.locator('.picture-card').count(),3);
+    await arrivalPage.locator('.picture-card:not([data-value="lantern"])').first().click(); await ready(arrivalPage);
+    assert.equal(await arrivalPage.locator('[data-action="picture-next"]').count(),0,'Wrong picture selections do not advance or earn a collection');
+    assert.equal((await arrivalPage.evaluate(readImportState)).snapshot.events.length,0);
+    for(const word of pictureWords){
+      const card=arrivalPage.locator('[data-action="picture-pick"][data-value="'+word+'"]');
+      const box=await card.boundingBox();assert.ok(box.width>=44&&box.height>=44);
+      await card.focus();await card.press('Enter');await ready(arrivalPage);
+      assert.equal(await arrivalPage.locator('.picture-card:not(:disabled)').count(),0);
+      await arrivalPage.locator('[data-action="picture-next"]').click();await ready(arrivalPage);
+    }
+    const pictureSaved=(await arrivalPage.evaluate(readImportState)).snapshot;
+    assert.equal(pictureSaved.events.filter(e=>e.kind==='mission'&&e.payload.experience==='picture-play-v1').length,6);
+    assert.equal(pictureSaved.events.filter(e=>['attempt','placement'].includes(e.kind)).length,0);
+    await arrivalPage.locator('[data-action="atlas"]').filter({hasText:/Bản đồ|bản đồ/}).last().click();await ready(arrivalPage);
+    await arrivalPage.reload({waitUntil:'domcontentloaded'});await ready(arrivalPage);
+    assert.equal(canonical((await arrivalPage.evaluate(readImportState)).snapshot.events),canonical(pictureSaved.events));
+    check('Adult-assisted picture play gives retry feedback, keyboard/touch targets and a six-picture collection that persists without CEFR evidence.');
+
   } catch (error) { failurePage = arrivalPage; throw error; }
   finally {
     // Keep a failing page open for the outer evidence collector.
@@ -577,11 +618,11 @@ try {
     });
     try {
       await outagePage.goto(base.href); await ready(outagePage);
+      await outagePage.locator('[data-action="start-traveler"]').click(); await ready(outagePage);
       const form = outagePage.locator('[data-form="create-profile"]');
       const name = 'CDN outage CI';
       await form.locator('[name="name"]').fill(name);
-      await revealDetails(outagePage.locator('.cloud-panel > summary'), outagePage);
-      await outagePage.locator('.cloud-panel > summary').click();
+      await outagePage.locator('.entry-form > [data-action="cloud-signin"]').click();
       await outagePage.locator('.alert.error').waitFor({ state: 'visible' });
       await outagePage.locator('.cloud-status[data-cloud-state="error"]').waitFor({ state: 'visible' });
       assert.ok((await outagePage.locator('.cloud-status').innerText()).trim().length > 12,
@@ -598,8 +639,8 @@ try {
       assert.equal(mutations, 0, 'An open cloud panel must settle after an SDK failure without repeating error renders.');
       assert.equal(blocked.length, attempts, 'An SDK failure must not automatically repeat CDN load attempts.');
       assert.equal(await form.locator('[name="name"]').inputValue(), name, 'An SDK outage must preserve the typed traveler name.');
-      assert.equal(await form.evaluate(element => element.closest('details').open), true, 'The create section must stay expanded after an SDK outage.');
-      assert.equal(await outagePage.locator('.cloud-panel').evaluate(element => element.open), true, 'The failed cloud panel must stay open so its status remains readable.');
+      assert.equal(await form.isVisible(), true, 'The entry form must stay visible after an SDK outage.');
+      assert.equal(await outagePage.locator('.cloud-panel').isVisible(), true, 'The failed cloud panel must remain visible so its status is readable.');
       assert.ok(requests.every(url => url.startsWith(sdkRoot)), 'The outage check must not contact authentication or learner-data services.');
       assert.equal(popups, 0, 'Opening the cloud panel must not open a sign-in popup.');
       assert.deepEqual(uncaught, [], 'Expected CDN errors must be handled by the app without uncaught exceptions.');
@@ -699,6 +740,15 @@ try {
     for (let index = 0; index < mission.activities.length; index++) {
       const activity = mission.activities[index];
       await openActivity(activity, mode);
+      if(missionIndex===0&&index===0){
+        await page.screenshot({path:fileURLToPath(new URL('release-story-desktop.png',directory)),fullPage:true});
+        await page.setViewportSize({width:390,height:844});await noOverflow();
+        await page.screenshot({path:fileURLToPath(new URL('release-story-mobile.png',directory)),fullPage:true});
+        await axe('Balanced story interaction at 390px');
+        assert.equal(await page.locator('.story-workspace .activity-prompt').count(),1,'The language interaction stays inside the expedition workspace.');
+        assert.equal(await page.locator('.expedition-grid').count(),0);
+        await page.setViewportSize({width:1440,height:1000});
+      }
       if (missionIndex === 0 && index === 0) {
         assert.ok(['choice', 'gap'].includes(activity.type), 'The first mission needs a bounded response for the wrong-answer check.');
         await solve(activity, { wrong: true }); submitted++;
@@ -732,6 +782,15 @@ try {
       if (missionIndex === 0 && (index === 0 || activity.type === 'gap')) assert.match(await page.locator('.feedback').innerText(), /Supported practice/);
       await finishMoment(mode);
     }
+    await button('collect-discovery').waitFor({state:'visible'});
+    const beforeCollection=(await page.evaluate(readImportState)).snapshot.events.filter(e=>e.profileId===mainId);
+    const beforeEvidence=evidenceFor(beforeCollection);
+    assert.equal(beforeEvidence.completedMissions.has(mission.id),true);
+    assert.equal(beforeEvidence.worlds.solved.has(boards.get(mission.id).id),false,'Collecting the new story must not require a route puzzle.');
+    await action('collect-discovery');
+    const afterCollection=(await page.evaluate(readImportState)).snapshot.events.filter(e=>e.profileId===mainId);
+    assert.equal(evidenceFor(afterCollection).rewards.has(mission.id),true);
+    assert.equal(evidenceFor(afterCollection).independent,beforeEvidence.independent,'Collecting a story cannot inflate learning evidence.');
     await solveWorld(mission, mode);
     const snapshot = await backup();
     const ownEvents = snapshot.events.filter(event => event.profileId === mainId);
