@@ -162,6 +162,17 @@ async function workerHarness() {
   return { dispatch, request, stores, scope, offline: () => { networkEnabled = false; } };
 }
 
+test('every actual built asset is accepted by the offline worker manifest gate',async()=>{
+ const report=await build();
+ const manifest=JSON.parse(await readFile(new URL('dist/offline-manifest.json',root),'utf8'));
+ const context={URL,self:{registration:{scope:'https://example.test/family/'},addEventListener(){}}};
+ vm.runInNewContext((await readFile(new URL('sw.js',root),'utf8')).replaceAll('__ATLAS_RELEASE_ID__',report.releaseId),context);
+ assert.doesNotThrow(()=>context.validateManifest(manifest));
+ assert.ok(manifest.files.some(f=>f.path==='assets/workshop.css'));
+ assert.equal(context.safePublicPath('assets/private.html'),false);
+ assert.equal(context.safePublicPath('data/staging/workshop-briefs-v1.json'),false);
+});
+
 test('offline worker scopes its cache, preserves private boundaries, and never substitutes HTML for JSON', async () => {
   const worker = await workerHarness();
   worker.stores.set('another-app-cache', new Map());

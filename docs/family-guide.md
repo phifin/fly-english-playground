@@ -7,6 +7,14 @@ published copies have separate browser storage because their origins differ.
 
 ## Your traveler
 
+**Play** opens Nim’s harbor in Kids and Balanced: choose a toy, then tap water,
+sand, the tree or the sky. Move it by selecting the same toy again and another
+place. Free building and each visitor request save separately. **My creations**
+keeps completed scenes; **Study** opens the existing A1–C2 learning library.
+Serious starts directly in Study. There is no required grid or route puzzle.
+For pre-readers, build together with a grown-up who can name the toys and help
+read requests. Completed scenes are practice, not proof of language proficiency.
+
 Choose **English** or **Tiếng Việt** in the header before you start. **Start my
 adventure** opens traveler creation and puts the cursor in the nickname field.
 Your new traveler keeps that guidance language. Existing travelers can resume

@@ -11,7 +11,7 @@ function safePublicPath(path) {
       || path.split('/').some(part => !part || part.startsWith('.'))) return false;
   return /^(index\.html|observatory\.html|styles\.css|atlas\.css|public-config\.js|build-report\.json)$/.test(path)
     || /^src\/[A-Za-z0-9_./-]+\.js$/.test(path)
-    || /^assets\/[A-Za-z0-9_./-]+\.(svg|png|jpe?g|webp|avif|gif|ico|woff2|mp3|ogg|wav)$/.test(path)
+    || /^assets\/[A-Za-z0-9_./-]+\.(css|svg|png|jpe?g|webp|avif|gif|ico|woff2|mp3|ogg|wav)$/.test(path)
     || /^data\/published\/[A-Za-z0-9_./-]+\.(json|mp3|ogg|wav)$/.test(path);
 }
 

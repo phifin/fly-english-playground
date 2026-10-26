@@ -1,10 +1,11 @@
 # The Unfolding Atlas
 
-A family English-learning game about restoring an unfinished world. Open a story,
-follow its interactive stops, repair messages and plans, and collect a discovery.
-Kids offers guided reading stories plus adult-assisted picture play; Balanced
-integrates language interactions into an expedition scene; Serious opens focused
-practice directly. Learning evidence and game accomplishments stay separate.
+A family English-learning game built around Nim’s little harbor: choose a toy,
+tap a place, and make a scene of your own. Kids begins with free construction;
+Balanced introduces English visitor requests through the same direct interaction.
+Serious opens focused study. Nine reviewed harbor requests supplement the existing
+120 A1–C2 activities in Study. Creations and study evidence stay separate.
+See [the gameplay redesign](docs/construction-redesign.md) for scope and limits.
 
 **The game is deployed:** [Play The Unfolding Atlas](https://phifin.github.io/fly-english-playground/).
 The production build, Auth/Firestore emulator checks, sandboxed browser suite,

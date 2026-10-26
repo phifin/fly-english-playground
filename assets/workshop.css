@@ -65,3 +65,9 @@
 .welcome-world>.workshop-landscape{height:auto;aspect-ratio:900/460;border-radius:24px}
 @media(max-width:350px){.workshop-tray{grid-template-columns:repeat(3,minmax(44px,1fr))}.workshop .workshop-toy{flex-direction:row}.workshop-toy>svg{width:36px;height:40px}.workshop-toy>span{font-size:.65rem}}
 html[data-motion=reduced] .workshop *,html[data-quality=eco] .workshop *{animation:none!important;transition:none!important}
+@media(min-width:900px){
+ .workshop{display:grid;grid-template-columns:minmax(0,1fr) 180px;grid-template-areas:"heading heading" "request request" "help help" "scene toys" "instruction instruction" "result result" "after after" "footer footer" "details details";column-gap:1rem}
+ .workshop-heading{grid-area:heading}.workshop-request{grid-area:request}.workshop-help{grid-area:help}.workshop-scene{grid-area:scene}.workshop-hand{grid-area:instruction}.workshop-tray{grid-area:toys;grid-template-columns:repeat(2,minmax(44px,1fr));align-content:stretch}.workshop-result{grid-area:result}.workshop-after{grid-area:after}.workshop-footer-actions{grid-area:footer}.workshop-grownup{grid-area:details}
+ .workshop-toy>svg{max-height:65px}.workshop-heading h1{font-size:1.9rem}
+}
+@media(max-width:700px){.profile-pill{max-width:160px}.profile-pill>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
