@@ -9,6 +9,7 @@ import { mergeExports } from '../src/storage.js';
 import { deploymentUrl } from './verify-deployment.mjs';
 import { verifyCloudSdk } from './cloud-sdk-check.mjs';
 import { pollAsyncResult } from './browser-poll.mjs';
+import { workshopBriefs } from '../src/workshop-content.js';
 
 // Verification tooling only. This script neither installs packages nor provisions
 // services. Every traveler, response and backup belongs to a fresh test context.
@@ -225,8 +226,7 @@ try {
     const id = await activeId();
     assert.equal(await button('finish-onboard').count(), 0, 'New players must enter play without a second configuration page.');
     assert.equal(await page.locator('body').evaluate((element, value) => element.classList.contains(`mode-${value}`), mode), true);
-    if (mode === 'kids') await button('picture-play').waitFor({ state: 'visible' });
-    else if (mode === 'balanced') await page.locator('.story-expedition').waitFor({ state: 'visible' });
+    if (mode === 'kids' || mode === 'balanced') await page.locator('.workshop').waitFor({ state: 'visible' });
     else await button('submit').waitFor({ state: 'visible' });
     return id;
   }
@@ -308,7 +308,7 @@ try {
     assert.equal(values[3], expected.due.length);
   }
   async function openMission(mission, mode, { assertEntry = false } = {}) {
-    await action('atlas');
+    await action('library');
     await action('region', `[data-value="${mission.level}"]`);
     await action('begin', `[data-id="${mission.id}"]`);
     if (mode === 'kids') {
@@ -530,7 +530,7 @@ try {
     assert.equal(await kind.inputValue(), 'independent');
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
     await form.locator('button[type="submit"]').click(); await ready(arrivalPage);
-    await arrivalPage.locator('.story-expedition').waitFor({ state: 'visible' });
+    await arrivalPage.locator('.workshop').waitFor({ state: 'visible' });
     assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(),0);
     assert.equal(await arrivalPage.locator('.expedition-grid').count(),0);
     let committed = (await arrivalPage.evaluate(readImportState)).snapshot;
@@ -557,6 +557,7 @@ try {
     assert.equal(committed.profiles[0].settings.mode, 'kids');
     assert.deepEqual(committed.events, [], 'Resume and mode changes must preserve the untouched learning journal.');
     report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
+    await arrivalPage.locator('.main-nav [data-action="library"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
     const pictureWords=['lantern','bell','boat','shell','kite','leaf'];
     await arrivalPage.screenshot({path:fileURLToPath(new URL('release-picture-play-vietnamese.png',directory)),fullPage:true});
@@ -575,7 +576,7 @@ try {
     const pictureSaved=(await arrivalPage.evaluate(readImportState)).snapshot;
     assert.equal(pictureSaved.events.filter(e=>e.kind==='mission'&&e.payload.experience==='picture-play-v1').length,6);
     assert.equal(pictureSaved.events.filter(e=>['attempt','placement'].includes(e.kind)).length,0);
-    await arrivalPage.locator('[data-action="atlas"]').filter({hasText:/Bản đồ|bản đồ/}).last().click();await ready(arrivalPage);
+    await arrivalPage.locator('.main-nav [data-action="atlas"]').click();await ready(arrivalPage);
     await arrivalPage.reload({waitUntil:'domcontentloaded'});await ready(arrivalPage);
     assert.equal(canonical((await arrivalPage.evaluate(readImportState)).snapshot.events),canonical(pictureSaved.events));
     check('Adult-assisted picture play gives retry feedback, keyboard/touch targets and a six-picture collection that persists without CEFR evidence.');
@@ -587,6 +588,168 @@ try {
   }
   check('First-view entry and written language choices work at 1440px, 390px and 320px; Vietnamese guidance persists before registration and is inherited without losing typed names.');
   check('Native selectors retain visible focus and touch spacing; a new play-first traveler can resume directly without repeating onboarding or creating learning evidence.');
+
+  // The primary game has its own fresh traveler. Construct the scene through
+  // actual controls, then inspect committed data; never insert a solved flag.
+  const toyContext = await newContext(); const toy = await toyContext.newPage(); observe(toy);
+  toy.setDefaultTimeout(15000); toy.setDefaultNavigationTimeout(45000);
+  try {
+    const control = (name, value) => toy.locator(`[data-action="${name}"]${value ? `[data-value="${value}"]` : ''}:visible`).first();
+    const play = async (name, value) => { await ready(toy); await control(name, value).click(); await ready(toy); await noError(toy); };
+    const snapshot = async () => (await toy.evaluate(readImportState)).snapshot;
+    const layout = () => toy.locator('.workshop-spot').evaluateAll(spots => Object.fromEntries(spots
+      .filter(spot => spot.querySelector('.workshop-placed[data-prop]'))
+      .map(spot => [spot.dataset.slot, spot.querySelector('.workshop-placed').dataset.prop])));
+    const make = async (prop, slot) => { await play('workshop-select', prop); await play('workshop-place', slot); };
+    const completed = async () => await toy.locator('.workshop-keepsake').count()
+      ? Number((await toy.locator('.workshop-keepsake').innerText()).replace(/\D/g, '')) : 0;
+    const workshopEvents = value => value.events.filter(event => event.kind === 'mission' && event.payload.experience === 'workshop-layout-v1');
+    await toy.goto(base.href); await ready(toy);
+    await play('start-traveler');
+    await toy.locator('#traveler-name').fill('Harbor construction CI');
+    await toy.locator('[name="mode"][value="kids"]').check();
+    await toy.locator('[data-form="create-profile"] button[type="submit"]').click(); await ready(toy);
+    await toy.locator('.workshop[data-workshop-mode="free"]').waitFor();
+    assert.equal((await snapshot()).events.length, 0, 'Entering free construction does not manufacture saved actions.');
+    assert.equal(await toy.locator('.expedition-grid,[data-action="submit"]').count(), 0,
+      'The play-first entry is a toy, without a route grid or a separate answer submission.');
+    assert.equal(await toy.locator('.workshop-toy').count(), 6);
+    assert.equal(await toy.locator('.workshop-place').count(), 4);
+    for (const element of await toy.locator('.workshop-toy,.workshop-place').all()) {
+      const box = await element.boundingBox();
+      assert.ok(box.width >= 44 && box.height >= 44, 'Every construction action needs a usable touch target.');
+    }
+    await control('workshop-select', 'boat').focus(); await control('workshop-select', 'boat').press('Enter'); await ready(toy);
+    assert.equal(await control('workshop-select', 'boat').getAttribute('aria-pressed'), 'true');
+    assert.equal((await snapshot()).events.length, 0, 'Selecting a prop is not a completed learning action.');
+    await control('workshop-place', 'water').tap(); await ready(toy); await noError(toy);
+    assert.deepEqual(await layout(), { water: 'boat' });
+    const initial = await snapshot();
+    assert.equal(workshopEvents(initial).length, 1);
+    assert.equal(workshopEvents(initial)[0].payload.space, 'free');
+    assert.deepEqual(workshopEvents(initial)[0].payload.placement, { water: 'boat' });
+    assert.equal(await completed(), 0, 'Free play does not claim completion of a reading request.');
+    await make('boat', 'sky');
+    assert.deepEqual(await layout(), { sky: 'boat' }, 'Moving one toy must not duplicate it in two places.');
+    await make('boat', 'water');
+    await play('workshop-select', 'shell');
+    await play('guidance-language', 'vi');
+    assert.equal(await control('workshop-select', 'shell').getAttribute('aria-pressed'), 'true',
+      'Changing guidance preserves the toy currently in the player’s hand.');
+    assert.deepEqual(await layout(), { water: 'boat' });
+    await play('workshop-place', 'sand');
+    const freeLayout = { water: 'boat', sand: 'shell' };
+    assert.deepEqual(await layout(), freeLayout);
+    const freeSaved = await snapshot();
+    await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+    assert.deepEqual(await layout(), freeLayout);
+    assert.equal(canonical((await snapshot()).events), canonical(freeSaved.events));
+    assert.equal(await toy.locator('html').getAttribute('lang'), 'vi');
+    await play('workshop-request');
+    const firstId = await toy.locator('.workshop').getAttribute('data-brief-id');
+    const brief = workshopBriefs.find(value => value.id === firstId);
+    assert.ok(brief, 'The active request must use an independently accepted brief.');
+    assert.deepEqual(await layout(), {}, 'A fresh request has its own scene, not a silently reused free-play answer.');
+    const wrongSlot = ['water', 'sand', 'tree', 'sky'].find(slot => slot !== brief.placements[0].slot);
+    await make(brief.placements[0].prop, wrongSlot);
+    assert.equal(await toy.locator('.workshop.is-finished').count(), 0);
+    assert.match(await toy.locator('.workshop-status').innerText(), /Try another place|Thử nơi khác/,
+      'An incorrect placement must give actionable localized recovery feedback.');
+    assert.equal(await control('workshop-next').count(), 0, 'An incorrect placement cannot advance the request.');
+    assert.equal(await completed(), 0);
+    await play('workshop-help');
+    await toy.locator('#workshop-help').waitFor();
+    for (const placement of brief.placements) await make(placement.prop, placement.slot);
+    await control('workshop-next').waitFor();
+    assert.equal(await toy.locator('.workshop.is-finished').count(), 1);
+    assert.equal(await completed(), 1);
+    for (const { prop, slot } of brief.placements) assert.equal((await layout())[slot], prop);
+    assert.ok((await snapshot()).events.some(event => event.payload.experience === 'workshop-help-v1' && event.payload.briefId === brief.id),
+      'Assistance remains recorded with the brief, rather than becoming independent evidence.');
+    const spareProp = ['lantern', 'bell', 'boat', 'shell', 'kite', 'leaf'].find(prop => !brief.placements.some(item => item.prop === prop));
+    const spareSlot = ['water', 'sand', 'tree', 'sky'].find(slot => !brief.placements.some(item => item.slot === slot));
+    await make(spareProp, spareSlot);
+    assert.equal(await completed(), 1, 'Additional decorations do not multiply a completed request.');
+    assert.equal(await toy.locator('.workshop.is-finished').count(), 1, 'Unrequested decorations must not invalidate the visitor’s satisfied request.');
+    await play('workshop-next');
+    const secondId = await toy.locator('.workshop').getAttribute('data-brief-id');
+    assert.notEqual(secondId, firstId, 'The next visitor must offer a different request.');
+    const nextBrief = workshopBriefs.find(value => value.id === secondId);
+    assert.ok(nextBrief); assert.deepEqual(await layout(), {});
+    for (const placement of nextBrief.placements) await make(placement.prop, placement.slot);
+    await control('workshop-next').waitFor();
+    assert.equal(await completed(), 2);
+    const requestSaved = await snapshot();
+    for (const request of [brief, nextBrief]) {
+      const savedScenes = workshopEvents(requestSaved).filter(event => event.payload.space === request.id);
+      assert.ok(savedScenes.some(event => request.placements.every(({ prop, slot }) => event.payload.placement[slot] === prop)),
+        `The completed ${request.id} must be supported by an actual saved matching scene.`);
+    }
+    assert.equal(requestSaved.events.filter(event => ['attempt', 'placement'].includes(event.kind)).length, 0,
+      'Toy completion must not fabricate legacy answers or placement assessment evidence.');
+    assert.equal(evidenceFor(requestSaved.events).independent, 0, 'Toy records remain distinct from independently assessed curriculum evidence.');
+
+    report.workshop = { firstId, secondId, freeLayout, screenshots: [], preserved: false };
+    for (const language of ['en', 'vi']) {
+      await play('guidance-language', language);
+      for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
+        await toy.setViewportSize(viewport);
+        assert.equal(await toy.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
+          `The ${language} harbor must fit ${viewport.width}px without horizontal scrolling.`);
+        for (const element of await toy.locator('.workshop-toy,.workshop-place,.workshop-remove').all()) {
+          const box = await element.boundingBox();
+          assert.ok(box.width >= 44 && box.height >= 44, `Construction targets remain usable at ${viewport.width}px.`);
+        }
+        const heading = await toy.locator('.workshop h1').innerText();
+        assert.equal(heading, heading.normalize('NFC')); assert.doesNotMatch(heading, /\uFFFD/);
+        const path = `release-workshop-${language}-${viewport.width}.png`;
+        await toy.screenshot({ path: fileURLToPath(new URL(path, directory)), fullPage: true });
+        report.workshop.screenshots.push(path);
+        if (viewport.width === 390) await axe(`${language} construction harbor at 390px`, toy);
+      }
+    }
+    await play('workshop-free');
+    assert.deepEqual(await layout(), freeLayout, 'Completing requests must not erase the player’s separate free creation.');
+    await play('workshop-reset');
+    assert.deepEqual(await layout(), {});
+    assert.equal(await completed(), 2, 'Starting a new free creation preserves earlier request accomplishments.');
+    await make('kite', 'sky');
+    const preserved = (await snapshot()).events;
+    await play('settings'); await play('mode', 'serious'); await play('atlas');
+    assert.equal(await toy.locator('.workshop').count(), 0, 'Study-first goes to the curriculum without a toy gate.');
+    await play('settings'); await play('mode', 'balanced'); await play('atlas');
+    await toy.locator('.workshop').waitFor();
+    assert.deepEqual(await layout(), { sky: 'kite' });
+    assert.equal(canonical((await snapshot()).events), canonical(preserved), 'Mode changes preserve exact game and learning history.');
+    await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+    assert.deepEqual(await layout(), { sky: 'kite' });
+    await play('settings');
+    const exported = await backup(toy);
+    await upload(exported, { target: toy }); await upload(exported, { target: toy });
+    assert.equal(canonical(savedData(await backup(toy))), canonical(savedData(exported)),
+      'Workshop history round-trips through the real backup UI without duplicate actions.');
+    await play('atlas');
+    assert.deepEqual(await layout(), { sky: 'kite' });
+    if (await toy.locator('meta[name="atlas-release"]').count()) {
+      await pollAsyncResult(() => toy.evaluate(async () => {
+        if (!navigator.serviceWorker) return false;
+        const registration = await navigator.serviceWorker.ready;
+        return registration.active?.state === 'activated' && Boolean(navigator.serviceWorker.controller);
+      }), { timeoutMs: 120000, intervalMs: 100, description: 'installed construction assets before offline play' });
+      await toyContext.setOffline(true);
+      await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+      assert.deepEqual(await layout(), { sky: 'kite' });
+      await make('lantern', 'tree');
+      await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+      assert.deepEqual(await layout(), { sky: 'kite', tree: 'lantern' }, 'Offline construction saves locally across a second reload.');
+      await toyContext.setOffline(false); await ready(toy);
+    }
+    report.workshop.preserved = true;
+    check('The construction game supports real two-tap and keyboard play, useful wrong-placement recovery, optional help, distinct visitor requests and separate free creations.');
+    check('Harbor layouts and accomplishments survive mode/language changes, reload, repeated real backup imports and downloaded offline play without fabricated CEFR evidence.');
+    check('English and Vietnamese construction scenes fit 1440px, 390px and 320px with usable controls; real-child enjoyment and developmental suitability still require human observation.');
+  } catch (error) { failurePage = toy; throw error; }
+  finally { if (failurePage !== toy) { await toyContext.close(); contexts.splice(contexts.indexOf(toyContext), 1); } }
 
   const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
   try {
@@ -730,7 +893,7 @@ try {
   assert.equal(await page.locator('body').evaluate(element => element.classList.contains('mode-balanced')), true);
   check('A background IndexedDB error preserves the foreground action lock and prevents overlapping profile changes.');
 
-  await action('atlas');
+  await action('library');
   for (const level of levels) { await action('region', `[data-value="${level}"]`); assert.equal(await page.locator(`.region-tab[data-value="${level}"]`).getAttribute('aria-pressed'), 'true'); }
   check('All six published practice regions can be selected without changing proficiency claims.');
 
@@ -895,7 +1058,7 @@ try {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await settings({ language: 'en', mode: 'serious' });
   await axe('settings');
-  await action('atlas');
+  await action('library');
   await page.screenshot({ path: fileURLToPath(new URL('release-desktop.png', directory)), fullPage: true });
   const built = await page.locator('meta[name="atlas-release"]').count();
   if (process.env.CI) assert.equal(built, 1, 'CI must check the built release, not the source preview.');

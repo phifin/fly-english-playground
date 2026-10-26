@@ -1,0 +1,279 @@
+// Original Luna briefs, independently reviewed by Sol; data/reviews/workshop-acceptance.json.
+// A1–B1 reading practice estimates only; not a calibrated test.
+export const workshopBriefs = [
+  {
+    "id": "workshop-a1-01",
+    "level": "A1",
+    "title": {
+      "en": "A Harbor Welcome",
+      "vi": "Lời chào ở bến cảng"
+    },
+    "request": "Please put the boat on the water.",
+    "help": {
+      "en": "Look for the place words that tell where the boat goes.",
+      "vi": "Hãy tìm những từ chỉ nơi chốn cho biết thuyền sẽ ở đâu."
+    },
+    "after": {
+      "en": "You placed the boat on the water. The place phrase showed where it goes.",
+      "vi": "Bạn đã đặt thuyền trên mặt nước. Cụm từ chỉ nơi chốn cho biết thuyền sẽ ở đâu."
+    },
+    "placements": [
+      {
+        "prop": "boat",
+        "slot": "water"
+      }
+    ],
+    "focus": "One concrete object name, a polite direct request, and one familiar place phrase.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a1-02",
+    "level": "A1",
+    "title": {
+      "en": "An Invitation to Play",
+      "vi": "Lời mời vui chơi"
+    },
+    "request": "Put the kite in the sky. Put the leaf in the tree.",
+    "help": {
+      "en": "Read one short instruction at a time and find its place phrase.",
+      "vi": "Hãy đọc từng chỉ dẫn ngắn và tìm cụm từ chỉ nơi chốn."
+    },
+    "after": {
+      "en": "You put the kite in the sky and the leaf in the tree. Each short instruction named one place.",
+      "vi": "Bạn đã đặt diều trên trời và chiếc lá trên cây. Mỗi chỉ dẫn ngắn nêu một nơi."
+    },
+    "placements": [
+      {
+        "prop": "kite",
+        "slot": "sky"
+      },
+      {
+        "prop": "leaf",
+        "slot": "tree"
+      }
+    ],
+    "focus": "Two short imperatives with common object names and place phrases.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a1-03",
+    "level": "A1",
+    "title": {
+      "en": "A Harbor Job",
+      "vi": "Một việc ở bến cảng"
+    },
+    "request": "Hang the bell in the tree and put the lantern on the sand.",
+    "help": {
+      "en": "Match each action and object with the place named in the request.",
+      "vi": "Hãy ghép từng hành động và đồ vật với nơi được nêu trong lời nhờ."
+    },
+    "after": {
+      "en": "You hung the bell in the tree and put the lantern on the sand. The two action words described how to move them.",
+      "vi": "Bạn đã treo chuông trên cây và đặt đèn lồng trên cát. Hai động từ chỉ cách di chuyển chúng."
+    },
+    "placements": [
+      {
+        "prop": "bell",
+        "slot": "tree"
+      },
+      {
+        "prop": "lantern",
+        "slot": "sand"
+      }
+    ],
+    "focus": "Two concrete imperatives using the familiar verbs hang and put.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a2-01",
+    "level": "A2",
+    "title": {
+      "en": "A Note from the Host",
+      "vi": "Lời nhắn từ chủ bến"
+    },
+    "request": "The boat needs open water, so place it there. Hang the lantern in the tree.",
+    "help": {
+      "en": "Track what it and there refer to before you follow the instructions.",
+      "vi": "Hãy xác định it và there thay cho điều gì trước khi làm theo chỉ dẫn."
+    },
+    "after": {
+      "en": "You placed the boat on the water and hung the lantern in the tree. It referred to the boat, and there referred to the water.",
+      "vi": "Bạn đã đặt thuyền trên mặt nước và treo đèn lồng trên cây. It thay cho thuyền, còn there chỉ mặt nước."
+    },
+    "placements": [
+      {
+        "prop": "boat",
+        "slot": "water"
+      },
+      {
+        "prop": "lantern",
+        "slot": "tree"
+      }
+    ],
+    "focus": "A short reason clause followed by a clear pronoun and place reference, then a second instruction.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a2-02",
+    "level": "A2",
+    "title": {
+      "en": "A Visitor's Message",
+      "vi": "Tin nhắn của khách"
+    },
+    "request": "The host asks us to set the shell on the sand and send the kite up into the sky.",
+    "help": {
+      "en": "Find the two actions in the host's message and match each object with its place.",
+      "vi": "Hãy tìm hai hành động trong lời nhắn của chủ bến và ghép mỗi đồ vật với nơi tương ứng."
+    },
+    "after": {
+      "en": "You set the shell on the sand and sent the kite up into the sky. The message gave a place for each object.",
+      "vi": "Bạn đã đặt vỏ sò trên cát và đưa diều lên trời. Lời nhắn nêu nơi dành cho từng đồ vật."
+    },
+    "placements": [
+      {
+        "prop": "shell",
+        "slot": "sand"
+      },
+      {
+        "prop": "kite",
+        "slot": "sky"
+      }
+    ],
+    "focus": "A reported request with two infinitive instructions and the phrasal verb send up.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a2-03",
+    "level": "A2",
+    "title": {
+      "en": "After the Tide",
+      "vi": "Sau khi thủy triều rút"
+    },
+    "request": "The leaf has fallen, so place it on the sand. The bell should hang in the tree.",
+    "help": {
+      "en": "Check what it refers to, then notice how should expresses the second request.",
+      "vi": "Hãy xác định it thay cho đồ vật nào, rồi chú ý should diễn đạt lời nhờ thứ hai."
+    },
+    "after": {
+      "en": "You placed the leaf on the sand and hung the bell in the tree. It referred to the leaf; should introduced the second request.",
+      "vi": "Bạn đã đặt chiếc lá trên cát và treo chuông trên cây. It thay cho chiếc lá; should mở đầu lời nhờ thứ hai."
+    },
+    "placements": [
+      {
+        "prop": "leaf",
+        "slot": "sand"
+      },
+      {
+        "prop": "bell",
+        "slot": "tree"
+      }
+    ],
+    "focus": "A short reason clause, a pronoun with a clear reference, and should for a request.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-a2-04",
+    "level": "A2",
+    "title": {
+      "en": "The Keeper's Plan",
+      "vi": "Kế hoạch của người trông bến"
+    },
+    "request": "The keeper wants the leaf resting in the tree; meanwhile, please place the bell on the sand.",
+    "help": {
+      "en": "Notice when meanwhile shifts to the second instruction.",
+      "vi": "Hãy chú ý khi meanwhile chuyển sang chỉ dẫn thứ hai."
+    },
+    "after": {
+      "en": "You put the leaf in the tree and the bell on the sand. Meanwhile marked the shift to the second instruction.",
+      "vi": "Bạn đã đặt chiếc lá trên cây và chuông trên cát. Meanwhile đánh dấu sự chuyển sang chỉ dẫn thứ hai."
+    },
+    "placements": [
+      {
+        "prop": "leaf",
+        "slot": "tree"
+      },
+      {
+        "prop": "bell",
+        "slot": "sand"
+      }
+    ],
+    "focus": "A request followed by a discourse marker that separates the second instruction.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-b1-01",
+    "level": "B1",
+    "title": {
+      "en": "Before the Visitors Arrive",
+      "vi": "Trước khi khách đến"
+    },
+    "request": "Visitors will look across the water, so put the boat there; set the lantern on the sand to welcome them.",
+    "help": {
+      "en": "Follow what there refers to, then read the second instruction and its purpose.",
+      "vi": "Hãy xác định there chỉ nơi nào, rồi đọc chỉ dẫn thứ hai và mục đích của chỉ dẫn đó."
+    },
+    "after": {
+      "en": "You placed the boat on the water and set the lantern on the sand to welcome the visitors. There referred to the water.",
+      "vi": "Bạn đã đặt thuyền trên mặt nước và đặt đèn lồng trên cát để chào đón khách. There chỉ mặt nước."
+    },
+    "placements": [
+      {
+        "prop": "boat",
+        "slot": "water"
+      },
+      {
+        "prop": "lantern",
+        "slot": "sand"
+      }
+    ],
+    "focus": "A reason clause, there referring back to a place, and a second instruction with a purpose phrase.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  },
+  {
+    "id": "workshop-b1-02",
+    "level": "B1",
+    "title": {
+      "en": "A Shoreline Request",
+      "vi": "Lời nhờ bên bờ biển"
+    },
+    "request": "Although the shell was displayed in the tree yesterday, the host wants it on the sand today; please hang the bell in the tree as well.",
+    "help": {
+      "en": "Separate the opening clause from the host's instructions and connect each object to its place.",
+      "vi": "Hãy tách mệnh đề mở đầu khỏi chỉ dẫn của chủ bến và ghép từng đồ vật với nơi tương ứng."
+    },
+    "after": {
+      "en": "You moved the shell to the sand and hung the bell in the tree. Although contrasts yesterday’s display with today’s request; it refers to the shell.",
+      "vi": "Bạn đã đặt vỏ sò trên cát và treo chuông trên cây. Although đối chiếu cách trưng bày hôm qua với lời nhờ hôm nay; it thay cho vỏ sò."
+    },
+    "placements": [
+      {
+        "prop": "shell",
+        "slot": "sand"
+      },
+      {
+        "prop": "bell",
+        "slot": "tree"
+      }
+    ],
+    "focus": "A concessive opening, a clear pronoun reference, and a second direct request joined by a semicolon.",
+    "sourceIds": [
+      "cefr-companion-2020"
+    ]
+  }
+];

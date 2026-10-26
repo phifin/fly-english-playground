@@ -66,6 +66,7 @@ jobs:
           node scripts/publish-content.mjs --check
           node scripts/boards.mjs --check
           node scripts/accept-picture-play.mjs --check
+          node scripts/accept-workshop.mjs --check
           node scripts/build.mjs
           node -e 'const fs=require("node:fs");const {releaseId}=JSON.parse(fs.readFileSync("dist/build-report.json","utf8"));if(!/^[a-f0-9]{20}$/.test(releaseId))throw new Error("Invalid build identity");fs.appendFileSync(process.env.GITHUB_OUTPUT,"release_id="+releaseId+"\n");'
       - name: Install isolated browser verification tooling

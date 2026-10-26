@@ -1,0 +1,32 @@
+{
+  "reviewedBy": "Sol",
+  "reviewedAt": "2026-10-26",
+  "sha256": "874b4856e8c3737c1ea8f2a75166c0e367d98dd742564cdb9e103398e0e76a35",
+  "acceptedIds": [
+    "workshop-a1-01",
+    "workshop-a1-02",
+    "workshop-a1-03",
+    "workshop-a2-01",
+    "workshop-a2-02",
+    "workshop-a2-03",
+    "workshop-a2-04",
+    "workshop-b1-01",
+    "workshop-b1-02"
+  ],
+  "rejectedOriginalBands": [
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "checks": [
+    "All 9 instructions manually matched to actual prop/slot targets",
+    "Extra decorations allowed; no hidden absence or movement-order constraints",
+    "English and Vietnamese helpers checked for answer leakage and consistent meaning",
+    "Misleading advanced labels removed; B1 contrast corrected; original wording, sources used as reference only"
+  ],
+  "limitations": [
+    "Rough reading-demand labels, not calibrated CEFR assessment",
+    "Adult-assisted pre-reader use; no measured age suitability or learning efficacy",
+    "Nine finite requests, six props, four places; advanced learning remains in study library"
+  ]
+}

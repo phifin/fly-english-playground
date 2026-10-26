@@ -1,4 +1,44 @@
+# Construction gameplay rebuild — 26 October 2026
+
+Active user request replaces the exercise-led game, not another styling pass. New Kids/Balanced primary screen is Nim’s little harbor: six illustrated toys, four places, two-tap construction, persistent free scenes, nine reviewed English requests and a keepsake gallery. Serious stays direct study. Existing 24 missions/120 activities, accounts, Firebase rules and event schemas preserved. A1–B1 toy prompts are practice estimates only; advanced learning remains in Study.
+
+- Luna staged 18 briefs; independent review rejected all 9 inflated B2–C2 prompts, retained/revised 9 A1–B1 (3/4/2). Sol corrected the B1 contrast and pinned the accepted JSON digest. See data/reviews/workshop-acceptance.json.
+- New immutable mission envelopes hold actual construction snapshots, not trusted completion flags. Free/each request separate; hints and corrections stay separate from CEFR study evidence. No entry event, no migration, no deletion of legacy history.
+- Local test/build and GitHub-hosted browser/security/deployment verification in progress. Do not claim deployed until this change’s workflow passes. Previous release details below describe the superseded presentation.
+- Publication must use GitHub connector tree/commit and leased non-force main update: local .git read-only. Existing owner setup already done; do not request repeat login or permissions. No billing.
+
 # Current execution state
+
+## Final product redesign verification — 26 October 2026
+
+- Final published HEAD416d625770523dda06aec4379ee54fa8ca3fc9ea, tree
+  8a7289057c6fb5ef7951863de03a4f4381cf043a. Workflow39919667461 is SUCCESS:
+  build120301575035, firestore-rules120301575257, deploy120301895083,
+  verify-production120302222765. Actual logs inspected:296unit passes (3skips
+  run separately),3real emulator passes with no skips,26preview and live browser
+  checks,17synthetic attempts. No console errors;8axe surfaces,zero violations.
+- Live release72baba4153a4b018d23b independently rechecked today:30manifest
+  files/636642bytes,5private404s; all accepted24missions/120activities intact.
+  Pages authorized domain and anonymous403 access denials also pass today.
+- Final production artifact12485744570 verified SHA256
+  d6a7c1711bbdcdcca3ea9f5fb883e8cf49a08e367cf884e5a12642771e5c0d53;
+  extracted artifacts/redesign-final-production/. Original EN/VI/mobile/story/
+  picture screenshots inspected. Heading rectangle and stale mission notices
+  are corrected in this final release. No remaining CI/deployment failure.
+- Scope delivered: direct local/Google entry, optional nickname + single style
+  choice, integrated story stops replacing mandatory grid, distinct Kids guided
+  stories and adult-assisted picture play, focused Serious practice, typography
+  and shared control fixes. Existing progress, optional legacy routes, content,
+  cloud isolation, offline assets and backups preserved with no schema migration.
+- Honest remaining limits: family owner approval retained (no server invitations
+  deployed); private Google consent/positive live cloud sync not independently
+  exercised, though real emulator lifecycle/isolation tests pass. Six-picture
+  play is adult-assisted practice only; no independent preschool course or CEFR
+  claim. No real-child enjoyment/efficacy study, full WCAG or Safari/OS matrix.
+- Both prior owner setup steps remain DONE per owner. No repeat setup/login
+  request. No new paid infrastructure. Report docs/product-redesign.md and
+  artifacts/product-redesign-verification.json. This final local checkpoint
+  records the completed deployed run without creating a documentation CI loop.
 
 ## Product redesign deployed and verified — 23 October 2026
 

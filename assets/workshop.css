@@ -1,0 +1,67 @@
+/* A construction toy, not an activity sheet. All interactive pieces are native
+   buttons; the scene remains usable without animation, sound or dragging. */
+.workshop{max-width:1040px;margin:1.15rem auto 2rem;color:#294d40}
+.workshop *{box-sizing:border-box}
+.workshop button{font:inherit;letter-spacing:normal;line-height:1.4;min-height:44px;cursor:pointer}
+.workshop button:focus-visible,.workshop summary:focus-visible{outline:3px solid #224f42;outline-offset:3px}
+.workshop-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.8rem}
+.workshop-heading h1{font-size:clamp(1.65rem,3.2vw,2.4rem);line-height:1.25;letter-spacing:normal;margin:0}
+.workshop-kicker{font-size:.75rem;color:#506a58;margin:0 0 .25rem;line-height:1.4}
+.workshop-keepsake{display:inline-flex;align-items:center;gap:.45rem;background:#eddfb5;padding:.4rem .8rem;border-radius:999px;font-size:1rem;font-weight:650;white-space:nowrap}
+.workshop-keepsake>span{color:#7d571a;font-size:1.4rem}
+.workshop-request{display:flex;align-items:center;gap:.8rem;max-width:850px;padding:.7rem 1rem .7rem .5rem;margin:0 0 .8rem;background:#fffdf4;border:1px solid #d7dfc9;border-radius:18px}
+.workshop-request>div{flex:1;min-width:0}.workshop-request p{margin:0;line-height:1.65;font-size:1.05rem}
+.workshop-request.is-free{border-color:transparent;background:#edf2df}
+.workshop-nim{flex:0 0 54px}.workshop-nim svg{display:block;width:54px;height:58px}
+.workshop-request-tools{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:.2rem}
+.workshop-request-tools button{border:0;background:transparent;font-size:.8rem;padding:.4rem .3rem;color:#275b48;min-height:44px}
+.workshop-listen>span{display:inline-block;font-weight:700;margin-right:.3rem}
+.workshop-help{padding:.6rem 1rem;background:#eaf0dc;border-radius:12px;margin:0 0 .7rem;max-width:850px}.workshop-help p{font-size:.9rem;line-height:1.6;margin:0}
+.workshop-scene{position:relative;aspect-ratio:900/460;width:100%;max-height:490px;overflow:hidden;border-radius:24px;background:#d7eef0;box-shadow:inset 0 0 0 2px #658b6f22}
+.workshop-landscape{display:block;width:100%;height:100%;pointer-events:none}
+.workshop-spot{position:absolute;width:18%;height:32%;z-index:2}
+.workshop-spot-sky{left:33%;top:3%}.workshop-spot-tree{left:72%;top:13%}.workshop-spot-water{left:13%;top:59%}.workshop-spot-sand{left:73%;top:62%}
+.workshop .workshop-place{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:.2rem;width:100%;height:100%;padding:.25rem;border:2px dashed #466e6070;border-radius:22px;background:#fffef329;box-shadow:none;color:#24493b;transition:background .15s,border-color .15s;touch-action:manipulation}
+.workshop.has-selection .workshop-place{border-color:#285e4d;background:#fffef35c}
+.workshop .workshop-place:hover{border-color:#214d3b;background:#fffef38f}
+.workshop-empty-spot{flex:1;display:grid;place-items:center;font-size:2rem;font-weight:400;color:#375e4c}
+.workshop-spot-label{display:flex;align-items:center;justify-content:center;gap:.3rem;flex-wrap:wrap;background:#fffdf2;color:#294d40;border-radius:10px;min-height:26px;width:100%;padding:.2rem .35rem;line-height:1.2;box-shadow:0 1px 1px #30483c10}
+.workshop-spot-label>span{font-size:.8rem;font-weight:650}.workshop-spot-label small{font-size:.65rem;color:#415a4c;line-height:1.2}
+.workshop-placed{display:block;flex:1;width:100%;min-height:0;pointer-events:none}.workshop-placed>svg{width:100%;height:100%;max-height:105px;display:block;filter:drop-shadow(0 3px 1px #50675019)}
+.workshop .has-prop .workshop-place{border:2px solid transparent;background:transparent}.workshop.has-selection .has-prop .workshop-place{border:2px dashed #466e6090;background:#fffef329}
+.workshop .workshop-remove{position:absolute;right:-12px;top:-10px;display:grid;place-items:center;padding:0;width:44px;height:44px;min-height:44px;border:0;border-radius:50%;background:#fffdf3;color:#355346;font-size:1.5rem;box-shadow:0 1px 3px #284c3b20;z-index:3}
+.workshop-scene-spark{position:absolute;left:60%;top:60%;font-size:2.8rem;color:#806019;pointer-events:none}.workshop.is-finished .workshop-scene{box-shadow:0 0 0 3px #dbbd73}
+.workshop-hand{display:flex;align-items:center;gap:.6rem;margin:.6rem 0 .4rem;min-height:35px;font-size:.9rem;line-height:1.45;color:#294d40}
+.workshop-hand-prop{display:block;width:34px;height:34px;flex:0 0 34px}.workshop-hand-prop svg{width:100%;height:100%;display:block}.workshop-pointer{font-size:1.4rem;display:inline-block;width:34px;text-align:center}
+.workshop-tray{display:grid;grid-template-columns:repeat(6,minmax(44px,1fr));gap:.6rem;background:#e6dec6;padding:.65rem;border-radius:18px;box-shadow:inset 0 -3px 0 #bca77d25}
+.workshop .workshop-toy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;border:2px solid transparent;background:#fffef6;border-radius:14px;padding:.5rem .3rem;color:#294d40;min-width:0;touch-action:manipulation}
+.workshop-toy>svg{display:block;width:76px;max-width:100%;height:76px}.workshop-toy>span{font-size:.8rem;line-height:1.3;font-weight:550}
+.workshop .workshop-toy:hover{background:#f8edcb;border-color:#b69c5e}.workshop .workshop-toy[aria-pressed=true]{background:#f7dda0;border-color:#466a43;box-shadow:0 2px 0 #466a43}
+.workshop-result{display:flex;gap:1rem;align-items:center;justify-content:space-between;min-height:63px;padding:.6rem 0}
+.workshop-status{margin:0;font-size:.95rem;line-height:1.55;color:#294d40}
+.workshop .workshop-next{border:0;border-radius:13px;background:#2f6d53;color:#fffdf4;padding:.8rem 1.15rem;font-weight:650;flex-shrink:0}
+.workshop .workshop-next:hover{background:#24583f}
+.workshop-after{display:flex;gap:1rem;align-items:center;justify-content:space-between;background:#e7efd8;border-radius:14px;padding:.8rem 1rem;margin:.3rem 0 .7rem}.workshop-after p{font-size:.9rem;line-height:1.65;margin:0;max-width:700px}
+.workshop .workshop-free-link{border:1px solid #829b77;background:#fffdf4;font-size:.85rem;color:#294d40;flex-shrink:0}
+.workshop-footer-actions{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin:.2rem 0 .5rem;flex-wrap:wrap}
+.workshop .workshop-quiet{border:0;background:transparent;padding:.5rem .1rem;color:#3f6552;font-size:.85rem}
+.workshop-grownup{margin-top:.3rem;border-top:1px solid #d4dcc9;padding-top:.25rem;color:#405b4b}.workshop-grownup summary{font-size:.8rem;min-height:44px;font-weight:500}.workshop-grownup p{font-size:.85rem;line-height:1.65;max-width:850px}
+@media(min-width:850px){.workshop-kids .workshop-heading h1{font-size:2.3rem}.workshop-kids .workshop-nim{flex-basis:64px}.workshop-kids .workshop-nim svg{width:64px;height:68px}}
+@media(max-width:650px){
+ .workshop{margin:.65rem auto 1rem}.workshop-heading{margin-bottom:.5rem;gap:.5rem}.workshop-heading h1{font-size:1.45rem;line-height:1.3}.workshop-kicker{display:none}.workshop-keepsake{font-size:.8rem;padding:.25rem .6rem}.workshop-keepsake>span{font-size:1.15rem}
+ .workshop-request{padding:.35rem .6rem .35rem .2rem;gap:.45rem;border-radius:13px;margin-bottom:.5rem}.workshop-request p{font-size:.9rem;line-height:1.5}.workshop-nim{flex-basis:40px}.workshop-nim svg{width:40px;height:46px}.workshop-request-tools{gap:.5rem;margin:0}.workshop-request-tools button{font-size:.75rem;padding:.2rem .15rem;min-height:44px}
+ .workshop-scene{aspect-ratio:1.36;max-height:330px;border-radius:17px}.workshop-landscape{object-fit:cover}.workshop-spot{width:24%;height:34%}.workshop-spot-sky{left:27%;top:2%}.workshop-spot-tree{left:71%;top:9%}.workshop-spot-water{left:8%;top:57%}.workshop-spot-sand{left:69%;top:60%}
+ .workshop .workshop-place{border-radius:15px;padding:.15rem;border-width:1.5px;gap:.1rem}.workshop-placed>svg{max-height:76px}.workshop-spot-label{padding:.2rem .1rem;gap:.1rem;flex-direction:column;min-height:23px}.workshop-spot-label>span{font-size:.7rem}.workshop-spot-label small{font-size:.6rem}.workshop-empty-spot{font-size:1.6rem}.workshop .workshop-remove{right:-7px;top:-5px;width:44px;height:44px;min-height:44px;font-size:1.25rem;background:#fffdf3ed;transform:scale(.9);transform-origin:top right}
+ .workshop-hand{font-size:.79rem;gap:.35rem;margin:.35rem 0;min-height:30px}.workshop-hand-prop{width:27px;height:27px;flex-basis:27px}.workshop-pointer{width:27px;font-size:1.2rem}.workshop-tray{gap:3px;padding:4px;border-radius:13px;grid-template-columns:repeat(6,minmax(0,1fr))}.workshop .workshop-toy{padding:.25rem .1rem;border-radius:9px;border-width:2px;min-height:66px}.workshop-toy>svg{width:47px;height:45px}.workshop-toy>span{font-size:.62rem}
+ .workshop-result{gap:.5rem;align-items:center;min-height:58px;padding:.45rem 0;flex-wrap:wrap}.workshop-status{font-size:.82rem;flex:1;min-width:145px}.workshop .workshop-next{font-size:.82rem;padding:.65rem .8rem}.workshop-after{flex-direction:column;align-items:start;gap:.5rem;padding:.7rem}.workshop-after p{font-size:.82rem}.workshop-footer-actions{margin:0}.workshop .workshop-quiet{font-size:.76rem}.workshop-grownup{margin-top:0}.workshop-grownup summary{font-size:.75rem}.workshop-help{padding:.6rem}.workshop-help p{font-size:.82rem}
+}
+@media(max-width:350px){.workshop-heading h1{font-size:1.3rem}.workshop-tray{padding:2px;gap:2px}.workshop-toy>svg{height:41px}.workshop .workshop-toy{min-height:64px}.workshop-toy>span{font-size:.58rem}.workshop-scene{aspect-ratio:1.3}.workshop-status{min-width:120px}.workshop-request p{font-size:.86rem}}
+@media(prefers-reduced-motion:reduce){.workshop *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(forced-colors:active){.workshop .workshop-place,.workshop .workshop-toy{border:2px solid ButtonText}.workshop .workshop-toy[aria-pressed=true]{outline:3px solid Highlight;outline-offset:-4px}.workshop .workshop-next{border:2px solid ButtonText}.workshop .workshop-remove{border:1px solid ButtonText}.workshop-landscape{opacity:.45}}
+.workshop .workshop-remove{transform:none}
+.workshop-postcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.workshop-postcards article{padding:1rem;border-radius:16px;background:#edf2df}.workshop-postcards h3{margin:.4rem 0;font-size:1.1rem}.workshop-postcards p{font-size:.9rem}
+.workshop-mini{aspect-ratio:900/460!important;border-radius:12px;max-height:200px}.workshop-mini .workshop-placed{height:100%}
+.welcome-world>.workshop-landscape{height:auto;aspect-ratio:900/460;border-radius:24px}
+@media(max-width:350px){.workshop-tray{grid-template-columns:repeat(3,minmax(44px,1fr))}.workshop .workshop-toy{flex-direction:row}.workshop-toy>svg{width:36px;height:40px}.workshop-toy>span{font-size:.65rem}}
+html[data-motion=reduced] .workshop *,html[data-quality=eco] .workshop *{animation:none!important;transition:none!important}

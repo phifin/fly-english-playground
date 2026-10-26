@@ -8,7 +8,7 @@ export const contentTypes = {
   '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wav': 'audio/wav',
 };
 const rootFiles = new Set(['index.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js', 'offline-manifest.json', 'build-report.json']);
-const assetTypes = new Set(['.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.ico', '.woff2', '.mp3', '.ogg', '.wav']);
+const assetTypes = new Set(['.css', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.ico', '.woff2', '.mp3', '.ogg', '.wav']);
 
 export function isPublicRelative(relative) {
   if (typeof relative !== 'string' || relative.includes('\\') || relative.includes('\0')
