@@ -700,6 +700,11 @@ try {
           const box = await element.boundingBox();
           assert.ok(box.width >= 44 && box.height >= 44, `Construction targets remain usable at ${viewport.width}px.`);
         }
+        if(language==='vi')for(const label of await toy.locator('.workshop-spot-label').all()){
+          const [english,vietnamese,container]=await Promise.all([label.locator('span').boundingBox(),label.locator('small').boundingBox(),label.boundingBox()]);
+          assert.ok(vietnamese.y>=english.y+english.height-1,`Bilingual location labels must remain on separate lines at ${viewport.width}px.`);
+          for(const text of [english,vietnamese])assert.ok(text.x>=container.x-1&&text.x+text.width<=container.x+container.width+1,'Location labels must fit their own place without clipping.');
+        }
         const heading = await toy.locator('.workshop h1').innerText();
         assert.equal(heading, heading.normalize('NFC')); assert.doesNotMatch(heading, /\uFFFD/);
         const path = `release-workshop-${language}-${viewport.width}.png`;

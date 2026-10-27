@@ -59,6 +59,8 @@
 @media(prefers-reduced-motion:reduce){.workshop *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media(forced-colors:active){.workshop .workshop-place,.workshop .workshop-toy{border:2px solid ButtonText}.workshop .workshop-toy[aria-pressed=true]{outline:3px solid Highlight;outline-offset:-4px}.workshop .workshop-next{border:2px solid ButtonText}.workshop .workshop-remove{border:1px solid ButtonText}.workshop-landscape{opacity:.45}}
 .workshop .workshop-remove{transform:none}
+.workshop .workshop-spot-label{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;flex-shrink:0}
+.workshop .workshop-spot-label>span,.workshop .workshop-spot-label>small{display:block;max-width:100%}
 .workshop-postcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0}
 .workshop-postcards article{padding:1rem;border-radius:16px;background:#edf2df}.workshop-postcards h3{margin:.4rem 0;font-size:1.1rem}.workshop-postcards p{font-size:.9rem}
 .workshop-mini{aspect-ratio:900/460!important;border-radius:12px;max-height:200px}.workshop-mini .workshop-placed{height:100%}
