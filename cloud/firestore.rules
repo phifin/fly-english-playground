@@ -2,6 +2,9 @@ rules_version = '2';
 // Admission: {approved:boolean}. A trusted server-managed owner record also has
 // familyOwner:true. Clients cannot create owners or change any owner record.
 // Explicit joinRequests/{uid}: {uid,email,displayName}; no learner data is public.
+// Owner-created familyInvitations/{lowercaseEmail}: {email,enabled,claimedBy}.
+// A verified matching Google identity can atomically claim an unused invitation
+// and create only its own plain admission. Existing blocked grants stay blocked.
 // Owner profiles: {ownerUid,profileId,revision:int,body:string<=24000 chars}.
 // Immutable child events: {ownerUid,profileId,eventId,body:string<=24000 chars}.
 // Immutable deletion markers: {ownerUid,profileId}; they authorize cleanup only.
@@ -23,6 +26,38 @@ service cloud.firestore {
       return request.resource.data.keys().hasAll(['approved'])
         && request.resource.data.keys().hasOnly(['approved'])
         && request.resource.data.approved is bool;
+    }
+    function verifiedGoogle() {
+      return request.auth != null && request.auth.token.email_verified == true
+        && request.auth.token.firebase.sign_in_provider == 'google.com'
+        && request.auth.token.email is string;
+    }
+    function validInvitation(email) {
+      let data = request.resource.data;
+      return email is string && email.size() > 3 && email.size() <= 254
+        && email.matches('^[a-z0-9][a-z0-9._%+-]*@[a-z0-9.-]+[.][a-z]{2,}$')
+        && data.keys().hasAll(['email', 'enabled', 'claimedBy'])
+        && data.keys().hasOnly(['email', 'enabled', 'claimedBy'])
+        && data.email == email && data.enabled is bool
+        && data.claimedBy is string && (data.claimedBy == '' || validId(data.claimedBy));
+    }
+    function invitedSelf(uid) {
+      let email = request.auth.token.email.lower();
+      let path = /databases/$(database)/documents/familyInvitations/$(email);
+      return verifiedGoogle() && request.auth.uid == uid && validId(uid)
+        && validAdmission() && request.resource.data.approved == true
+        && exists(path) && get(path).data.enabled == true && get(path).data.claimedBy == ''
+        && getAfter(path).data.claimedBy == uid && getAfter(path).data.enabled == true
+        && getAfter(path).data.email == email;
+    }
+    function claimingInvitation(email) {
+      let uid = request.auth.uid;
+      let admission = /databases/$(database)/documents/access/$(uid);
+      return verifiedGoogle() && request.auth.token.email.lower() == email
+        && validInvitation(email) && resource.data.enabled == true && resource.data.claimedBy == ''
+        && request.resource.data.enabled == true && request.resource.data.claimedBy == uid
+        && !exists(admission) && getAfter(admission).data.keys().hasOnly(['approved'])
+        && getAfter(admission).data.approved == true;
     }
     function validJoinRequest(uid) {
       let data = request.resource.data;
@@ -58,10 +93,20 @@ service cloud.firestore {
     match /access/{uid} {
       // Owners manage admission, never another learner's private progress.
       allow get: if request.auth != null && (request.auth.uid == uid || familyOwner());
-      allow create: if familyOwner() && request.auth.uid != uid && validId(uid) && validAdmission();
+      allow create: if (familyOwner() && request.auth.uid != uid && validId(uid) && validAdmission())
+        || (request.auth != null && invitedSelf(uid));
       allow update: if familyOwner() && request.auth.uid != uid && validId(uid) && validAdmission()
         && (!('familyOwner' in resource.data) || resource.data.familyOwner != true);
       allow list, delete: if false;
+    }
+    match /familyInvitations/{email} {
+      allow get: if familyOwner() || (verifiedGoogle() && request.auth.token.email.lower() == email);
+      allow list: if familyOwner() && request.query.limit != null && request.query.limit <= 100;
+      allow create: if familyOwner() && validInvitation(email) && request.resource.data.claimedBy == '';
+      allow update: if (familyOwner() && validInvitation(email)
+          && request.resource.data.claimedBy == resource.data.claimedBy)
+        || (request.auth != null && claimingInvitation(email));
+      allow delete: if false;
     }
     match /joinRequests/{uid} {
       allow get: if request.auth != null && (request.auth.uid == uid || familyOwner());

@@ -151,22 +151,24 @@ test('a popup that resolves after sign-out has its stale SDK session discarded',
   assert.equal(cloud.status().state, 'signed-out'); assert.equal(api.currentUid(), null); assert.equal(grants, 0);
 });
 
-test('sign-out while the SDK is preparing prevents opening a sign-in popup', async () => {
+test('sign-out while the SDK is preparing prevents opening a sign-in popup', {timeout:5000}, async () => {
   const db = await store(), data = network(), api = backend(data);
   let release, popups = 0;
   api.signIn = async () => { popups++; return { uid: 'ownerA' }; };
   const cloud = createCloud({ store: db, config, loadBackend: () => new Promise(resolve => { release = resolve; }) });
-  const signingIn = cloud.signIn(); await cloud.signOut(); release(api);
+  const signingIn = cloud.signIn(), signingOut = cloud.signOut(); release(api);
   await assert.rejects(signingIn, error => error.code === 'cloud/session-changed');
+  await signingOut;
   assert.equal(popups, 0); assert.equal(cloud.status().state, 'signed-out');
 });
 
-test('a failed SDK preparation arriving after sign-out cannot replace the disconnected status', async () => {
+test('failed SDK preparation during sign-out keeps private state hidden and requires a truthful retry', {timeout:5000}, async () => {
   const db = await store(); let rejectLoad;
   const cloud = createCloud({ store: db, config, loadBackend: () => new Promise((resolve, reject) => { rejectLoad = reject; }) });
-  const signingIn = cloud.signIn(); await cloud.signOut(); rejectLoad(new Error('Synthetic SDK failure'));
-  await assert.rejects(signingIn, /Synthetic SDK failure/);
-  assert.equal(cloud.status().state, 'signed-out'); assert.equal(cloud.status().uid, null);
+  const signingIn = cloud.signIn(), signingOut = cloud.signOut();
+  const failedSignIn=assert.rejects(signingIn, /Synthetic SDK failure/),failedSignOut=assert.rejects(signingOut,{code:'cloud/signout-failed'});
+  rejectLoad(new Error('Synthetic SDK failure'));await Promise.all([failedSignIn,failedSignOut]);
+  assert.equal(cloud.status().state, 'signout-failed'); assert.equal(cloud.status().uid, null);
 });
 
 test('an SDK account change during admission cannot produce a ready controller for the stale identity', async () => {

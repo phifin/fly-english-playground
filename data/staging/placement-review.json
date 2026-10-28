@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "batchId": "placement-review-v1",
+  "sources": [
+    {
+      "id": "coe-cefr-companion-volume-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment – Companion volume",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "usage": "Reference for the CEFR's descriptive and profiling scope and for its separately collated young-learner descriptors (ages 7–10 and 11–15). It does not validate or calibrate these activity IDs. No descriptor text copied."
+    },
+    {
+      "id": "cambridge-english-test-development-cycle",
+      "title": "Validity and validation: the Cambridge English test development cycle",
+      "url": "https://www.cambridgeenglish.org/english-research-group/validity-and-validation/testcycle.aspx",
+      "usage": "Reference for the distinction between CEFR specifications, trialling, empirical validation, and pretested/calibrated objective item banks. Used to limit claims about this unpiloted pool. No test questions copied."
+    },
+    {
+      "id": "cambridge-english-pretesting",
+      "title": "What is Pretesting?",
+      "url": "https://support.cambridgeenglish.org/hc/en-gb/articles/202843216-What-is-Pretesting",
+      "usage": "Reference for Cambridge's published pretest practice of analysing item difficulty and candidate/teacher fairness feedback. This is not a sample-size prescription for this project. No test questions copied."
+    },
+    {
+      "id": "cambridge-linguaskill-adaptive-testing",
+      "title": "The science behind the exam",
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/linguaskill/information-about-the-exam/the-science-behind-the-exam/",
+      "usage": "Official example of adaptive reading/listening delivery in a developed exam. Used to distinguish a short content-based routing heuristic from calibrated computer-adaptive testing. No exam content copied."
+    }
+  ],
+  "items": [
+    {
+      "activityId": "a1-lantern-harbor-color-teller-01",
+      "level": "A1",
+      "skill": "reading",
+      "rationale": "Short choice item distinguishes one named person's preference from another person's choice; it offers a usable beginner reading sample.",
+      "limitations": "The relevant choice is stated directly. It measures one local detail, not broad A1 reading; distractor familiarity may affect performance."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-01",
+      "level": "A1",
+      "skill": "reading",
+      "rationale": "Three-option retrieval from a short note tests tracking a named speaker among two contrasting choices.",
+      "limitations": "The answer is explicit in a short quotation. It gives little evidence beyond one familiar-word detail."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-02",
+      "level": "A1",
+      "skill": "language-use",
+      "rationale": "One-word accepted response targets singular/plural agreement in a basic there-construction; grading is deterministic.",
+      "limitations": "This is a single morphology/form item. Knowing the target construction from prior exposure could dominate the result."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-01",
+      "level": "A2",
+      "skill": "reading",
+      "rationale": "A concise diary with three time-linked locations supports a clear, objectively scored search for a detail.",
+      "limitations": "The target location is stated directly. It samples literal retrieval and basic time sequencing only."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-01",
+      "level": "A2",
+      "skill": "reading",
+      "rationale": "Three-option reading of a short schedule asks the learner to connect an event to a time of day.",
+      "limitations": "The schedule states the answer plainly; a single detail cannot establish an A2 boundary."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-02",
+      "level": "A2",
+      "skill": "language-use",
+      "rationale": "The one-word gap has a fixed plural form and a clear quantity cue, so it can be scored consistently.",
+      "limitations": "It samples only regular noun pluralisation and gives no evidence about broader language use."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-01",
+      "level": "B1",
+      "skill": "reading",
+      "rationale": "The learner compares two short notes and connects the guide's recommendation to the changing visibility of route markers.",
+      "limitations": "The supporting reason is present in the text. Tide and route vocabulary may add topic effects; one inference is not a B1 calibration."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-01",
+      "level": "B1",
+      "skill": "reading",
+      "rationale": "A short narrative purpose question asks the learner to connect a character's action with a future use.",
+      "limitations": "The purpose is explicitly stated. The task samples one local inference and may be easier than its band label suggests."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-02",
+      "level": "B1",
+      "skill": "language-use",
+      "rationale": "The gap accepts two standard, equivalent two-word purpose phrases, so the key allows valid variation while remaining automatically gradable.",
+      "limitations": "The prompt explicitly names the construction and supplies the final infinitive marker; it is a narrow, scaffolded form check."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-01",
+      "level": "B2",
+      "skill": "reading",
+      "rationale": "The choice tests whether a learner can preserve a speaker's figurative viewpoint when reading a short reported statement.",
+      "limitations": "It depends on one metaphor and on interpreting the distractors; metaphor familiarity may vary independently of general proficiency."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-01",
+      "level": "B2",
+      "skill": "reading",
+      "rationale": "The learner must retain a qualified conclusion and avoid converting a possible cause into a proven one.",
+      "limitations": "This is one technical-report inference. Familiarity with evidence language and the scenario can affect the response."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-02",
+      "level": "B2",
+      "skill": "language-use",
+      "rationale": "A short gap tests a fixed, common collocation with a single accepted completion.",
+      "limitations": "It measures recall of one lexical chunk rather than a broad B2 construct; previous exposure can make it a memory item."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-01",
+      "level": "C1",
+      "skill": "reading",
+      "rationale": "A concise evidence note and four options make degree-of-certainty interpretation objectively scorable.",
+      "limitations": "This samples one hedging distinction. Technical framing and the plainly contradicted distractors may make it easier than the C1 label implies."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-01",
+      "level": "C1",
+      "skill": "reading",
+      "rationale": "The learner interprets a formal revision that replaces an estimate while preserving a qualified use for it.",
+      "limitations": "The phrase lower bound may introduce mathematical vocabulary effects; the short passage tests one qualification, not overall C1 reading."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-02",
+      "level": "C1",
+      "skill": "language-use",
+      "rationale": "The one-word gap has one keyed auxiliary in a fronted negative/emphatic construction and can be graded exactly.",
+      "limitations": "This is a single inversion rule, explicitly scaffolded by the prompt. It cannot support a general C1 grammar claim."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-01",
+      "level": "C2",
+      "skill": "reading",
+      "rationale": "A short context supports an inference about restrained evaluation rather than a literal or absolute claim.",
+      "limitations": "It relies on one idiomatic understatement. The lexical item may be unfamiliar for reasons unrelated to broad C2 ability."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-02",
+      "level": "C2",
+      "skill": "language-use",
+      "rationale": "A one-word fixed-expression gap has an exact key and context that distinguishes near-total from total unreadability.",
+      "limitations": "It samples one idiom only; the context paraphrases its meaning, and the item provides no evidence of broad C2 proficiency."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-01",
+      "level": "C2",
+      "skill": "reading",
+      "rationale": "The choice distinguishes figurative reader effect from a factual claim about authorial intention in a short editorial context.",
+      "limitations": "Interpretation depends on literary/editorial framing and one metaphor. It is not a general C2 reading measure."
+    }
+  ],
+  "rejected": [
+    {
+      "activityId": "a1-lantern-harbor-05",
+      "reason": "Open writing is not objectively gradable by the existing assessor; it returns no automatic correctness."
+    },
+    {
+      "activityId": "a1-lantern-harbor-04",
+      "reason": "The prompt and passage both spell out the full three-step order, making it a weak placement discriminator."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-05",
+      "reason": "Open writing is not objectively gradable by the existing assessor."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-04",
+      "reason": "The passage states the target comparison in nearly the same wording as the order task; little independent language evidence remains."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-05",
+      "reason": "Open writing has no automatic correctness and should not determine a placement boundary."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-02",
+      "reason": "The gap accepts five plausible contrast linkers; without broader context it has a wide answer set and low diagnostic specificity."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-05",
+      "reason": "Open writing is not automatically scored."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-03",
+      "reason": "The match is all-or-nothing under assess(); one missed pair erases partial evidence, so it is a poor short placement response."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-05",
+      "reason": "Open writing is not objectively gradable by the existing assessor."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-03",
+      "reason": "The passage directly displays each linker and its following structure, so the matching answer is largely exposed in the stimulus."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-01",
+      "reason": "The passage is substantially longer than the other candidates and may make the orientation a tedious reading-endurance task."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-05",
+      "reason": "Open writing is not automatically scored."
+    }
+  ],
+  "limitations": [
+    "The level labels come from the existing authored content. No candidate has learner-response, difficulty, discrimination, reliability, fairness, equating, cut-score, or CEFR-linking evidence. This pool is a content review, not a calibrated test or an assertion that the items separate adjacent bands.",
+    "Use the result only as a provisional reading/language-use practice starting suggestion. Do not label it a CEFR placement result or certification; it samples no writing, listening, or speaking.",
+    "All 18 candidates already exist in the published learning library. Prior viewing, practice, hints, or solution exposure can inflate results. Check item exposure before asking; when exposure cannot be detected, mark the suggestion uncertain or let the learner choose rather than treat recalled answers as fresh evidence.",
+    "The selected pool deliberately uses existing choice and gap formats. Choice distractors and one-key gaps can still reward guessing or isolated recall. The assessor grades match/order all-or-nothing, so those formats were not recommended for short boundary decisions.",
+    "Most reading candidates provide explicit textual evidence, which is necessary for a reading task; several are literal retrieval and may be too easy to separate adjacent bands. The pool does not establish item difficulty ordering across A1–C2.",
+    "For a pre-reader, offer the existing adult-assisted picture-play path as shared practice. If an adult reads or paraphrases an English passage, the response is supported comprehension, not an independent reading assessment. Keep picture play and adult assistance out of reading placement evidence.",
+    "The Council of Europe's collated young-learner descriptors cover age groups 7–10 and 11–15; that material provides no CEFR mapping for pre-readers or a 4–5-year-old. Do not infer a child's CEFR level from age, mode, caregiver support, or this orientation."
+  ]
+}

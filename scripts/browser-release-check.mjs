@@ -176,7 +176,7 @@ try {
   const button = (action, suffix = '') => page.locator(`[data-action="${action}"]${suffix}:visible`).first();
   const action = (name, suffix = '', options) => click(button(name, suffix), options);
   async function select(selector, value) { await ready(); await page.locator(selector).selectOption(value); await ready(); await noError(); }
-  async function chooseProfile(id) { await action('profiles'); await action('choose-profile', `[data-id="${id}"]`); }
+  async function chooseProfile(id) { await action('account'); await action('choose-profile', `[data-id="${id}"]`); }
   async function activeId() { return page.evaluate(() => localStorage.getItem('atlas-active-profile')); }
   async function preserveFormThroughNotification(name, values, focus = 'name') {
     await ready();
@@ -208,7 +208,7 @@ try {
   }
   async function createProfile(name, { kind = 'independent', guardianId = '', mode = 'balanced', language = 'en' } = {}) {
     if (!(await page.locator('[data-form="create-profile"]').count())) {
-      if(await button('profiles').count())await action('profiles');
+      await action('account');
       await action('start-traveler');
     }
     await action('guidance-language', `[data-value="${language}"]`);
@@ -222,7 +222,7 @@ try {
     await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
     assert.equal(await form.locator(`[name="mode"][value="${mode}"]`).isChecked(), true,
       'A background update must preserve the selected way to play.');
-    await click(form.locator('button[type="submit"]'));
+    await click(form.locator('button[type="submit"][value="play"]'));
     const id = await activeId();
     assert.equal(await button('finish-onboard').count(), 0, 'New players must enter play without a second configuration page.');
     assert.equal(await page.locator('body').evaluate((element, value) => element.classList.contains(`mode-${value}`), mode), true);
@@ -421,6 +421,7 @@ try {
   arrivalPage.setDefaultTimeout(15000); arrivalPage.setDefaultNavigationTimeout(45000);
   try {
     await arrivalPage.goto(base.href); await ready(arrivalPage);
+    await arrivalPage.locator('.welcome [data-action="cloud-signin"]').waitFor({ state: 'visible' });
     assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'en');
     const englishHeading = await arrivalPage.locator('.welcome h1').innerText();
     const languageButton = value => arrivalPage.locator(`.masthead [data-action="guidance-language"][data-value="${value}"]`);
@@ -529,7 +530,7 @@ try {
     assert.equal(await name.inputValue(), travelerName);
     assert.equal(await kind.inputValue(), 'independent');
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
-    await form.locator('button[type="submit"]').click(); await ready(arrivalPage);
+    await form.locator('button[type="submit"][value="play"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('.workshop').waitFor({ state: 'visible' });
     assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(),0);
     assert.equal(await arrivalPage.locator('.expedition-grid').count(),0);
@@ -544,7 +545,7 @@ try {
     assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Play-first selection must not redefine guidance language.');
     await arrivalPage.locator('.main-nav [data-action="atlas"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('.profile-pill').click(); await ready(arrivalPage);
-    const resume = arrivalPage.locator(`.welcome [data-action="choose-profile"][data-id="${traveler.id}"]`);
+    const resume = arrivalPage.locator(`.learner-picker [data-action="choose-profile"][data-id="${traveler.id}"]`);
     assert.equal((await withinFirstViewport(resume)).inViewport, true, 'Returning travelers need a visible resume action above the fold.');
     await resume.click(); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('.main-nav [data-action="atlas"]').getAttribute('aria-current'), 'page');
@@ -589,6 +590,105 @@ try {
   check('First-view entry and written language choices work at 1440px, 390px and 320px; Vietnamese guidance persists before registration and is inherited without losing typed names.');
   check('Native selectors retain visible focus and touch spacing; a new play-first traveler can resume directly without repeating onboarding or creating learning evidence.');
 
+  // Optional placement follows the actual generated route. Answers come from
+  // the published content, never a mocked score or injected learning record.
+  const placementContext = await newContext(); const placementPage = await placementContext.newPage(); observe(placementPage);
+  placementPage.setDefaultTimeout(15000); placementPage.setDefaultNavigationTimeout(45000);
+  try {
+    const pbutton = name => placementPage.locator(`[data-action="${name}"]:visible`).first();
+    const pclick = async name => { await pbutton(name).click(); await ready(placementPage); await noError(placementPage); };
+    const snapshot = async () => (await placementPage.evaluate(readImportState)).snapshot;
+    const begin = async () => { await pclick('journal'); await pclick('start-placement'); await pclick('placement-begin'); };
+    const answer = async () => {
+      const id = await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item');
+      const activity = pack.missions.flatMap(m => m.activities).find(a => a.id === id);
+      assert.ok(activity, 'Placement must use an actual reviewed published activity.');
+      assert.equal(await placementPage.locator('[data-action="reveal"],[data-action="model"],.feedback').count(), 0,
+        'Assessment must not reveal hints, translated answers or correctness while collecting evidence.');
+      if (activity.type === 'choice') await placementPage.locator(`[data-action="choose"][data-value="${activity.answer}"]`).click();
+      else { assert.equal(activity.type, 'gap'); await placementPage.locator('[data-answer="gap"]').fill(activity.accepted[0]); }
+      await pclick('placement-next');
+      return id;
+    };
+    await placementPage.goto(base.href); await ready(placementPage);
+    await pclick('start-traveler');
+    await placementPage.locator('#traveler-name').fill('Starting point CI');
+    await placementPage.locator('[data-form="create-profile"] button[value="placement"]').click(); await ready(placementPage);
+    await pbutton('placement-begin').waitFor();
+    assert.equal((await snapshot()).events.length, 0, 'Choosing an optional check-in must not manufacture evidence.');
+    for (const language of ['en', 'vi']) {
+      await placementPage.locator(`[data-action="guidance-language"][data-value="${language}"]`).click(); await ready(placementPage);
+      for (const width of [390, 320]) {
+        await placementPage.setViewportSize({ width, height: 844 });
+        assert.equal(await placementPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
+          `${language} starting-point choices must fit a ${width}px screen.`);
+      }
+      await axe(`${language} optional starting point at 320px`, placementPage);
+    }
+    await pclick('placement-begin');
+    await pbutton('placement-next').click(); await ready(placementPage);
+    assert.equal((await snapshot()).events.length, 0, 'A missing answer cannot advance or record a response.');
+    assert.equal(await placementPage.locator('.alert.error').count(), 1, 'A missing response must have understandable recovery guidance.');
+    const answered = [await answer()];
+    const pendingId = await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item');
+    const beforeResume = await snapshot();
+    assert.equal(beforeResume.events.filter(e => e.kind === 'placement').length, 1);
+    await pclick('atlas'); await placementPage.reload({ waitUntil: 'domcontentloaded' }); await ready(placementPage);
+    await begin();
+    assert.equal(await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item'), pendingId,
+      'Reloading must resume after the last committed response, without restarting or duplicating it.');
+    assert.equal(canonical((await snapshot()).events), canonical(beforeResume.events));
+    while (await placementPage.locator('[data-placement-item]').count()) {
+      assert.ok(answered.length < 10, 'The check-in must finish within its advertised response cap.');
+      answered.push(await answer());
+    }
+    assert.equal(new Set(answered).size, answered.length, 'A check-in must not repeat the same item.');
+    await placementPage.locator('.placement-result').waitFor();
+    const completed = await snapshot();
+    const untouched = evidenceFor(completed.events);
+    assert.equal(untouched.attempts, 0); assert.equal(untouched.rewards.size, 0); assert.equal(untouched.independent, 0);
+    assert.equal(completed.profiles[0].journey.region, beforeResume.profiles[0].journey.region,
+      'A provisional result must not change the chosen path until it is accepted.');
+    for (const language of ['en', 'vi']) {
+      await placementPage.locator(`[data-action="guidance-language"][data-value="${language}"]`).click(); await ready(placementPage);
+      assert.equal(await placementPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true);
+      await axe(`${language} placement result at 320px`, placementPage);
+      await placementPage.screenshot({ path: fileURLToPath(new URL(`release-placement-${language}.png`, directory)), fullPage: true });
+    }
+    await pclick('accept-placement');
+    const accepted = await snapshot();
+    assert.equal(accepted.profiles[0].journey.region, 'C2', 'An all-correct route should suggest the highest available reading range.');
+    assert.equal(accepted.profiles[0].settings.mode, 'balanced', 'Placement must not dictate experience mode.');
+    assert.equal(evidenceFor(accepted.events).recommendation.level, 'C2');
+    assert.ok(beforeResume.events.every(event => accepted.events.some(saved => canonical(saved) === canonical(event))));
+    await begin();
+    let skipped = 0;
+    while (await placementPage.locator('[data-placement-item]').count()) { assert.ok(skipped++ < 10); await pclick('placement-skip'); }
+    assert.match(await placementPage.locator('.placement-result').innerText(), /A1/);
+    assert.equal((await snapshot()).profiles[0].journey.region, 'C2', 'A retake must preserve the current path before acceptance.');
+    await pclick('start-placement');
+    await placementPage.locator('.manual-range > summary').click();
+    await placementPage.locator('[data-action="placement-manual"][data-value="B1"]').click(); await ready(placementPage);
+    const manual = await snapshot();
+    assert.equal(manual.profiles[0].journey.region, 'B1');
+    await pclick('journal'); await pclick('start-placement'); await pclick('placement-assisted');
+    await placementPage.locator('.workshop[data-workshop-mode="free"]').waitFor();
+    const assisted = await snapshot();
+    assert.equal(assisted.profiles[0].settings.mode, 'balanced');
+    assert.equal(assisted.profiles[0].journey.region, 'B1', 'Adult-assisted play must not assign a reading level.');
+    assert.equal(canonical(assisted.events), canonical(manual.events), 'Assisted entry must not create assessment evidence.');
+    await placementPage.locator('.profile-pill').click(); await ready(placementPage);
+    assert.equal(await placementPage.locator('[data-identity-state="guest"]').count(), 1);
+    assert.equal(await placementPage.locator('.learner-card').count(), 1);
+    assert.equal(await placementPage.locator('[data-action="cloud-signin"]').count(), 1, 'Guest account recovery has one clear Google action.');
+    await axe('Vietnamese guest account at 320px', placementPage);
+    await placementPage.screenshot({ path: fileURLToPath(new URL('release-account-vietnamese.png', directory)), fullPage: true });
+    report.placement = { answered, skipped, acceptedRange: 'C2', manualRange: 'B1', resumed: true, assessmentAwardsMastery: false };
+    check('Optional placement resumes committed answers, rejects blank submissions, routes within ten tasks and changes only the accepted reading recommendation.');
+    check('Retaking, skipping, choosing a manual range and entering adult-assisted play preserve learning history and experience mode; bilingual account and result layouts pass narrow-screen checks.');
+  } catch (error) { failurePage = placementPage; throw error; }
+  finally { if (failurePage !== placementPage) { await placementContext.close(); contexts.splice(contexts.indexOf(placementContext), 1); } }
+
   // The primary game has its own fresh traveler. Construct the scene through
   // actual controls, then inspect committed data; never insert a solved flag.
   const toyContext = await newContext(); const toy = await toyContext.newPage(); observe(toy);
@@ -608,7 +708,7 @@ try {
     await play('start-traveler');
     await toy.locator('#traveler-name').fill('Harbor construction CI');
     await toy.locator('[name="mode"][value="kids"]').check();
-    await toy.locator('[data-form="create-profile"] button[type="submit"]').click(); await ready(toy);
+    await toy.locator('[data-form="create-profile"] button[type="submit"][value="play"]').click(); await ready(toy);
     await toy.locator('.workshop[data-workshop-mode="free"]').waitFor();
     assert.equal((await snapshot()).events.length, 0, 'Entering free construction does not manufacture saved actions.');
     assert.equal(await toy.locator('.expedition-grid,[data-action="submit"]').count(), 0,
@@ -758,8 +858,7 @@ try {
 
   const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
   try {
-    await cloudPage.goto(base.href); await ready(cloudPage);
-    report.cloudSdk = await verifyCloudSdk(cloudPage, { requireCsp: Boolean(process.env.CI || expectedRelease) });
+    report.cloudSdk = await verifyCloudSdk(cloudPage, { requireCsp: Boolean(process.env.CI || expectedRelease), navigateTo: base.href });
   } finally { await cloudContext.close(); contexts.splice(contexts.indexOf(cloudContext), 1); }
   check(report.cloudSdk.configured
     ? 'The deployed Firebase SDK prepares under its actual CSP using pinned CDN modules, without sign-in, popups or cloud data requests.'
@@ -775,6 +874,8 @@ try {
     const sdkRoot = `https://www.gstatic.com/firebasejs/${report.cloudSdk.sdkVersion}/`;
     const requests = [], blocked = [], uncaught = [], consoleErrors = [];
     let popups = 0;
+    let releaseOutage;
+    const outageGate = new Promise(resolve => { releaseOutage = resolve; });
     outagePage.on('request', request => {
       if (new URL(request.url()).origin !== base.origin) requests.push(request.url());
     });
@@ -783,6 +884,7 @@ try {
     outagePage.on('popup', popup => { popups++; popup.close().catch(() => {}); });
     await outageContext.route(`${sdkRoot}**`, async route => {
       blocked.push(route.request().url());
+      await outageGate;
       await route.fulfill({ status: 503, contentType: 'application/javascript',
         headers: { 'access-control-allow-origin': '*', 'cache-control': 'no-store' },
         body: '/* Intentional SDK CDN outage for the browser regression. */' });
@@ -793,13 +895,16 @@ try {
       const form = outagePage.locator('[data-form="create-profile"]');
       const name = 'CDN outage CI';
       await form.locator('[name="name"]').fill(name);
-      await outagePage.locator('.entry-form > [data-action="cloud-signin"]').click();
-      await outagePage.locator('.alert.error').waitFor({ state: 'visible' });
-      await outagePage.locator('.cloud-status[data-cloud-state="error"]').waitFor({ state: 'visible' });
-      assert.ok((await outagePage.locator('.cloud-status').innerText()).trim().length > 12,
-        'A connection failure must show a useful readable explanation.');
+      releaseOutage();
+      await pollAsyncResult(async () => consoleErrors.length > 0 && blocked.length > 0,
+        { timeoutMs: 15000, intervalMs: 100, description: 'the requested SDK module failing during guest entry' });
+      await outagePage.locator('.account-pill-copy small').filter({ hasText: /Guest|Khách/ }).waitFor();
       await ready(outagePage);
       assert.ok(blocked.length > 0, 'The real adapter must attempt a pinned SDK load before the outage can be tested.');
+      assert.equal(await form.locator('[name="name"]').inputValue(), name, 'An SDK outage must preserve the typed traveler name.');
+      assert.equal(await form.isVisible(), true, 'The entry form must stay visible after an SDK outage.');
+      await outagePage.locator('.profile-pill').click(); await ready(outagePage);
+      await outagePage.locator('.cloud-status[data-cloud-state="error"]').waitFor({ state: 'visible' });
       const attempts = blocked.length;
       const mutations = await outagePage.evaluate(() => new Promise(resolve => {
         let changes = 0;
@@ -809,16 +914,16 @@ try {
       }));
       assert.equal(mutations, 0, 'An open cloud panel must settle after an SDK failure without repeating error renders.');
       assert.equal(blocked.length, attempts, 'An SDK failure must not automatically repeat CDN load attempts.');
-      assert.equal(await form.locator('[name="name"]').inputValue(), name, 'An SDK outage must preserve the typed traveler name.');
-      assert.equal(await form.isVisible(), true, 'The entry form must stay visible after an SDK outage.');
-      assert.equal(await outagePage.locator('.cloud-panel').isVisible(), true, 'The failed cloud panel must remain visible so its status is readable.');
+      assert.ok((await outagePage.locator('.cloud-status').innerText()).trim().length > 12,
+        'The account page must explain the connection failure without losing guest access.');
+      assert.equal(await outagePage.locator('.cloud-panel').isVisible(), true, 'Account recovery must stay visible after an SDK outage.');
       assert.ok(requests.every(url => url.startsWith(sdkRoot)), 'The outage check must not contact authentication or learner-data services.');
       assert.equal(popups, 0, 'Opening the cloud panel must not open a sign-in popup.');
       assert.deepEqual(uncaught, [], 'Expected CDN errors must be handled by the app without uncaught exceptions.');
       report.cloudOutage = { sdkRoot, blockedModules: [...new Set(blocked)], observationMs: 500,
         appMutations: mutations, consoleErrors: consoleErrors.length, popups, uncaught };
-    } finally { await outageContext.close(); contexts.splice(contexts.indexOf(outageContext), 1); }
-    check('A real pinned-SDK HTTP 503 settles without error-render loops or automatic retries while preserving the typed traveler and readable open cloud panel.');
+    } finally { releaseOutage(); await outageContext.close(); contexts.splice(contexts.indexOf(outageContext), 1); }
+    check('A real pinned-SDK HTTP 503 during session restoration settles without retry loops, preserves the typed guest name and offers readable account recovery.');
   } else report.limitations.push('Cloud is disabled: the real SDK CDN-outage and open-panel recovery regression was skipped.');
   const mainName = 'River CI', otherName = 'Sky CI', childName = 'Moss CI';
   const mainId = await createProfile(mainName, { mode: 'balanced', language: 'vi' });
@@ -982,9 +1087,9 @@ try {
   await axe('journal');
   check('All five activity types save responses; supported retries and self-reviewed writing remain separate from independent evidence.');
 
-  await action('profiles'); const otherId = await createProfile(otherName, { mode: 'serious' });
+  await action('account'); const otherId = await createProfile(otherName, { mode: 'serious' });
   const empty = evidenceFor([]); await journal(empty);
-  await action('profiles'); const childId = await createProfile(childName, { kind: 'dependent', guardianId: mainId, mode: 'kids' });
+  await action('account'); const childId = await createProfile(childName, { kind: 'dependent', guardianId: mainId, mode: 'kids' });
   await settings(); assert.ok((await page.locator('main').innerText()).includes(mainName));
   await chooseProfile(mainId); await settings();
   assert.ok(await page.locator(`.family-list [data-action="dependent"][data-id="${childId}"]`).count());

@@ -2,7 +2,7 @@ import { cloudConfig } from '../public-config.js';
 import { cloudErrorMessage } from './cloud-messages.js';
 export { cloudErrorMessage, cloudStatusMessage } from './cloud-messages.js';
 
-// Optional, pinned browser modules. Nothing is fetched until prepare/signIn.
+// Optional, pinned browser modules. Loading begins only when the controller is prepared.
 export const FIREBASE_SDK_VERSION = '13.0.0';
 const SDK_ROOT = `https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/`;
 const MAX_RECORD_CHARS = 24000;
@@ -11,6 +11,14 @@ const idPattern = /^[A-Za-z0-9_-][A-Za-z0-9._:-]{0,127}$/;
 const clone = value => structuredClone(value);
 const shareableEvents = events => events.filter(event => event.kind !== 'draft');
 const failure = (code, message) => Object.assign(new Error(message), { code });
+const SIGN_OUT_INTENT = 'atlas.pending-sign-out';
+function browserIntentStore() { try { return globalThis.localStorage ?? null; } catch { return null; } }
+export function invitationEmail(value) {
+  const email = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if(email.length > 254 || !/^[a-z0-9][a-z0-9._%+-]*@[a-z0-9.-]+[.][a-z]{2,}$/.test(email))
+    throw failure('cloud/invalid-email', cloudErrorMessage({code:'cloud/invalid-email'}));
+  return email;
+}
 
 export function stableJson(value) {
   return JSON.stringify(value, (_, entry) => entry && typeof entry === 'object' && !Array.isArray(entry)
@@ -97,8 +105,10 @@ async function loadFirebaseBackend(config) {
   const appName = `atlas-${config.projectId}`;
   const app = appSdk.getApps().find(candidate => candidate.name === appName)
     || appSdk.initializeApp(config, appName);
-  const auth = authSdk.initializeAuth(app, { persistence: authSdk.inMemoryPersistence });
+  const auth = authSdk.initializeAuth(app, { persistence: [authSdk.indexedDBLocalPersistence, authSdk.browserLocalPersistence] });
   const db = dbSdk.getFirestore(app);
+  const identity = user => user ? {uid:user.uid,email:user.email,displayName:user.displayName,emailVerified:user.emailVerified} : null;
+  const invitationRef = email => dbSdk.doc(db, 'familyInvitations', invitationEmail(email));
   const profileRef = (uid, id) => dbSdk.doc(db, 'users', safeId(uid), 'profiles', safeId(id));
   const eventsRef = (uid, id) => dbSdk.collection(profileRef(uid, id), 'events');
   const deletedRef = (uid, id) => dbSdk.doc(db, 'users', safeId(uid), 'deletions', safeId(id));
@@ -110,6 +120,8 @@ async function loadFirebaseBackend(config) {
 
   return {
     currentUid: () => auth.currentUser?.uid || null,
+    async restoreSession() { await auth.authStateReady(); return identity(auth.currentUser); },
+    onAuthChange: callback => authSdk.onAuthStateChanged(auth,user=>callback(identity(user))),
     async signIn() {
       const provider = new authSdk.GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
@@ -121,6 +133,37 @@ async function loadFirebaseBackend(config) {
     async getGrant(uid) {
       const grant = await dbSdk.getDoc(dbSdk.doc(db, 'access', safeId(uid)));
       return grant.exists() ? grant.data() : null;
+    },
+    async claimInvitation() {
+      const user=auth.currentUser;
+      if(!user?.emailVerified||!user.email||!user.providerData.some(p=>p.providerId==='google.com'))return false;
+      const email=invitationEmail(user.email),ref=invitationRef(email),grantRef=dbSdk.doc(db,'access',safeId(user.uid));
+      const requestRef=dbSdk.doc(db,'joinRequests',safeId(user.uid));
+      return dbSdk.runTransaction(db,async transaction=>{
+        const [grant,invite,request]=await Promise.all([transaction.get(grantRef),transaction.get(ref),transaction.get(requestRef)]);
+        if(grant.exists()||!invite.exists()||invite.data().enabled!==true||invite.data().claimedBy!=='')return false;
+        transaction.set(grantRef,{approved:true});
+        transaction.set(ref,{email,enabled:true,claimedBy:user.uid});
+        if(!request.exists())transaction.set(requestRef,{uid:user.uid,email:user.email,displayName:(user.displayName?.trim()||user.email).slice(0,80)});
+        return true;
+      });
+    },
+    async listFamilyInvitations() {
+      const result=await dbSdk.getDocs(dbSdk.query(dbSdk.collection(db,'familyInvitations'),dbSdk.limit(100)));
+      return Promise.all(result.docs.map(async doc=>{
+        const value=doc.data();
+        if(invitationEmail(doc.id)!==value.email||typeof value.enabled!=='boolean'||typeof value.claimedBy!=='string'
+          ||(value.claimedBy&&!idPattern.test(value.claimedBy)))throw failure('cloud/invalid-record','Invalid invitation');
+        const grant=value.claimedBy?await this.getGrant(value.claimedBy):null;
+        return {...value,state:value.claimedBy?(grant?.approved?'approved':'blocked'):value.enabled?'invited':'revoked'};
+      }));
+    },
+    async setInvitation(email,enabled) {
+      const ref=invitationRef(email);
+      await dbSdk.runTransaction(db,async transaction=>{
+        const old=await transaction.get(ref);
+        transaction.set(ref,{email:invitationEmail(email),enabled,claimedBy:old.data()?.claimedBy??''});
+      });
     },
     async requestAccess() {
       const user = auth.currentUser;
@@ -214,17 +257,28 @@ async function loadFirebaseBackend(config) {
   };
 }
 
-/** No implicit linking, automatic polling, persistent Auth cache, or hidden upload. */
-export function createCloud({ store, config = cloudConfig, onStatus = () => {}, loadBackend = loadFirebaseBackend } = {}) {
+/** Auth can be remembered; learner linking, cloud restores and uploads stay explicit. */
+export function createCloud({ store, config = cloudConfig, onStatus = () => {}, loadBackend = loadFirebaseBackend, authIntentStore = browserIntentStore() } = {}) {
   const configured = validCloudConfig(config);
   let backend;
   let loading;
   let uid = null;
   let generation = 0;
   let accessRead;
-  let current = { configured, state: configured ? 'signed-out' : 'disabled', uid: null, approved: false,
+  let authListener;
+  let restoring;
+  let signingOut = false;
+  let signOutRequired = false;
+  try { signOutRequired = authIntentStore?.getItem(SIGN_OUT_INTENT) === '1'; } catch { /* Storage can be unavailable; retain the in-memory guard. */ }
+  const setSignOutRequired = required => {
+    signOutRequired = required;
+    try { if(required)authIntentStore?.setItem(SIGN_OUT_INTENT,'1');else authIntentStore?.removeItem(SIGN_OUT_INTENT); } catch { /* Never remove learner records to repair provider persistence. */ }
+  };
+  let current = { configured, state: configured ? signOutRequired ? 'signout-failed' : 'signed-out' : 'disabled', uid: null, approved: false,
     familyOwner: false, email: null, displayName: null, requestSubmitted: false, familyRequests: [],
-    boundProfileIds: [], code: configured ? 'cloud/signed-out' : 'cloud/disabled' };
+    familyInvitations: [], invitationAvailable: null, authReady: !configured, syncedProfileId: null, syncedAt: null, syncingProfileId: null,
+    boundProfileIds: [], code: configured ? signOutRequired ? 'cloud/signout-failed' : 'cloud/signed-out' : 'cloud/disabled' };
+  if(signOutRequired)current.authReady=true;
   current.message = cloudErrorMessage(current);
   const pending = new Map();
   const publish = (state, code, extra = {}) => {
@@ -251,18 +305,27 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
     const promise = (async () => {
       if (announce) publish('checking-access', 'cloud/checking-access');
       try {
-        const grant = await backend.getGrant(sessionUid);
+        let grant = await backend.getGrant(sessionUid);
+        // A server-created invitation admits only its verified email. Old rules
+        // denying this optional path retain the existing pending/request flow.
+        let invitationAvailable=current.invitationAvailable;
+        if(!grant&&backend.claimInvitation){
+          ensureIdentity(sessionUid, sessionGeneration);
+          try { if(await backend.claimInvitation())grant=await backend.getGrant(sessionUid);invitationAvailable=true; }
+          catch(error){if(/permission-denied$/.test(error.code||''))invitationAvailable=false;else throw error;}
+        }
         ensureIdentity(sessionUid, sessionGeneration);
         const approved = grant?.approved === true;
         const boundProfileIds = approved ? await boundIds() : [];
         ensureIdentity(sessionUid, sessionGeneration);
         return publish(approved ? 'ready' : grant?.approved === false ? 'blocked' : 'pending',
           approved ? 'cloud/ready' : grant?.approved === false ? 'cloud/blocked' : current.requestSubmitted ? 'cloud/request-sent' : 'cloud/pending',
-          { approved, familyOwner: approved && grant?.familyOwner === true, boundProfileIds,
-            familyRequests: approved && grant?.familyOwner === true ? current.familyRequests : [] });
+          { approved, authReady:true, invitationAvailable, familyOwner: approved && grant?.familyOwner === true, boundProfileIds,
+            familyRequests: approved && grant?.familyOwner === true ? current.familyRequests : [],
+            familyInvitations:approved && grant?.familyOwner === true ? current.familyInvitations : [] });
       } catch (error) {
         if (uid === sessionUid && generation === sessionGeneration) {
-          publish('access-error', 'cloud/access-check-failed', { approved: false, familyOwner: false, boundProfileIds: [], familyRequests: [] });
+          publish('access-error', 'cloud/access-check-failed', { authReady:true,approved: false, familyOwner: false, boundProfileIds: [], familyRequests: [],familyInvitations:[] });
         }
         throw error;
       }
@@ -275,6 +338,21 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
     await readAccess(sessionUid, sessionGeneration, false);
     ensureSession(sessionUid, sessionGeneration);
     if (owner && !current.familyOwner) throw failure('cloud/owner-required', cloudErrorMessage({ code: 'cloud/owner-required' }));
+  };
+  const clearIdentity = () => ({authReady:true,approved:false,familyOwner:false,email:null,displayName:null,
+    requestSubmitted:false,familyRequests:[],familyInvitations:[],invitationAvailable:null,boundProfileIds:[],syncedProfileId:null,syncedAt:null,syncingProfileId:null});
+  const adopt = async result => {
+    uid=result?.uid??null;const sessionGeneration=++generation;
+    if(!uid)return publish(configured?'signed-out':'disabled','cloud/signed-out',clearIdentity());
+    safeId(uid);publish('checking-access','cloud/checking-access',{...clearIdentity(),email:typeof result.email==='string'?result.email.slice(0,254):null,displayName:typeof result.displayName==='string'?result.displayName.slice(0,80):null});
+    return readAccess(uid,sessionGeneration);
+  };
+  const watchIdentity = () => {
+    if(authListener||!backend?.onAuthChange)return;
+    authListener=backend.onAuthChange(result=>{
+      if(signingOut||signOutRequired||current.state==='signing-in'||(result?.uid??null)===uid)return;
+      adopt(result).catch(()=>{}); // readAccess publishes a localized recoverable error.
+    });
   };
   const controller = {
     configured,
@@ -292,16 +370,32 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
       await loading;
       return true;
     },
+    async restoreSession() {
+      if(!configured)return clone(current);
+      if(signOutRequired||signingOut)return clone(current);
+      if(restoring)return restoring;
+      const restoringGeneration=generation;
+      publish('restoring-session','cloud/restoring-session',{authReady:false});
+      restoring=(async()=>{
+        try{
+          await controller.prepare();
+          const result=backend.restoreSession?await backend.restoreSession():null;
+          if(generation!==restoringGeneration)return clone(current);
+          const restored=await adopt(result);watchIdentity();return restored;
+        }catch(error){if(generation===restoringGeneration)publish('error','cloud/sdk-load-failed',{authReady:true});watchIdentity();throw error;}
+        finally{restoring=null;}
+      })();return restoring;
+    },
     async signIn() {
       if (!configured) throw failure('cloud/not-configured', current.message);
+      if(signOutRequired||signingOut)throw failure('cloud/signout-failed',cloudErrorMessage({code:'cloud/signout-failed'}));
       ensureStore();
       const signInGeneration = ++generation;
       uid = null;
       const checkSignIn = expectedUid => {
         if (generation !== signInGeneration || expectedUid && backend?.currentUid() !== expectedUid) throw failure('cloud/session-changed', 'Sign-in was cancelled or the account changed. Try again when ready.');
       };
-      publish('signing-in', 'cloud/signing-in', { approved: false, familyOwner: false, email: null,
-        displayName: null, requestSubmitted: false, familyRequests: [], boundProfileIds: [] });
+      publish('signing-in', 'cloud/signing-in', {...clearIdentity(),authReady:false});
       try {
         await controller.prepare();
         checkSignIn();
@@ -310,9 +404,9 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
         uid = result.uid;
         current.email = typeof result.email === 'string' ? result.email.slice(0, 254) : null;
         current.displayName = typeof result.displayName === 'string' ? result.displayName.slice(0, 80) : null;
-        // Authentication and family approval are separate. A pending identity
-        // stays in memory so approval can be checked again without another popup.
-        return await readAccess(uid, signInGeneration);
+        // Authentication does not link or upload a local traveler. Keep observing
+        // account changes even if the admission check encounters a network error.
+        watchIdentity();return await readAccess(uid, signInGeneration);
       } catch (error) {
         if (generation === signInGeneration) {
           // A network failure checking admission must not undo successful Google
@@ -322,7 +416,7 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
           const failedGeneration = ++generation;
           if (backend) await backend.signOut().catch(() => {});
           if (generation === failedGeneration) publish('error', current.code === 'cloud/sdk-load-failed' ? current.code : error.code || 'cloud/unknown', {
-            approved: false, familyOwner: false, email: null, displayName: null, boundProfileIds: [], familyRequests: [] });
+            ...clearIdentity() });
         } else if (current.state === 'signed-out' && backend) {
           // A popup can resolve after sign-out; discard that stale SDK session too.
           await backend.signOut().catch(() => {});
@@ -331,12 +425,19 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
       }
     },
     async signOut() {
-      uid = null; generation++;
-      try { if (backend) await backend.signOut(); }
-      finally {
-        publish(configured ? 'signed-out' : 'disabled', 'cloud/disconnected', {
-          approved: false, familyOwner: false, email: null, displayName: null, requestSubmitted: false,
-          familyRequests: [], boundProfileIds: [] });
+      uid = null; generation++; signingOut = true;setSignOutRequired(true);
+      publish(configured ? 'signing-out' : 'disabled', 'cloud/signing-out', clearIdentity());
+      try {
+        // A retry after reload still has to clear the provider's persisted session.
+        if(configured&&!backend)await controller.prepare();
+        if (backend) await backend.signOut();
+        setSignOutRequired(false);
+        signingOut = false;
+        publish(configured ? 'signed-out' : 'disabled', 'cloud/disconnected', clearIdentity());
+      } catch(cause) {
+        signingOut = false;
+        publish('signout-failed','cloud/signout-failed',clearIdentity());
+        throw Object.assign(failure('cloud/signout-failed',cloudErrorMessage({code:'cloud/signout-failed'})),{cause});
       }
       return clone(current);
     },
@@ -387,6 +488,22 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
       ensureSession(sessionUid, sessionGeneration);
       return publish('ready', 'cloud/family-updated', { familyRequests });
     },
+    async listFamilyInvitations(){
+      ensureStore();ensureIdentity();const sessionUid=uid,sessionGeneration=generation;
+      await authorize(sessionUid,sessionGeneration,true);
+      if(!backend.listFamilyInvitations)throw failure('cloud/invitations-unavailable',cloudErrorMessage({code:'cloud/invitations-unavailable'}));
+      try{const familyInvitations=await backend.listFamilyInvitations();ensureSession(sessionUid,sessionGeneration);return publish('ready','cloud/invitations-loaded',{familyInvitations,invitationAvailable:true});}
+      catch(error){if(/permission-denied$/.test(error.code||''))throw failure('cloud/invitations-unavailable',cloudErrorMessage({code:'cloud/invitations-unavailable'}));throw error;}
+    },
+    async inviteFamilyMember(value){return controller.setFamilyInvitation(value,true);},
+    async revokeFamilyInvitation(value){return controller.setFamilyInvitation(value,false);},
+    async setFamilyInvitation(value,enabled){
+      const email=invitationEmail(value);ensureStore();ensureIdentity();const sessionUid=uid,sessionGeneration=generation;
+      await authorize(sessionUid,sessionGeneration,true);
+      if(typeof enabled!=='boolean'||!backend.setInvitation)throw failure('cloud/invitations-unavailable',cloudErrorMessage({code:'cloud/invitations-unavailable'}));
+      try{await backend.setInvitation(email,enabled);ensureSession(sessionUid,sessionGeneration);await controller.listFamilyInvitations();return publish('ready',enabled?'cloud/invitation-saved':'cloud/invitation-revoked');}
+      catch(error){if(/permission-denied$/.test(error.code||''))throw failure('cloud/invitations-unavailable',cloudErrorMessage({code:'cloud/invitations-unavailable'}));throw error;}
+    },
     async linkProfile(profileId) {
       ensureStore(); ensureIdentity(); safeId(profileId);
       const sessionUid = uid, sessionGeneration = generation;
@@ -410,6 +527,10 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
       const operationKey = `${uid}:${generation}:${profileId}`;
       if (pending.has(operationKey)) return pending.get(operationKey);
       const sessionUid = uid, sessionGeneration = generation;
+      // A completion timestamp would incorrectly cover work added while this
+      // upload was running. The UI treats anything newer than this conservative
+      // watermark as still needing synchronization.
+      const syncStartedAt = new Date().toISOString();
       const check = () => ensureSession(sessionUid, sessionGeneration);
       const operation = (async () => {
         await authorize(sessionUid, sessionGeneration);
@@ -417,7 +538,7 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
         if (!profile || profile.cloudOwnerUid !== sessionUid) throw failure('cloud/owner-mismatch', 'Link this profile to the current account before syncing.');
         if (profile.kind === 'dependent') await controller.sync(profile.guardianId);
         check();
-        publish('syncing', 'cloud/syncing');
+        publish('syncing', 'cloud/syncing',{syncedProfileId:null,syncedAt:null,syncingProfileId:profileId});
         if (await backend.isDeleted(sessionUid, profileId)) throw failure('cloud/profile-deleted', 'This cloud profile was deleted. Your local export remains available.');
         const [remoteProfile, remoteEvents, localEvents] = await Promise.all([
           backend.getProfile(sessionUid, profileId), backend.listEvents(sessionUid, profileId), store.getEvents(profileId),
@@ -444,10 +565,10 @@ export function createCloud({ store, config = cloudConfig, onStatus = () => {}, 
         }
         check();
         const boundProfileIds = await boundIds(); check();
-        publish('ready', 'cloud/sync-complete', { boundProfileIds, uploaded, checked: remoteEvents.length });
+        publish('ready', 'cloud/sync-complete', { boundProfileIds, uploaded, checked: remoteEvents.length,syncedProfileId:profileId,syncedAt:syncStartedAt,syncingProfileId:null });
         return { profileId, uploaded, checked: remoteEvents.length };
       })().catch(error => {
-        if (uid === sessionUid && generation === sessionGeneration && current.approved) publish('error', error.code || 'cloud/unknown');
+        if (uid === sessionUid && generation === sessionGeneration && current.approved) publish('error', error.code || 'cloud/unknown',{syncingProfileId:null});
         throw error;
       }).finally(() => pending.delete(operationKey));
       pending.set(operationKey, operation);

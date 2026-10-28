@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Sol",
+  "reviewedAt": "2026-10-28",
+  "submissionSha256": "a6b816b1dd5f982f6006abb75e7a6495a582aa721e7ff4dc4f93ad447f3e4fe6",
+  "items": [
+    {
+      "activityId": "a1-lantern-harbor-color-teller-01",
+      "level": "A1",
+      "skill": "reading",
+      "contentSha256": "e571ca06c5b52d30aabebe576786e4a630dfc56acb291d6342af59193d84fe3b"
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-01",
+      "level": "A1",
+      "skill": "reading",
+      "contentSha256": "14e6abbfab89016dd77ab568e54043b0d3c5dfd174a8ca25fce7a72b4256553a"
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-02",
+      "level": "A1",
+      "skill": "language-use",
+      "contentSha256": "870c0a7c903f5e08fb0132a58d74517554171fe47cd34d5fd7d5aec1894c6f4c"
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-01",
+      "level": "A2",
+      "skill": "reading",
+      "contentSha256": "98f17699433610941b3c3d58fbe6b20d4bf62452d54c9050190775af3e0e26ff"
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-01",
+      "level": "A2",
+      "skill": "reading",
+      "contentSha256": "0376989c1bcf8139d7ee40a223fddafad7837d7def100fe821af9f167b8c0fe2"
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-02",
+      "level": "A2",
+      "skill": "language-use",
+      "contentSha256": "3f84d81fb4357641bf706e13e7f948ecdb2a83a888c927b81ed16508feb4c124"
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-01",
+      "level": "B1",
+      "skill": "reading",
+      "contentSha256": "b375750c8fc5c20c48f723f87a98e47bd14b0e67c319bc46fd792f947542f287"
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-01",
+      "level": "B1",
+      "skill": "reading",
+      "contentSha256": "e7ba902902d6f1a48cb14971aa28677b07c93edc9cae68cf655e809c387ca659"
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-02",
+      "level": "B1",
+      "skill": "language-use",
+      "contentSha256": "ea313e7192012520a4aa800bf7c18979a4ebd60628c341dfba3d645bd19bbc50"
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-01",
+      "level": "B2",
+      "skill": "reading",
+      "contentSha256": "b4e2c081cafe5b1b22e02cbf61dfcc29613baff7de47fd581f42045f4b7d77bd"
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-01",
+      "level": "B2",
+      "skill": "reading",
+      "contentSha256": "baa652605038bd69ac959a9843c356e96b154a05c757497fe9446c2998e1b2e1"
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-02",
+      "level": "B2",
+      "skill": "language-use",
+      "contentSha256": "792c5afb2ee6370920cc804b78abad97a7351e490d5b06efb023cf5d55eb9d41"
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-01",
+      "level": "C1",
+      "skill": "reading",
+      "contentSha256": "52a8302831b040ed2fc8b39d5b9fcff2fa63973f6b0ecd03fb8b47a68d57f2b0"
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-01",
+      "level": "C1",
+      "skill": "reading",
+      "contentSha256": "a3df348f5525a22205133b530248c9e6a698d2b06d71fdb63718cd439d9937c5"
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-02",
+      "level": "C1",
+      "skill": "language-use",
+      "contentSha256": "29088389b322e1318128e833976603e1587ea00da446d4d7901c3c450fe05c1a"
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-01",
+      "level": "C2",
+      "skill": "reading",
+      "contentSha256": "186b416a95f7e5966cb2314e3c8e2714ca76d8dd7da9d11ac177718a67f47343"
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-02",
+      "level": "C2",
+      "skill": "language-use",
+      "contentSha256": "a2f1e859b61b7826c053950176e826835c3f43fb369bb3badbf162efa254194b"
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-01",
+      "level": "C2",
+      "skill": "reading",
+      "contentSha256": "09c39151b509735560dcf9746d411b9affb68c9b2717c873bf9823924707cc9d"
+    }
+  ],
+  "rejected": [
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-02",
+      "reason": "Plural target flowers is already printed in the context; weak discrimination and direct answer exposure."
+    }
+  ],
+  "decisions": [
+    "Reviewed all eighteen contexts, prompts, accepted responses and explanations against the actual published library. Retained seventeen; substituted an existing unambiguous future-form item for the exposed plural response.",
+    "Use one reading and one language-use sample per band where fresh items allow; a mixed result uses the third. No translation or answer-bearing feedback until the assessment is over.",
+    "The gap replacement is strongly scaffolded, and several advanced items have easy distractors. These are practice-range probes, not empirical CEFR classification. Advanced success must not imply productive ability, listening, speaking or a certified level.",
+    "B1 tide-song explanation overstates what the passage explicitly says: future contribution is a reasonable inference, not an explicit purpose quote. Do not show this explanation during placement. Existing source activity remains unchanged in this update."
+  ],
+  "limitations": [
+    "No item calibration, discrimination study or empirical reliability estimate. Only short reading and constrained language-use samples.",
+    "An advanced label identifies available practice material, not a validated estimate of whole-language proficiency.",
+    "Some item families share contexts; familiarity is recorded and lowers confidence, and retakes reuse a small finite pool.",
+    "Pre-readers use the assisted play path without a proficiency claim."
+  ]
+}

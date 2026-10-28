@@ -3,6 +3,15 @@ import assert from 'node:assert/strict';
 import { cloudView } from '../src/cloud-view.js';
 import { cloudStatusMessage } from '../src/cloud-messages.js';
 const status={configured:true,state:'pending',code:'cloud/pending',uid:'member',email:'river@example.test',approved:false};
+
+test('invitations expose state and withdraw only unused enabled invitations',()=>{
+ const owner={...status,approved:true,familyOwner:true,familyInvitations:[{email:'unused@example.test',enabled:true,claimedBy:'',state:'invited'},{email:'joined@example.test',enabled:true,claimedBy:'joined',state:'approved'},{email:'off@example.test',enabled:false,claimedBy:'',state:'revoked'}]};
+ for(const language of ['en','vi']){const html=cloudView({status:owner,language});assert.equal((html.match(/data-action="family-revoke-invite"/g)||[]).length,1);assert.match(html,/data-email="unused@example.test"/);assert.doesNotMatch(html,/data-email="joined@example.test"/);assert.doesNotMatch(cloudView({status:{...owner,familyOwner:false},language}),/family-invite/);}
+});
+test('failed provider signout offers retry instead of claiming the account is disconnected',()=>{
+ const html=cloudView({status:{configured:true,code:'cloud/signout-failed',state:'error',uid:null}});
+ assert.match(html,/data-action="cloud-signout"/);assert.doesNotMatch(html,/data-action="cloud-signin"/);
+});
 test('pending and declined authentication remain distinct from sign-in and cannot offer private data actions',()=>{
   for(const state of ['pending','blocked','access-error']){
     const view=cloudView({status:{...status,state,code:`cloud/${state}`}});

@@ -1,8 +1,16 @@
 // Public explanations stay separate from provider diagnostics and stored progress.
 const messages = {
+  'cloud/restoring-session': ['Checking your saved sign-in… You can still play on this device.', 'Đang kiểm tra đăng nhập đã lưu… Bạn vẫn có thể chơi trên thiết bị này.'],
+  'cloud/invalid-email': ['Enter the Google email address your family member will use to sign in.', 'Nhập địa chỉ email Google mà thành viên gia đình sẽ dùng để đăng nhập.'],
+  'cloud/invitations-unavailable': ['Invitations are not available on the server yet. Family members can still request access, and you can approve them here.', 'Máy chủ chưa hỗ trợ lời mời. Thành viên vẫn có thể gửi yêu cầu tham gia và bạn có thể chấp thuận tại đây.'],
+  'cloud/invitations-loaded': ['Family invitations are up to date.', 'Đã cập nhật lời mời gia đình.'],
+  'cloud/invitation-saved': ['Invitation saved. They can sign in with this Google email and join without waiting. No email is sent by the game.', 'Đã lưu lời mời. Thành viên có thể dùng email Google này để đăng nhập và tham gia ngay. Trò chơi không gửi email.'],
+  'cloud/invitation-revoked': ['Invitation withdrawn. To remove an existing member’s access, use the family member controls.', 'Đã thu hồi lời mời. Để ngừng quyền truy cập của thành viên đã tham gia, hãy dùng phần quản lý thành viên.'],
   'cloud/disabled': ['Cloud connection is unavailable. Your travelers stay saved on this device; you can still play and export a backup.', 'Chưa thể kết nối đám mây. Hồ sơ vẫn được lưu trên thiết bị; bạn vẫn có thể chơi và xuất bản sao lưu.'],
   'cloud/signed-out': ['Google sign-in is optional. Your local adventure is ready whenever you are.', 'Đăng nhập Google là tùy chọn. Bạn có thể bắt đầu hành trình trên thiết bị này bất cứ lúc nào.'],
   'cloud/signing-in': ['Opening Google sign-in…', 'Đang mở đăng nhập Google…'],
+  'cloud/signing-out': ['Finishing sign-out… Your linked learners are hidden while this completes.', 'Đang hoàn tất đăng xuất… Hồ sơ đã liên kết được ẩn trong lúc chờ.'],
+  'cloud/signout-failed': ['Sign-out could not finish. Your account may still be signed in on this browser. Choose “Retry sign-out” before leaving a shared device. Your local progress has not been deleted.', 'Chưa thể hoàn tất đăng xuất. Tài khoản có thể vẫn đăng nhập trong trình duyệt này. Hãy chọn “Thử đăng xuất lại” trước khi rời thiết bị dùng chung. Tiến độ trên thiết bị không bị xóa.'],
   'cloud/checking-access': ['You are signed in. Checking family access…', 'Bạn đã đăng nhập. Đang kiểm tra quyền tham gia gia đình…'],
   'cloud/pending': ['You are signed in. To save between devices, ask to join this private family. The family owner can welcome you in the game. Playing on this device needs no approval.', 'Bạn đã đăng nhập. Để lưu giữa các thiết bị, hãy xin tham gia gia đình riêng tư này. Chủ gia đình có thể chấp thuận ngay trong trò chơi. Chơi trên thiết bị này không cần chờ duyệt.'],
   'cloud/request-sent': ['Request sent. Keep playing while the family owner welcomes you. When they have approved it, choose “Check family access”; there is no need to sign in again.', 'Đã gửi yêu cầu. Bạn cứ tiếp tục chơi trong khi chờ chủ gia đình chấp thuận. Sau đó chọn “Kiểm tra quyền gia đình”; không cần đăng nhập lại.'],

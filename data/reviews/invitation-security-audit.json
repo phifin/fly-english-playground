@@ -1,0 +1,20 @@
+{
+  "score": 4,
+  "summary": "Source review finds identity-bound atomic invitation claims, strict role separation, bounded field validation, and no cross-account learner permissions. Actual emulator verification and live activation are separate pending gates.",
+  "findings": [
+    {
+      "check": "Resource exhaustion and trusted member boundary",
+      "severity": "minor",
+      "issue": "Document sizes and owner queries are bounded, but rules cannot enforce a global request-rate limit. Approved accounts can create many records in their own namespace; verified uninvited accounts can submit one join request per identity.",
+      "recommendation": "Retain private invitations and revocable approved membership; monitor the Spark quota. Do not advertise this as unrestricted public registration or claim comprehensive abuse prevention."
+    }
+  ],
+  "reviewed": [
+    "Create and update cannot add familyOwner or change a protected owner grant.",
+    "Only server-managed approved familyOwner grants authorize invitation management.",
+    "Self-enrollment requires exact verified Google email and an enabled unclaimed invitation; both claim and plain admission must commit together.",
+    "Existing blocked accounts cannot create replacement admission; claimed invitations cannot be reset or reused.",
+    "Invitation lists are owner-only, bounded; members can get only their own matching invitation.",
+    "Existing UID-scoped profiles, immutable events and deletion barriers remain intact."
+  ]
+}

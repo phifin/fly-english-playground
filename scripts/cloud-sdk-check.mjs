@@ -39,8 +39,8 @@ export function validateCloudSdkProbe(probe, { requireCsp = true } = {}) {
 }
 
 /** Use a fresh, unsigned-in page. This never signs in or reads/writes cloud data. */
-export async function verifyCloudSdk(page, { requireCsp = true, timeout = 45000 } = {}) {
-  const origin = new URL(page.url()).origin;
+export async function verifyCloudSdk(page, { requireCsp = true, timeout = 45000, navigateTo } = {}) {
+  const origin = new URL(navigateTo ?? page.url()).origin;
   const requests = [], responses = [], failures = [];
   const external = value => ['http:', 'https:'].includes(new URL(value).protocol) && new URL(value).origin !== origin;
   let popups = 0;
@@ -51,6 +51,9 @@ export async function verifyCloudSdk(page, { requireCsp = true, timeout = 45000 
   page.on('request', onRequest); page.on('response', onResponse); page.on('requestfailed', onFailure); page.on('popup', onPopup);
   let timer;
   try {
+    // Boot restores persistent authentication, which starts SDK loading. Observe
+    // from before navigation so cached imports cannot erase the actual evidence.
+    if (navigateTo) await page.goto(navigateTo, { waitUntil: 'domcontentloaded' });
     const result = await Promise.race([
       page.evaluate(async () => {
         const violations = [];

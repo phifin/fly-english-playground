@@ -12,6 +12,56 @@ function token(uid, claims = {}) {
     firebase: { sign_in_provider: 'custom', identities: {} }, ...claims })}.`;
 }
 
+test('Firestore invitations require an exact verified identity and atomic one-time admission without privileges', {
+  skip: !host && process.env.ATLAS_REQUIRE_FIRESTORE_EMULATOR !== 'true',
+}, async () => {
+  assert.match(host ?? '', /^(127\.0\.0\.1|localhost):[0-9]+$/, 'Only a local emulator is permitted.');
+  const prefix=`invite-${Date.now()}`,owner=prefix+'-owner',member=prefix+'-member',other=prefix+'-other';
+  const email=`${member}@example.test`,collection=`projects/${project}/databases/(default)/documents`;
+  const base=`http://${host}/v1/${collection}`;
+  const google=(uid,address=`${uid}@example.test`)=>({email:address,email_verified:true,firebase:{sign_in_provider:'google.com',identities:{}}});
+  const fieldsFor=values=>Object.fromEntries(Object.entries(values).map(([key,value])=>[key,typeof value==='boolean'?{booleanValue:value}:typeof value==='number'?{integerValue:String(value)}:{stringValue:value}]));
+  const headers=(uid,claims=google(uid))=>({'Content-Type':'application/json',Authorization:`Bearer ${uid==='owner'?'owner':token(uid,claims)}`});
+  const request=(path,{uid=owner,claims,method='GET',fields}={})=>fetch(`${base}/${path}`,{method,headers:headers(uid,claims),body:fields&&JSON.stringify({fields:fieldsFor(fields)}),signal:AbortSignal.timeout(10000)});
+  const invitePath=`familyInvitations/${email}`,admission=`access/${member}`;
+  const invite={email,enabled:true,claimedBy:''};
+  const commit=(uid,updates,claims=google(uid))=>fetch(`${base}:commit`,{method:'POST',headers:headers(uid,claims),body:JSON.stringify({writes:updates.map(([path,fields])=>({update:{name:`${collection}/${path}`,fields:fieldsFor(fields)}}))}),signal:AbortSignal.timeout(10000)});
+  const claim=(uid=member,extra={},claims=google(uid))=>commit(uid,[[`access/${uid}`,{approved:true,...extra}],[invitePath,{...invite,claimedBy:uid}]],claims);
+  assert.equal((await request(`access/${owner}`,{uid:'owner',method:'PATCH',fields:{approved:true,familyOwner:true}})).status,200);
+  assert.equal((await request(`access/${other}`,{uid:'owner',method:'PATCH',fields:{approved:true}})).status,200);
+  assert.equal((await request(invitePath,{uid:other,method:'PATCH',fields:invite})).status,403);
+  assert.equal((await request(invitePath,{method:'PATCH',fields:{...invite,extra:true}})).status,403);
+  assert.equal((await request(invitePath,{method:'PATCH',fields:{...invite,claimedBy:member}})).status,403);
+  assert.equal((await request(invitePath,{method:'PATCH',fields:invite})).status,200);
+  assert.equal((await request(invitePath,{uid:member})).status,200);
+  assert.equal((await request(invitePath,{uid:other})).status,403,'Ordinary members cannot read other email invitations.');
+  assert.equal((await request(invitePath,{uid:member,method:'DELETE'})).status,403);
+  assert.equal((await request(admission,{uid:member,method:'PATCH',fields:{approved:true}})).status,403,'Admission alone cannot consume an invitation.');
+  assert.equal((await request(invitePath,{uid:member,method:'PATCH',fields:{...invite,claimedBy:member}})).status,403,'Claim alone cannot create access.');
+  assert.equal((await claim(member,{familyOwner:true})).status,403,'Self-enrollment never creates owner authority.');
+  assert.equal((await claim(member,{}, {...google(member),email_verified:false})).status,403);
+  assert.equal((await claim(member,{}, {...google(member),firebase:{sign_in_provider:'password',identities:{}}})).status,403);
+  assert.equal((await claim(other)).status,403,'An invitation is not transferable.');
+  assert.equal((await request(invitePath,{method:'PATCH',fields:{...invite,enabled:false}})).status,200);
+  assert.equal((await claim()).status,403,'Revoked invitation cannot enroll.');
+  assert.equal((await request(invitePath,{method:'PATCH',fields:invite})).status,200);
+  assert.equal((await claim(member,{},google(member,email.toUpperCase()))).status,200,'Case-normalized verified email can claim exactly once.');
+  const grant=await (await request(admission,{uid:member})).json();assert.deepEqual(grant.fields,{approved:{booleanValue:true}});
+  assert.equal((await claim()).status,403,'An existing grant cannot be rewritten by the claimant.');
+  assert.equal((await request(invitePath,{method:'PATCH',fields:invite})).status,403,'Owner cannot reset an already consumed claim for reuse.');
+  assert.equal((await request(admission,{method:'PATCH',fields:{approved:false}})).status,200);
+  assert.equal((await claim()).status,403,'An invitation does not undo explicit account revocation.');
+  const profile=`users/${member}/profiles/private`;
+  assert.equal((await request(profile,{uid:member,method:'PATCH',fields:{ownerUid:member,profileId:'private',revision:0,body:'{}'}})).status,403);
+  const query=limit=>fetch(`${base}:runQuery`,{method:'POST',headers:headers(owner),body:JSON.stringify({structuredQuery:{from:[{collectionId:'familyInvitations'}],...(limit===null?{}:{limit})}}),signal:AbortSignal.timeout(10000)});
+  assert.equal((await query(100)).status,200);assert.equal((await query(101)).status,403);assert.equal((await query(null)).status,403);
+  // A previously blocked identity must not claim even a fresh invitation.
+  const blocked=prefix+'-blocked',blockedEmail=`${blocked}@example.test`;
+  assert.equal((await request(`access/${blocked}`,{method:'PATCH',fields:{approved:false}})).status,200);
+  assert.equal((await request(`familyInvitations/${blockedEmail}`,{method:'PATCH',fields:{email:blockedEmail,enabled:true,claimedBy:''}})).status,200);
+  assert.equal((await commit(blocked,[[`access/${blocked}`,{approved:true}],[`familyInvitations/${blockedEmail}`,{email:blockedEmail,enabled:true,claimedBy:blocked}]] )).status,403);
+});
+
 test('Firestore emulator enforces membership, owner isolation, immutability and deletion markers', {
   skip: !host && process.env.ATLAS_REQUIRE_FIRESTORE_EMULATOR !== 'true',
 }, async () => {

@@ -1,4 +1,6 @@
 /** Deterministic learning evidence. World rewards never imply CEFR certification. */
+import {startingPointResult} from './placement.js';
+import {placementItems} from './placement-content.js';
 export const LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
 export const REGIONS = [
   {level:'A1',name:{en:'Lantern Harbor',vi:'Bến đèn lồng'},color:'#e6a04b',icon:'lantern',description:{en:'Bring light to a harbor of small beginnings.',vi:'Thắp sáng bến cảng của những khởi đầu nhỏ.'}},
@@ -69,7 +71,15 @@ export function deriveProgress(events, pack, now=Date.now()) {
   for(const event of sorted) {
     const p=event.payload??{};
     if(event.kind==='support'&&activities.has(p.activityId))supportDays[p.activityId]=event.at.slice(0,10);
-    if(event.kind==='placement' && LEVELS.includes(p.level)) recommendation={level:p.level,at:event.at,method:p.method??'orientation',count:p.count??0};
+    if(event.kind==='placement') {
+      if(p.method==='starting-point-v2') {
+        if(p.stage==='accepted'&&typeof p.sessionId==='string'&&Array.isArray(p.responses)) {
+          const result=startingPointResult(p.responses,placementItems,activities,assess);
+          // Recompute from actual responses; imported result labels cannot promote a learner.
+          if(result.count>=4)recommendation={...result,at:event.at};
+        }
+      } else if(LEVELS.includes(p.level)) recommendation={level:p.level,at:event.at,method:p.method??'orientation',count:p.count??0};
+    }
     if(event.kind==='observatory') observatory=p;
     if(event.kind==='draft' && activities.has(p.activityId)&&validDraftAnswer(activities.get(p.activityId),p.answer)) drafts[p.activityId]={...p,savedAt:event.at};
     if(event.kind!=='attempt' || !activities.has(p.activityId)) continue;

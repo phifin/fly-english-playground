@@ -116,8 +116,8 @@ test('a late approval refresh cannot reconnect an identity after sign-out', asyn
 test('a failed provider sign-out still clears all app access and private account presentation', async () => {
   const x = await setup({ grant: { approved: true, familyOwner: true } }); await x.cloud.signIn();
   x.api.signOut = async () => { throw failure('auth/network-request-failed'); };
-  await assert.rejects(x.cloud.signOut(), { code: 'auth/network-request-failed' });
-  assert.equal(x.cloud.status().state, 'signed-out'); assert.equal(x.cloud.status().approved, false);
+  await assert.rejects(x.cloud.signOut(), { code: 'cloud/signout-failed' });
+  assert.equal(x.cloud.status().state, 'signout-failed'); assert.equal(x.cloud.status().approved, false);
   assert.equal(x.cloud.status().uid, null); assert.equal(x.cloud.status().email, null);
   assert.equal(x.cloud.status().familyOwner, false);
   await assert.rejects(x.cloud.linkProfile(x.profile.id), { code: 'cloud/session-changed' });

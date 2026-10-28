@@ -1,0 +1,29 @@
+/* Clear identity presentation; no account dropdown is implied by this page link. */
+.google-signin{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;min-width:180px;padding:10px 12px;background:#fff;color:#1f1f1f;border:1px solid #747775;border-radius:4px;font-family:'Google Sans','Roboto',Arial,sans-serif;font-size:14px;font-weight:500;line-height:20px;letter-spacing:normal;box-shadow:none;cursor:pointer;text-decoration:none}
+.google-signin img{display:block;width:20px;height:20px;min-width:20px;object-fit:contain;background:#fff;flex:0 0 20px}
+.google-signin span{font:inherit;text-transform:none;letter-spacing:normal}
+.google-signin:hover{background:#f8faff;border-color:#5f6368;box-shadow:0 1px 2px #3c404326}
+.google-signin:active{background:#edf3fe}.google-signin:focus-visible{outline:3px solid #285e4d;outline-offset:3px}.google-signin:disabled{opacity:.6;cursor:default}
+.entry-choices{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin:1.3rem 0 .65rem}
+.entry-saving-note,.entry-account-check{font-size:.85rem;line-height:1.55;max-width:42rem;color:#466050;margin:.5rem 0}
+.masthead .account-pill{display:flex;align-items:center;gap:.55rem;min-height:48px;max-width:260px;padding:.5rem .8rem;background:#eaf0e3;border:1px solid transparent;border-radius:16px;color:#294d40;box-shadow:none}
+.masthead .account-pill:hover{background:#e1eada;border-color:#a6b8a0}.masthead .account-pill:focus-visible{outline:3px solid #285e4d;outline-offset:3px}
+.masthead .account-pill .avatar{flex:0 0 30px;width:30px;height:30px;font-size:.9rem;background:#dce7d3}
+.masthead .account-pill .account-pill-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;min-width:0;text-align:left;overflow:hidden;line-height:1.2}
+.account-pill-copy strong,.account-pill-copy small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:normal}
+.account-pill-copy strong{font-size:.83rem;font-weight:650}.account-pill-copy small{font-size:.68rem;font-weight:400;color:#466050}
+.account-page{max-width:960px;margin:1.4rem auto 2rem}.account-page h1,.account-page h2,.account-page h3{letter-spacing:normal;line-height:1.35}
+.account-page .page-heading{margin-bottom:1.25rem}.account-page .page-heading p{max-width:42rem;line-height:1.65}
+.account-summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;background:#edf2e4;border-radius:18px;padding:1.2rem 1.4rem;margin:0 0 1.5rem}
+.account-summary h2{font-size:1.2rem;margin:0 0 .4rem}.account-summary p{margin:.3rem 0;font-size:.95rem;line-height:1.6;overflow-wrap:anywhere}.account-summary .account-address{font-size:.85rem;color:#466050}
+.account-summary button{flex-shrink:0}.account-summary[data-identity-state=blocked],.account-summary[data-identity-state=pending],.account-summary[data-identity-state=other-account]{background:#f6eedc}
+.learner-picker{margin:0 0 1.7rem}.learner-picker h2{font-size:1.4rem;margin:0}.learner-picker h3{font-size:.85rem;font-weight:600;color:#466050;margin:1.2rem 0 .6rem}
+.learner-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}
+.learner-card{display:flex;align-items:center;gap:.7rem;min-height:74px;padding:.8rem 1rem;text-align:left;border:1px solid #c9d5bd;border-radius:14px;background:#fffef6;color:#294d40;box-shadow:none;min-width:0}
+.learner-card:hover{background:#f0f4e6;border-color:#6d8b60}.learner-card[aria-current=true]{background:#e8efd9;border-color:#5e7b50}.learner-card:focus-visible{outline:3px solid #285e4d;outline-offset:3px}
+.learner-card>.avatar{flex:0 0 38px;width:38px;height:38px;background:#e5ecd8}.learner-card>span:last-child{min-width:0}.learner-card strong{display:block;font-size:1rem;overflow-wrap:anywhere;line-height:1.4}.learner-card small{display:block;font-size:.8rem;font-weight:400;color:#466050;line-height:1.5;margin-top:.15rem}
+.account-empty{padding:1rem 0;max-width:38rem;color:#466050;line-height:1.65}
+@media(max-width:650px){.masthead .account-pill{max-width:190px;padding:.45rem .65rem}.account-pill-copy strong{font-size:.78rem}.account-pill-copy small{font-size:.63rem}.account-summary{align-items:flex-start;flex-direction:column;padding:1rem}.account-summary h2{font-size:1.1rem}.account-page{margin:.75rem auto 1.4rem}.learner-cards{grid-template-columns:1fr}.entry-choices{align-items:stretch;gap:.65rem}.entry-choices>.google-signin{justify-content:center}.account-page .section-heading{align-items:center;flex-wrap:wrap;gap:.5rem}}
+@media(max-width:350px){.masthead .account-pill{max-width:170px}.account-pill-copy small{font-size:.6rem}.entry-choices>.google-signin,.entry-choices>.welcome-primary{width:100%}.account-summary button{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.google-signin,.account-pill,.learner-card{transition:none!important}}
+@media(forced-colors:active){.google-signin,.masthead .account-pill,.learner-card{border:1px solid ButtonText}.learner-card[aria-current=true]{outline:2px solid Highlight}}
