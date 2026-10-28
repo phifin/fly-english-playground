@@ -9,7 +9,7 @@
 .masthead .account-pill{display:flex;align-items:center;gap:.55rem;min-height:48px;max-width:260px;padding:.5rem .8rem;background:#eaf0e3;border:1px solid transparent;border-radius:16px;color:#294d40;box-shadow:none}
 .masthead .account-pill:hover{background:#e1eada;border-color:#a6b8a0}.masthead .account-pill:focus-visible{outline:3px solid #285e4d;outline-offset:3px}
 .masthead .account-pill .avatar{flex:0 0 30px;width:30px;height:30px;font-size:.9rem;background:#dce7d3}
-.masthead .account-pill .account-pill-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;min-width:0;text-align:left;overflow:hidden;line-height:1.2}
+.masthead .account-pill .account-pill-copy{display:flex;flex:1 1 0;flex-direction:column;align-items:flex-start;gap:.15rem;min-width:0;margin:0;text-align:left;overflow:hidden;line-height:1.2}
 .account-pill-copy strong,.account-pill-copy small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:normal}
 .account-pill-copy strong{font-size:.83rem;font-weight:650}.account-pill-copy small{font-size:.68rem;font-weight:400;color:#466050}
 .account-page{max-width:960px;margin:1.4rem auto 2rem}.account-page h1,.account-page h2,.account-page h3{letter-spacing:normal;line-height:1.35}
