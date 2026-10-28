@@ -50,7 +50,7 @@ async function cloudStatusChanged(s){
   let remembered;try{remembered=localStorage.getItem('atlas-active-profile');}catch{}
   if(profiles.some(p=>p.id===remembered&&p.cloudOwnerUid===s.uid)){await selectProfile(remembered);if(ui.cloudStatus!==s)return;}
  }
- if(!ui.busy&&!ui.entering&&!['mission','placement'].includes(ui.screen))render();
+ if(!ui.busy&&!['mission','placement'].includes(ui.screen))render();
 }
 function currentActivity(){return content().activities.get(ui.activity);}
 function currentMission(){return content().missions.get(ui.mission);}
