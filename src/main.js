@@ -399,6 +399,7 @@ async function action(name,el){
  if(name==='placement-next'||name==='placement-skip'){
   const a=content().activities.get(ui.placementActivity);if(!a)return;
   const result=assess(a,ui.answer);if(name==='placement-next'&&!result.complete)throw new Error(t('Choose a response, or choose “Not sure yet”.','Chọn câu trả lời hoặc chọn “Tôi chưa chắc”.'));
+  ui.error='';ui.errorSource=null;
   const next=[...ui.placement,{activityId:a.id,answer:name==='placement-skip'?null:structuredClone(ui.answer),skipped:name==='placement-skip',seenBefore:placementExposures().includes(a.id)}];
   await append('placement',{method:'starting-point-v2',sessionId:ui.placementSession,stage:'progress',responses:next});
   ui.placement=next;preparePlacementItem();render(true);return;
