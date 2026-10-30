@@ -904,6 +904,8 @@ try {
       await play('guidance-language', language); await experience.setViewportSize({ width: 320, height: 740 });
       assert.equal(await experience.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true);
       const heading = await experience.locator('.experience-home h1').innerText();
+      const languageBox=await experience.locator('.guidance-switch').boundingBox(),accountBox=await experience.locator('.account-pill').boundingBox();
+      assert.ok(languageBox.x+languageBox.width<=accountBox.x,'Language choices and account controls must not overlap on a narrow screen.');
       assert.equal(heading, heading.normalize('NFC')); assert.doesNotMatch(heading, /\uFFFD/);
       for (const name of ['little-open', 'quick-start', 'atlas']) {
         const box = await experience.locator(`.experience-home [data-action="${name}"]`).boundingBox();
@@ -1032,6 +1034,30 @@ try {
     check('Native mouse and CDP touch drags commit one placement each; English/Vietnamese Home and picture rounds fit 320px with axe checks and screenshots.');
   } catch (error) { failurePage = experience; throw error; }
   finally { if (failurePage !== experience) { await experienceContext.close(); contexts.splice(contexts.indexOf(experienceContext), 1); } }
+
+  const lightContext = await newContext(); const lightPage = await lightContext.newPage(); observe(lightPage);
+  try {
+    await lightPage.goto(new URL('observatory.html',base).href);
+    await lightPage.locator('#language').waitFor();
+    for (const language of ['en','vi']) {
+      await lightPage.locator('#language').selectOption(language);
+      await lightPage.setViewportSize({width:390,height:844});
+      await lightPage.evaluate(()=>document.fonts.ready);
+      assert.equal(await lightPage.locator('html').getAttribute('lang'),language);
+      assert.equal(await lightPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Standalone play must fit its mobile viewport.');
+      const typography=await lightPage.locator('h1').evaluate(el=>({text:el.textContent,spacing:getComputedStyle(el).letterSpacing,size:parseFloat(getComputedStyle(el).fontSize),line:parseFloat(getComputedStyle(el).lineHeight)}));
+      assert.equal(typography.text,typography.text.normalize('NFC'));
+      if(language==='vi'){assert.equal(typography.spacing,'normal');assert.ok(typography.line>=typography.size*1.3);}
+      assert.equal(await lightPage.locator('.visit-details').evaluate(el=>el.open),false);
+      await lightPage.screenshot({path:fileURLToPath(new URL(`release-light-${language}-390.png`,directory)),fullPage:true});
+    }
+    await lightPage.reload();await lightPage.locator('#language').waitFor();
+    assert.equal(await lightPage.locator('#language').inputValue(),'vi','Standalone guidance survives reload.');
+    await lightPage.locator('[data-observatory-return]').click();await ready(lightPage);
+    assert.equal(await lightPage.locator('html').getAttribute('lang'),'vi');
+    check('Standalone light play uses authored bilingual guidance, natural Vietnamese heading spacing, a readable mobile layout and a persistent return path.');
+  } catch(error){failurePage=lightPage;throw error;}
+  finally{if(failurePage!==lightPage){await lightContext.close();contexts.splice(contexts.indexOf(lightContext),1);}}
 
   const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
   try {
