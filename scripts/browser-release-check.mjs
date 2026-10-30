@@ -956,6 +956,7 @@ try {
     await play('home'); await play('settings'); await play('mode', 'kids'); await play('home');
     assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)), 'Mode switches preserve real assessment history.');
     await play('little-open'); await experience.locator('.little-play[data-little-mode="menu"]').waitFor();
+    assert.equal(await experience.locator('.main-nav').count(),0,'Picture play keeps its own Home/Change game navigation instead of presenting unrelated study menus to pre-readers.');
     await play('little-start', 'explore'); await play('little-listen');
     const heard = (await snapshot()).events.filter(event => event.payload?.experience === 'little-play-v1')
       .sort((a, b) => a.at.localeCompare(b.at) || a.id.localeCompare(b.id)).at(-1);
