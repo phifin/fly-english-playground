@@ -6,7 +6,7 @@ const status={configured:true,state:'pending',code:'cloud/pending',uid:'member',
 
 test('invitations expose state and withdraw only unused enabled invitations',()=>{
  const owner={...status,approved:true,familyOwner:true,familyInvitations:[{email:'unused@example.test',enabled:true,claimedBy:'',state:'invited'},{email:'joined@example.test',enabled:true,claimedBy:'joined',state:'approved'},{email:'off@example.test',enabled:false,claimedBy:'',state:'revoked'}]};
- for(const language of ['en','vi']){const html=cloudView({status:owner,language});assert.equal((html.match(/data-action="family-revoke-invite"/g)||[]).length,1);assert.match(html,/data-email="unused@example.test"/);assert.doesNotMatch(html,/data-email="joined@example.test"/);assert.doesNotMatch(cloudView({status:{...owner,familyOwner:false},language}),/family-invite/);}
+ for(const language of ['en','vi']){const html=cloudView({status:owner,section:'family',language});assert.equal((html.match(/data-action="family-revoke-invite"/g)||[]).length,1);assert.match(html,/data-email="unused@example.test"/);assert.doesNotMatch(html,/data-email="joined@example.test"/);assert.doesNotMatch(cloudView({status:{...owner,familyOwner:false},language}),/family-invite/);}
 });
 test('failed provider signout offers retry instead of claiming the account is disconnected',()=>{
  const html=cloudView({status:{configured:true,code:'cloud/signout-failed',state:'error',uid:null}});
@@ -33,7 +33,7 @@ test('approved cloud actions reflect actual traveler binding and language indepe
 test('only a server-approved owner sees management; member labels are escaped and owner controls protected',()=>{
   const member={uid:'other',email:'<bad>@example.test',displayName:'<img src=x>',state:'pending'};
   const owner={...status,approved:true,familyOwner:true,state:'ready',code:'cloud/ready',familyRequests:[member,{...member,uid:'owner',familyOwner:true}]};
-  const html=cloudView({status:owner});assert.match(html,/family-approve/);assert.match(html,/family-block/);
+  const html=cloudView({status:owner,section:'family'});assert.match(html,/family-approve/);assert.match(html,/family-block/);
   assert.match(html,/&lt;img src=x&gt;/);assert.doesNotMatch(html,/<img src=x>/);
   assert.doesNotMatch(html,/data-id="owner"/);
   assert.doesNotMatch(cloudView({status:{...owner,approved:false}}),/family-admin/);

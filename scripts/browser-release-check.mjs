@@ -226,8 +226,8 @@ try {
     const id = await activeId();
     assert.equal(await button('finish-onboard').count(), 0, 'New players must enter play without a second configuration page.');
     assert.equal(await page.locator('body').evaluate((element, value) => element.classList.contains(`mode-${value}`), mode), true);
-    if (mode === 'kids' || mode === 'balanced') await page.locator('.workshop').waitFor({ state: 'visible' });
-    else await button('submit').waitFor({ state: 'visible' });
+    await page.locator('.experience-home').waitFor({ state: 'visible' });
+    assert.equal(await page.locator('.workshop,.quick-session').count(), 0, 'Creating a learner offers a choice rather than forcing an activity.');
     return id;
   }
   async function settings({ mode, language, quality, motion } = {}) {
@@ -531,7 +531,7 @@ try {
     assert.equal(await kind.inputValue(), 'independent');
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
     await form.locator('button[type="submit"][value="play"]').click(); await ready(arrivalPage);
-    await arrivalPage.locator('.workshop').waitFor({ state: 'visible' });
+    await arrivalPage.locator('.experience-home').waitFor({ state: 'visible' });
     assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(),0);
     assert.equal(await arrivalPage.locator('.expedition-grid').count(),0);
     let committed = (await arrivalPage.evaluate(readImportState)).snapshot;
@@ -548,7 +548,7 @@ try {
     const resume = arrivalPage.locator(`.learner-picker [data-action="choose-profile"][data-id="${traveler.id}"]`);
     assert.equal((await withinFirstViewport(resume)).inViewport, true, 'Returning travelers need a visible resume action above the fold.');
     await resume.click(); await ready(arrivalPage);
-    assert.equal(await arrivalPage.locator('.main-nav [data-action="atlas"]').getAttribute('aria-current'), 'page');
+    assert.equal(await arrivalPage.locator('.main-nav [data-action="home"]').getAttribute('aria-current'), 'page');
     await arrivalPage.reload({ waitUntil: 'domcontentloaded' }); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('.profile-pill').innerText().then(text => text.includes(travelerName)), true);
     assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(), 0, 'Returning travelers must not repeat onboarding.');
@@ -709,6 +709,7 @@ try {
     await toy.locator('#traveler-name').fill('Harbor construction CI');
     await toy.locator('[name="mode"][value="kids"]').check();
     await toy.locator('[data-form="create-profile"] button[type="submit"][value="play"]').click(); await ready(toy);
+    await toy.locator('.experience-home').waitFor(); await play('atlas');
     await toy.locator('.workshop[data-workshop-mode="free"]').waitFor();
     assert.equal((await snapshot()).events.length, 0, 'Entering free construction does not manufacture saved actions.');
     assert.equal(await toy.locator('.expedition-grid,[data-action="submit"]').count(), 0,
@@ -742,6 +743,7 @@ try {
     assert.deepEqual(await layout(), freeLayout);
     const freeSaved = await snapshot();
     await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+    await toy.locator('.experience-home').waitFor(); await play('atlas');
     assert.deepEqual(await layout(), freeLayout);
     assert.equal(canonical((await snapshot()).events), canonical(freeSaved.events));
     assert.equal(await toy.locator('html').getAttribute('lang'), 'vi');
@@ -821,12 +823,13 @@ try {
     await make('kite', 'sky');
     const preserved = (await snapshot()).events;
     await play('settings'); await play('mode', 'serious'); await play('atlas');
-    assert.equal(await toy.locator('.workshop').count(), 0, 'Study-first goes to the curriculum without a toy gate.');
+    assert.equal(await toy.locator('.workshop').count(), 1, 'Study-first learners may explicitly choose construction without changing experience mode.');
     await play('settings'); await play('mode', 'balanced'); await play('atlas');
     await toy.locator('.workshop').waitFor();
     assert.deepEqual(await layout(), { sky: 'kite' });
     assert.equal(canonical((await snapshot()).events), canonical(preserved), 'Mode changes preserve exact game and learning history.');
     await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+    await toy.locator('.experience-home').waitFor(); await play('atlas');
     assert.deepEqual(await layout(), { sky: 'kite' });
     await play('settings');
     const exported = await backup(toy);
@@ -843,9 +846,11 @@ try {
       }), { timeoutMs: 120000, intervalMs: 100, description: 'installed construction assets before offline play' });
       await toyContext.setOffline(true);
       await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+      await toy.locator('.experience-home').waitFor(); await play('atlas');
       assert.deepEqual(await layout(), { sky: 'kite' });
       await make('lantern', 'tree');
       await toy.reload({ waitUntil: 'domcontentloaded' }); await ready(toy);
+      await toy.locator('.experience-home').waitFor(); await play('atlas');
       assert.deepEqual(await layout(), { sky: 'kite', tree: 'lantern' }, 'Offline construction saves locally across a second reload.');
       await toyContext.setOffline(false); await ready(toy);
     }
@@ -855,6 +860,178 @@ try {
     check('English and Vietnamese construction scenes fit 1440px, 390px and 320px with usable controls; real-child enjoyment and developmental suitability still require human observation.');
   } catch (error) { failurePage = toy; throw error; }
   finally { if (failurePage !== toy) { await toyContext.close(); contexts.splice(contexts.indexOf(toyContext), 1); } }
+
+  // One learner deliberately moves between short practice, supported picture
+  // play and construction. All observations use the real UI and read-only IDB.
+  const experienceContext = await newContext(); const experience = await experienceContext.newPage(); observe(experience);
+  try {
+    const control = (name, value) => experience.locator(`[data-action="${name}"]${value ? `[data-value="${value}"]` : ''}:visible`).first();
+    const play = async (name, value) => { await ready(experience); await control(name, value).click(); await ready(experience); await noError(experience); };
+    const snapshot = async () => (await experience.evaluate(readImportState)).snapshot;
+    const assessed = value => value.events.filter(event => ['attempt', 'placement', 'reward'].includes(event.kind));
+    const layout = () => experience.locator('.workshop-spot').evaluateAll(spots => Object.fromEntries(spots
+      .filter(spot => spot.querySelector('.workshop-placed[data-prop]'))
+      .map(spot => [spot.dataset.slot, spot.querySelector('.workshop-placed').dataset.prop])));
+    const authorAnswer = async activity => {
+      if (activity.type === 'choice') await play('choose', activity.answer);
+      else if (activity.type === 'gap') await experience.locator('[data-answer="gap"]').fill(activity.accepted[0]);
+      else if (activity.type === 'match') for (const pair of activity.pairs) {
+        await experience.locator(`[data-match="${pair.id}"]`).selectOption(pair.id); await ready(experience);
+      }
+      else if (activity.type === 'order') {
+        const positions = () => experience.locator('.order-list li').evaluateAll(rows => rows.map(row => row.querySelector('[data-action="move"]').dataset.id));
+        for (let target = 0; target < activity.answer.length; target++) {
+          const id = activity.answer[target]; let index = (await positions()).indexOf(id);
+          while (index > target) {
+            await experience.locator(`[data-action="move"][data-id="${id}"][data-dir="-1"]`).click(); await ready(experience); index--;
+          }
+        }
+      } else throw new Error(`Unsupported quick-practice type ${activity.type}`);
+    };
+    await experience.goto(base.href); await ready(experience); await play('start-traveler');
+    await experience.locator('#traveler-name').fill('Many ways CI');
+    await experience.locator('[data-form="create-profile"] button[type="submit"][value="play"]').click(); await ready(experience);
+    await experience.locator('.experience-home').waitFor();
+    assert.equal(await experience.locator('.workshop,.quick-session,.little-play,.expedition-grid').count(), 0,
+      'First entry must offer understandable ways to play, with no forced adventure or placement.');
+    for (const name of ['little-open', 'quick-start', 'atlas']) assert.equal(await experience.locator(`.experience-home [data-action="${name}"]`).count(), 1);
+    assert.equal((await snapshot()).events.length, 0);
+    assert.equal(await experience.locator('[data-action="family"],[data-form="family-invite"]').count(), 0, 'Guest home must not expose family administration.');
+    await play('account');
+    assert.equal(await experience.locator('[data-action="family"],[data-form="family-invite"]').count(), 0, 'Guest account controls must not expose owner-only family administration.');
+    await play('home');
+    for (const language of ['en', 'vi']) {
+      await play('guidance-language', language); await experience.setViewportSize({ width: 320, height: 740 });
+      assert.equal(await experience.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true);
+      const heading = await experience.locator('.experience-home h1').innerText();
+      assert.equal(heading, heading.normalize('NFC')); assert.doesNotMatch(heading, /\uFFFD/);
+      for (const name of ['little-open', 'quick-start', 'atlas']) {
+        const box = await experience.locator(`.experience-home [data-action="${name}"]`).boundingBox();
+        assert.ok(box.width >= 44 && box.height >= 44);
+      }
+      await axe(`${language} experience choice at 320px`, experience);
+      await experience.screenshot({ path: fileURLToPath(new URL(`release-experiences-${language}-320.png`, directory)), fullPage: true });
+    }
+    await play('guidance-language', 'en'); await play('quick-start');
+    const answered = [], types = new Set();
+    for (let index = 0; index < 5; index++) {
+      const id = await experience.locator('.quick-session').getAttribute('data-quick-activity');
+      const activity = pack.missions.flatMap(mission => mission.activities).find(item => item.id === id);
+      assert.ok(activity, 'Quick practice must use an actual accepted learning activity.');
+      assert.ok(!answered.includes(id), 'A five-task session must not repeat one activity.');
+      if (index === 1) {
+        const before = assessed(await snapshot());
+        await play('home'); await experience.reload({ waitUntil: 'domcontentloaded' }); await ready(experience);
+        await experience.locator('.experience-home').waitFor(); await play('quick-start');
+        assert.equal(await experience.locator('.quick-session').getAttribute('data-quick-activity'), id, 'Returning to short practice resumes the next task rather than starting a new session.');
+        assert.equal(canonical(assessed(await snapshot())), canonical(before), 'Leaving and resuming must not submit a response or duplicate learning evidence.');
+        await play('guidance-language', 'vi');
+        assert.equal(await experience.locator('.quick-session').getAttribute('data-quick-activity'), id);
+        await axe('Vietnamese short practice at 320px', experience);
+        await experience.screenshot({ path: fileURLToPath(new URL('release-quick-vietnamese-320.png', directory)), fullPage: true });
+        await play('guidance-language', 'en');
+      }
+      await authorAnswer(activity); await play('submit');
+      await experience.locator('.feedback.success').waitFor();
+      assert.ok((await experience.locator('.feedback').innerText()).includes(activity.explanation.en));
+      const attempts = (await snapshot()).events.filter(event => event.kind === 'attempt');
+      assert.equal(attempts.length, index + 1, 'Each submitted response produces exactly one assessed attempt.');
+      assert.equal(attempts.find(event => event.payload.quickIndex === index)?.payload.activityId, id);
+      if (index === 0) {
+        const completedEvidence = assessed(await snapshot());
+        await play('home'); await experience.reload({ waitUntil: 'domcontentloaded' }); await ready(experience); await play('quick-start');
+        assert.equal(await experience.locator('.quick-session').getAttribute('data-quick-activity'), id);
+        await experience.locator('.feedback.success').waitFor();
+        assert.equal(canonical(assessed(await snapshot())), canonical(completedEvidence),
+          'Resuming an already submitted task restores feedback without replaying its saved answer.');
+      }
+      answered.push(id); types.add(activity.type); await play('next');
+    }
+    await experience.locator('[data-quick-complete]').waitFor();
+    assert.ok(types.size >= 3, 'Short practice should include distinct response interactions, not five copies of one mechanic.');
+    const quickSaved = await snapshot();
+    assert.equal(evidenceFor(quickSaved.events).independent, 5, 'Five correct objective answers contribute learning evidence through the shared engine.');
+    await play('home'); await play('settings'); await play('mode', 'kids'); await play('home');
+    assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)), 'Mode switches preserve real assessment history.');
+    await play('little-open'); await experience.locator('.little-play[data-little-mode="menu"]').waitFor();
+    await play('little-start', 'explore'); await play('little-listen');
+    const heard = (await snapshot()).events.filter(event => event.payload?.experience === 'little-play-v1')
+      .sort((a, b) => a.at.localeCompare(b.at) || a.id.localeCompare(b.id)).at(-1);
+    assert.equal(heard.payload.session.heard, true, 'The picture sound action records participation, including when browser voice playback is unavailable.');
+    assert.equal(heard.payload.session.found.length, 1);
+    await play('little-menu'); await play('little-start', 'find');
+    assert.equal(await control('little-start', 'match').count(), 1, 'An audio-led round provides a direct visual alternative without requiring browser speech.');
+    await play('little-start', 'match');
+    let target = await experience.locator('.little-play').getAttribute('data-little-word');
+    const wrong = experience.locator(`[data-action="little-pick"]:not([data-value="${target}"])`).first();
+    await wrong.tap(); await ready(experience);
+    assert.equal(await control('little-next').count(), 0, 'Wrong pictures allow a retry without advancing.');
+    assert.match(await experience.locator('.little-feedback').innerText(), /Try another picture/);
+    const beforeResume = await snapshot();
+    await play('home'); await experience.reload({ waitUntil: 'domcontentloaded' }); await ready(experience); await play('little-open');
+    assert.equal(await experience.locator('.little-play').getAttribute('data-little-word'), target);
+    assert.equal(canonical((await snapshot()).events), canonical(beforeResume.events), 'Reopening picture play restores its actual round without new evidence.');
+    for (const language of ['en', 'vi']) {
+      await play('guidance-language', language);
+      assert.equal(await experience.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true);
+      assert.equal(await experience.locator('.little-choice svg').count(), 3, 'Pre-reader choices have recognizable pictures instead of text-only answers.');
+      for (const element of await experience.locator('.little-choice').all()) {
+        const box = await element.boundingBox(); assert.ok(box.width >= 44 && box.height >= 44);
+      }
+      await axe(`${language} supported picture matching at 320px`, experience);
+      await experience.screenshot({ path: fileURLToPath(new URL(`release-little-${language}-320.png`, directory)), fullPage: true });
+    }
+    for (let index = 0; index < 4; index++) {
+      target = await experience.locator('.little-play').getAttribute('data-little-word');
+      const correct = control('little-pick', target);
+      if (index % 2) await correct.tap(); else { await correct.focus(); await correct.press('Enter'); }
+      await ready(experience); assert.equal(await experience.locator('.little-feedback.is-success').count(), 1);
+      await play('little-next');
+    }
+    await experience.locator('[data-little-complete="true"]').waitFor();
+    assert.equal(await experience.locator('.little-collection > div').count(), 4);
+    assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)), 'Picture exposure and matching do not manufacture assessed English proficiency or rewrite prior answers.');
+    await play('home'); await play('atlas');
+    const drag = async (prop, slot, touch) => {
+      const source = control('workshop-select', prop), destination = control('workshop-place', slot);
+      await source.scrollIntoViewIfNeeded();
+      const from = await source.boundingBox(), to = await destination.boundingBox();
+      const start = { x: from.x + from.width / 2, y: from.y + from.height / 2 };
+      const end = { x: to.x + to.width / 2, y: to.y + to.height / 2 };
+      const viewport = experience.viewportSize();
+      assert.ok(start.y > 0 && start.y < viewport.height && end.y > 0 && end.y < viewport.height,
+        'A direct-manipulation gesture must have its source and destination visible together.');
+      if (touch) {
+        const cdp = await experienceContext.newCDPSession(experience);
+        try {
+          await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ ...start, id: 1 }] });
+          for (let step = 1; step <= 12; step++) await cdp.send('Input.dispatchTouchEvent', {
+            type: 'touchMove', touchPoints: [{ x: start.x + (end.x - start.x) * step / 12, y: start.y + (end.y - start.y) * step / 12, id: 1 }] });
+          await experience.locator('.is-drop-target').waitFor();
+          await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+        } finally { await cdp.detach(); }
+      } else {
+        await experience.mouse.move(start.x, start.y); await experience.mouse.down();
+        await experience.mouse.move(end.x, end.y, { steps: 12 });
+        await experience.locator('.is-drop-target').waitFor(); await experience.mouse.up();
+      }
+      await ready(experience); await noError(experience);
+      assert.equal((await layout())[slot], prop, 'A real pointer drop must commit the chosen toy at the visible destination.');
+      assert.equal(await experience.locator('.workshop-drag-ghost,.is-picked-up,.is-drop-target').count(), 0, 'Pointer feedback must clean up after the drop.');
+    };
+    await experience.setViewportSize({ width: 1440, height: 1000 });
+    const beforeDrag = (await snapshot()).events.length;
+    await drag('boat', 'water', false);
+    assert.equal((await snapshot()).events.length, beforeDrag + 1, 'The synthetic mouse click after a drop must not duplicate a placement.');
+    await experience.setViewportSize({ width: 390, height: 844 }); await drag('shell', 'sand', true);
+    assert.equal((await snapshot()).events.length, beforeDrag + 2, 'A native touch sequence must commit exactly one placement.');
+    assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)));
+    report.experiences = { quickActivities: answered, responseTypes: [...types], littlePictures: 4, pointerTypes: ['mouse', 'touch'], widths: [320, 390, 1440] };
+    check('Home offers pictures, short practice and optional construction; five accepted activities resume across reload and contribute exactly five real learning attempts.');
+    check('Supported picture play provides retries, audio-to-picture fallback, keyboard/touch choices and a saved four-picture round without adding CEFR assessment evidence.');
+    check('Native mouse and CDP touch drags commit one placement each; English/Vietnamese Home and picture rounds fit 320px with axe checks and screenshots.');
+  } catch (error) { failurePage = experience; throw error; }
+  finally { if (failurePage !== experience) { await experienceContext.close(); contexts.splice(contexts.indexOf(experienceContext), 1); } }
 
   const cloudContext = await newContext(); const cloudPage = await cloudContext.newPage(); observe(cloudPage);
   try {

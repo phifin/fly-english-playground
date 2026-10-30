@@ -1,0 +1,21 @@
+{
+  "reviewer": "Sol",
+  "date": "2026-10-29",
+  "sha256": "c54f320cc9b5de1697dbd196a1c2cd5b906e3536232a10bde4de9400a7a013e8",
+  "acceptedIds": [
+    "cat",
+    "dog",
+    "bird",
+    "fish",
+    "apple",
+    "banana",
+    "ball",
+    "book",
+    "cup",
+    "shoe",
+    "sun",
+    "star"
+  ],
+  "decision": "Accepted after inspecting every English cue, Vietnamese word and parent prompt. Concrete nouns match the original SVG subjects. The sun prompt uses a picture; ball prompts use a soft ball. Original wording; reference pages are design context, not copied content or validation.",
+  "limitations": "Twelve words only. Adult-assisted exposure, picture matching and optional device speech. No CEFR evidence, no calibrated listening assessment, no established developmental or learning-effectiveness claim. Natural regional Vietnamese alternatives remain possible."
+}

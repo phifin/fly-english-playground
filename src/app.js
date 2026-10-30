@@ -1,13 +1,14 @@
 import { createState, evaluatePlan, recordAttempt, applyTransfer, getNextWeather } from './game.js';
 import { copy, notes, instruction, feedback } from './fixtures.js';
 import { scene } from './scene.js';
+import { readGuidance, writeGuidance } from './guidance.js';
 
 const app = document.querySelector('#app');
 let state = createState();
 let plan = { route: 'roof', shutter: 'open', mirror: 'sky', order: ['shutter', 'light', 'mirror'] };
 const media = matchMedia('(prefers-reduced-motion: reduce)');
 const ui = {
-  mode: 'balanced', lang: 'en', quiet: false, kidsStep: 0, dialog: null,
+  mode: 'balanced', lang: readGuidance(), quiet: false, kidsStep: 0, dialog: null,
   inspected: new Set(), exposedSources: new Set(), translated: new Set(), translationUsed: new Set(), hint: false, showHint: false,
   counterUsed: false, returnFocus: null,
   counterexample: null, reflection: '', transferDraft: '', running: false,
@@ -17,6 +18,7 @@ const timers = new Set();
 let resumeRun = null;
 const escape = value => String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
 const c = () => copy[ui.lang];
+const t = (en,vi) => ui.lang==='vi'?vi:en;
 const quiet = () => ui.quiet || media.matches;
 const noteKey = id => `${state.weather}:${id}`;
 function restoreDialogFocus() {
@@ -106,8 +108,12 @@ function render() {
   const preview = ui.counterexample;
   const previewMessage = preview ? feedback(preview.result, ui.lang) : null;
   document.documentElement.lang = ui.lang === 'vi' ? 'vi' : 'en';
+  document.title=t('The Atlas · A little light','Atlas · Một ánh sáng nhỏ');
+  document.querySelector('[data-observatory-skip]').textContent=t('Skip to play','Đến phần chơi');
+  document.querySelector('[data-observatory-return]').textContent=t('← Back to the Atlas','← Về Atlas');
+  document.querySelector('[data-observatory-return]').parentElement.setAttribute('aria-label',t('Return','Quay lại'));
   document.body.className = `mode-${ui.mode} ${quiet() ? 'quiet' : ''}`;
-  app.innerHTML = `<header class="site-header"><a class="brand" href="#atlas-top" aria-label="The Unfolding Atlas home"><img src="./assets/atlas-mark.svg" alt="" width="39" height="39"/><span>The Unfolding <em>Atlas</em><small>A FIELD GUIDE TO LITTLE WONDERS</small></span></a><div class="header-actions"><button class="journal-button" data-action="journal">${icon('book')}<span>${text.journal}</span><i class="journal-count">${state.discoveries.length}</i></button><button class="icon-button motion-button" data-action="motion" aria-label="${quiet() ? text.living : text.settings}" title="${quiet() ? text.living : text.settings}" aria-pressed="${quiet()}">${icon('settings')}</button><label class="language-picker"><span class="sr-only">Guidance language</span><select id="language" aria-label="Guidance language"><option value="en" ${ui.lang === 'en' ? 'selected' : ''}>EN</option><option value="vi" ${ui.lang === 'vi' ? 'selected' : ''}>VI</option></select></label></div></header>
+  app.innerHTML = `<header class="site-header"><a class="brand" href="#atlas-top" aria-label="${t('The Unfolding Atlas home','Trang chủ The Unfolding Atlas')}"><img src="./assets/atlas-mark.svg" alt="" width="39" height="39"/><span>The Unfolding <em>Atlas</em><small>${t('A little light, a new discovery','Ánh sáng nhỏ, khám phá mới')}</small></span></a><div class="header-actions"><button class="journal-button" data-action="journal">${icon('book')}<span>${text.journal}</span><i class="journal-count">${state.discoveries.length}</i></button><button class="icon-button motion-button" data-action="motion" aria-label="${quiet() ? text.living : text.settings}" title="${quiet() ? text.living : text.settings}" aria-pressed="${quiet()}">${icon('settings')}</button><label class="language-picker"><span class="sr-only">${t('Guidance language','Ngôn ngữ hướng dẫn')}</span><select id="language" aria-label="${t('Guidance language','Ngôn ngữ hướng dẫn')}"><option value="en" ${ui.lang === 'en' ? 'selected' : ''}>English</option><option value="vi" ${ui.lang === 'vi' ? 'selected' : ''}>Tiếng Việt</option></select></label></div></header>
     <main><div class="journey-line"><span>${icon('compass')}${text.journey}</span><span class="chapter-number">${text.chapter}</span></div>
     <section class="introduction"><div><h1>${text.title.replace('\n', '<br/>')}</h1><p>${text.subtitle}</p></div><div class="mode-picker"><span class="eyebrow">${ui.lang === 'vi' ? 'CÁCH BẠN MUỐN CHƠI' : 'YOUR WAY TO PLAY'}</span><div class="mode-tabs" role="group" aria-label="Experience mode">${Object.keys(text.modes).map(mode => `<button data-action="mode" data-value="${mode}" aria-pressed="${ui.mode === mode}">${text.modes[mode]}</button>`).join('')}</div><p>${text.modeDetails[ui.mode]}</p></div></section>
     <section class="adventure" id="play-space" tabindex="-1" aria-label="The folded observatory"><div class="world-column"><div class="world-heading"><div><span class="location-dot"></span><strong>${ui.lang === 'vi' ? 'Đài quan sát gấp giấy' : 'The folded observatory'}</strong></div><span class="weather">${icon('sun')}${state.weather === 'clear' ? text.clear : text.mist}</span></div>
@@ -122,7 +128,7 @@ function render() {
       ${resultPanel()}</div>${panel()}</section>
     ${preview ? `<section class="counterexample" role="status"><strong>${ui.lang === 'vi' ? 'Xem thử' : 'Preview'}: ${preview.weather === 'clear' ? text.clear : text.mist}</strong><p>${preview.result.success ? (ui.lang === 'vi' ? 'Kế hoạch này sẽ thành công trong thời tiết được xem thử.' : 'This plan would succeed in the previewed weather.') : `${previewMessage.title} ${previewMessage.body}`}</p><small>${text.counterHint}</small></section>` : ''}
     ${transferPanel()}
-    <footer><span>${text.prototype}</span><button class="footer-motion text-button" data-action="motion" aria-pressed="${quiet()}">${icon('settings')}${quiet() ? text.living : text.settings}</button><span>${ui.lang === 'vi' ? 'Không cần vội. Cứ tò mò.' : 'No rush. Stay curious.'} ${icon('star')}</span></footer></main>${dialog()}`;
+    <footer><details class="visit-details"><summary>${t('About this visit','Về chuyến thăm này')}</summary><p>${t('This light puzzle starts fresh when you reload. It does not change your saved learning progress.','Câu đố ánh sáng bắt đầu lại khi tải trang. Tiến trình học đã lưu của bạn không thay đổi.')}</p></details><button class="footer-motion text-button" data-action="motion" aria-pressed="${quiet()}">${icon('settings')}${quiet() ? text.living : text.settings}</button><span>${ui.lang === 'vi' ? 'Không cần vội. Cứ tò mò.' : 'No rush. Stay curious.'} ${icon('star')}</span></footer></main>${dialog()}`;
   for (const element of app.querySelectorAll('button[data-action], select[id], input[id], textarea[id]')) {
     if (element.dataset.focusKey) continue;
     const region = element.closest('dialog') ? 'dialog' : element.closest('.world-stage') ? 'scene' : element.closest('.plan-panel') ? 'panel' : element.closest('footer') ? 'footer' : 'page';
@@ -205,7 +211,7 @@ app.addEventListener('click', event => {
   render();
   if (action === 'dismiss') restoreDialogFocus();
 });
-app.addEventListener('change', event => { if (event.target.id === 'language') { ui.lang = event.target.value; render(); } });
+app.addEventListener('change', event => { if (event.target.id === 'language') { ui.lang = writeGuidance(event.target.value); render(); } });
 app.addEventListener('input', event => { if (event.target.id === 'reflection') ui.reflection = event.target.value; if (event.target.id === 'transfer') ui.transferDraft = event.target.value; });
 app.addEventListener('submit', event => { if (event.target.id === 'transfer-form') { event.preventDefault(); state = applyTransfer(state, ui.transferDraft.trim().toLowerCase()); render(); } });
 media.addEventListener('change', render);

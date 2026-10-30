@@ -1,3 +1,20 @@
+# Product Experience 2.0 — integrated, release verification pending, 30 October 2026
+
+- Home now offers pictures/sounds, five-task practice and optional building/exploration. All modes can choose all experiences. Twelve Luna nouns independently accepted; no preschool proficiency claims. Quick attempts reuse existing learning/review engine; casual snapshots do not award mastery. No profile/event migration.
+- Direct mouse/touch harbor placement plus tap/keyboard, first-use guide, contextual feedback, owner-only Family page, concise standalone/studio help, Vietnamese NFC and typography fixes. See docs/experience-2.md.
+- Local suite363pass/4emulator skips, production build passed. New browser journeys ready for hosted CI; not yet a verified deployment. Publication helper artifacts/publish-experience.mjs inventories scoped files for leased GitHub update. Preserve current remote history.
+- Firebase invitation activation remains blocked as detailed below; do not claim live invitations or positive Google consent/cross-device verification. User rejected manual command handoff; no repeat login/install requests.
+
+# Account entry update deployed; Firebase invitation activation blocked — 29 October 2026
+
+- Verified app commit3c2cbcd4f2a00f2be741c8cef61bb37fe9ad715c, treef4de971ba1f9faa0b9b1070406c5a355946db88a, release37e4c7bc4b663d7d30b5. Workflow40657548227 all four jobs SUCCESS: build122712158850, firestore-rules122712159434, deploy122712629882, verify-production122712714666. Final report docs/entry-release.md.
+- 341 unit passes, 4 actual emulator passes with no skips, 31 preview/live browser checks, 15 axe surfaces with zero violations, no unexpected console errors. Independent published hash check42manifest files772892bytes/private404s passes. Final artifacts/entry-production.zip SHA25623d429fc941a2d4f6de60957ae3d06538843303e41a900d5dce84e063cc656fb; extracted and screenshots reviewed.
+- Guest/Google entry, persistent auth restore, explicit guest linking, accurate save states, account-local visibility/export filtering, recoverable failed signout, optional adaptive/resumable starting guidance18accepted probes, manual/skip/pre-reader paths deployed. Existing harbor/content/profile/event schema preserved. New invitation rules passed emulator but are NOT activated live.
+- CI caught and fixed three actual UX defects: oversized account header hiding resume, obsolete dropdown-arrow flex rule overflowing long names, stale checking-account label during SDK outage. Also cleared blank-response error after a valid placement response. All final regressions pass.
+- Remaining operation: deploy reviewed Firebase rules and verify active hash5bebbe958e239e03a17493c845da571ab878b3ca1f4eef61d7e6c6fbf113b852. Sol already ran official CLI deployment; it failed. Diagnostics confirm OAuth ECONNREFUSED/HTTP500 through managed network on28and29October. Generic CLI invalid-credentials text is not proof login expired. Plugin is installed/enabled but exposes0Firebase tools in this session. User explicitly says execute autonomously, do not hand them this command again. Do not bypass network controls, export credentials, or repeat plugin/login/bootstrap requests.
+- Public Firebase domain/anonymous403 checks passed29October. Positive live Google consent/cloud sync remains unverified; no claim invitations work yet. Existing approved accounts/request fallback retained. Once allowed Firebase connection exists, finish only that blocked operation then readback; no need rebuild game or repeat already passing independent tests.
+- This local checkpoint records verified production evidence without another documentation-only deployment cycle. Earlier notes below are historical and superseded.
+
 # Account entry and starting-point update — integrated, verification pending, 28 October 2026
 
 - Current implementation: clear guest/Google/account entry, explicit guest linking, persistent auth restoration, shared-device filtering, retryable failed sign-out, owner email invitations, optional adaptive starting-point flow. Harbor gameplay and all existing records remain intact. See docs/entry-and-placement.md and docs/account-enrollment.md.

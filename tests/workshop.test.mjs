@@ -64,3 +64,15 @@ test('play scenes use labeled buttons and escape authored text in both languages
  }
  const html=workshopView({brief:{...workshopBriefs[0],request:'<script>bad</script>'}});assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>/);
 });
+
+test('first interaction guidance can retire while selected toys keep actionable guidance',()=>{
+ for(const language of ['en','vi']){
+  const initial=workshopView({language,firstPlay:true});
+  const returning=workshopView({language,firstPlay:false});
+  const selected=workshopView({language,firstPlay:false,selected:'boat'});
+  assert.match(initial,/workshop-guide-pictures/);assert.doesNotMatch(returning,/workshop-guide-pictures/);
+  assert.match(selected,/has-selection/);assert.match(selected,/workshop-hand-prop/);
+  assert.equal((selected.match(/data-action="workshop-place"/g)||[]).length,4);
+  assert.doesNotMatch(initial,/No dragging/);
+ }
+});

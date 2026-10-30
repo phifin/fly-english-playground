@@ -1,0 +1,17 @@
+# Product Experience 2.0
+
+The learner home offers three independent entries: Pictures & sounds, five-task practice, and Build & explore. Experience preference changes presentation, not access to activities or proficiency. Returning learners land here; the short-session card resumes its unfinished round. Existing Study, Journal, Review, Settings and optional placement remain available.
+
+Pictures & sounds uses twelve original illustrations and independently reviewed bilingual nouns. Four-picture rounds support card exploration, hearing a word and finding its picture, or matching a visible example. Adult read-aloud fallback is available when browser speech fails or is unavailable. Choices are forgiving and untimed. This is an adult-assisted pre-reading pathway, not a validated age assessment, listening score or complete preschool curriculum. Participation snapshots never enter CEFR evidence. All twelve words cycle through short rounds.
+
+Short practice selects five existing objective items in the learner's chosen/recommended range, prioritizing due and less-practiced items while varying interaction types. Responses use the same checking, explanations, supported-answer flag and review scheduling as Study. Round snapshots only preserve navigation; they do not award mastery. Saved responses restore feedback without inventing another attempt. Completion and mode/language changes preserve existing history.
+
+Harbor toys support mouse/touch dragging onto the illustrated places as well as two taps or keyboard activation. A first-use pictorial guide retires after an actual placement; selected toys continue to preview available targets. Cancellation, pointer loss, navigation and failed writes leave no ghost or unintended saved placement. Motion obeys reduced-motion and Eco preferences.
+
+Account entry and learner selection retain existing boundaries. Invitations and member controls live in a separate owner-only Family page; ordinary account/cloud panels do not render administration. The server still enforces every permission. Action notices and a processing indicator provide localized feedback without repeated dialogs. Backup/privacy and assessment limitations remain available where relevant, while implementation descriptions move out of play.
+
+Vietnamese text uses NFC strings, a script-capable system font stack and normal tracking. The app requests no automatic translation because authored guidance already exists in both languages; external translation can still alter the DOM. Browser measurements and original-language screenshots must be reviewed before release. Automated checks cannot establish typography across every operating system, subjective enjoyment or suitability for an individual child.
+
+No storage-schema migration, replacement learner IDs, account auto-linking, new backend or paid service. Original 24 expeditions/120 activities, placement probes, learning history and cloud isolation remain intact. New little-word staging material is independently digest-pinned by `scripts/accept-little.mjs`; generation does not constitute acceptance.
+
+Verification is in progress. The previous production release remains the only verified live version until the new build, emulator, hosted browser and production-verification jobs pass. Existing Firebase invitation-rule activation is separately blocked by the managed OAuth network path; this UI update does not claim that blocked operation succeeded.
