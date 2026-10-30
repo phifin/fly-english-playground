@@ -7,3 +7,4 @@ html:lang(vi) p,html:lang(vi) label,html:lang(vi) button{line-height:1.55}
 @media(prefers-reduced-motion:no-preference){html:not([data-quality=eco]):not([data-motion=reduced]) .alert.notice{animation:notice-arrive .18s ease-out}@keyframes notice-arrive{from{opacity:.6;transform:translateY(-4px)}to{opacity:1;transform:none}}}
 @media(max-width:580px){.masthead{grid-template-columns:max-content minmax(0,1fr)}.masthead .account-pill{min-width:0;width:100%;max-width:100%;padding-inline:.5rem;gap:.35rem}.masthead .guidance-switch{min-width:max-content}.masthead .account-pill .account-pill-copy{min-width:0}}
 @media(max-width:350px){.masthead .account-pill .avatar{display:none}}
+@media(max-width:580px){.quick-session .activity-actions{display:flex;flex-wrap:wrap;gap:.6rem}.quick-session .activity-actions>button{flex:1 0 100%;width:100%;min-height:48px}.quick-session .activity-actions>.primary{padding:.8rem 1rem}}

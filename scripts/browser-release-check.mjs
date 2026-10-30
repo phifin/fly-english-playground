@@ -930,6 +930,8 @@ try {
         await play('guidance-language', 'vi');
         assert.equal(await experience.locator('.quick-session').getAttribute('data-quick-activity'), id);
         await axe('Vietnamese short practice at 320px', experience);
+        const submitBox=await experience.locator('.quick-session [data-action="submit"]').boundingBox();
+        assert.ok(submitBox.width>=200&&submitBox.height<=80,'The Vietnamese primary response action must remain readable on a phone, not collapse into a narrow column.');
         await experience.screenshot({ path: fileURLToPath(new URL('release-quick-vietnamese-320.png', directory)), fullPage: true });
         await play('guidance-language', 'en');
       }
