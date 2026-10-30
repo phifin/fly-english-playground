@@ -1320,7 +1320,7 @@ try {
   const studioOptions = await page.locator('[data-studio-item] option').count();
   assert.ok(studioOptions > 0, 'Echo Studio must offer scripts from the active practice range.');
   await select('[data-studio-item]', { index: studioOptions - 1 });
-  await page.locator('.echo-studio details summary').click(); await ready();
+  await page.locator('.echo-studio summary').filter({hasText:/^(Read the transcript|Đọc lời thoại)$/}).click(); await ready();
   await page.locator('.echo-studio details[open] p[lang="en"]').waitFor({ state: 'visible' });
   await noOverflow();
   await page.screenshot({ path: fileURLToPath(new URL('release-mobile-studio.png', directory)), fullPage: true });
