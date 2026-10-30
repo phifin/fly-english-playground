@@ -1367,6 +1367,11 @@ try {
   await journal(evidenceFor(quotedBackup.events.filter(event => event.profileId === mainId)), clean);
   await clean.locator('details').filter({ has: clean.getByText(quotedText, { exact: true }) }).locator('summary').click();
   await clean.getByText(quotedText, { exact: true }).waitFor({ state: 'visible' });
+  await clean.evaluate(()=>window.dispatchEvent(new Event('online')));
+  await ready(clean);
+  assert.equal(await clean.locator('details').filter({has:clean.getByText(quotedText,{exact:true})}).evaluate(element=>element.open),true,'A background connection notification must not close an open writing entry.');
+  assert.equal(await clean.locator('details').filter({has:clean.getByText(quotedText,{exact:true})}).locator('summary').evaluate(element=>document.activeElement===element),true,'The focused writing disclosure retains keyboard focus during the notification.');
+  await clean.getByText(quotedText,{exact:true}).waitFor({state:'visible'});
   assert.equal(await clean.locator('[data-injected]').count(), 0, 'Backup strings must remain text in profile attributes and writing entries.');
   await cleanContext.close(); contexts.splice(contexts.indexOf(cleanContext), 1);
   check('A clean browser restores exact immutable history; quote-bearing names and writing render as text without injected attributes.');
