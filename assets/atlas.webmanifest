@@ -1,0 +1,14 @@
+{
+  "id": "../",
+  "name": "The Unfolding Atlas",
+  "short_name": "Atlas",
+  "description": "English learning for your family, one small discovery at a time.",
+  "start_url": "../",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#f8efdb",
+  "theme_color": "#344f43",
+  "icons": [
+    { "src": "atlas-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

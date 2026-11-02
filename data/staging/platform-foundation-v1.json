@@ -1,0 +1,4650 @@
+{
+  "schemaVersion": 1,
+  "batchId": "platform-foundation-v1",
+  "sources": [
+    {
+      "id": "source-cefr-companion-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment — Companion volume",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "usage": "Reference for broad communicative descriptors and level progression only. All objectives, examples and activities are original; no descriptor wording or sample task is reproduced."
+    },
+    {
+      "id": "source-bc-a1-a2-grammar",
+      "title": "British Council LearnEnglish: A1-A2 grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2",
+      "usage": "Reference for elementary grammar scope only. All explanations and exercises are original; no example or exercise is copied."
+    },
+    {
+      "id": "source-bc-b1-b2-grammar",
+      "title": "British Council LearnEnglish: B1-B2 grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2",
+      "usage": "Reference for intermediate grammar scope only. All explanations and exercises are original; no example or exercise is copied."
+    },
+    {
+      "id": "source-bc-c1-grammar",
+      "title": "British Council LearnEnglish: C1 grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/c1",
+      "usage": "Reference for advanced grammar scope only, not CEFR calibration. All examples and activities are original."
+    },
+    {
+      "id": "source-cambridge-dictionary",
+      "title": "Cambridge Dictionary: English learner's dictionary",
+      "url": "https://dictionary.cambridge.org/dictionary/english/",
+      "usage": "Lexical reference for sense and usage distinctions. No definitions or example sentences are reproduced; all explanations and examples are original."
+    },
+    {
+      "id": "source-ielts-academic-reading",
+      "title": "IELTS Academic Reading test format",
+      "url": "https://ielts.org/take-a-test/test-types/ielts-academic-test/ielts-academic-format-reading",
+      "usage": "Reference for official task families and the True/False/Not Given distinction. Questions, directions and passage are original; this is a short practice set, not a mock."
+    },
+    {
+      "id": "source-toeic-lr-format",
+      "title": "About the TOEIC Listening and Reading Test",
+      "url": "https://www.ets.org/content/ets-org/language-master/in/home/toeic/test-takers/about/listening-reading.html",
+      "usage": "Reference for workplace context and Part 5/Part 7 task families. All notices, questions and explanations are original; this is not a TOEIC mock."
+    },
+    {
+      "id": "source-flss-2025-structure",
+      "title": "2025 entrance-test structure, Foreign Language Specialised School",
+      "url": "https://ulis.vnu.edu.vn/files/uploads/2025/02/868-QD-ban-hanh-cau-truc-de-thi-TSCNN-2025.pdf",
+      "usage": "Historical official school-specific reference. Used to distinguish one Vietnamese school's published structure from a universal exam; no item wording copied."
+    },
+    {
+      "id": "source-flss-2026-structure",
+      "title": "2026 entrance-test structure, Foreign Language Specialised School",
+      "url": "https://flss.vnu.edu.vn/files/uploads/2026/02/Signed.Signed.Signed.Signed.QD-ban-hanh-cau-truc-de-thi-TSCNN-2026m.pdf",
+      "usage": "Current official school-specific reference as of 2026-11-02. Used for caveats only; the required eight-item language micropractice does not simulate this exam. No item wording copied."
+    },
+    {
+      "id": "source-toefl-2026-content",
+      "title": "TOEFL iBT Test Content and Structure",
+      "url": "https://www.ets.org/content/ets-org/language-master/in/home/toefl/institutions/ibt/about/content-structure.html",
+      "usage": "Reference for the post-21-Jan-2026 TOEFL format, discussed only in the review. No TOEFL set, score claim or mock is included."
+    }
+  ],
+  "objectives": [
+    {
+      "id": "cur-a1-01",
+      "level": "A1",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Simple Food Tastes",
+        "vi": "V? m?n ?n ??n gi?n"
+      },
+      "canDo": {
+        "en": "Use familiar words for sweet, salty, and spicy food and state a simple preference.",
+        "vi": "D?ng t? quen thu?c ch? m?n ng?t, m?n, cay v? n?u s? th?ch ??n gi?n."
+      },
+      "prerequisites": [],
+      "teaching": [
+        {
+          "en": "Taste adjectives describe food: The mango is sweet.",
+          "vi": "T?nh t? v? m? t? m?n ?n: Qu? xo?i ng?t."
+        },
+        {
+          "en": "Use a familiar food clue: Salt makes popcorn salty.",
+          "vi": "D?ng d?u hi?u quen thu?c: Mu?i l?m b?ng ng? c? v? m?n."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a1-01-l1",
+          "term": "sweet",
+          "meaning": {
+            "en": "having a taste like sugar",
+            "vi": "ng?t, c? v? nh? ???ng"
+          },
+          "example": "The red berry tastes sweet.",
+          "family": "sweeten; sweet fruit"
+        },
+        {
+          "id": "cur-a1-01-l2",
+          "term": "salty",
+          "meaning": {
+            "en": "having a taste like salt",
+            "vi": "m?n, c? v? nh? mu?i"
+          },
+          "example": "The soup is salty after I add salt.",
+          "family": "salt (noun/verb); salty food"
+        },
+        {
+          "id": "cur-a1-01-l3",
+          "term": "spicy",
+          "meaning": {
+            "en": "having a hot taste from pepper or chilli",
+            "vi": "cay, c? v? n?ng t? ti?u ho?c ?t"
+          },
+          "example": "A little pepper makes the sauce spicy.",
+          "family": "spice (noun); spicy sauce"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a1-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which taste word describes honey in Mina's breakfast?",
+          "context": "Mina pours honey on plain oatmeal. She does not add salt or pepper.",
+          "explanation": {
+            "en": "Honey tastes sweet; the context rules out salt and pepper.",
+            "vi": "M?t ong c? v? ng?t; ng? c?nh kh?ng c? mu?i hay ti?u."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020",
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-01-p1-sweet",
+              "text": "sweet"
+            },
+            {
+              "id": "cur-a1-01-p1-salty",
+              "text": "salty"
+            },
+            {
+              "id": "cur-a1-01-p1-spicy",
+              "text": "spicy"
+            }
+          ],
+          "answer": "cur-a1-01-p1-sweet"
+        },
+        {
+          "id": "cur-a1-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "A cook adds salt to plain popcorn. It tastes ___. (one word)",
+          "context": "No sugar or pepper is added to the popcorn.",
+          "explanation": {
+            "en": "Salty describes the taste that salt gives food.",
+            "vi": "Salty m? t? v? m? mu?i t?o cho m?n ?n."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "salty"
+          ]
+        },
+        {
+          "id": "cur-a1-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which taste word fits this stew?",
+          "context": "A cook adds a little chilli. It makes the stew hot on the tongue, but no extra sugar or salt is added.",
+          "explanation": {
+            "en": "Spicy describes the hot taste from chilli.",
+            "vi": "Spicy m? t? v? cay n?ng t? ?t."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-01-c1-spicy",
+              "text": "spicy"
+            },
+            {
+              "id": "cur-a1-01-c1-sweet",
+              "text": "sweet"
+            },
+            {
+              "id": "cur-a1-01-c1-salty",
+              "text": "salty"
+            }
+          ],
+          "answer": "cur-a1-01-c1-spicy"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-a1-02",
+      "level": "A1",
+      "domain": "grammar",
+      "title": {
+        "en": "Rules on a Clear Sign",
+        "vi": "Quy tắc trên biển báo rõ ràng"
+      },
+      "canDo": {
+        "en": "Understand and use must and mustn't for simple everyday rules.",
+        "vi": "Hiểu và dùng must, mustn't để nói về quy tắc thường ngày."
+      },
+      "prerequisites": [
+        "cur-a1-01"
+      ],
+      "teaching": [
+        {
+          "en": "Use must for a required action: Visitors must wear a helmet here.",
+          "vi": "Dùng must cho hành động bắt buộc: Khách phải đội mũ bảo hiểm ở đây."
+        },
+        {
+          "en": "Use mustn't for an action that is not allowed: You mustn't touch wet paint.",
+          "vi": "Dùng mustn't cho hành động bị cấm: Bạn không được chạm sơn ướt."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a1-02-l1",
+          "term": "helmet",
+          "meaning": {
+            "en": "a hard hat that protects the head",
+            "vi": "m? c?ng b?o v? ??u"
+          },
+          "example": "My blue helmet is on the chair.",
+          "family": "cycle helmet; wear a helmet"
+        },
+        {
+          "id": "cur-a1-02-l2",
+          "term": "rule",
+          "meaning": {
+            "en": "an instruction that says what people may or must do",
+            "vi": "quy t?c cho bi?t m?i ng??i ???c ho?c ph?i l?m g?"
+          },
+          "example": "One rule says to walk inside.",
+          "family": "follow a rule; rule (verb)"
+        },
+        {
+          "id": "cur-a1-02-l3",
+          "term": "safe",
+          "meaning": {
+            "en": "not likely to cause harm",
+            "vi": "an to?n, ?t c? kh? n?ng g?y h?i"
+          },
+          "example": "This path is safe for young children.",
+          "family": "safely; safety"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a1-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which sentence says eye glasses are required at the craft table?",
+          "context": "A sign at the craft table says every child has to wear eye glasses before using the small tools.",
+          "explanation": {
+            "en": "Must says the glasses are required; can makes them optional and mustn't forbids them.",
+            "vi": "Must n?i k?nh l? b?t bu?c; can bi?n vi?c ?? th?nh t?y ch?n c?n mustn't c?m."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-02-p1-must",
+              "text": "Children must wear eye glasses."
+            },
+            {
+              "id": "cur-a1-02-p1-can",
+              "text": "Children can wear eye glasses."
+            },
+            {
+              "id": "cur-a1-02-p1-mustnt",
+              "text": "Children mustn't wear eye glasses."
+            }
+          ],
+          "answer": "cur-a1-02-p1-must"
+        },
+        {
+          "id": "cur-a1-02-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use the contraction of MUST NOT: The floor is wet. You ___ run in this room. (one word)",
+          "context": "A caretaker puts a yellow warning card by the doorway.",
+          "explanation": {
+            "en": "Mustn't expresses the safety prohibition.",
+            "vi": "Mustn't diễn tả điều cấm vì an toàn."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "accepted": [
+            "mustn't"
+          ]
+        },
+        {
+          "id": "cur-a1-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which sentence matches a sign saying visitors are not allowed to open the cabinet?",
+          "context": "A small label is fixed to a fragile glass display.",
+          "explanation": {
+            "en": "Mustn't expresses the prohibition; must would require the action.",
+            "vi": "Mustn't diễn tả điều cấm; must sẽ biến hành động thành bắt buộc."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-02-c1-mustnt",
+              "text": "Visitors mustn't open the cabinet."
+            },
+            {
+              "id": "cur-a1-02-c1-must",
+              "text": "Visitors must open the cabinet."
+            },
+            {
+              "id": "cur-a1-02-c1-may",
+              "text": "Visitors may open the cabinet."
+            }
+          ],
+          "answer": "cur-a1-02-c1-mustnt"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-a1-a2-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-a1-03",
+      "level": "A1",
+      "domain": "reading",
+      "title": {
+        "en": "Find the Key Detail",
+        "vi": "Tìm thông tin chính"
+      },
+      "canDo": {
+        "en": "Read a short public notice and locate its time, place, and one practical condition.",
+        "vi": "Đọc thông báo ngắn và tìm giờ, nơi chốn cùng một điều kiện thực tế."
+      },
+      "prerequisites": [
+        "cur-a1-01",
+        "cur-a1-02"
+      ],
+      "teaching": [
+        {
+          "en": "A notice often puts its time and place near the event name: The swap is in Room 2.",
+          "vi": "Thông báo thường ghi giờ và nơi gần tên sự kiện: Buổi đổi đồ diễn ra ở Phòng 2."
+        },
+        {
+          "en": "Look for words such as bring or only; they tell you what a visitor needs to do.",
+          "vi": "Tìm các từ như bring hoặc only; chúng cho biết khách cần làm gì."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a1-03-l1",
+          "term": "notice",
+          "meaning": {
+            "en": "a short public message with information",
+            "vi": "thông báo ngắn có thông tin công khai"
+          },
+          "example": "A blue notice stood beside the lift.",
+          "family": "noticeboard; notice (verb)"
+        },
+        {
+          "id": "cur-a1-03-l2",
+          "term": "entrance",
+          "meaning": {
+            "en": "a place where people go into a building",
+            "vi": "lối vào tòa nhà"
+          },
+          "example": "The side entrance opens after noon.",
+          "family": "main entrance; enter"
+        },
+        {
+          "id": "cur-a1-03-l3",
+          "term": "bring",
+          "meaning": {
+            "en": "to take something with you to a place",
+            "vi": "mang theo thứ gì đến một nơi"
+          },
+          "example": "Please bring a clean cup for the tasting.",
+          "family": "bring along; brought"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a1-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "When does the map walk begin?",
+          "context": "RIVER PARK WALK. Meet at the east gate on Saturday. The guide leaves at 9:30. Bring water. Children stay with an adult.",
+          "explanation": {
+            "en": "The notice says the guide leaves at 9:30; the gate and water are different details.",
+            "vi": "Thông báo ghi hướng dẫn viên khởi hành lúc 9:30; cổng và nước là chi tiết khác."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-03-p1-nine",
+              "text": "At 9:00"
+            },
+            {
+              "id": "cur-a1-03-p1-half",
+              "text": "At 9:30"
+            },
+            {
+              "id": "cur-a1-03-p1-ten",
+              "text": "At 10:00"
+            }
+          ],
+          "answer": "cur-a1-03-p1-half"
+        },
+        {
+          "id": "cur-a1-03-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Enter the digit after Room: The paper-boat workshop meets in Room ___. (one digit)",
+          "context": "PAPER BOATS. Sunday, 2:00 p.m. Room 4, library entrance. Bring scrap paper.",
+          "explanation": {
+            "en": "The notice gives Room 4; enter the digit shown.",
+            "vi": "Thông báo ghi Phòng 4; nhập chữ số được nêu."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "4"
+          ]
+        },
+        {
+          "id": "cur-a1-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "What should a visitor bring to the repair demonstration?",
+          "context": "REPAIR TABLE. Friday at 3:00 in the west hall. Bring one small broken object. Visitors may watch without booking.",
+          "explanation": {
+            "en": "The notice asks visitors to bring a small broken object; booking is not required.",
+            "vi": "Thông báo yêu cầu khách mang một món đồ nhỏ bị hỏng; không cần đặt chỗ."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-03-c1-object",
+              "text": "A small broken object"
+            },
+            {
+              "id": "cur-a1-03-c1-booking",
+              "text": "A booking confirmation"
+            },
+            {
+              "id": "cur-a1-03-c1-ticket",
+              "text": "A printed ticket"
+            }
+          ],
+          "answer": "cur-a1-03-c1-object"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-a1-04",
+      "level": "A1",
+      "domain": "communication",
+      "title": {
+        "en": "Offer a Hand",
+        "vi": "Đề nghị giúp đỡ"
+      },
+      "canDo": {
+        "en": "Recognise simple offers of help and friendly responses in familiar situations.",
+        "vi": "Nhận biết lời đề nghị giúp đỡ đơn giản và cách đáp thân thiện."
+      },
+      "prerequisites": [
+        "cur-a1-03"
+      ],
+      "teaching": [
+        {
+          "en": "Offer help with Can I help you? or Shall I carry that?",
+          "vi": "Có thể đề nghị giúp bằng Can I help you? hoặc Shall I carry that?"
+        },
+        {
+          "en": "Accept with Yes, please, or decline with No, thank you.",
+          "vi": "Nhận lời bằng Yes, please hoặc từ chối bằng No, thank you."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a1-04-l1",
+          "term": "offer",
+          "meaning": {
+            "en": "to say you are willing to give or do something",
+            "vi": "đề nghị cho hoặc làm điều gì"
+          },
+          "example": "Tariq offered to hold the door.",
+          "family": "offer help; offer (noun)"
+        },
+        {
+          "id": "cur-a1-04-l2",
+          "term": "carry",
+          "meaning": {
+            "en": "to hold and move something",
+            "vi": "mang hoặc xách vật gì"
+          },
+          "example": "We carried the empty boxes to the van.",
+          "family": "carry on; carrier"
+        },
+        {
+          "id": "cur-a1-04-l3",
+          "term": "welcome",
+          "meaning": {
+            "en": "a friendly response to thanks",
+            "vi": "lời đáp thân thiện khi được cảm ơn"
+          },
+          "example": "Her welcome helped the new student relax.",
+          "family": "you're welcome; welcome (verb)"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a1-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which reply politely accepts an offer to carry a box?",
+          "context": "A classmate asks, “Shall I carry one side?” while Bo holds a large box.",
+          "explanation": {
+            "en": "Yes, please accepts the offer; the other replies decline or fail to answer it.",
+            "vi": "Yes, please nhận lời đề nghị; câu khác từ chối hoặc không trả lời."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-04-p1-accept",
+              "text": "Yes, please. That would help."
+            },
+            {
+              "id": "cur-a1-04-p1-decline",
+              "text": "No, thank you. I can manage."
+            },
+            {
+              "id": "cur-a1-04-p1-unrelated",
+              "text": "The box is made of paper."
+            }
+          ],
+          "answer": "cur-a1-04-p1-accept"
+        },
+        {
+          "id": "cur-a1-04-p2",
+          "type": "order",
+          "purpose": "practice",
+          "prompt": "Arrange the exchange as offer, acceptance, and thanks.",
+          "context": "At the library door, one visitor offers to hold the door while the other carries books.",
+          "explanation": {
+            "en": "The helper offers first, the visitor accepts, then thanks the helper.",
+            "vi": "Người giúp đề nghị trước, khách nhận lời rồi cảm ơn."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "tokens": [
+            {
+              "id": "cur-a1-04-p2-offer",
+              "text": "Would you like me to hold the door?"
+            },
+            {
+              "id": "cur-a1-04-p2-accept",
+              "text": "Yes, please."
+            },
+            {
+              "id": "cur-a1-04-p2-thanks",
+              "text": "Thanks for helping."
+            }
+          ],
+          "answer": [
+            "cur-a1-04-p2-offer",
+            "cur-a1-04-p2-accept",
+            "cur-a1-04-p2-thanks"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "cur-a1-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "A friend offers to help find your seat. Choose a friendly acceptance.",
+          "context": "The room is busy and you cannot read the number on your ticket.",
+          "explanation": {
+            "en": "Yes, please accepts the offer and matches the situation.",
+            "vi": "Yes, please nhận lời và phù hợp tình huống."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a1-04-c1-yes",
+              "text": "Yes, please. I can't see the seat number."
+            },
+            {
+              "id": "cur-a1-04-c1-no",
+              "text": "No, I already found it."
+            },
+            {
+              "id": "cur-a1-04-c1-left",
+              "text": "The room is on the left."
+            }
+          ],
+          "answer": "cur-a1-04-c1-yes"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-a2-01",
+      "level": "A2",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Talk About a Change of Plan",
+        "vi": "Nói về thay đổi kế hoạch"
+      },
+      "canDo": {
+        "en": "Understand everyday feeling words and explain a simple reaction to a change.",
+        "vi": "Hiểu từ chỉ cảm xúc thường ngày và giải thích phản ứng trước thay đổi."
+      },
+      "prerequisites": [
+        "cur-a1-04"
+      ],
+      "teaching": [
+        {
+          "en": "A feeling adjective can explain a reaction: I felt relieved when the bus arrived.",
+          "vi": "Tính từ cảm xúc giải thích phản ứng: Tôi thấy nhẹ nhõm khi xe buýt đến."
+        },
+        {
+          "en": "Use an adjective after feel or seem: The new plan seems practical.",
+          "vi": "Dùng tính từ sau feel hoặc seem: Kế hoạch mới có vẻ thiết thực."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a2-01-l1",
+          "term": "relieved",
+          "meaning": {
+            "en": "relaxed because a worry has ended",
+            "vi": "nhẹ nhõm vì nỗi lo đã qua"
+          },
+          "example": "We were relieved when the parcel arrived.",
+          "family": "relief; feel relieved"
+        },
+        {
+          "id": "cur-a2-01-l2",
+          "term": "disappointed",
+          "meaning": {
+            "en": "unhappy because something was not as hoped",
+            "vi": "thất vọng vì sự việc không như mong đợi"
+          },
+          "example": "Nora was disappointed by the cancelled show.",
+          "family": "disappoint; disappointment"
+        },
+        {
+          "id": "cur-a2-01-l3",
+          "term": "practical",
+          "meaning": {
+            "en": "useful and possible in a real situation",
+            "vi": "hữu ích và khả thi trong thực tế"
+          },
+          "example": "A practical route avoids steep steps.",
+          "family": "practically; practical choice"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a2-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "How does Inez feel when the repaired camera arrives before her trip?",
+          "context": "The shop promised a repaired camera by Friday. Inez receives it on Thursday and checks that it works.",
+          "explanation": {
+            "en": "Her worry ends before the trip, so relieved describes her feeling.",
+            "vi": "N?i lo k?t th?c tr??c chuy?n ?i n?n relieved m? t? c?m x?c c?a c?."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020",
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-01-p1-relieved",
+              "text": "relieved"
+            },
+            {
+              "id": "cur-a2-01-p1-disappointed",
+              "text": "disappointed"
+            },
+            {
+              "id": "cur-a2-01-p1-practical",
+              "text": "practical"
+            }
+          ],
+          "answer": "cur-a2-01-p1-relieved"
+        },
+        {
+          "id": "cur-a2-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use the adjective formed from DISAPPOINT: The outdoor film was cancelled, so we felt ___. (one word)",
+          "context": "The organizers announce the cancellation after heavy rain begins.",
+          "explanation": {
+            "en": "Disappointed is the adjective formed from the specified word.",
+            "vi": "Disappointed là tính từ được tạo từ từ đã cho."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "disappointed"
+          ]
+        },
+        {
+          "id": "cur-a2-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which adjective best describes a route that works well in real conditions?",
+          "context": "A planner chooses a route that avoids steep steps, connects to the bus stop, and is open on weekdays.",
+          "explanation": {
+            "en": "Practical fits a route that can be used successfully in the actual situation.",
+            "vi": "Practical ph? h?p v?i tuy?n ???ng c? th? s? d?ng hi?u qu? trong th?c t?."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-01-c1-practical",
+              "text": "practical"
+            },
+            {
+              "id": "cur-a2-01-c1-relieved",
+              "text": "relieved"
+            },
+            {
+              "id": "cur-a2-01-c1-disappointed",
+              "text": "disappointed"
+            }
+          ],
+          "answer": "cur-a2-01-c1-practical"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-a2-02",
+      "level": "A2",
+      "domain": "grammar",
+      "title": {
+        "en": "Advice with Should",
+        "vi": "Đưa lời khuyên với should"
+      },
+      "canDo": {
+        "en": "Use should and shouldn't to give simple advice about everyday problems.",
+        "vi": "Dùng should và shouldn't để đưa lời khuyên đơn giản về vấn đề thường ngày."
+      },
+      "prerequisites": [
+        "cur-a2-01"
+      ],
+      "teaching": [
+        {
+          "en": "Should gives advice: You should save a copy before editing.",
+          "vi": "Should đưa lời khuyên: Bạn nên lưu bản sao trước khi biên tập."
+        },
+        {
+          "en": "Shouldn't advises against an action: You shouldn't leave the door open overnight.",
+          "vi": "Shouldn't khuyên không nên làm: Bạn không nên để cửa mở qua đêm."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a2-02-l1",
+          "term": "advice",
+          "meaning": {
+            "en": "an idea about what someone should do",
+            "vi": "lời khuyên về việc nên làm"
+          },
+          "example": "The guide offers advice for new cyclists.",
+          "family": "advise; a piece of advice"
+        },
+        {
+          "id": "cur-a2-02-l2",
+          "term": "leak",
+          "meaning": {
+            "en": "a hole that lets liquid escape",
+            "vi": "chỗ rò rỉ làm chất lỏng thoát ra"
+          },
+          "example": "A leak left a mark under the sink.",
+          "family": "water leak; leak (verb)"
+        },
+        {
+          "id": "cur-a2-02-l3",
+          "term": "urgent",
+          "meaning": {
+            "en": "needing attention very soon",
+            "vi": "cần được chú ý sớm"
+          },
+          "example": "The urgent message asked for a quick reply.",
+          "family": "urgency; urgently"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a2-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Choose useful advice for a phone that is almost out of battery.",
+          "context": "You will meet a friend in a large station and need the map on your phone.",
+          "explanation": {
+            "en": "Charging the phone before leaving directly addresses the low battery.",
+            "vi": "Sạc điện thoại trước khi đi xử lý trực tiếp tình trạng pin yếu."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-02-p1-charge",
+              "text": "You should charge it before leaving."
+            },
+            {
+              "id": "cur-a2-02-p1-water",
+              "text": "You should put it in water."
+            },
+            {
+              "id": "cur-a2-02-p1-ignore",
+              "text": "You shouldn't check the battery."
+            }
+          ],
+          "answer": "cur-a2-02-p1-charge"
+        },
+        {
+          "id": "cur-a2-02-p2",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Choose the sentence that gives a suggestion rather than stating a requirement.",
+          "context": "A friend asks what to do about a small leak under the sink. It is not an emergency.",
+          "explanation": {
+            "en": "Should presents sensible advice; must sounds like a requirement, while can only states ability.",
+            "vi": "Should ??a l?i khuy?n h?p l?; must n?u y?u c?u c?n can ch? n?i v? kh? n?ng."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "accepted": [
+            "should"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-02-p2-should",
+              "text": "You should tell the caretaker soon."
+            },
+            {
+              "id": "cur-a2-02-p2-must",
+              "text": "You must tell the caretaker soon."
+            },
+            {
+              "id": "cur-a2-02-p2-can",
+              "text": "You can tell the caretaker soon."
+            }
+          ],
+          "answer": "cur-a2-02-p2-should"
+        },
+        {
+          "id": "cur-a2-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "What is appropriate advice for a visitor who has a fever and feels weak?",
+          "context": "The visitor asks what to do before an outdoor activity in hot weather.",
+          "explanation": {
+            "en": "Resting and telling a responsible adult is sensible advice when someone feels unwell.",
+            "vi": "Nghỉ ngơi và báo người lớn có trách nhiệm là lời khuyên hợp lý khi không khỏe."
+          },
+          "sourceIds": [
+            "source-bc-a1-a2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-02-c1-rest",
+              "text": "You should rest and speak with a responsible adult."
+            },
+            {
+              "id": "cur-a2-02-c1-run",
+              "text": "You should run around to feel stronger."
+            },
+            {
+              "id": "cur-a2-02-c1-hide",
+              "text": "You shouldn't tell anyone."
+            }
+          ],
+          "answer": "cur-a2-02-c1-rest"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-a1-a2-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-a2-03",
+      "level": "A2",
+      "domain": "reading",
+      "title": {
+        "en": "Follow Simple Instructions",
+        "vi": "Làm theo hướng dẫn đơn giản"
+      },
+      "canDo": {
+        "en": "Read practical instructions and identify the next step or a condition.",
+        "vi": "Đọc hướng dẫn thực tế và xác định bước tiếp theo hoặc điều kiện."
+      },
+      "prerequisites": [
+        "cur-a2-02"
+      ],
+      "teaching": [
+        {
+          "en": "First, next, and finally mark steps in a process.",
+          "vi": "First, next và finally đánh dấu các bước trong quy trình."
+        },
+        {
+          "en": "A condition can limit an action: If a label is missing, ask the desk for help.",
+          "vi": "Điều kiện có thể giới hạn hành động: Nếu thiếu nhãn, hãy hỏi quầy hỗ trợ."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a2-03-l1",
+          "term": "step",
+          "meaning": {
+            "en": "one action in a process",
+            "vi": "một bước trong quy trình"
+          },
+          "example": "Read each step before switching on the heater.",
+          "family": "step-by-step; take a step"
+        },
+        {
+          "id": "cur-a2-03-l2",
+          "term": "label",
+          "meaning": {
+            "en": "information attached to an object",
+            "vi": "thông tin được gắn trên đồ vật"
+          },
+          "example": "The label shows where the parcel should go.",
+          "family": "labelled; label a box"
+        },
+        {
+          "id": "cur-a2-03-l3",
+          "term": "return",
+          "meaning": {
+            "en": "to bring something back",
+            "vi": "đem vật gì trở lại"
+          },
+          "example": "Please return the key to the desk.",
+          "family": "return desk; return (noun)"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a2-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "What should a visitor do if a return label is missing?",
+          "context": "BOOK DROP: Put books in the blue tray. Check each book has a return label. If one is missing, take the book to the front desk. Do not leave it outside.",
+          "explanation": {
+            "en": "The instruction says to take a book without a label to the desk.",
+            "vi": "Hướng dẫn yêu cầu mang sách thiếu nhãn đến quầy."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-03-p1-desk",
+              "text": "Take it to the front desk."
+            },
+            {
+              "id": "cur-a2-03-p1-tray",
+              "text": "Leave it in the blue tray."
+            },
+            {
+              "id": "cur-a2-03-p1-outside",
+              "text": "Put it outside."
+            }
+          ],
+          "answer": "cur-a2-03-p1-desk"
+        },
+        {
+          "id": "cur-a2-03-p2",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "The jar is clean and dry. What should happen next?",
+          "context": "A card says: First rinse the jar. Next dry it. Finally, place it back on the shelf.",
+          "explanation": {
+            "en": "The last instruction puts the dry jar back on its shelf.",
+            "vi": "H??ng d?n cu?i ??t chi?c l? kh? tr? l?i k?."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "return"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-03-p2-return",
+              "text": "Put it back on its shelf."
+            },
+            {
+              "id": "cur-a2-03-p2-wait",
+              "text": "Leave it beside the sink."
+            },
+            {
+              "id": "cur-a2-03-p2-discard",
+              "text": "Put it in the rubbish bin."
+            }
+          ],
+          "answer": "cur-a2-03-p2-return"
+        },
+        {
+          "id": "cur-a2-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which action follows writing a name on the card?",
+          "context": "1. Choose a book. 2. Write your name on the blue card. 3. Put the card in the basket. 4. Take the book to the table.",
+          "explanation": {
+            "en": "Putting the card in the basket is step three, immediately after writing the name.",
+            "vi": "Bỏ thẻ vào giỏ là bước ba, ngay sau khi ghi tên."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-03-c1-basket",
+              "text": "Put the card in the basket."
+            },
+            {
+              "id": "cur-a2-03-c1-choose",
+              "text": "Choose a different book."
+            },
+            {
+              "id": "cur-a2-03-c1-table",
+              "text": "Take the book to the table."
+            }
+          ],
+          "answer": "cur-a2-03-c1-basket"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-a2-04",
+      "level": "A2",
+      "domain": "communication",
+      "title": {
+        "en": "Check What You Heard",
+        "vi": "Xác nhận điều mình nghe"
+      },
+      "canDo": {
+        "en": "Ask someone to repeat or clarify a detail and confirm a time or place.",
+        "vi": "Yêu cầu người khác nhắc lại hoặc làm rõ chi tiết, rồi xác nhận giờ hoặc nơi."
+      },
+      "prerequisites": [
+        "cur-a2-03"
+      ],
+      "teaching": [
+        {
+          "en": "Ask for repetition with Could you say that again, please?",
+          "vi": "Yêu cầu nhắc lại bằng Could you say that again, please?"
+        },
+        {
+          "en": "Check a detail by repeating it: So the room is 12, not 20?",
+          "vi": "Xác nhận chi tiết bằng cách nhắc lại: Vậy là phòng 12, không phải 20 phải không?"
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-a2-04-l1",
+          "term": "confirm",
+          "meaning": {
+            "en": "to check that something is correct",
+            "vi": "xác nhận điều gì đúng"
+          },
+          "example": "Please confirm the new meeting place.",
+          "family": "confirmation; confirm a time"
+        },
+        {
+          "id": "cur-a2-04-l2",
+          "term": "repeat",
+          "meaning": {
+            "en": "to say or do something again",
+            "vi": "nói hoặc làm điều gì lại"
+          },
+          "example": "Could you repeat the final number?",
+          "family": "repetition; repeat a detail"
+        },
+        {
+          "id": "cur-a2-04-l3",
+          "term": "detail",
+          "meaning": {
+            "en": "one small piece of information",
+            "vi": "một thông tin nhỏ, cụ thể"
+          },
+          "example": "The start time is an important detail.",
+          "family": "detailed; in detail"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-a2-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which question politely checks that the meeting is Tuesday rather than Thursday?",
+          "context": "A volunteer heard the day unclearly while a room was noisy.",
+          "explanation": {
+            "en": "Repeating both alternatives invites a clear confirmation without guessing.",
+            "vi": "Nhắc lại cả hai lựa chọn giúp xác nhận rõ ràng mà không phải đoán."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-04-p1-check",
+              "text": "So the meeting is Tuesday, not Thursday?"
+            },
+            {
+              "id": "cur-a2-04-p1-guess",
+              "text": "It must be Thursday."
+            },
+            {
+              "id": "cur-a2-04-p1-change",
+              "text": "Let's move it to Friday."
+            }
+          ],
+          "answer": "cur-a2-04-p1-check"
+        },
+        {
+          "id": "cur-a2-04-p2",
+          "type": "order",
+          "purpose": "practice",
+          "prompt": "Arrange the exchange as unclear detail, request to repeat, then confirmation.",
+          "context": "Two classmates are checking where to collect a printed project.",
+          "explanation": {
+            "en": "The listener names what was unclear, asks politely for repetition, then confirms the location.",
+            "vi": "Người nghe nêu điểm chưa rõ, lịch sự yêu cầu nhắc lại rồi xác nhận địa điểm."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "tokens": [
+            {
+              "id": "cur-a2-04-p2-unclear",
+              "text": "I didn't catch the building number."
+            },
+            {
+              "id": "cur-a2-04-p2-repeat",
+              "text": "Could you say it once more, please?"
+            },
+            {
+              "id": "cur-a2-04-p2-confirm",
+              "text": "Thanks, Building 6."
+            }
+          ],
+          "answer": [
+            "cur-a2-04-p2-unclear",
+            "cur-a2-04-p2-repeat",
+            "cur-a2-04-p2-confirm"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "cur-a2-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "You did not hear a room number. Which reply gets the detail clearly?",
+          "context": "A classmate says the workshop is in Room 18, but a cart makes the number hard to hear.",
+          "explanation": {
+            "en": "Asking the speaker to repeat the number solves the problem without guessing.",
+            "vi": "Yêu cầu người nói nhắc lại số phòng giải quyết vấn đề mà không đoán."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-a2-04-c1-repeat",
+              "text": "Sorry, could you repeat the room number?"
+            },
+            {
+              "id": "cur-a2-04-c1-guess",
+              "text": "I think you said Room 80."
+            },
+            {
+              "id": "cur-a2-04-c1-switch",
+              "text": "Let's use another room."
+            }
+          ],
+          "answer": "cur-a2-04-c1-repeat"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b1-01",
+      "level": "B1",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Words for Shared Projects",
+        "vi": "Từ ngữ cho dự án chung"
+      },
+      "canDo": {
+        "en": "Infer common project vocabulary from context and use word families in collaborative settings.",
+        "vi": "Đoán từ vựng dự án qua ngữ cảnh và dùng họ từ trong tình huống cộng tác."
+      },
+      "prerequisites": [
+        "cur-a2-04"
+      ],
+      "teaching": [
+        {
+          "en": "An ending can signal a noun: improve becomes improvement, the process or result of improving.",
+          "vi": "Hậu tố có thể báo hiệu danh từ: improve thành improvement, quá trình hoặc kết quả cải thiện."
+        },
+        {
+          "en": "A collocation is a familiar word pairing: take responsibility, not do responsibility.",
+          "vi": "Collocation là kết hợp từ quen thuộc: take responsibility, không dùng do responsibility."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b1-01-l1",
+          "term": "allocate",
+          "meaning": {
+            "en": "to decide how something should be shared or used",
+            "vi": "quyết định phân bổ hoặc sử dụng"
+          },
+          "example": "The coordinator allocated time for setup.",
+          "family": "allocation; allocate funds"
+        },
+        {
+          "id": "cur-b1-01-l2",
+          "term": "contribution",
+          "meaning": {
+            "en": "something given or done to help a result",
+            "vi": "đóng góp giúp đạt kết quả"
+          },
+          "example": "Each volunteer made a useful contribution.",
+          "family": "contribute; make a contribution"
+        },
+        {
+          "id": "cur-b1-01-l3",
+          "term": "reliable",
+          "meaning": {
+            "en": "able to be trusted to work well",
+            "vi": "đáng tin cậy, hoạt động ổn định"
+          },
+          "example": "A reliable timer kept sessions on schedule.",
+          "family": "reliability; reliably"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b1-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "What does allocated mean in the project note?",
+          "context": "The team allocated one afternoon to test labels, leaving other days for assembly.",
+          "explanation": {
+            "en": "Allocated means assigned or set aside a specific amount of time.",
+            "vi": "Allocated nghĩa là phân công hoặc dành riêng một khoảng thời gian."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-01-p1-assigned",
+              "text": "Set aside for a particular use"
+            },
+            {
+              "id": "cur-b1-01-p1-cancelled",
+              "text": "Removed from the plan"
+            },
+            {
+              "id": "cur-b1-01-p1-borrowed",
+              "text": "Taken temporarily from someone else"
+            }
+          ],
+          "answer": "cur-b1-01-p1-assigned"
+        },
+        {
+          "id": "cur-b1-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use one noun formed from CONTRIBUTE: Everyone's small ___ helped finish the shared garden sign.",
+          "context": "Several neighbours each painted one letter before the opening.",
+          "explanation": {
+            "en": "Contribution names what people give or do to help a shared result.",
+            "vi": "Contribution gọi tên điều mọi người đóng góp để đạt kết quả chung."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "contribution"
+          ]
+        },
+        {
+          "id": "cur-b1-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which word completes the update?",
+          "context": "Mina checked every measurement before ordering materials. The group says her careful work was especially ___.",
+          "explanation": {
+            "en": "Reliable fits work that can be trusted; the other options refer to resource division or giving help.",
+            "vi": "Reliable mô tả công việc có thể tin cậy; từ khác nói về phân bổ hoặc đóng góp."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-01-c1-reliable",
+              "text": "reliable"
+            },
+            {
+              "id": "cur-b1-01-c1-allocated",
+              "text": "allocated"
+            },
+            {
+              "id": "cur-b1-01-c1-contribution",
+              "text": "contribution"
+            }
+          ],
+          "answer": "cur-b1-01-c1-reliable"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-b1-02",
+      "level": "B1",
+      "domain": "grammar",
+      "title": {
+        "en": "Choose Gerunds and Infinitives",
+        "vi": "Chọn dạng -ing và động từ nguyên mẫu"
+      },
+      "canDo": {
+        "en": "Choose common verb patterns with a gerund or an infinitive.",
+        "vi": "Chọn cấu trúc động từ thông dụng với danh động từ hoặc nguyên mẫu."
+      },
+      "prerequisites": [
+        "cur-b1-01"
+      ],
+      "teaching": [
+        {
+          "en": "Some verbs take an -ing form: They avoided using the old entrance.",
+          "vi": "Một số động từ theo sau bởi dạng -ing: Họ tránh dùng lối vào cũ."
+        },
+        {
+          "en": "Some verbs take to plus a verb: We decided to move the meeting.",
+          "vi": "Một số động từ theo sau bởi to và động từ: Chúng tôi quyết định dời cuộc họp."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b1-02-l1",
+          "term": "avoid",
+          "meaning": {
+            "en": "to stay away from something or not do it",
+            "vi": "tránh xa hoặc tránh làm điều gì"
+          },
+          "example": "We avoid leaving wet coats in the hall.",
+          "family": "avoid doing"
+        },
+        {
+          "id": "cur-b1-02-l2",
+          "term": "decide",
+          "meaning": {
+            "en": "to choose after considering options",
+            "vi": "quyết định sau khi cân nhắc"
+          },
+          "example": "They decided to visit the studio.",
+          "family": "decision; decide to do"
+        },
+        {
+          "id": "cur-b1-02-l3",
+          "term": "suggest",
+          "meaning": {
+            "en": "to offer an idea for consideration",
+            "vi": "đề xuất ý tưởng để cân nhắc"
+          },
+          "example": "Ravi suggested meeting near the station.",
+          "family": "suggestion; suggest doing"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b1-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Choose the correct form: The club avoided ___ private names on its public notice.",
+          "context": "Members wanted to protect each visitor's privacy.",
+          "explanation": {
+            "en": "Avoid is followed by a gerund in this pattern, so using is suitable.",
+            "vi": "Avoid theo sau bởi danh động từ trong cấu trúc này nên using phù hợp."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-02-p1-using",
+              "text": "using"
+            },
+            {
+              "id": "cur-b1-02-p1-to-use",
+              "text": "to use"
+            },
+            {
+              "id": "cur-b1-02-p1-use",
+              "text": "use"
+            }
+          ],
+          "answer": "cur-b1-02-p1-using"
+        },
+        {
+          "id": "cur-b1-02-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Complete with a form of ARRIVE that fits after decided: We decided ___ early to arrange the chairs. (two words)",
+          "context": "Volunteers want to prepare the room before guests come.",
+          "explanation": {
+            "en": "Decide is followed by to plus the base verb, so the two-word form is to arrive.",
+            "vi": "Decide theo sau b?i to v? ??ng t? nguy?n th?, n?n d?ng hai t? l? to arrive."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "accepted": [
+            "to arrive"
+          ]
+        },
+        {
+          "id": "cur-b1-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which sentence uses the standard pattern with suggest?",
+          "context": "The group is choosing how to collect feedback after the event.",
+          "explanation": {
+            "en": "Suggested is followed by an -ing form here: asking is correct; suggested to ask and suggested ask are not standard in this pattern.",
+            "vi": "Suggested theo sau b?i d?ng -ing ? ??y: asking l? ??ng; suggested to ask v? suggested ask kh?ng chu?n trong c?u tr?c n?y."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-02-c1-ing",
+              "text": "Linh suggested asking visitors for a comment."
+            },
+            {
+              "id": "cur-b1-02-c1-to",
+              "text": "Linh suggested to ask visitors for a comment."
+            },
+            {
+              "id": "cur-b1-02-c1-bare",
+              "text": "Linh suggested ask visitors for a comment."
+            }
+          ],
+          "answer": "cur-b1-02-c1-ing"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-b1-b2-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b1-03",
+      "level": "B1",
+      "domain": "reading",
+      "title": {
+        "en": "Separate Evidence from Advice",
+        "vi": "Phân biệt bằng chứng và lời khuyên"
+      },
+      "canDo": {
+        "en": "Distinguish a reported observation from an inference and a recommendation in a short report.",
+        "vi": "Phân biệt quan sát được báo cáo với suy luận và khuyến nghị trong báo cáo ngắn."
+      },
+      "prerequisites": [
+        "cur-b1-02"
+      ],
+      "teaching": [
+        {
+          "en": "A report can separate what was counted from what a writer thinks it means.",
+          "vi": "Báo cáo có thể tách điều được đếm khỏi ý nghĩa người viết suy ra."
+        },
+        {
+          "en": "Should often introduces advice, not a recorded fact: The team should add a sign.",
+          "vi": "Should thường mở đầu lời khuyên chứ không phải dữ kiện đã ghi: Nhóm nên thêm biển."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b1-03-l1",
+          "term": "record",
+          "meaning": {
+            "en": "to write down information for later checking",
+            "vi": "ghi thông tin để kiểm tra sau"
+          },
+          "example": "The technician recorded each delay.",
+          "family": "record data; record (noun)"
+        },
+        {
+          "id": "cur-b1-03-l2",
+          "term": "infer",
+          "meaning": {
+            "en": "to reach an idea from available details",
+            "vi": "suy ra từ chi tiết sẵn có"
+          },
+          "example": "We can infer the route was busy from the queue.",
+          "family": "inference; infer from"
+        },
+        {
+          "id": "cur-b1-03-l3",
+          "term": "recommend",
+          "meaning": {
+            "en": "to say an action would be helpful",
+            "vi": "đề xuất hành động hữu ích"
+          },
+          "example": "The report recommends a wider waiting area.",
+          "family": "recommendation; recommend doing"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b1-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which statement is directly reported as an observation?",
+          "context": "A volunteer counted 18 visitors between 10 and 11. The note says the hall may have felt crowded and recommends opening a side door.",
+          "explanation": {
+            "en": "Only the visitor count is presented as a recorded observation; crowding is an inference and the door is advice.",
+            "vi": "Chỉ số lượt khách được nêu như quan sát; sự đông đúc là suy luận, còn mở cửa là lời khuyên."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-03-p1-count",
+              "text": "Eighteen visitors arrived between 10 and 11."
+            },
+            {
+              "id": "cur-b1-03-p1-inference",
+              "text": "The hall probably felt crowded."
+            },
+            {
+              "id": "cur-b1-03-p1-advice",
+              "text": "The side door should open next time."
+            }
+          ],
+          "answer": "cur-b1-03-p1-count"
+        },
+        {
+          "id": "cur-b1-03-p2",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which verb means to reach a possible conclusion from a clue?",
+          "context": "The team sees a long queue but has not counted the number of seats visitors need.",
+          "explanation": {
+            "en": "Infer means draw a possible conclusion from available evidence, without claiming it was measured directly.",
+            "vi": "Infer ngh?a l? r?t k?t lu?n c? th? c? t? b?ng ch?ng, kh?ng kh?ng ??nh ?? l? ?i?u ?? ?o tr?c ti?p."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "infer"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-03-p2-infer",
+              "text": "infer"
+            },
+            {
+              "id": "cur-b1-03-p2-record",
+              "text": "record"
+            },
+            {
+              "id": "cur-b1-03-p2-guarantee",
+              "text": "guarantee"
+            }
+          ],
+          "answer": "cur-b1-03-p2-infer"
+        },
+        {
+          "id": "cur-b1-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which sentence is a recommendation rather than a reported fact?",
+          "context": "An event note lists what happened and ends with one proposed future change.",
+          "explanation": {
+            "en": "A recommendation suggests a future action; a count or time reports an observed detail.",
+            "vi": "Recommendation đề xuất hành động tương lai; số lượng hoặc giờ ghi chi tiết quan sát."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-03-c1-advice",
+              "text": "The team should place the sign nearer the entrance."
+            },
+            {
+              "id": "cur-b1-03-c1-count",
+              "text": "Three people arrived before noon."
+            },
+            {
+              "id": "cur-b1-03-c1-time",
+              "text": "The session ended at 4:15."
+            }
+          ],
+          "answer": "cur-b1-03-c1-advice"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b1-04",
+      "level": "B1",
+      "domain": "communication",
+      "title": {
+        "en": "Give Useful Feedback",
+        "vi": "Đưa ra phản hồi hữu ích"
+      },
+      "canDo": {
+        "en": "Give specific, respectful feedback and suggest one workable next step.",
+        "vi": "Đưa phản hồi cụ thể, tôn trọng và đề xuất bước tiếp theo khả thi."
+      },
+      "prerequisites": [
+        "cur-b1-03"
+      ],
+      "teaching": [
+        {
+          "en": "Name a detail before its effect: The headings are clear, so I found the sections quickly.",
+          "vi": "Nêu chi tiết trước tác động: Tiêu đề rõ nên tôi tìm phần nhanh."
+        },
+        {
+          "en": "Perhaps and could can make a suggestion collaborative: Perhaps we could test a shorter title.",
+          "vi": "Perhaps và could giúp lời đề xuất mang tính hợp tác."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b1-04-l1",
+          "term": "specific",
+          "meaning": {
+            "en": "clear and exact rather than general",
+            "vi": "cụ thể, chính xác thay vì chung chung"
+          },
+          "example": "A specific note mentioned paragraph three.",
+          "family": "specifically; specific detail"
+        },
+        {
+          "id": "cur-b1-04-l2",
+          "term": "revise",
+          "meaning": {
+            "en": "to change something to improve it",
+            "vi": "sửa đổi để cải thiện"
+          },
+          "example": "The author revised the opening.",
+          "family": "revision; revise a draft"
+        },
+        {
+          "id": "cur-b1-04-l3",
+          "term": "constructive",
+          "meaning": {
+            "en": "helpful for improving a result",
+            "vi": "mang tính xây dựng"
+          },
+          "example": "The designer welcomed constructive comments.",
+          "family": "constructively; constructive feedback"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b1-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which reply gives specific feedback and a useful next step?",
+          "context": "A teammate asks how readers used a draft guide during a trial.",
+          "explanation": {
+            "en": "It identifies a precise feature and proposes a test, making the feedback actionable and respectful.",
+            "vi": "Câu trả lời nêu đặc điểm cụ thể và đề xuất thử nghiệm nên có thể thực hiện và tôn trọng."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-04-p1-useful",
+              "text": "The short headings helped me scan it; could we test them on page two?"
+            },
+            {
+              "id": "cur-b1-04-p1-vague",
+              "text": "It was fine, I guess."
+            },
+            {
+              "id": "cur-b1-04-p1-personal",
+              "text": "You are not good at making guides."
+            }
+          ],
+          "answer": "cur-b1-04-p1-useful"
+        },
+        {
+          "id": "cur-b1-04-p2",
+          "type": "order",
+          "purpose": "practice",
+          "prompt": "Arrange the feedback as observation, effect, then suggestion.",
+          "context": "The team wants to comment on a crowded instruction card without blaming its writer.",
+          "explanation": {
+            "en": "Start with a visible feature, explain its effect, then offer a practical adjustment.",
+            "vi": "Bắt đầu bằng đặc điểm quan sát được, giải thích tác động rồi đề xuất điều chỉnh."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "tokens": [
+            {
+              "id": "cur-b1-04-p2-observation",
+              "text": "The card has six instructions in one block."
+            },
+            {
+              "id": "cur-b1-04-p2-effect",
+              "text": "I had to reread it to find the first step."
+            },
+            {
+              "id": "cur-b1-04-p2-suggestion",
+              "text": "Could we add short headings?"
+            }
+          ],
+          "answer": [
+            "cur-b1-04-p2-observation",
+            "cur-b1-04-p2-effect",
+            "cur-b1-04-p2-suggestion"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "cur-b1-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Choose the most constructive reply about a revised schedule.",
+          "context": "The times are clear, but the final location appears only in a footnote.",
+          "explanation": {
+            "en": "The reply names what works and gives one concrete suggestion without judging the writer.",
+            "vi": "Câu trả lời nêu điểm hiệu quả và đưa đề xuất cụ thể mà không phán xét người viết."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b1-04-c1-constructive",
+              "text": "The times are easy to scan; could we move the final location into the main list?"
+            },
+            {
+              "id": "cur-b1-04-c1-blunt",
+              "text": "You hid the important detail again."
+            },
+            {
+              "id": "cur-b1-04-c1-empty",
+              "text": "Everything is perfect."
+            }
+          ],
+          "answer": "cur-b1-04-c1-constructive"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b2-01",
+      "level": "B2",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Collocations in Careful Debate",
+        "vi": "Collocation trong tranh luận thận trọng"
+      },
+      "canDo": {
+        "en": "Interpret precise collocations and notice how they frame disagreement.",
+        "vi": "Diễn giải collocation chính xác và nhận ra cách chúng định hình bất đồng."
+      },
+      "prerequisites": [
+        "cur-b1-04"
+      ],
+      "teaching": [
+        {
+          "en": "A collocation pairs words speakers commonly use: raise an objection, not lift an objection.",
+          "vi": "Collocation ghép các từ thường dùng cùng nhau: raise an objection, không dùng lift an objection."
+        },
+        {
+          "en": "Acknowledge a concern recognises it without necessarily accepting the whole argument.",
+          "vi": "Acknowledge a concern ghi nhận mối lo mà không nhất thiết đồng ý toàn bộ lập luận."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b2-01-l1",
+          "term": "concession",
+          "meaning": {
+            "en": "a point accepted while making another argument",
+            "vi": "điểm được chấp nhận khi vẫn nêu lập luận khác"
+          },
+          "example": "Her concession that the sample was small made the claim careful.",
+          "family": "concede; make a concession"
+        },
+        {
+          "id": "cur-b2-01-l2",
+          "term": "substantiate",
+          "meaning": {
+            "en": "to support a statement with evidence",
+            "vi": "củng cố nhận định bằng bằng chứng"
+          },
+          "example": "The team substantiated its estimate with dated records.",
+          "family": "substantiation; substantiate a claim"
+        },
+        {
+          "id": "cur-b2-01-l3",
+          "term": "compromise",
+          "meaning": {
+            "en": "an agreement in which each side accepts less",
+            "vi": "thỏa hiệp mỗi bên chấp nhận ít hơn"
+          },
+          "example": "The compromise kept the deadline but reduced the scope.",
+          "family": "compromise (verb); reach a compromise"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b2-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which collocation means support a claim with evidence?",
+          "context": "A reviewer asks a team to show records before accepting its estimate.",
+          "explanation": {
+            "en": "Substantiate a claim means provide evidence that supports it.",
+            "vi": "Substantiate a claim nghĩa là đưa bằng chứng hỗ trợ nhận định."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-01-p1-support",
+              "text": "substantiate a claim"
+            },
+            {
+              "id": "cur-b2-01-p1-agree",
+              "text": "reach a compromise"
+            },
+            {
+              "id": "cur-b2-01-p1-accept",
+              "text": "make a concession"
+            }
+          ],
+          "answer": "cur-b2-01-p1-support"
+        },
+        {
+          "id": "cur-b2-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use SUBSTANTIATE unchanged: The analyst must ___ the estimate with dated records. (one word)",
+          "context": "An editor asks for evidence that can be checked against the reported number.",
+          "explanation": {
+            "en": "Substantiate fits because dated records are evidence for an estimate.",
+            "vi": "Substantiate phù hợp vì hồ sơ ghi ngày là bằng chứng cho ước tính."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "substantiate"
+          ]
+        },
+        {
+          "id": "cur-b2-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "The group accepts its sample was small but still argues its pattern matters. What did it make?",
+          "context": "It acknowledges one limitation before explaining why the overall trend deserves attention.",
+          "explanation": {
+            "en": "This is a concession: accepting a point that qualifies the argument without abandoning it.",
+            "vi": "Đây là concession: chấp nhận điểm giới hạn lập luận mà không từ bỏ lập luận."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-01-c1-concession",
+              "text": "A concession"
+            },
+            {
+              "id": "cur-b2-01-c1-compromise",
+              "text": "A compromise"
+            },
+            {
+              "id": "cur-b2-01-c1-support",
+              "text": "Substantiation"
+            }
+          ],
+          "answer": "cur-b2-01-c1-concession"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-b2-02",
+      "level": "B2",
+      "domain": "grammar",
+      "title": {
+        "en": "Make Deductions from Evidence",
+        "vi": "Suy luận từ bằng chứng"
+      },
+      "canDo": {
+        "en": "Use modal perfect forms to express different degrees of certainty about a past event.",
+        "vi": "Dùng modal perfect để diễn tả các mức độ chắc chắn khác nhau về sự việc quá khứ."
+      },
+      "prerequisites": [
+        "cur-b2-01"
+      ],
+      "teaching": [
+        {
+          "en": "Must have plus a past participle expresses a strong deduction: Someone must have arrived.",
+          "vi": "Must have cộng phân từ hai diễn tả suy luận chắc: Hẳn ai đó đã đến."
+        },
+        {
+          "en": "Might have leaves a past explanation possible rather than certain: It might have gone to reception.",
+          "vi": "Might have để ngỏ lời giải thích có thể xảy ra: Có thể nó đã đến quầy lễ tân."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b2-02-l1",
+          "term": "deduction",
+          "meaning": {
+            "en": "a conclusion reached from clues",
+            "vi": "kết luận rút ra từ manh mối"
+          },
+          "example": "Her deduction matched the camera time.",
+          "family": "deduce; make a deduction"
+        },
+        {
+          "id": "cur-b2-02-l2",
+          "term": "plausible",
+          "meaning": {
+            "en": "seeming reasonable though not proved",
+            "vi": "có vẻ hợp lý nhưng chưa chứng minh"
+          },
+          "example": "A plausible account still needs checking.",
+          "family": "plausibility; plausible explanation"
+        },
+        {
+          "id": "cur-b2-02-l3",
+          "term": "trace",
+          "meaning": {
+            "en": "a small sign something happened",
+            "vi": "dấu vết nhỏ cho thấy sự việc xảy ra"
+          },
+          "example": "A trace of blue paint remained on the crate.",
+          "family": "trace (verb); trace evidence"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b2-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which form gives a likely but uncertain explanation for a missed delivery?",
+          "context": "The parcel left the depot, but no arrival scan appears and the driver has not replied.",
+          "explanation": {
+            "en": "Might have been delivered keeps the explanation possible while noting missing confirmation.",
+            "vi": "Might have been delivered giữ lời giải thích ở mức có thể xảy ra khi chưa có xác nhận."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-02-p1-possible",
+              "text": "It might have been delivered to reception."
+            },
+            {
+              "id": "cur-b2-02-p1-certain",
+              "text": "It must have been delivered to reception."
+            },
+            {
+              "id": "cur-b2-02-p1-impossible",
+              "text": "It can't have been delivered anywhere."
+            }
+          ],
+          "answer": "cur-b2-02-p1-possible"
+        },
+        {
+          "id": "cur-b2-02-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Enter the three-word modal perfect MUST HAVE plus the past participle of FINISH: The caretaker ___ cleaning earlier.",
+          "context": "The dry floor and shut windows strongly suggest the task was completed before now.",
+          "explanation": {
+            "en": "Must have finished expresses a confident deduction about an earlier completed action.",
+            "vi": "Must have finished diễn tả suy luận khá chắc về hành động đã hoàn tất trước đó."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "accepted": [
+            "must have finished"
+          ]
+        },
+        {
+          "id": "cur-b2-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "A key is still sealed in its packet and remains unused. Which deduction fits?",
+          "context": "The specific key remains sealed inside a tamper-evident packet, and the register shows that this key has not been removed.",
+          "explanation": {
+            "en": "Can't have been used expresses the strong conclusion that this key was not used.",
+            "vi": "Can't have been used diễn tả kết luận chắc rằng chìa khóa này chưa được dùng."
+          },
+          "sourceIds": [
+            "source-bc-b1-b2-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-02-c1-negative",
+              "text": "The key can't have been used."
+            },
+            {
+              "id": "cur-b2-02-c1-possible",
+              "text": "The key might have been used."
+            },
+            {
+              "id": "cur-b2-02-c1-positive",
+              "text": "The key must have been used."
+            }
+          ],
+          "answer": "cur-b2-02-c1-negative"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-b1-b2-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b2-03",
+      "level": "B2",
+      "domain": "reading",
+      "title": {
+        "en": "Read the Exception, Not Just the Rule",
+        "vi": "Đọc ngoại lệ chứ không chỉ quy tắc"
+      },
+      "canDo": {
+        "en": "Interpret a policy by connecting its general rule with an exception and identifying who qualifies.",
+        "vi": "Diễn giải quy định bằng cách nối quy tắc chung với ngoại lệ và xác định ai đủ điều kiện."
+      },
+      "prerequisites": [
+        "cur-b2-02"
+      ],
+      "teaching": [
+        {
+          "en": "Unless and except can narrow a general rule: Returns are accepted unless a seal is broken.",
+          "vi": "Unless và except có thể giới hạn quy tắc chung: nhận hàng trả trừ khi niêm phong bị mở."
+        },
+        {
+          "en": "Check exactly which condition triggers an exception; it does not replace the whole rule.",
+          "vi": "Xác định đúng điều kiện kích hoạt ngoại lệ; ngoại lệ không thay thế toàn bộ quy tắc."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b2-03-l1",
+          "term": "eligible",
+          "meaning": {
+            "en": "able or allowed under stated rules",
+            "vi": "đủ điều kiện hoặc được phép theo quy định"
+          },
+          "example": "Registered members are eligible for the discount.",
+          "family": "eligibility; eligible for"
+        },
+        {
+          "id": "cur-b2-03-l2",
+          "term": "exception",
+          "meaning": {
+            "en": "a case that does not follow the usual rule",
+            "vi": "trường hợp không theo quy tắc thông thường"
+          },
+          "example": "The late bus is an exception to the schedule.",
+          "family": "except; make an exception"
+        },
+        {
+          "id": "cur-b2-03-l3",
+          "term": "refund",
+          "meaning": {
+            "en": "money returned after a purchase",
+            "vi": "tiền được hoàn lại sau khi mua"
+          },
+          "example": "The shop issued a refund for the damaged part.",
+          "family": "refundable; issue a refund"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b2-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which customer can exchange a broken-seal item under the notice?",
+          "context": "RETURNS: Bring a receipt within 14 days. Unopened items may be refunded. A broken-seal item can be exchanged only if damage was recorded at delivery. Sale items are not eligible for refunds.",
+          "explanation": {
+            "en": "The notice allows an exchange only when damage to a broken seal was recorded at delivery.",
+            "vi": "Thông báo chỉ cho phép đổi hàng nếu hư hại niêm phong được ghi lúc giao."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-03-p1-recorded",
+              "text": "Damage was recorded at delivery."
+            },
+            {
+              "id": "cur-b2-03-p1-opened",
+              "text": "The customer opened the seal at home."
+            },
+            {
+              "id": "cur-b2-03-p1-sale",
+              "text": "The item was on sale with no damage record."
+            }
+          ],
+          "answer": "cur-b2-03-p1-recorded"
+        },
+        {
+          "id": "cur-b2-03-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Enter the number as digits: A standard return must be made within ___ days.",
+          "context": "The notice states the ordinary receipt deadline.",
+          "explanation": {
+            "en": "The standard return period is 14 days; the exception concerns damaged seals.",
+            "vi": "Thời hạn trả hàng thông thường là 14 ngày; ngoại lệ nói về niêm phong hỏng."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "14"
+          ]
+        },
+        {
+          "id": "cur-b2-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "A sealed item is returned after 10 days with its receipt. What does the notice allow?",
+          "context": "It is not a sale item and its seal is intact.",
+          "explanation": {
+            "en": "An unopened item may be refunded within the 14-day period, so it meets the rule.",
+            "vi": "Hàng chưa mở có thể hoàn tiền trong 14 ngày nên đáp ứng quy tắc."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-03-c1-refund",
+              "text": "It may be refunded."
+            },
+            {
+              "id": "cur-b2-03-c1-never",
+              "text": "It cannot be returned."
+            },
+            {
+              "id": "cur-b2-03-c1-exchange",
+              "text": "It can only be exchanged."
+            }
+          ],
+          "answer": "cur-b2-03-c1-refund"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-b2-04",
+      "level": "B2",
+      "domain": "communication",
+      "title": {
+        "en": "Negotiate a Workable Plan",
+        "vi": "Thương lượng kế hoạch khả thi"
+      },
+      "canDo": {
+        "en": "State a preference, acknowledge a constraint and negotiate a practical next step.",
+        "vi": "Nêu ưu tiên, ghi nhận ràng buộc và thương lượng bước tiếp theo thiết thực."
+      },
+      "prerequisites": [
+        "cur-b2-03"
+      ],
+      "teaching": [
+        {
+          "en": "Acknowledge the other concern before proposing a solution: I see why access matters.",
+          "vi": "Hãy ghi nhận mối lo của người kia trước khi đề xuất giải pháp: Tôi hiểu vì sao lối đi quan trọng."
+        },
+        {
+          "en": "A compromise names what each side can accept and what happens next.",
+          "vi": "Thỏa hiệp nêu điều mỗi bên có thể chấp nhận và bước tiếp theo."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-b2-04-l1",
+          "term": "constraint",
+          "meaning": {
+            "en": "a limit affecting what can be done",
+            "vi": "ràng buộc giới hạn điều có thể làm"
+          },
+          "example": "The budget constrains the display design.",
+          "family": "constrain; time constraint"
+        },
+        {
+          "id": "cur-b2-04-l2",
+          "term": "priority",
+          "meaning": {
+            "en": "something considered more important than others",
+            "vi": "điều được ưu tiên hơn việc khác"
+          },
+          "example": "Safety remained the first priority.",
+          "family": "prioritise; high priority"
+        },
+        {
+          "id": "cur-b2-04-l3",
+          "term": "feasible",
+          "meaning": {
+            "en": "possible and practical to do",
+            "vi": "có thể thực hiện và thiết thực"
+          },
+          "example": "A shorter trial is feasible this month.",
+          "family": "feasibility; feasible plan"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-b2-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which reply recognises both quiet and access needs?",
+          "context": "One staff member needs quiet for a safety briefing; another wants visitors to keep using the main hall.",
+          "explanation": {
+            "en": "The reply acknowledges both priorities and suggests a defined compromise.",
+            "vi": "Câu trả lời ghi nhận hai ưu tiên và đề xuất thỏa hiệp cụ thể."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-04-p1-balance",
+              "text": "I see both needs; could we use the side room for 20 minutes?"
+            },
+            {
+              "id": "cur-b2-04-p1-dismiss",
+              "text": "The briefing doesn't matter; keep the hall open."
+            },
+            {
+              "id": "cur-b2-04-p1-cancel",
+              "text": "Let's cancel without checking options."
+            }
+          ],
+          "answer": "cur-b2-04-p1-balance"
+        },
+        {
+          "id": "cur-b2-04-p2",
+          "type": "order",
+          "purpose": "practice",
+          "prompt": "Arrange the negotiation as shared goal, constraint, then proposal.",
+          "context": "A team wants a display ready for opening day but has one free evening.",
+          "explanation": {
+            "en": "State the common goal, explain the time limit, then offer a bounded plan.",
+            "vi": "Nêu mục tiêu chung, giải thích giới hạn thời gian rồi đề xuất kế hoạch có giới hạn."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "tokens": [
+            {
+              "id": "cur-b2-04-p2-goal",
+              "text": "We all want the display ready for opening day."
+            },
+            {
+              "id": "cur-b2-04-p2-limit",
+              "text": "The room is available for one evening."
+            },
+            {
+              "id": "cur-b2-04-p2-plan",
+              "text": "Could we assemble the frame first and add labels tomorrow?"
+            }
+          ],
+          "answer": [
+            "cur-b2-04-p2-goal",
+            "cur-b2-04-p2-limit",
+            "cur-b2-04-p2-plan"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "cur-b2-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Choose a balanced response to a request for a full redesign two days before deadline.",
+          "context": "The layout works except for one confusing section, and only two days remain.",
+          "explanation": {
+            "en": "It recognises what works and proposes a focused change within the time limit.",
+            "vi": "Câu trả lời ghi nhận phần hiệu quả và đề xuất sửa trọng tâm trong giới hạn thời gian."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-b2-04-c1-focused",
+              "text": "The layout works overall; could we revise the confusing section first?"
+            },
+            {
+              "id": "cur-b2-04-c1-absolute",
+              "text": "Your plan is impossible and careless."
+            },
+            {
+              "id": "cur-b2-04-c1-unbounded",
+              "text": "Let's redesign everything tonight."
+            }
+          ],
+          "answer": "cur-b2-04-c1-focused"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c1-01",
+      "level": "C1",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Choose the Exact Evaluative Verb",
+        "vi": "Chọn động từ đánh giá chính xác"
+      },
+      "canDo": {
+        "en": "Distinguish evaluative verbs by implication and fit them to a professional context.",
+        "vi": "Phân biệt động từ đánh giá qua hàm ý và chọn từ phù hợp trong ngữ cảnh chuyên môn."
+      },
+      "prerequisites": [
+        "cur-b2-04"
+      ],
+      "teaching": [
+        {
+          "en": "Mitigate suggests making a problem less severe, not removing it altogether.",
+          "vi": "Mitigate gợi ý làm vấn đề bớt nghiêm trọng chứ không xóa bỏ hoàn toàn."
+        },
+        {
+          "en": "Check whether an evaluative verb describes evidence, an effect, or a judgment.",
+          "vi": "Xem động từ đánh giá mô tả bằng chứng, tác động hay nhận định."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c1-01-l1",
+          "term": "mitigate",
+          "meaning": {
+            "en": "to make a harmful effect less severe",
+            "vi": "làm giảm mức độ nghiêm trọng của tác động có hại"
+          },
+          "example": "Shade trees mitigated the heat near the playground.",
+          "family": "mitigation; mitigate risk"
+        },
+        {
+          "id": "cur-c1-01-l2",
+          "term": "exacerbate",
+          "meaning": {
+            "en": "to make a problem worse",
+            "vi": "làm vấn đề nghiêm trọng hơn"
+          },
+          "example": "A blocked drain exacerbated the flooding.",
+          "family": "exacerbation; exacerbate tensions"
+        },
+        {
+          "id": "cur-c1-01-l3",
+          "term": "corroborate",
+          "meaning": {
+            "en": "to support an account with separate evidence",
+            "vi": "củng cố lời kể bằng bằng chứng riêng biệt"
+          },
+          "example": "A second witness corroborated the time in the log.",
+          "family": "corroboration; corroborate an account"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c1-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which verb describes what shade did to the heat problem?",
+          "context": "A report says the shaded waiting area was cooler than the nearby pavement, though temperatures stayed high.",
+          "explanation": {
+            "en": "Mitigate means lessen the severity of a problem; it does not mean the heat vanished.",
+            "vi": "Mitigate nghĩa là giảm mức độ nghiêm trọng chứ không có nghĩa nắng nóng biến mất."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-01-p1-mitigate",
+              "text": "mitigated"
+            },
+            {
+              "id": "cur-c1-01-p1-exacerbate",
+              "text": "exacerbated"
+            },
+            {
+              "id": "cur-c1-01-p1-corroborate",
+              "text": "corroborated"
+            }
+          ],
+          "answer": "cur-c1-01-p1-mitigate"
+        },
+        {
+          "id": "cur-c1-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use EXACERBATE unchanged: A second broken pump seemed to ___ the water shortage, not ease it. (one word)",
+          "context": "A maintenance note says the shortage grew worse after another pump failed.",
+          "explanation": {
+            "en": "Exacerbate means make an already bad problem more serious.",
+            "vi": "Exacerbate nghĩa là làm vấn đề vốn đã xấu trở nên nghiêm trọng hơn."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "exacerbate"
+          ]
+        },
+        {
+          "id": "cur-c1-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which verb says a second source independently supports a recorded time?",
+          "context": "An auditor checks a dated log against a witness's separate account and finds that they agree.",
+          "explanation": {
+            "en": "Corroborate means provide independent support for an account.",
+            "vi": "Corroborate nghĩa là cung cấp sự hỗ trợ độc lập cho lời kể."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-01-c1-support",
+              "text": "corroborate"
+            },
+            {
+              "id": "cur-c1-01-c1-worsen",
+              "text": "exacerbate"
+            },
+            {
+              "id": "cur-c1-01-c1-lessen",
+              "text": "mitigate"
+            }
+          ],
+          "answer": "cur-c1-01-c1-support"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-c1-02",
+      "level": "C1",
+      "domain": "grammar",
+      "title": {
+        "en": "Keep Formal Lists Parallel",
+        "vi": "Giữ cấu trúc song song trong danh sách trang trọng"
+      },
+      "canDo": {
+        "en": "Edit coordinated and correlative structures so parallel ideas have consistent grammatical form.",
+        "vi": "Biên tập cấu trúc phối hợp để các ý song song có hình thức ngữ pháp nhất quán."
+      },
+      "prerequisites": [
+        "cur-c1-01"
+      ],
+      "teaching": [
+        {
+          "en": "Keep the pair after not only and but also parallel: not only planning but also careful review.",
+          "vi": "Giữ cặp từ sau not only và but also song song: not only planning but also careful review."
+        },
+        {
+          "en": "Balanced lists clarify relationships: The board will assess cost, timing, and access.",
+          "vi": "Danh sách cân đối làm rõ quan hệ: Hội đồng sẽ đánh giá chi phí, thời gian và khả năng tiếp cận."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c1-02-l1",
+          "term": "parallel",
+          "meaning": {
+            "en": "having a similar grammatical form",
+            "vi": "có hình thức ngữ pháp tương ứng"
+          },
+          "example": "The report uses parallel headings for each phase.",
+          "family": "parallelism; parallel structure"
+        },
+        {
+          "id": "cur-c1-02-l2",
+          "term": "coordinate",
+          "meaning": {
+            "en": "to connect items of equal grammatical status",
+            "vi": "nối các thành phần ngang vai trò ngữ pháp"
+          },
+          "example": "The editor coordinated the aims and methods.",
+          "family": "coordination; coordinate clauses"
+        },
+        {
+          "id": "cur-c1-02-l3",
+          "term": "revision",
+          "meaning": {
+            "en": "a change made to improve a text",
+            "vi": "lần sửa đổi nhằm cải thiện văn bản"
+          },
+          "example": "One revision made the list easier to scan.",
+          "family": "revise; final revision"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c1-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Choose the version with matching forms after not only and but also.",
+          "context": "A policy summary lists two reviewer requirements: careful reading and clear documentation.",
+          "explanation": {
+            "en": "Reading carefully and documenting clearly are parallel verb forms.",
+            "vi": "Reading carefully và documenting clearly là hai dạng động từ song song."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-02-p1-parallel",
+              "text": "Reviewers must not only read carefully but also document decisions clearly."
+            },
+            {
+              "id": "cur-c1-02-p1-mixed",
+              "text": "Reviewers must not only careful reading but also document decisions."
+            },
+            {
+              "id": "cur-c1-02-p1-uneven",
+              "text": "Reviewers must not only read carefully but also clear documentation."
+            }
+          ],
+          "answer": "cur-c1-02-p1-parallel"
+        },
+        {
+          "id": "cur-c1-02-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use the noun form of TRANSPARENT: The panel values accuracy and ___. (one word)",
+          "context": "The panel lists two qualities of a public review process.",
+          "explanation": {
+            "en": "Transparency is the noun parallel to accuracy.",
+            "vi": "Transparency là danh từ song song với accuracy."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "accepted": [
+            "transparency"
+          ]
+        },
+        {
+          "id": "cur-c1-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which revision keeps the list grammatically parallel?",
+          "context": "The committee will examine the proposal's cost, its timing, and whether access is fair.",
+          "explanation": {
+            "en": "Cost, timing, and access are all noun phrases; the other option mixes a noun and a clause.",
+            "vi": "Cost, timing và access đều là cụm danh từ; lựa chọn khác trộn danh từ và mệnh đề."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-02-c1-nouns",
+              "text": "The committee will examine cost, timing, and access."
+            },
+            {
+              "id": "cur-c1-02-c1-mixed",
+              "text": "The committee will examine cost, when it happens, and whether access is fair."
+            },
+            {
+              "id": "cur-c1-02-c1-verbs",
+              "text": "The committee will examine costing, it is timely, and fairness."
+            }
+          ],
+          "answer": "cur-c1-02-c1-nouns"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-c1-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c1-03",
+      "level": "C1",
+      "domain": "reading",
+      "title": {
+        "en": "Interpret a Compact Data Brief",
+        "vi": "Diễn giải bản tóm tắt dữ liệu"
+      },
+      "canDo": {
+        "en": "Read a concise note and small table, compare raw totals with percentages, and summarize which quantities match.",
+        "vi": "Đọc ghi chú ngắn và bảng nhỏ, so sánh tổng số với tỷ lệ phần trăm rồi tóm tắt đại lượng nào bằng nhau."
+      },
+      "prerequisites": [
+        "cur-c1-02"
+      ],
+      "teaching": [
+        {
+          "en": "A raw total and a percentage answer different questions; check which comparison the prompt asks for.",
+          "vi": "Tổng số và tỷ lệ phần trăm trả lời câu hỏi khác nhau; hãy xem yêu cầu muốn so sánh điều gì."
+        },
+        {
+          "en": "A percentage describes a share of a stated group, so read the group size and label together.",
+          "vi": "Phần trăm mô tả tỷ lệ của nhóm được nêu, vì vậy hãy đọc cỡ nhóm cùng nhãn dữ liệu."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c1-03-l1",
+          "term": "denominator",
+          "meaning": {
+            "en": "the number below a fraction line showing the total parts",
+            "vi": "số dưới vạch phân số cho biết tổng phần được xét"
+          },
+          "example": "The denominator shows how many invitations were sent.",
+          "family": "common denominator; denominator"
+        },
+        {
+          "id": "cur-c1-03-l2",
+          "term": "proportion",
+          "meaning": {
+            "en": "a share considered in relation to a whole",
+            "vi": "tỷ trọng được xét so với tổng thể"
+          },
+          "example": "The proportion of returned cards stayed steady.",
+          "family": "proportional; in proportion to"
+        },
+        {
+          "id": "cur-c1-03-l3",
+          "term": "tally",
+          "meaning": {
+            "en": "a count or record of items or events",
+            "vi": "số đếm hoặc bản ghi sự việc"
+          },
+          "example": "A tally of completed forms was posted.",
+          "family": "tally (verb); running tally"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c1-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which comparison accurately describes the two sites?",
+          "context": "A staff note says North had more completed forms than South. Table: North 24 completed from 40 invited (60%); South 18 from 30 (60%).",
+          "explanation": {
+            "en": "North has the larger raw count, while both completion rates are 60%.",
+            "vi": "North có tổng số lớn hơn, còn cả hai tỷ lệ hoàn tất đều là 60%."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-03-p1-more-total",
+              "text": "North recorded more completed forms, but the rates were equal."
+            },
+            {
+              "id": "cur-c1-03-p1-same-total",
+              "text": "The sites had the same completed count and rate."
+            },
+            {
+              "id": "cur-c1-03-p1-higher-rate",
+              "text": "North had the higher completion rate."
+            }
+          ],
+          "answer": "cur-c1-03-p1-more-total"
+        },
+        {
+          "id": "cur-c1-03-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Enter the percentage shown for both waves: ___% (digits only; one number).",
+          "context": "Wave 1: 36 completed from 60 invited (60%). Wave 2: 42 completed from 70 invited (60%).",
+          "explanation": {
+            "en": "Both rows show 60%; the count differs but the recorded proportion is the same.",
+            "vi": "Cả hai dòng đều ghi 60%; số lượng khác nhưng tỷ lệ được ghi như nhau."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "60"
+          ]
+        },
+        {
+          "id": "cur-c1-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which reading of the summary is accurate?",
+          "context": "East recorded 15 completed forms from 20 participants (75%). West recorded 30 from 40 (75%). Summary: West had twice as many completions, while the proportion was the same.",
+          "explanation": {
+            "en": "West has twice East's raw count; both percentages are 75%, so the summary distinguishes count from rate.",
+            "vi": "West có tổng số gấp đôi East; cả hai tỷ lệ là 75%, nên tóm tắt phân biệt số lượng với tỷ lệ."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-03-c1-accurate",
+              "text": "West had twice the count; proportions were equal."
+            },
+            {
+              "id": "cur-c1-03-c1-west-rate",
+              "text": "West's completion rate was twice East's."
+            },
+            {
+              "id": "cur-c1-03-c1-same-count",
+              "text": "East and West had the same completed count."
+            }
+          ],
+          "answer": "cur-c1-03-c1-accurate"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c1-04",
+      "level": "C1",
+      "domain": "communication",
+      "title": {
+        "en": "Summarise a Disagreement Fairly",
+        "vi": "Tóm tắt bất đồng công bằng"
+      },
+      "canDo": {
+        "en": "Paraphrase two positions accurately, identify a shared concern, and propose a useful follow-up question.",
+        "vi": "Diễn đạt chính xác hai quan điểm, xác định mối quan tâm chung và đề xuất câu hỏi tiếp theo hữu ích."
+      },
+      "prerequisites": [
+        "cur-c1-03"
+      ],
+      "teaching": [
+        {
+          "en": "Preserve both positions before offering your view: one team prioritises access; another prioritises quiet.",
+          "vi": "Giữ hai quan điểm trước khi nêu ý kiến: một nhóm ưu tiên tiếp cận, nhóm kia ưu tiên yên tĩnh."
+        },
+        {
+          "en": "A neutral follow-up asks what evidence or condition would help the group decide.",
+          "vi": "Câu hỏi trung lập hỏi bằng chứng hoặc điều kiện nào giúp nhóm quyết định."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c1-04-l1",
+          "term": "paraphrase",
+          "meaning": {
+            "en": "to express the same idea in different words",
+            "vi": "diễn đạt cùng ý bằng từ khác"
+          },
+          "example": "She paraphrased the concern before replying.",
+          "family": "paraphrasing; paraphrase a point"
+        },
+        {
+          "id": "cur-c1-04-l2",
+          "term": "shared",
+          "meaning": {
+            "en": "held or experienced by more than one person",
+            "vi": "được nhiều người cùng có hoặc trải nghiệm"
+          },
+          "example": "They found a shared interest in route safety.",
+          "family": "share; shared goal"
+        },
+        {
+          "id": "cur-c1-04-l3",
+          "term": "clarify",
+          "meaning": {
+            "en": "to make an idea easier to understand",
+            "vi": "làm cho ý tưởng dễ hiểu hơn"
+          },
+          "example": "A short question clarified the deadline.",
+          "family": "clarification; clarify a point"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c1-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which response fairly represents both colleagues and asks a useful question?",
+          "context": "One colleague wants every meeting recorded; another worries this could discourage candid discussion. Both want decisions to be clear.",
+          "explanation": {
+            "en": "It preserves each concern, names the shared aim, then asks what record could meet it.",
+            "vi": "Câu trả lời giữ mối lo của mỗi người, nêu mục tiêu chung rồi hỏi cách ghi nhận phù hợp."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-04-p1-fair",
+              "text": "You want a full record; you want open discussion. What shorter record could keep decisions clear?"
+            },
+            {
+              "id": "cur-c1-04-p1-one-sided",
+              "text": "Recording is obviously the only sensible choice."
+            },
+            {
+              "id": "cur-c1-04-p1-distorted",
+              "text": "Neither of you cares about clear decisions."
+            }
+          ],
+          "answer": "cur-c1-04-p1-fair"
+        },
+        {
+          "id": "cur-c1-04-p2",
+          "type": "order",
+          "purpose": "practice",
+          "prompt": "Arrange a neutral facilitation turn: position A, position B, shared question.",
+          "context": "A planning group differs over a fixed timetable versus a flexible weekly outline.",
+          "explanation": {
+            "en": "Represent each preference first, then ask which activities need fixed times.",
+            "vi": "Nêu từng ưu tiên trước rồi hỏi hoạt động nào cần giờ cố định."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "tokens": [
+            {
+              "id": "cur-c1-04-p2-a",
+              "text": "You prefer fixed times so visitors can plan."
+            },
+            {
+              "id": "cur-c1-04-p2-b",
+              "text": "You prefer a weekly outline so changes remain possible."
+            },
+            {
+              "id": "cur-c1-04-p2-q",
+              "text": "Which activities need fixed times and which can stay flexible?"
+            }
+          ],
+          "answer": [
+            "cur-c1-04-p2-a",
+            "cur-c1-04-p2-b",
+            "cur-c1-04-p2-q"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "cur-c1-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Choose a follow-up that clarifies without taking sides.",
+          "context": "Two editors disagree over whether a phrase sounds firm or overly blunt.",
+          "explanation": {
+            "en": "Asking about audience and intended effect clarifies the disagreement without blame.",
+            "vi": "Hỏi về độc giả và tác động dự định sẽ làm rõ bất đồng mà không quy lỗi."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c1-04-c1-neutral",
+              "text": "Which audience are you picturing, and what response should the phrase invite?"
+            },
+            {
+              "id": "cur-c1-04-c1-judging",
+              "text": "Why are you making this difficult?"
+            },
+            {
+              "id": "cur-c1-04-c1-leading",
+              "text": "Can we agree the softer phrase is always better?"
+            }
+          ],
+          "answer": "cur-c1-04-c1-neutral"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c2-01",
+      "level": "C2",
+      "domain": "vocabulary",
+      "title": {
+        "en": "Read Evaluation Between the Lines",
+        "vi": "Đọc hàm ý trong nhận xét"
+      },
+      "canDo": {
+        "en": "Infer an evaluation from precise lexical choice and distinguish careful work from perfunctory compliance.",
+        "vi": "Suy ra đánh giá qua lựa chọn từ chính xác và phân biệt công việc cẩn trọng với việc làm qua loa."
+      },
+      "prerequisites": [
+        "cur-c1-04"
+      ],
+      "teaching": [
+        {
+          "en": "Perfunctory suggests a task was done with little care or interest; check the surrounding evidence.",
+          "vi": "Perfunctory gợi ý việc được làm với ít sự quan tâm; hãy xét bằng chứng xung quanh."
+        },
+        {
+          "en": "A brief response is not automatically insincere; interpret the word in context.",
+          "vi": "Câu trả lời ngắn không tự động là thiếu chân thành; hãy diễn giải từ theo ngữ cảnh."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c2-01-l1",
+          "term": "perfunctory",
+          "meaning": {
+            "en": "done with little care or interest",
+            "vi": "làm với ít sự quan tâm hoặc chăm chút"
+          },
+          "example": "The reviewer noted a perfunctory check of the figures.",
+          "family": "perfunctorily; perfunctory review"
+        },
+        {
+          "id": "cur-c2-01-l2",
+          "term": "meticulous",
+          "meaning": {
+            "en": "very careful about small details",
+            "vi": "rất cẩn thận với chi tiết nhỏ"
+          },
+          "example": "A meticulous editor checked every date twice.",
+          "family": "meticulously; meticulous attention"
+        },
+        {
+          "id": "cur-c2-01-l3",
+          "term": "warranted",
+          "meaning": {
+            "en": "justified by facts or circumstances",
+            "vi": "được sự kiện hoặc hoàn cảnh chứng minh là hợp lý"
+          },
+          "example": "A change was warranted after the second failure.",
+          "family": "warrant; warranted concern"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c2-01-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "What does the review imply about a perfunctory safety check?",
+          "context": "The inspector signed after glancing at a panel without testing the alarm.",
+          "explanation": {
+            "en": "Perfunctory implies insufficient care, supported by the missing alarm test.",
+            "vi": "Perfunctory hàm ý thiếu cẩn trọng, được củng cố bởi việc chưa thử báo động."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-01-p1-careless",
+              "text": "It was completed with too little care."
+            },
+            {
+              "id": "cur-c2-01-p1-thorough",
+              "text": "It examined every function closely."
+            },
+            {
+              "id": "cur-c2-01-p1-unneeded",
+              "text": "It should never have been performed."
+            }
+          ],
+          "answer": "cur-c2-01-p1-careless"
+        },
+        {
+          "id": "cur-c2-01-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use METICULOUS unchanged: Her careful attention to every reference and figure was ___. (one word)",
+          "context": "The editor's notes show close attention to tiny details.",
+          "explanation": {
+            "en": "Meticulous describes unusually careful attention to detail.",
+            "vi": "Meticulous mô tả sự chú ý rất cẩn thận tới chi tiết."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "accepted": [
+            "meticulous"
+          ]
+        },
+        {
+          "id": "cur-c2-01-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "When is a change most clearly warranted?",
+          "context": "A machine fails the same safety check twice, and both failures point to the same worn part.",
+          "explanation": {
+            "en": "Repeated evidence makes a change justified; an unexplained remark alone would be weaker.",
+            "vi": "Bằng chứng lặp lại khiến thay đổi trở nên hợp lý; lời nhận xét không giải thích sẽ yếu hơn."
+          },
+          "sourceIds": [
+            "source-cambridge-dictionary"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-01-c1-justified",
+              "text": "When facts support it"
+            },
+            {
+              "id": "cur-c2-01-c1-perfunctory",
+              "text": "When done with little care"
+            },
+            {
+              "id": "cur-c2-01-c1-meticulous",
+              "text": "When checking tiny details"
+            }
+          ],
+          "answer": "cur-c2-01-c1-justified"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020",
+        "source-cambridge-dictionary"
+      ]
+    },
+    {
+      "id": "cur-c2-02",
+      "level": "C2",
+      "domain": "grammar",
+      "title": {
+        "en": "Use Ellipsis Without Losing Meaning",
+        "vi": "Dùng tỉnh lược mà không làm mất nghĩa"
+      },
+      "canDo": {
+        "en": "Interpret and form controlled ellipsis when repeated material is recoverable from a parallel clause.",
+        "vi": "Diễn giải và tạo tỉnh lược có kiểm soát khi phần lặp có thể khôi phục từ mệnh đề song song."
+      },
+      "prerequisites": [
+        "cur-c2-01"
+      ],
+      "teaching": [
+        {
+          "en": "A parallel clause may omit a repeated verb: I reviewed the print copy; Lena, the digital one.",
+          "vi": "Mệnh đề song song có thể lược động từ lặp: Tôi xem bản in; Lena, bản số."
+        },
+        {
+          "en": "Use ellipsis only when the missing words are easy to recover.",
+          "vi": "Chỉ dùng tỉnh lược khi có thể dễ dàng khôi phục phần từ bị lược."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c2-02-l1",
+          "term": "ellipsis",
+          "meaning": {
+            "en": "omission of words understood from context",
+            "vi": "lược từ có thể hiểu nhờ ngữ cảnh"
+          },
+          "example": "The second clause avoids repeating the verb.",
+          "family": "elliptical; use ellipsis"
+        },
+        {
+          "id": "cur-c2-02-l2",
+          "term": "recoverable",
+          "meaning": {
+            "en": "able to be understood from context",
+            "vi": "có thể hiểu từ ngữ cảnh"
+          },
+          "example": "The omitted action was recoverable from the first clause.",
+          "family": "recover; recoverable meaning"
+        },
+        {
+          "id": "cur-c2-02-l3",
+          "term": "contrast",
+          "meaning": {
+            "en": "a difference between two things placed together",
+            "vi": "sự khác biệt giữa hai điều đặt cạnh nhau"
+          },
+          "example": "The contrast between the drafts was clear.",
+          "family": "contrastive; in contrast"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c2-02-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "What action is omitted but understood?",
+          "context": "Mira reviewed the printed catalog, while Arun the digital archive.",
+          "explanation": {
+            "en": "The parallel structure lets the reader recover reviewed before the second object phrase.",
+            "vi": "Cấu trúc song song giúp người đọc khôi phục reviewed trước cụm tân ngữ thứ hai."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-02-p1-reviewed",
+              "text": "reviewed"
+            },
+            {
+              "id": "cur-c2-02-p1-created",
+              "text": "created"
+            },
+            {
+              "id": "cur-c2-02-p1-borrowed",
+              "text": "borrowed"
+            }
+          ],
+          "answer": "cur-c2-02-p1-reviewed"
+        },
+        {
+          "id": "cur-c2-02-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Complete with the missing auxiliary only: Jo can inspect the audio files, and I ___. (one word)",
+          "context": "The clauses contrast who can inspect which materials.",
+          "explanation": {
+            "en": "Can is recoverable from the first clause, so the verb phrase need not be repeated.",
+            "vi": "Can có thể khôi phục từ mệnh đề đầu nên không cần lặp cụm động từ."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "accepted": [
+            "can"
+          ]
+        },
+        {
+          "id": "cur-c2-02-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which pair has a clear, recoverable omission?",
+          "context": "A writer avoids repeating a verb while contrasting two teams' responsibilities.",
+          "explanation": {
+            "en": "In the first sentence, checked is understood before the second team's object, the totals.",
+            "vi": "Trong câu đầu, checked được hiểu trước tân ngữ của nhóm thứ hai là the totals."
+          },
+          "sourceIds": [
+            "source-bc-c1-grammar"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-02-c1-clear",
+              "text": "The first team checked dates; the second, totals."
+            },
+            {
+              "id": "cur-c2-02-c1-unclear",
+              "text": "The first team checked dates; the second, after lunch."
+            },
+            {
+              "id": "cur-c2-02-c1-mismatch",
+              "text": "The first team checked dates; the second will."
+            }
+          ],
+          "answer": "cur-c2-02-c1-clear"
+        }
+      ],
+      "sourceIds": [
+        "source-bc-c1-grammar",
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c2-03",
+      "level": "C2",
+      "domain": "reading",
+      "title": {
+        "en": "Test the Strength of an Inference",
+        "vi": "Kiểm tra độ vững của suy luận"
+      },
+      "canDo": {
+        "en": "Evaluate whether evidence supports a causal conclusion and identify a missing comparison.",
+        "vi": "Đánh giá bằng chứng có hỗ trợ kết luận nhân quả không và xác định đối chiếu còn thiếu."
+      },
+      "prerequisites": [
+        "cur-c2-02"
+      ],
+      "teaching": [
+        {
+          "en": "A pattern appearing alongside a change does not itself prove the change caused it.",
+          "vi": "Một xu hướng xuất hiện cùng thay đổi tự nó không chứng minh thay đổi gây ra nó."
+        },
+        {
+          "en": "Ask what comparison could separate the proposed cause from other explanations.",
+          "vi": "Hãy hỏi phép đối chiếu nào tách nguyên nhân đề xuất khỏi lời giải thích khác."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c2-03-l1",
+          "term": "correlation",
+          "meaning": {
+            "en": "a relationship where two things change together",
+            "vi": "mối liên hệ khi hai yếu tố thay đổi cùng nhau"
+          },
+          "example": "The analyst found a correlation between distance and delay.",
+          "family": "correlate; correlation does not prove cause"
+        },
+        {
+          "id": "cur-c2-03-l2",
+          "term": "causal",
+          "meaning": {
+            "en": "relating to a cause and its effect",
+            "vi": "liên quan đến nguyên nhân và kết quả"
+          },
+          "example": "The study did not establish a causal link.",
+          "family": "cause; causal claim"
+        },
+        {
+          "id": "cur-c2-03-l3",
+          "term": "comparison",
+          "meaning": {
+            "en": "examination of similarities or differences",
+            "vi": "việc xem xét điểm giống hoặc khác"
+          },
+          "example": "A comparison with the earlier route revealed delay.",
+          "family": "compare; comparison group"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c2-03-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "What conclusion is warranted by the dispatch note?",
+          "context": "After route alerts began, average delivery time fell from 42 to 39 minutes. The report compares this month with the last but omits weather, parcel volume and a control route.",
+          "explanation": {
+            "en": "Time fell after alerts began, but missing comparisons mean the note cannot isolate alerts as the cause.",
+            "vi": "Thời gian giảm sau khi có cảnh báo, nhưng thiếu đối chiếu nên chưa thể xác định cảnh báo là nguyên nhân."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-03-p1-limited",
+              "text": "Time fell after alerts began, though the cause is not established."
+            },
+            {
+              "id": "cur-c2-03-p1-causal",
+              "text": "Alerts alone caused the full improvement."
+            },
+            {
+              "id": "cur-c2-03-p1-negative",
+              "text": "Alerts had no effect."
+            }
+          ],
+          "answer": "cur-c2-03-p1-limited"
+        },
+        {
+          "id": "cur-c2-03-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use CORRELATION unchanged: A relationship between two changing measures is a ___. (one word)",
+          "context": "The analyst sees two measures rise and fall together but has not shown that one causes the other.",
+          "explanation": {
+            "en": "Correlation names an association without proving which measure causes a change.",
+            "vi": "Correlation gọi tên mối liên hệ nhưng không chứng minh yếu tố nào gây thay đổi."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "correlation"
+          ]
+        },
+        {
+          "id": "cur-c2-03-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Which comparison best tests whether a reminder caused fewer missed appointments?",
+          "context": "A clinic sees fewer missed visits after adding reminders but tracked no comparison group.",
+          "explanation": {
+            "en": "Compare similar appointments with and without reminders over the same period to separate wider changes.",
+            "vi": "So sánh lịch hẹn tương tự có và không có nhắc nhở cùng thời kỳ để tách các thay đổi chung."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-03-c1-comparison",
+              "text": "Compare similar appointments with and without reminders during the same period."
+            },
+            {
+              "id": "cur-c2-03-c1-anecdote",
+              "text": "Ask one visitor whether messages seemed useful."
+            },
+            {
+              "id": "cur-c2-03-c1-assumption",
+              "text": "Assume the usual pattern stayed exactly the same."
+            }
+          ],
+          "answer": "cur-c2-03-c1-comparison"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    },
+    {
+      "id": "cur-c2-04",
+      "level": "C2",
+      "domain": "communication",
+      "title": {
+        "en": "Mediate Without Flattening a Disagreement",
+        "vi": "Điều phối bất đồng mà không làm mất sắc thái"
+      },
+      "canDo": {
+        "en": "Reconstruct competing positions with their qualifications and propose a step preserving both concerns.",
+        "vi": "Diễn đạt lại quan điểm cùng điều kiện của chúng và đề xuất bước giữ được cả hai mối quan tâm."
+      },
+      "prerequisites": [
+        "cur-c2-03"
+      ],
+      "teaching": [
+        {
+          "en": "Attribute a claim to its speaker and preserve limits such as for now or in some cases.",
+          "vi": "Gắn nhận định với người nói và giữ giới hạn như hiện tại hoặc trong một số trường hợp."
+        },
+        {
+          "en": "Find a shared decision point without pretending the disagreement has disappeared.",
+          "vi": "Tìm điểm quyết định chung mà không giả vờ bất đồng đã biến mất."
+        }
+      ],
+      "lexicon": [
+        {
+          "id": "cur-c2-04-l1",
+          "term": "reservation",
+          "meaning": {
+            "en": "a doubt or condition about an idea",
+            "vi": "mối băn khoăn hoặc điều kiện về ý tưởng"
+          },
+          "example": "Her reservation concerned long-term cost.",
+          "family": "reserve; express a reservation"
+        },
+        {
+          "id": "cur-c2-04-l2",
+          "term": "provisional",
+          "meaning": {
+            "en": "temporary and subject to later change",
+            "vi": "tạm thời và có thể thay đổi"
+          },
+          "example": "The committee approved a provisional schedule.",
+          "family": "provisionally; provisional agreement"
+        },
+        {
+          "id": "cur-c2-04-l3",
+          "term": "reconcile",
+          "meaning": {
+            "en": "to make different views fit together",
+            "vi": "làm cho các quan điểm khác nhau trở nên hài hòa"
+          },
+          "example": "The mediator reconciled the deadlines in phases.",
+          "family": "reconciliation; reconcile differences"
+        }
+      ],
+      "activities": [
+        {
+          "id": "cur-c2-04-p1",
+          "type": "choice",
+          "purpose": "practice",
+          "prompt": "Which summary preserves both speakers' limits and identifies a next step?",
+          "context": "Nia wants the archive open late during exam week. Omar supports two evenings but worries about staffing every night. Both want quiet study space.",
+          "explanation": {
+            "en": "It preserves Nia's request and Omar's staffing qualification, then proposes testing two evenings.",
+            "vi": "Câu trả lời giữ yêu cầu của Nia và điều kiện nhân sự của Omar, rồi đề xuất thử hai tối."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-04-p1-preserved",
+              "text": "Nia wants late access; Omar supports two evenings because of staffing, so they could test those first."
+            },
+            {
+              "id": "cur-c2-04-p1-flattened",
+              "text": "They agree to open late every night."
+            },
+            {
+              "id": "cur-c2-04-p1-distorted",
+              "text": "Omar opposes student access."
+            }
+          ],
+          "answer": "cur-c2-04-p1-preserved"
+        },
+        {
+          "id": "cur-c2-04-p2",
+          "type": "gap",
+          "purpose": "practice",
+          "prompt": "Use PROVISIONALLY unchanged: The plan is ___ approved, pending a staffing review next month. (one word)",
+          "context": "The committee has agreed to try the plan but will reconsider after checking staff schedules.",
+          "explanation": {
+            "en": "Provisionally signals temporary approval that may change after review.",
+            "vi": "Provisionally cho biết phê duyệt tạm thời và có thể thay đổi sau khi xem xét."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "accepted": [
+            "provisionally"
+          ]
+        },
+        {
+          "id": "cur-c2-04-c1",
+          "type": "choice",
+          "purpose": "check",
+          "prompt": "Choose the mediation question that moves the disagreement toward a decision.",
+          "context": "One group wants a quiet study room; another needs it for accessible evening events. Both concerns involve reliable access.",
+          "explanation": {
+            "en": "The question asks which hours each use needs and explores a shared schedule without dismissing either group.",
+            "vi": "Câu hỏi tìm khung giờ mỗi bên cần và xem xét lịch chung mà không bác bỏ nhóm nào."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "cur-c2-04-c1-mediate",
+              "text": "Which hours are essential for each use, and could a shared schedule protect both?"
+            },
+            {
+              "id": "cur-c2-04-c1-dismiss",
+              "text": "The study group should give up the room."
+            },
+            {
+              "id": "cur-c2-04-c1-pretend",
+              "text": "There is no real conflict."
+            }
+          ],
+          "answer": "cur-c2-04-c1-mediate"
+        }
+      ],
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ]
+    }
+  ],
+  "examSets": [
+    {
+      "id": "exam-ielts-reading-01",
+      "exam": "ielts-academic",
+      "title": {
+        "en": "IELTS Academic Reading: short format practice",
+        "vi": "Đọc IELTS Academic: luyện định dạng ngắn"
+      },
+      "scope": {
+        "en": "Eight original items: three True/False/Not Given, two matching-heading choices with surplus headings, and three ONE WORD ONLY completions based on one 336-word passage. This is not a full test or score estimate.",
+        "vi": "Tám câu hỏi tự soạn: ba nhận định True/False/Not Given, hai câu chọn tiêu đề với tiêu đề dư và ba câu điền ONE WORD ONLY dựa trên một bài đọc 336 từ. Đây không phải bài thi đầy đủ hay ước lượng điểm."
+      },
+      "minutes": 10,
+      "sourceIds": [
+        "source-ielts-academic-reading"
+      ],
+      "activities": [
+        {
+          "id": "ielts-read-01",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Does this statement agree with the passage? The first collection held 24 items.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The passage directly states that the first collection held 24 items.",
+            "vi": "Bài đọc nêu trực tiếp bộ sưu tập đầu có 24 món."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "options": [
+            {
+              "id": "ielts-read-01-true",
+              "text": "TRUE"
+            },
+            {
+              "id": "ielts-read-01-false",
+              "text": "FALSE"
+            },
+            {
+              "id": "ielts-read-01-ng",
+              "text": "NOT GIVEN"
+            }
+          ],
+          "answer": "ielts-read-01-true"
+        },
+        {
+          "id": "ielts-read-02",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Does this statement agree with the passage? Borrowers could keep a tool for ten days.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The text says the loan period was three days, directly contradicting ten days.",
+            "vi": "Bài đọc nói thời hạn mượn là ba ngày, trực tiếp mâu thuẫn với mười ngày."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "options": [
+            {
+              "id": "ielts-read-02-true",
+              "text": "TRUE"
+            },
+            {
+              "id": "ielts-read-02-false",
+              "text": "FALSE"
+            },
+            {
+              "id": "ielts-read-02-ng",
+              "text": "NOT GIVEN"
+            }
+          ],
+          "answer": "ielts-read-02-false"
+        },
+        {
+          "id": "ielts-read-03",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Does this statement agree with the passage? A local electrical company paid for the pilot.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The passage gives no information about who paid for the project; it neither confirms nor contradicts the claim.",
+            "vi": "Bài đọc không nói ai chi trả dự án nên không xác nhận hoặc mâu thuẫn với nhận định."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "options": [
+            {
+              "id": "ielts-read-03-true",
+              "text": "TRUE"
+            },
+            {
+              "id": "ielts-read-03-false",
+              "text": "FALSE"
+            },
+            {
+              "id": "ielts-read-03-ng",
+              "text": "NOT GIVEN"
+            }
+          ],
+          "answer": "ielts-read-03-ng"
+        },
+        {
+          "id": "ielts-read-04",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Choose the heading that best captures paragraph B's main point.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "Paragraph B describes safety checks, guidance, a short loan period and paper reservations. Heading A captures this routine; the others overstate or contradict the text.",
+            "vi": "Đoạn B mô tả kiểm tra an toàn, hướng dẫn, thời hạn mượn ngắn và đặt chỗ bằng sổ. Tiêu đề A bao quát quy trình; các tiêu đề khác nói quá hoặc mâu thuẫn."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "options": [
+            {
+              "id": "ielts-read-04-safe",
+              "text": "A. Safe borrowing from a shared tool shelf"
+            },
+            {
+              "id": "ielts-read-04-feedback",
+              "text": "B. Adjusting access after visitor feedback"
+            },
+            {
+              "id": "ielts-read-04-shops",
+              "text": "C. Replacing local hardware shops"
+            },
+            {
+              "id": "ielts-read-04-savings",
+              "text": "D. Proving permanent community savings"
+            }
+          ],
+          "answer": "ielts-read-04-safe"
+        },
+        {
+          "id": "ielts-read-05",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Choose the heading that best captures paragraph C's main point.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "Paragraph C links visitors' weekday access problem to a Saturday collection window and an added reminder guide. Heading B states this response to feedback.",
+            "vi": "Đoạn C nối khó khăn tiếp cận ngày thường với khung nhận đồ thứ Bảy và tờ nhắc. Tiêu đề B nêu phản hồi sau khi lắng nghe."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "options": [
+            {
+              "id": "ielts-read-05-safe",
+              "text": "A. Safe borrowing from a shared tool shelf"
+            },
+            {
+              "id": "ielts-read-05-feedback",
+              "text": "B. Adjusting access after visitor feedback"
+            },
+            {
+              "id": "ielts-read-05-shops",
+              "text": "C. Replacing local hardware shops"
+            },
+            {
+              "id": "ielts-read-05-savings",
+              "text": "D. Proving permanent community savings"
+            }
+          ],
+          "answer": "ielts-read-05-feedback"
+        },
+        {
+          "id": "ielts-read-06",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Complete with ONE WORD ONLY from the passage: Before lending a tool, a volunteer attached a safety ___.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The text says volunteers attached a safety guide before lending each item.",
+            "vi": "Bài đọc nói tình nguyện viên gắn hướng dẫn an toàn trước khi cho mượn."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "accepted": [
+            "guide"
+          ]
+        },
+        {
+          "id": "ielts-read-07",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Complete with ONE WORD ONLY from the passage: A borrower could keep a tool for three ___.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The stated loan period is three days.",
+            "vi": "Thời hạn mượn được nêu là ba ngày."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "accepted": [
+            "days"
+          ]
+        },
+        {
+          "id": "ielts-read-08",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Complete with ONE WORD ONLY from the passage: Follow-up cards recorded 61 completed ___.",
+          "context": "A. In October, Hillgate Library set up a Tool Corner after residents said they often delayed small repairs because they lacked basic equipment. The library did not plan a permanent workshop. Instead, a ten-week pilot offered hand tools that members could borrow with their library cards. The first collection held 24 items, including hammers, spanners and measuring tapes. B. Before any item left the building, a volunteer checked its condition, attached a safety guide and explained the return process. Borrowers could keep a tool for three days. They reserved items in a paper book beside the service desk; the system did not require an online account. Power saws were excluded because no volunteer on the initial team was trained to demonstrate them. The restriction was recorded as a safety decision, not a judgment that residents could not use the equipment. C. After four weeks, volunteers asked visitors what made borrowing difficult. Several people said they worked during weekday afternoon hours. The team added a Saturday morning collection window and produced a one-page guide with drawings showing how to check tools for visible damage. The guide did not replace the volunteer's explanation; it reminded borrowers of the steps at home. D. Follow-up cards recorded 96 borrowings in ten weeks. Borrowers reported completing 61 repairs, often involving loose chair joints or lamps. The team did not count how many repairs would otherwise have been postponed, and the cards did not establish whether each repair remained sound months later. Staff therefore described the figures as evidence of use, not proof of long-term savings. E. The library plans to repeat the pilot with a nearby branch, but it will first compare staffing needs and return rates. A larger collection is not yet approved. The coordinator says the next trial should test whether the Saturday window reaches people who could not attend before, while keeping the same safety checks. The project is small, but its records may help decide which parts are worth retaining.",
+          "explanation": {
+            "en": "The cards recorded 61 repairs reported as completed; the passage cautions that this does not prove long-term savings.",
+            "vi": "Phiếu ghi nhận 61 lần sửa được báo cáo hoàn tất; bài đọc lưu ý điều đó không chứng minh tiết kiệm dài hạn."
+          },
+          "sourceIds": [
+            "source-ielts-academic-reading"
+          ],
+          "accepted": [
+            "repairs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam-toeic-reading-01",
+      "exam": "toeic-lr",
+      "title": {
+        "en": "TOEIC Listening and Reading: short format practice",
+        "vi": "TOEIC Listening and Reading: luyện định dạng ngắn"
+      },
+      "scope": {
+        "en": "Eight original workplace items: four Part 5-style incomplete sentences and four Part 7-style questions on one original internal message. This covers a small part of Reading, not the timed two-section test.",
+        "vi": "Tám câu hỏi công sở tự soạn: bốn câu chưa hoàn chỉnh kiểu Part 5 và bốn câu Part 7 dựa trên một thông báo nội bộ. Mẫu này chỉ bao quát một phần nhỏ Reading, không phải bài thi hai phần có giới hạn thời gian."
+      },
+      "minutes": 8,
+      "sourceIds": [
+        "source-toeic-lr-format"
+      ],
+      "activities": [
+        {
+          "id": "toeic-read-01",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 5-style sentence completion: Please send ___ revised schedule to everyone on the installation team.",
+          "context": "One agreed schedule is meant.",
+          "explanation": {
+            "en": "The points to the specific schedule already agreed by the team.",
+            "vi": "The chỉ lịch trình cụ thể mà nhóm đã thống nhất."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-01-the",
+              "text": "the"
+            },
+            {
+              "id": "toeic-read-01-a",
+              "text": "a"
+            },
+            {
+              "id": "toeic-read-01-an",
+              "text": "an"
+            },
+            {
+              "id": "toeic-read-01-some",
+              "text": "some"
+            }
+          ],
+          "answer": "toeic-read-01-the"
+        },
+        {
+          "id": "toeic-read-02",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 5-style sentence completion: Meeting minutes ___ to the shared folder before noon.",
+          "context": "The subject is one set of written notes called meeting minutes.",
+          "explanation": {
+            "en": "Minutes is plural, so the passive verb is were uploaded.",
+            "vi": "Minutes là danh từ số nhiều nên động từ bị động là were uploaded."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-02-were",
+              "text": "were uploaded"
+            },
+            {
+              "id": "toeic-read-02-was",
+              "text": "was uploaded"
+            },
+            {
+              "id": "toeic-read-02-has",
+              "text": "has uploaded"
+            },
+            {
+              "id": "toeic-read-02-uploading",
+              "text": "uploading"
+            }
+          ],
+          "answer": "toeic-read-02-were"
+        },
+        {
+          "id": "toeic-read-03",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 5-style sentence completion: The inspection has been ___ until Tuesday because the technician is on leave.",
+          "context": "The inspection will happen later than first arranged.",
+          "explanation": {
+            "en": "Postponed means delayed to a later time and fits after has been.",
+            "vi": "Postponed nghĩa là hoãn sang lúc muộn hơn và phù hợp sau has been."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-03-postponed",
+              "text": "postponed"
+            },
+            {
+              "id": "toeic-read-03-expanded",
+              "text": "expanded"
+            },
+            {
+              "id": "toeic-read-03-attached",
+              "text": "attached"
+            },
+            {
+              "id": "toeic-read-03-measured",
+              "text": "measured"
+            }
+          ],
+          "answer": "toeic-read-03-postponed"
+        },
+        {
+          "id": "toeic-read-04",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 5-style sentence completion: The supply desk keeps extra adapters ___ request.",
+          "context": "Staff can obtain an adapter when they need one.",
+          "explanation": {
+            "en": "On request is the conventional phrase for something provided when asked for.",
+            "vi": "On request là cụm thường dùng cho thứ được cung cấp khi có yêu cầu."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-04-on",
+              "text": "on"
+            },
+            {
+              "id": "toeic-read-04-between",
+              "text": "between"
+            },
+            {
+              "id": "toeic-read-04-beneath",
+              "text": "beneath"
+            },
+            {
+              "id": "toeic-read-04-during",
+              "text": "during"
+            }
+          ],
+          "answer": "toeic-read-04-on"
+        },
+        {
+          "id": "toeic-read-05",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 7-style reading: On which day will the service desk move?",
+          "context": "Read the workplace message. To: Operations team. From: Mara Chen, Facilities. Subject: Service desk move. The technology service desk will move from Room 5 to Room 208 on Level 2 on Monday, 9 November. The building contractor begins work in Room 5 the following day, so please collect devices left there before 4 p.m. Friday. The new desk opens at 8 a.m. Monday. If your team needs an adapter for a scheduled equipment test, reply to this message by noon Thursday. Sealed adapters will be transferred with the other supplies. Staff who only need to ask a question may use the service desk chat as usual; that channel will not move. Please do not carry equipment to Room 208 before Monday morning, as the access card will be activated then.",
+          "explanation": {
+            "en": "The message gives Monday, 9 November as the move date; Friday is the device collection deadline.",
+            "vi": "Thông báo nêu thứ Hai, ngày 9 tháng 11 là ngày chuyển; thứ Sáu là hạn lấy thiết bị."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-05-monday",
+              "text": "Monday, 9 November"
+            },
+            {
+              "id": "toeic-read-05-friday",
+              "text": "Friday, 6 November"
+            },
+            {
+              "id": "toeic-read-05-tuesday",
+              "text": "Tuesday, 10 November"
+            }
+          ],
+          "answer": "toeic-read-05-monday"
+        },
+        {
+          "id": "toeic-read-06",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 7-style reading: Where will the new service desk be?",
+          "context": "Read the workplace message. To: Operations team. From: Mara Chen, Facilities. Subject: Service desk move. The technology service desk will move from Room 5 to Room 208 on Level 2 on Monday, 9 November. The building contractor begins work in Room 5 the following day, so please collect devices left there before 4 p.m. Friday. The new desk opens at 8 a.m. Monday. If your team needs an adapter for a scheduled equipment test, reply to this message by noon Thursday. Sealed adapters will be transferred with the other supplies. Staff who only need to ask a question may use the service desk chat as usual; that channel will not move. Please do not carry equipment to Room 208 before Monday morning, as the access card will be activated then.",
+          "explanation": {
+            "en": "The message names Room 208 on Level 2.",
+            "vi": "Thông báo nêu Phòng 208 ở Tầng 2."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-06-new-room",
+              "text": "Room 208 on Level 2"
+            },
+            {
+              "id": "toeic-read-06-old-room",
+              "text": "Room 5"
+            },
+            {
+              "id": "toeic-read-06-chat",
+              "text": "The service desk chat"
+            }
+          ],
+          "answer": "toeic-read-06-new-room"
+        },
+        {
+          "id": "toeic-read-07",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 7-style reading: Why should staff collect devices by Friday afternoon?",
+          "context": "Read the workplace message. To: Operations team. From: Mara Chen, Facilities. Subject: Service desk move. The technology service desk will move from Room 5 to Room 208 on Level 2 on Monday, 9 November. The building contractor begins work in Room 5 the following day, so please collect devices left there before 4 p.m. Friday. The new desk opens at 8 a.m. Monday. If your team needs an adapter for a scheduled equipment test, reply to this message by noon Thursday. Sealed adapters will be transferred with the other supplies. Staff who only need to ask a question may use the service desk chat as usual; that channel will not move. Please do not carry equipment to Room 208 before Monday morning, as the access card will be activated then.",
+          "explanation": {
+            "en": "A contractor begins work in Room 5 the next day, so devices should be removed beforehand.",
+            "vi": "Nhà thầu bắt đầu làm ở Phòng 5 hôm sau nên cần lấy thiết bị trước đó."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-07-construction",
+              "text": "A contractor will begin work there the next day."
+            },
+            {
+              "id": "toeic-read-07-closure",
+              "text": "The chat channel will be discontinued."
+            },
+            {
+              "id": "toeic-read-07-testing",
+              "text": "All devices will be tested on Friday."
+            }
+          ],
+          "answer": "toeic-read-07-construction"
+        },
+        {
+          "id": "toeic-read-08",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Part 7-style reading: What should a team do if it needs an adapter for a scheduled test?",
+          "context": "Read the workplace message. To: Operations team. From: Mara Chen, Facilities. Subject: Service desk move. The technology service desk will move from Room 5 to Room 208 on Level 2 on Monday, 9 November. The building contractor begins work in Room 5 the following day, so please collect devices left there before 4 p.m. Friday. The new desk opens at 8 a.m. Monday. If your team needs an adapter for a scheduled equipment test, reply to this message by noon Thursday. Sealed adapters will be transferred with the other supplies. Staff who only need to ask a question may use the service desk chat as usual; that channel will not move. Please do not carry equipment to Room 208 before Monday morning, as the access card will be activated then.",
+          "explanation": {
+            "en": "Teams should reply by Thursday noon so an adapter can be transferred with other supplies.",
+            "vi": "Nhóm cần trả lời trước trưa thứ Năm để bộ chuyển đổi được chuyển cùng vật dụng khác."
+          },
+          "sourceIds": [
+            "source-toeic-lr-format"
+          ],
+          "options": [
+            {
+              "id": "toeic-read-08-reply",
+              "text": "Reply to the message by noon Thursday."
+            },
+            {
+              "id": "toeic-read-08-carry",
+              "text": "Carry equipment to Room 208 before Monday."
+            },
+            {
+              "id": "toeic-read-08-chat",
+              "text": "Ask in chat because it is moving."
+            }
+          ],
+          "answer": "toeic-read-08-reply"
+        }
+      ]
+    },
+    {
+      "id": "exam-vn-advanced-01",
+      "exam": "vn-competitive",
+      "title": {
+        "en": "Vietnamese competitive English: language micropractice",
+        "vi": "Tiếng Anh nâng cao tại Việt Nam: luyện tập ngôn ngữ"
+      },
+      "scope": {
+        "en": "Eight original constrained items required by this batch: three word-formation gaps, three keyword transformations, and two grammar/collocation choices. This is not a simulation of one unified Vietnamese exam or of the current FLSS entrance format.",
+        "vi": "Tám câu hỏi tự soạn có giới hạn theo hợp đồng: ba câu biến đổi từ, ba câu biến đổi câu với từ khóa và hai câu chọn ngữ pháp/collocation. Đây không mô phỏng kỳ thi Việt Nam thống nhất hay định dạng tuyển sinh FLSS hiện hành."
+      },
+      "minutes": 12,
+      "sourceIds": [
+        "source-flss-2026-structure",
+        "source-flss-2025-structure"
+      ],
+      "activities": [
+        {
+          "id": "vn-advanced-01",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Word formation: use one form of OBJECT: The reviewer asked for an ___ comparison of the two routes. (one word)",
+          "context": "The comparison should be impartial and use the same criteria.",
+          "explanation": {
+            "en": "Objective is the adjective meaning impartial and modifies comparison.",
+            "vi": "Objective là tính từ nghĩa là khách quan và bổ nghĩa cho comparison."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "objective"
+          ]
+        },
+        {
+          "id": "vn-advanced-02",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Word formation: use one form of ACCURATE: The ___ of the timetable was checked by two staff members. (one word)",
+          "context": "The staff checked that the timetable's details were correct.",
+          "explanation": {
+            "en": "Accuracy is the noun needed after the.",
+            "vi": "Accuracy là danh từ cần sau the."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "accuracy"
+          ]
+        },
+        {
+          "id": "vn-advanced-03",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Word formation: use one form of ACCESSIBLE: The new ramp improved the building's ___. (one word)",
+          "context": "The ramp made it easier for visitors using mobility aids to enter.",
+          "explanation": {
+            "en": "Accessibility is the noun naming how easy a place is to enter or use.",
+            "vi": "Accessibility là danh từ chỉ mức độ dễ tiếp cận hoặc sử dụng."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "accessibility"
+          ]
+        },
+        {
+          "id": "vn-advanced-04",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Keyword transformation: keep DESPITE unchanged; enter exactly three words: Although the instructions were brief, they were easy to follow. ___, the instructions were easy to follow.",
+          "context": "The new sentence should preserve the contrast between short instructions and ease of use.",
+          "explanation": {
+            "en": "Despite their brevity preserves the contrast and turns brief into the noun brevity.",
+            "vi": "Despite their brevity giữ sự tương phản và chuyển brief thành danh từ brevity."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "Despite their brevity"
+          ]
+        },
+        {
+          "id": "vn-advanced-05",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Keyword transformation: keep EXPECTED unchanged; enter exactly four words: People expect the gallery to reopen in April. The gallery ___ in April.",
+          "context": "The sentence reports a general expectation about a future reopening.",
+          "explanation": {
+            "en": "Is expected to reopen uses a passive reporting form and keeps the meaning.",
+            "vi": "Is expected to reopen dùng cấu trúc tường thuật bị động và giữ nguyên nghĩa."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "is expected to reopen"
+          ]
+        },
+        {
+          "id": "vn-advanced-06",
+          "type": "gap",
+          "purpose": "exam",
+          "prompt": "Keyword transformation: keep DUE unchanged; enter exactly two words: The road closure delayed the delivery. The delivery was delayed ___ the road closure.",
+          "context": "The new sentence expresses the same cause using the given keyword.",
+          "explanation": {
+            "en": "Due to is followed by a noun phrase and states the cause.",
+            "vi": "Due to theo sau bởi cụm danh từ và nêu nguyên nhân."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "accepted": [
+            "due to"
+          ]
+        },
+        {
+          "id": "vn-advanced-07",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Choose the collocation meaning an agreement reached after each side accepts a limit: The groups reached a ___ after revising their requests.",
+          "context": "Both groups gave up part of their original demand; neither got everything it wanted.",
+          "explanation": {
+            "en": "Reach a compromise describes an agreement in which each side accepts less than its full request.",
+            "vi": "Reach a compromise mô tả thỏa thuận mỗi bên chấp nhận ít hơn yêu cầu ban đầu."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "options": [
+            {
+              "id": "vn-advanced-07-compromise",
+              "text": "compromise"
+            },
+            {
+              "id": "vn-advanced-07-forecast",
+              "text": "forecast"
+            },
+            {
+              "id": "vn-advanced-07-interval",
+              "text": "interval"
+            },
+            {
+              "id": "vn-advanced-07-permission",
+              "text": "permission"
+            }
+          ],
+          "answer": "vn-advanced-07-compromise"
+        },
+        {
+          "id": "vn-advanced-08",
+          "type": "choice",
+          "purpose": "exam",
+          "prompt": "Choose the correct completion: Rarely ___ the supervisor alter a confirmed delivery date without telling the team.",
+          "context": "The negative-frequency adverb rarely is fronted for emphasis.",
+          "explanation": {
+            "en": "A fronted negative adverbial uses subject–auxiliary inversion; a singular present-simple subject takes does.",
+            "vi": "Trạng từ phủ định đưa lên đầu cần đảo trợ động từ; chủ ngữ số ít hiện tại đơn dùng does."
+          },
+          "sourceIds": [
+            "source-flss-2026-structure",
+            "source-flss-2025-structure"
+          ],
+          "options": [
+            {
+              "id": "vn-advanced-08-does",
+              "text": "does"
+            },
+            {
+              "id": "vn-advanced-08-do",
+              "text": "do"
+            },
+            {
+              "id": "vn-advanced-08-has",
+              "text": "has"
+            },
+            {
+              "id": "vn-advanced-08-is",
+              "text": "is"
+            }
+          ],
+          "answer": "vn-advanced-08-does"
+        }
+      ]
+    }
+  ],
+  "listening": [
+    {
+      "id": "listen-a1-01",
+      "level": "A1",
+      "title": {
+        "en": "Setting the Lunch Table",
+        "vi": "Dọn bàn ăn trưa"
+      },
+      "transcript": "Hello, I'm Jo, and I'm setting the tables for our small lunch today. There are four plates on the long table and two cups beside the window. The green cloth is clean, but the yellow one is still wet, so I will use the green one. We eat at twelve. After lunch, I need to put the plates in the blue box, not on the shelf. My sister can help me then.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-a1-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "How many plates are on the long table?",
+          "context": "",
+          "explanation": {
+            "en": "The speaker states that there are four plates on the long table.",
+            "vi": "Người nói cho biết có bốn chiếc đĩa trên bàn dài."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-a1-01-q1-four",
+              "text": "Four"
+            },
+            {
+              "id": "listen-a1-01-q1-two",
+              "text": "Two"
+            },
+            {
+              "id": "listen-a1-01-q1-twelve",
+              "text": "Twelve"
+            }
+          ],
+          "answer": "listen-a1-01-q1-four"
+        },
+        {
+          "id": "listen-a1-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Why will Jo use the green cloth?",
+          "context": "",
+          "explanation": {
+            "en": "Jo says the green cloth is clean and the yellow one is wet, so the green one is ready.",
+            "vi": "Jo nói khăn xanh sạch, khăn vàng bị ướt nên khăn xanh sẵn sàng sử dụng."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-a1-01-q2-clean",
+              "text": "It is clean."
+            },
+            {
+              "id": "listen-a1-01-q2-yellow",
+              "text": "It is yellow."
+            },
+            {
+              "id": "listen-a1-01-q2-wet",
+              "text": "It is still wet."
+            }
+          ],
+          "answer": "listen-a1-01-q2-clean"
+        }
+      ]
+    },
+    {
+      "id": "listen-a2-01",
+      "level": "A2",
+      "title": {
+        "en": "A Change to the Saturday Walk",
+        "vi": "Thay đổi cho chuyến đi bộ thứ Bảy"
+      },
+      "transcript": "Hi, this is my message about Saturday's walk. I planned to meet the group at the river gate at nine, but the path there is closed for cleaning. We'll meet outside the bookshop instead, ten minutes later. Bring a hat, because the route has little shade after the bridge. I packed two bottles of water, so I can share one if anyone forgets theirs. If the sky gets dark, we will finish at the small café near the station. Please check the group board before leaving.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-a2-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Why will the group meet somewhere different?",
+          "context": "",
+          "explanation": {
+            "en": "The river path is closed for cleaning, so the group changes its meeting point.",
+            "vi": "Lối ven sông đóng cửa để dọn dẹp nên nhóm đổi điểm gặp."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-a2-01-q1-closed",
+              "text": "The path is closed for cleaning."
+            },
+            {
+              "id": "listen-a2-01-q1-shade",
+              "text": "The route has little shade."
+            },
+            {
+              "id": "listen-a2-01-q1-water",
+              "text": "The speaker packed extra water."
+            }
+          ],
+          "answer": "listen-a2-01-q1-closed"
+        },
+        {
+          "id": "listen-a2-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Where will the walk finish if the sky gets dark?",
+          "context": "",
+          "explanation": {
+            "en": "The speaker says they will finish at a café near the station if the sky gets dark.",
+            "vi": "Người nói cho biết họ sẽ kết thúc ở quán gần nhà ga nếu trời tối."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-a2-01-q2-cafe",
+              "text": "At a small café near the station"
+            },
+            {
+              "id": "listen-a2-01-q2-bookshop",
+              "text": "Outside the bookshop"
+            },
+            {
+              "id": "listen-a2-01-q2-river",
+              "text": "At the river gate"
+            }
+          ],
+          "answer": "listen-a2-01-q2-cafe"
+        }
+      ]
+    },
+    {
+      "id": "listen-b1-01",
+      "level": "B1",
+      "title": {
+        "en": "The Small Workshop Group",
+        "vi": "Nhóm hội thảo nhỏ"
+      },
+      "transcript": "At first I thought our workshop would be too quiet because only six people signed up. In fact, the small group let everyone try the recording equipment without waiting. We still had one problem: voices from the hallway came through the door. I have asked the building manager whether we can use the side room next month. I would rather keep the group small than invite more people before fixing the sound. I will post the next date after the room is confirmed.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-b1-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "What changed the speaker's first opinion of the small group?",
+          "context": "",
+          "explanation": {
+            "en": "Everyone could try the equipment without waiting, making the small size useful.",
+            "vi": "Mọi người được thử thiết bị mà không cần chờ nên quy mô nhỏ trở nên hữu ích."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-b1-01-q1-access",
+              "text": "Everyone used the equipment without waiting."
+            },
+            {
+              "id": "listen-b1-01-q1-noise",
+              "text": "The hallway became quiet."
+            },
+            {
+              "id": "listen-b1-01-q1-signup",
+              "text": "More than six people joined."
+            }
+          ],
+          "answer": "listen-b1-01-q1-access"
+        },
+        {
+          "id": "listen-b1-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Why has the speaker not posted the next date yet?",
+          "context": "",
+          "explanation": {
+            "en": "The speaker is waiting to learn whether the side room will be available.",
+            "vi": "Người nói đang đợi biết liệu phòng bên có sẵn hay không."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-b1-01-q2-room",
+              "text": "The room has not been confirmed."
+            },
+            {
+              "id": "listen-b1-01-q2-date",
+              "text": "The workshop was cancelled."
+            },
+            {
+              "id": "listen-b1-01-q2-people",
+              "text": "The speaker wants a much larger group."
+            }
+          ],
+          "answer": "listen-b1-01-q2-room"
+        }
+      ]
+    },
+    {
+      "id": "listen-b2-01",
+      "level": "B2",
+      "title": {
+        "en": "A Courtyard Reading Event",
+        "vi": "Buổi đọc sách ở sân trong"
+      },
+      "transcript": "The committee has chosen the courtyard for the reading event, although I know some of you preferred the larger hall. The hall is easier to reach in bad weather, but its evening booking would have used most of the remaining budget. We can keep a small indoor room as a backup, and the courtyard has power for lamps. I don't want the lower cost to be mistaken for a complete solution, though; we still need to check the accessible route after sunset. I will ask two volunteers to walk it before we confirm the plan.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-b2-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "What reason most influenced the committee's choice?",
+          "context": "",
+          "explanation": {
+            "en": "The evening cost of the hall was a major constraint; the speaker also notes the courtyard's practical features.",
+            "vi": "Chi phí buổi tối của hội trường là ràng buộc lớn; người nói cũng nêu ưu điểm thực tế của sân."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-b2-01-q1-budget",
+              "text": "The hall would use most of the remaining budget."
+            },
+            {
+              "id": "listen-b2-01-q1-weather",
+              "text": "The courtyard is easier in bad weather."
+            },
+            {
+              "id": "listen-b2-01-q1-backup",
+              "text": "No indoor room is available."
+            }
+          ],
+          "answer": "listen-b2-01-q1-budget"
+        },
+        {
+          "id": "listen-b2-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "What remains unresolved before the plan is confirmed?",
+          "context": "",
+          "explanation": {
+            "en": "The volunteers still need to check whether the accessible route works after sunset.",
+            "vi": "Tình nguyện viên vẫn cần kiểm tra lối đi tiếp cận sau khi trời tối."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-b2-01-q2-route",
+              "text": "Whether the accessible route works after sunset"
+            },
+            {
+              "id": "listen-b2-01-q2-lamps",
+              "text": "Whether the courtyard has power"
+            },
+            {
+              "id": "listen-b2-01-q2-event",
+              "text": "Whether the event should be cancelled"
+            }
+          ],
+          "answer": "listen-b2-01-q2-route"
+        }
+      ]
+    },
+    {
+      "id": "listen-c1-01",
+      "level": "C1",
+      "title": {
+        "en": "What the Pilot Can Show",
+        "vi": "Thí điểm có thể cho thấy điều gì"
+      },
+      "transcript": "Several people have described the pilot as a success because attendance rose over three weeks. That is encouraging, but it is not the whole account. The first week coincided with a local event, and the sign-up form changed midway through the trial. We therefore cannot attribute the entire increase to the new reminder. What we can say is that more people completed the form after the shorter version appeared. Before recommending a permanent change, I would repeat the test during an ordinary month and keep the form stable.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-c1-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Which conclusion does the speaker consider supported?",
+          "context": "",
+          "explanation": {
+            "en": "The speaker supports the narrow observation that more people completed the shorter form, not that reminders caused the whole rise.",
+            "vi": "Người nói ủng hộ nhận xét hẹp rằng nhiều người hoàn thành mẫu ngắn hơn, không khẳng định lời nhắc gây toàn bộ mức tăng."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-c1-01-q1-narrow",
+              "text": "More people completed the form after it was shortened."
+            },
+            {
+              "id": "listen-c1-01-q1-strong",
+              "text": "The reminder caused the entire attendance rise."
+            },
+            {
+              "id": "listen-c1-01-q1-permanent",
+              "text": "The pilot proves the change should be permanent."
+            }
+          ],
+          "answer": "listen-c1-01-q1-narrow"
+        },
+        {
+          "id": "listen-c1-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Why repeat the test in an ordinary month with a stable form?",
+          "context": "",
+          "explanation": {
+            "en": "A local event and a mid-trial form change complicate interpretation; the repeat would reduce those alternative explanations.",
+            "vi": "Sự kiện địa phương và việc đổi mẫu giữa chừng làm khó diễn giải; thử lại sẽ giảm các giải thích thay thế."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-c1-01-q2-confounds",
+              "text": "To reduce alternative explanations"
+            },
+            {
+              "id": "listen-c1-01-q2-attendance",
+              "text": "To guarantee attendance rises again"
+            },
+            {
+              "id": "listen-c1-01-q2-form",
+              "text": "To remove the form entirely"
+            }
+          ],
+          "answer": "listen-c1-01-q2-confounds"
+        }
+      ]
+    },
+    {
+      "id": "listen-c2-01",
+      "level": "C2",
+      "title": {
+        "en": "Is the Timetable a Compromise?",
+        "vi": "Lịch trình có phải là thỏa hiệp?"
+      },
+      "transcript": "I'm uneasy about presenting the revised timetable as a compromise already achieved. It does preserve the evening sessions that some participants asked us to protect, yet it shifts the maintenance work onto a team that has not agreed to the change. Calling the plan balanced may reassure the committee, but the word would do more work than the consultation did. I suggest we circulate the timetable with the staffing assumption stated plainly and leave the decision open until the affected team has responded. That might delay approval; it would also make the eventual agreement more credible.",
+      "sourceIds": [
+        "source-cefr-companion-2020"
+      ],
+      "activities": [
+        {
+          "id": "listen-c2-01-q1",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "Why is the speaker uneasy about calling the timetable a compromise?",
+          "context": "",
+          "explanation": {
+            "en": "One group's sessions remain, but another team's workload increases without their agreement.",
+            "vi": "Một nhóm giữ được các buổi tối nhưng khối lượng nhóm khác tăng mà chưa được đồng ý."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-c2-01-q1-imbalance",
+              "text": "It protects one group's sessions but shifts work to an unconsulted team."
+            },
+            {
+              "id": "listen-c2-01-q1-wording",
+              "text": "It contains no evening sessions."
+            },
+            {
+              "id": "listen-c2-01-q1-rejection",
+              "text": "The committee has rejected it."
+            }
+          ],
+          "answer": "listen-c2-01-q1-imbalance"
+        },
+        {
+          "id": "listen-c2-01-q2",
+          "type": "choice",
+          "purpose": "listening",
+          "prompt": "What does the speaker propose before a decision?",
+          "context": "",
+          "explanation": {
+            "en": "The speaker wants the staffing assumption stated and the decision left open until the affected team replies.",
+            "vi": "Người nói muốn nêu rõ giả định nhân sự và để ngỏ quyết định đến khi nhóm bị ảnh hưởng phản hồi."
+          },
+          "sourceIds": [
+            "source-cefr-companion-2020"
+          ],
+          "options": [
+            {
+              "id": "listen-c2-01-q2-consult",
+              "text": "State the assumption and wait for the team."
+            },
+            {
+              "id": "listen-c2-01-q2-approve",
+              "text": "Approve it immediately."
+            },
+            {
+              "id": "listen-c2-01-q2-remove",
+              "text": "Delete every evening session."
+            }
+          ],
+          "answer": "listen-c2-01-q2-consult"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "This batch complements the published atlas: its 24 missions are reading-led and repeat location clues, past narratives, reported viewpoints, formal reports and editorial nuance. The batch adds four curriculum domains per band and short original practice.",
+    "All band labels are internal estimates informed by broad CEFR descriptors; the items have not been piloted or empirically calibrated and do not certify CEFR ability.",
+    "Each exam set is a short format-practice sample, not full IELTS Academic, TOEIC Listening and Reading or any school's complete exam.",
+    "The Vietnamese advanced-English set follows the requested eight-item language-practice mix; it is not a simulation of a unified Vietnamese exam or the current FLSS exam.",
+    "Listening scripts are text only. Browser speech may provide provisional practice; no static audio, voice quality or media rights have been validated.",
+    "Text-based lessons for children need adult support."
+  ]
+}

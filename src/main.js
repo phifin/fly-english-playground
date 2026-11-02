@@ -25,6 +25,7 @@ import {quickActivities,savedQuick} from './quick-practice.js';
 import {littleWords} from './little-content.js';
 import {createLittleSession,littleAction,restoreLittleSession,littlePlayView,littleCurrent} from './little-play.js';
 import {installWorkshopInput} from './workshop-input.js';
+import {createLearningPlatform} from './platform.js';
 
 const app=document.querySelector('#app');
 // Keep the native file chooser outside rebuilt views. Replacing/detaching it
@@ -42,6 +43,12 @@ const btn=(label,action,extra='',cls='')=>`<button type="button" class="${cls}" 
 const selected=(a,b)=>a===b?' selected':'';
 const pressed=(a,b)=>`aria-pressed="${a===b}"`;
 const content=()=>indexContent(pack);
+const learningPlatform=createLearningPlatform({
+ getContext:()=>({profile,events,legacyActivities:pack?content().activities:new Map()}),
+ isActive:()=>ui.screen==='learn',render:focus=>render(focus),
+ write:async(kind,payload,owner)=>{if(profile?.id!==owner)throw Error(t('Choose your learner again.','Hãy chọn lại người học.'));await store.appendEvent(owner,newEvent(kind,payload));ui.lastSaved=new Date();if(profile?.id===owner)await refresh();},
+ download:file=>{const url=URL.createObjectURL(new Blob([file.text],{type:file.type})),a=document.createElement('a');a.href=url;a.download=file.filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);},
+});
 const identityStatus=()=>profileSaveStatus({...ui.cloudStatus,offline:navigator.onLine===false},profile,events);
 function accountScreen(){return (ui.cloudStatus.approved&&ui.cloudStatus.familyOwner?`<div class="account-family-link">${btn(t('Manage my family','Quản lý gia đình'),'family','','text-button')}</div>`:'')+accountView({status:identityStatus(),profile,profiles,language:language(),cloudHtml:cloudView({status:ui.cloudStatus,profile,language:language(),presentation:'inline'})})+(ui.linkConfirm&&profile?`<section class="panel link-confirm"><h2>${t('Save this learner to your account?','Lưu người học này vào tài khoản?')}</h2><p><strong>${esc(profile.name)}</strong> → <strong translate="no">${esc(ui.cloudStatus.email??ui.cloudStatus.displayName??'')}</strong></p><p>${t('Your guest progress is kept. This account will own the cloud copy. Nothing is linked until you confirm.','Tiến độ khách được giữ lại. Tài khoản này sở hữu bản đám mây. Chỉ liên kết khi bạn xác nhận.')}</p><div class="button-row">${btn(t('Save this learner','Lưu người học này'),'cloud-link-confirm','','primary')}${btn(t('Cancel','Hủy'),'cloud-link-cancel')}</div></section>`:'');}
 async function cloudStatusChanged(s){
@@ -158,6 +165,7 @@ async function workshopAction(name,value){
  if(operation==='remove')app.querySelector(`[data-action="workshop-place"][data-value="${value}"]`)?.focus({preventScroll:true});
 }
 async function saveDraft(){
+ if(ui.screen==='learn'){await learningPlatform.saveDraft();return;}
  if(!['mission','quick'].includes(ui.screen)||ui.stage!=='activity'||!ui.activity||ui.feedback||ui.submitting||!profile)return;
  const a=currentActivity();if(!a)return;
  const value=JSON.stringify({answer:ui.answer,supported:ui.supported});if(value===ui.draftKey||(ui.answer===null&&!ui.supported))return;
@@ -167,7 +175,7 @@ async function saveDraft(){
 }
 function draftStatus(){const el=app.querySelector('.draft-status');if(!el||!['mission','quick'].includes(ui.screen)||ui.stage!=='activity')return;const saved=ui.feedback||JSON.stringify({answer:ui.answer,supported:ui.supported})===ui.draftKey;const message=saved?t('Saved on this device','Đã lưu trên thiết bị'):t('Draft not yet saved…','Bản nháp chưa lưu…');if(el.textContent!==message)el.textContent=message;}
 function queueDraft(){clearTimeout(draftTimer);draftStatus();draftTimer=setTimeout(()=>{if(!ui.busy&&!ui.submitting)saveDraft().then(draftStatus).catch(reportError);},1500);}
-async function navigate(screen){await saveDraft();globalThis.speechSynthesis?.cancel();ui.screen=screen==='atlas'?'workshop':screen;ui.error='';ui.notice='';ui.feedback=null;ui.showModel=false;render(true);}
+async function navigate(screen){await saveDraft();learningPlatform.leave();globalThis.speechSynthesis?.cancel();ui.screen=screen==='atlas'?'workshop':screen;ui.error='';ui.notice='';ui.feedback=null;ui.showModel=false;render(true);}
 function initActivity(a){
  globalThis.speechSynthesis?.cancel();
  ui.activity=a.id;ui.feedback=null;ui.showModel=false;ui.supported=false;
@@ -322,7 +330,7 @@ function render(focusHeading=false){
   disclosures:[...form.querySelectorAll('details')].map(detail=>detail.open),
   controls:[...form.elements].filter(el=>el.name&&el.type!=='file').map(el=>({name:el.name,type:el.type,value:el.value,checked:el.checked})),
  })):[];
- const screens={home:homeScreen,quick:quickScreen,little:littleScreen,family:familyScreen,account:accountScreen,starting:()=>startingView({language:language(),saved:savedPlacement(events),level:profile.journey.region}),profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,library:atlasScreen,workshop:workshopScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen,pictures:()=>picturePlayView({language:language(),index:ui.pictureIndex,found:ui.pictureFound,feedback:ui.pictureFeedback})};
+ const screens={learn:()=>learningPlatform.view(),home:homeScreen,quick:quickScreen,little:littleScreen,family:familyScreen,account:accountScreen,starting:()=>startingView({language:language(),saved:savedPlacement(events),level:profile.journey.region}),profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,library:atlasScreen,workshop:workshopScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen,pictures:()=>picturePlayView({language:language(),index:ui.pictureIndex,found:ui.pictureFound,feedback:ui.pictureFeedback})};
  document.body.className=`mode-${profile?.settings.mode??'balanced'}`;
  app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.error?`<div class="alert error" role="alert">${esc(ui.error)} ${btn(t('Dismiss','Đóng'),'dismiss-error','','text-button')}</div>`:''}${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main><div class="busy-indicator" role="status">${t('One moment…','Chờ một chút…')}</div>${footer()}`;
  for(const detail of app.querySelectorAll('details')){const key=disclosureKey(detail);if(disclosures.has(key))detail.open=disclosures.get(key);}
@@ -371,6 +379,7 @@ async function continueTrail(){
 }
 
 async function action(name,el){
+ if(name.startsWith('learn-')){if(!profile)return;await saveDraft();await learningPlatform.load();ui.screen='learn';ui.error='';ui.notice='';await learningPlatform.action(name,el);return;}
  if(name.startsWith('little-')){await handleLittle(name,el.dataset.value);return;}
  if(name==='quick-start'){await openQuick();return;}
  if(name.startsWith('workshop-')){await workshopAction(name,el.dataset.value);return;}
@@ -462,12 +471,13 @@ function reportError(error){ui.errorSource=error;ui.error=errorMessage(error);re
 async function run(task){if(ui.busy)return;ui.busy=true;app.setAttribute('aria-busy','true');try{await task();}catch(error){reportError(error);}finally{ui.busy=false;app.setAttribute('aria-busy','false');}}
 app.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!el)return;e.preventDefault();if(el.disabled)return;run(()=>action(el.dataset.action,el));});
 app.addEventListener('input',e=>{
+ if(learningPlatform.input(e.target)){queueDraft();return;}
  const el=e.target;if(ui.submitting)return;if(el.dataset.answer==='gap')ui.answer=el.value;
  if(el.dataset.answer==='writing')ui.answer={...ui.answer,text:el.value};
  if(el.hasAttribute('data-world-plan'))ui.worldPlan=el.value;
  if(el.dataset.answer)queueDraft();
 });
-app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
+app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.hasAttribute('data-learn-answer')){e.preventDefault();run(()=>action('learn-submit',e.target));return;}if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
 app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
 const handleChange=e=>run(async()=>{
@@ -483,6 +493,7 @@ const handleChange=e=>run(async()=>{
 app.addEventListener('change',handleChange);
 importInput.addEventListener('change',handleChange);
 app.addEventListener('submit',e=>{e.preventDefault();const form=e.target,data=new FormData(form,e.submitter);run(async()=>{
+ if(form.dataset.form==='learning-goals'){await action('learn-save-goals',form);return;}
  if(form.dataset.form==='create-profile'){const kind=data.get('kind')??'independent';if(kind==='dependent'&&!data.get('guardianId'))throw new Error(t('Choose a guardian first, or create a personal traveler.','Chọn người giám hộ hoặc hồ sơ cá nhân.'));const mode=['kids','balanced','serious'].includes(data.get('mode'))?data.get('mode'):'balanced';const accountUid=ui.cloudStatus.uid,saveToAccount=data.get('cloudSave')==='on'&&ui.cloudStatus.approved;const p=await store.createProfile({name:String(data.get('name')??'').trim()||t('Explorer','Nhà khám phá'),kind,guardianId:kind==='dependent'?data.get('guardianId'):null,settings:{language:language(),mode}});await selectProfile(p.id);profile=await store.updateProfile(p.id,{journey:{onboarded:true}});ui.entering=false;if(saveToAccount){
   if(ui.cloudStatus.uid!==accountUid)ui.notice=t('Your learner is saved here. Choose the account to save it to from Account & learners.','Người học đã lưu ở đây. Chọn tài khoản để lưu trong Tài khoản và người học.');
   else try{await cloud.linkProfile(p.id);await cloud.sync(p.id);await refresh();}catch(error){ui.notice=t('Your learner is saved on this device. Cloud saving needs attention in Account & learners. ','Người học đã lưu trên thiết bị. Hãy kiểm tra lưu đám mây trong Tài khoản và người học. ')+errorMessage(error);}
@@ -503,7 +514,7 @@ async function boot(){
   store=await openStore();profiles=accessibleProfiles(await store.listProfiles(),{});cloud=createCloud({store,onStatus:s=>{cloudStatusChanged(s).catch(reportError);}});ui.cloudStatus=cloud.status();
   let active;try{active=localStorage.getItem('atlas-active-profile');}catch{}
   if(active&&profiles.some(p=>p.id===active))await selectProfile(active);else ui.screen='profiles';
-  setPreferences();render(true);if(ui.cloudStatus.configured)cloud.restoreSession().catch(()=>{});registerOffline({onReady:()=>{ui.offlineReady=true;if(!ui.entering&&!['mission','placement'].includes(ui.screen))render();},onUpdate:()=>{ui.notice=t('An atlas update is ready. It will activate after all atlas tabs close; your progress stays saved.','Có bản cập nhật. Bản mới dùng sau khi đóng mọi thẻ bản đồ; tiến độ được giữ.');render();}}).catch(()=>{});
+  setPreferences();render(true);if(profile&&new URL(location.href).searchParams.get("learn")==="today")await action("learn-hub",{dataset:{}});if(ui.cloudStatus.configured)cloud.restoreSession().catch(()=>{});registerOffline({onReady:()=>{ui.offlineReady=true;if(!ui.entering&&!['mission','placement'].includes(ui.screen))render();},onUpdate:()=>{ui.notice=t('An atlas update is ready. It will activate after all atlas tabs close; your progress stays saved.','Có bản cập nhật. Bản mới dùng sau khi đóng mọi thẻ bản đồ; tiến độ được giữ.');render();}}).catch(()=>{});
  }catch(error){app.innerHTML=`<main class="startup-error panel"><img src="./assets/atlas-mark.svg" alt="" width="50"><h1>${t('The atlas needs a moment.','Bản đồ cần thêm một chút thời gian.')}</h1><p>${esc(errorMessage(error))}</p><p>${t('Your saved journey has not been reset. Check your connection and allow browser storage for this site.','Hành trình đã lưu không bị xóa. Hãy kiểm tra kết nối và cho phép lưu trữ của trang này.')}</p><button type="button" id="reload">${t('Try again','Thử lại')}</button></main>`;document.querySelector('#reload').onclick=()=>location.reload();}
 }
 installWorkshopInput(app,{onPlace:(prop,slot)=>run(async()=>{if(ui.screen!=='workshop')return;ui.workshopSelected=prop;await workshopAction('workshop-place',slot);})});

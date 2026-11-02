@@ -10,6 +10,7 @@ import { deploymentUrl } from './verify-deployment.mjs';
 import { verifyCloudSdk } from './cloud-sdk-check.mjs';
 import { pollAsyncResult } from './browser-poll.mjs';
 import { workshopBriefs } from '../src/workshop-content.js';
+import {verifyPlatform} from './browser-platform-check.mjs';
 
 // Verification tooling only. This script neither installs packages nor provisions
 // services. Every traveler, response and backup belongs to a fresh test context.
@@ -1037,6 +1038,8 @@ try {
     check('Native mouse and CDP touch drags commit one placement each; English/Vietnamese Home and picture rounds fit 320px with axe checks and screenshots.');
   } catch (error) { failurePage = experience; throw error; }
   finally { if (failurePage !== experience) { await experienceContext.close(); contexts.splice(contexts.indexOf(experienceContext), 1); } }
+
+  await verifyPlatform({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
 
   const lightContext = await newContext(); const lightPage = await lightContext.newPage(); observe(lightPage);
   try {

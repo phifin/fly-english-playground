@@ -2,13 +2,13 @@ import { extname } from 'node:path';
 
 export const contentTypes = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8', '.webmanifest': 'application/manifest+json', '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
   '.webp': 'image/webp', '.avif': 'image/avif', '.gif': 'image/gif', '.ico': 'image/x-icon',
   '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wav': 'audio/wav',
 };
 const rootFiles = new Set(['index.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js', 'offline-manifest.json', 'build-report.json']);
-const assetTypes = new Set(['.css', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.ico', '.woff2', '.mp3', '.ogg', '.wav']);
+const assetTypes = new Set(['.webmanifest', '.css', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.ico', '.woff2', '.mp3', '.ogg', '.wav']);
 
 export function isPublicRelative(relative) {
   if (typeof relative !== 'string' || relative.includes('\\') || relative.includes('\0')

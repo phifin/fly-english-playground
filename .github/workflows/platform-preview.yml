@@ -1,0 +1,84 @@
+name: Learning platform isolated preview
+on:
+  push:
+    branches: [work/learning-platform]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: platform-preview-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  browser-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Unit and regression tests
+        run: node --test --test-isolation=none tests/*.test.mjs
+      - name: Install isolated browser tools
+        run: npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
+      - name: Exercise isolated unaccepted candidate without deployment
+        env:
+          ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
+          ATLAS_AXE_PATH: ${{ runner.temp }}/atlas-browser/node_modules/axe-core/axe.min.js
+          ATLAS_BROWSER_CHANNEL: chrome
+          ATLAS_BASE_PATH: /fly-english-playground/
+          ATLAS_URL: http://127.0.0.1:4173/fly-english-playground/
+          ATLAS_PLATFORM_CANDIDATE: 'true'
+          CI: 'true'
+        run: |
+          mkdir -p artifacts
+          node scripts/platform-candidate-preview.mjs --serve > artifacts/platform-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          preview_ready=false
+          for attempt in {1..80}; do
+            if curl --fail --silent "$ATLAS_URL" > /dev/null; then preview_ready=true; break; fi
+            sleep 0.25
+          done
+          if [[ "$preview_ready" != true ]]; then cat artifacts/platform-preview.log; exit 1; fi
+          node scripts/browser-release-check.mjs
+      - name: Preserve verification evidence, never a Pages artifact
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: platform-preview-evidence
+          path: |
+            artifacts/release-browser-report.json
+            artifacts/release-*.png
+            artifacts/platform-preview.log
+            artifacts/platform-candidate-report.json
+          retention-days: 7
+  firestore-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      ATLAS_REQUIRE_FIRESTORE_EMULATOR: 'true'
+      ATLAS_REQUIRE_CLOUD_EMULATORS: 'true'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm install --prefix "$RUNNER_TEMP/atlas-firebase" --no-save --package-lock=false --ignore-scripts firebase-tools@15.34.0
+      - name: Run real Auth and Firestore emulators
+        run: >-
+          node "$RUNNER_TEMP/atlas-firebase/node_modules/firebase-tools/lib/bin/firebase.js"
+          --non-interactive emulators:exec --only auth,firestore --project demo-atlas-rules
+          --config cloud/firebase.json
+          'node --test --test-isolation=none tests/cloud-rules.test.mjs tests/cloud-emulator.test.mjs'
