@@ -13,6 +13,8 @@ Blocking findings:
 - The Vietnamese transformation set excludes valid alternatives such as "Despite being brief".
 - The interrupted revision of A1 objectives introduced literal question marks in place of Vietnamese characters. This is file corruption, not browser font shaping. These strings must be restored with UTF-8-safe edits and checked.
 
+Sol subsequently restored all 21 damaged Vietnamese strings in the partial A1–B1 revisions using a UTF-8 file patch. The validator now rejects this corruption and obvious unchanged-keyword answer leakage. This repairs encoding only; the other educational blocking findings still apply. The author's earlier review report has not yet been reconciled with the interrupted edits.
+
 Luna's targeted revision was interrupted by an explicit usage-limit response. Do not retry repeatedly, change model to evade that limit, or treat the last schema pass as educational acceptance. Preserve the substantive original draft and requested corrections; resume Luna when permitted, then independently reread all changed objectives, all exam items and listening items. Higher-band listening distractors also need more plausible alternatives before claiming appropriate advanced challenge.
 
 Independent engineering and mechanical browser verification may use an isolated candidate artifact clearly marked unaccepted. Candidate files must never be deployed to GitHub Pages or written into the repository's `data/published/` directory. The normal Pages workflow now runs the platform acceptance gate before building/deploying.

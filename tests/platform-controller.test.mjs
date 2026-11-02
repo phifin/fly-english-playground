@@ -41,6 +41,14 @@ test('controller resumes partial ordering drafts without accepting duplicate tok
  await h.action('learn-next');assert.equal(h.state().activityId,'order-p2');
  h.recreate();await h.action('learn-resume',id);assert.equal(h.state().activityId,'order-p2');assert.equal(h.state().answer,'');h.controller.leave();
 });
+
+test('word browsing includes the selected range and returning home preserves the browsed range',async()=>{
+ const h=harness();await h.action('learn-hub');await h.action('learn-words');
+ assert.equal(h.state().objectiveId,null);await h.action('learn-word-flip');await h.action('learn-word-next');await h.action('learn-word-flip');
+ const ids=h.profiles.get('a').events.filter(e=>e.payload.experience==='word-exposure-v1').map(e=>e.payload.wordId);
+ assert.equal(new Set(ids).size,2);assert.equal(h.progress().habits.todayAttempts,0);
+ await h.action('learn-course','C2');await h.action('learn-report');await h.action('learn-hub');assert.equal(h.state().level,'C2');
+});
 test('failed attempt save keeps response and position; retry persists once and then advances',async()=>{
  const h=harness();await h.action('learn-start','gaps');h.input('fixture');h.failNext=true;
  await assert.rejects(h.action('learn-submit'),/write failure/);assert.equal(h.state().activityId,'gap-p1');assert.equal(h.state().feedback,null);assert.equal(h.state().answer,'fixture');

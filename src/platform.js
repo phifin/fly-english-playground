@@ -41,6 +41,7 @@ export function createLearningPlatform({getContext, write, render, isActive, fet
     index=indexCurriculum(candidate);batch=candidate;
   }
   function current(){return index?.activities.get(state.activityId);}
+  function wordList(){return index.objectives.get(state.objectiveId)?.lexicon??[...index.lexicon.values()].filter(word=>word.level===state.level);}
   function round(){return progress().sessions[state.sessionId];}
   function prepare(){
     stopAudio();state.feedback=null;state.transcript=false;state.audioHeard=false;state.audioState='';
@@ -115,19 +116,19 @@ export function createLearningPlatform({getContext, write, render, isActive, fet
     if(!owner)return;
     if(!['learn-choose','learn-order','learn-order-clear','learn-submit','learn-play-audio','learn-audio-stop'].includes(name))await saveDraft();
     if(!['learn-play-audio','learn-choose','learn-order','learn-order-clear'].includes(name))stopAudio();
-    if(name==='learn-hub'){state.page='hub';state.feedback=null;state.level=ctx().profile.journey.region;}
+    if(name==='learn-hub'){state.page='hub';state.feedback=null;}
     else if(name==='learn-course'&&LEVELS.includes(value)){state.level=value;state.page='hub';}
     else if(name==='learn-lesson'&&index.objectives.has(value)){state.objectiveId=value;state.page='lesson';}
-    else if(name==='learn-start'&&index.objectives.has(value))await begin({objectiveId:value,size:2});
+    else if(name==='learn-start'&&index.objectives.has(value))await begin({objectiveId:value,level:index.objectives.get(value).level,size:2});
     else if(name==='learn-daily')await begin({size:progress().preferences.goal});
     else if(name==='learn-review')await begin({kind:'review',size:5});
     else if(name==='learn-check')await begin({kind:'check',size:4});
     else if(name==='learn-resume'&&progress().sessions[value]){state.sessionId=value;state.page='session';prepare();}
-    else if(name==='learn-words'){state.objectiveId=index.objectives.has(value)?value:[...index.objectives.values()].find(o=>o.level===state.level)?.id;state.page='words';state.wordIndex=0;state.wordRevealed=false;}
-    else if(name==='learn-word-flip'){state.wordRevealed=true;const word=index.objectives.get(state.objectiveId)?.lexicon[state.wordIndex];if(word)await persist('mission',{experience:'word-exposure-v1',wordId:word.id});}
-    else if(name==='learn-word-next'){const words=index.objectives.get(state.objectiveId)?.lexicon??[];state.wordIndex=(state.wordIndex+1)%words.length;state.wordRevealed=false;}
-    else if(name==='learn-word-speak'){const word=index.objectives.get(state.objectiveId)?.lexicon[state.wordIndex];if(word)await play(word.term);}
-    else if(['learn-exams','learn-listening','learn-report','learn-goals'].includes(name)){state.page=name.slice(6);}
+    else if(name==='learn-words'){state.objectiveId=index.objectives.has(value)?value:null;state.page='words';state.wordIndex=0;state.wordRevealed=false;}
+    else if(name==='learn-word-flip'){const word=wordList()[state.wordIndex];if(word){await persist('mission',{experience:'word-exposure-v1',wordId:word.id});state.wordRevealed=true;}}
+    else if(name==='learn-word-next'){const words=wordList();state.wordIndex=words.length?(state.wordIndex+1)%words.length:0;state.wordRevealed=false;}
+    else if(name==='learn-word-speak'){const word=wordList()[state.wordIndex];if(word)await play(word.term);}
+    else if(['learn-exams','learn-listening','learn-report','learn-goals'].includes(name)){state.page=name.slice(6);if(name==='learn-goals')state.reminderTime=latest(ctx().events).find(e=>e.kind==='mission'&&e.payload?.experience==='calendar-reminder-v1')?.payload.time??'18:00';}
     else if(name==='learn-exam'||name==='learn-exam-timed')await begin({kind:'exam',setId:value,timed:name==='learn-exam-timed'});
     else if(name==='learn-listen-start')await begin({kind:'listening',setId:value});
     else if(name==='learn-choose'&&current()?.type==='choice'&&!state.feedback){if(current().options.some(o=>o.id===value))state.answer=value;await saveDraft();}

@@ -65,8 +65,11 @@ export async function verifyPlatform({newContext,observe,ready,noError,axe,base,
   assert.ok(checkRound.snapshot.activityIds.every(id=>index.activities.get(id).purpose==='check'));
   await play('learn-hub');await play('learn-exams');await axe('Short exam practice choices at 320px',page);
   const exam=batch.examSets.find(s=>s.exam==='ielts-academic');await play('learn-exam-timed',exam.id);
+  assert.equal(await page.locator('.learn-passage-details').getAttribute('open'),'');
+  await page.locator('.learn-question-link').click();assert.equal(await page.locator('#learn-prompt').isVisible(),true);
   const examRound=Object.values((await p()).sessions).find(s=>s.snapshot.kind==='exam');assert.ok(examRound.deadline);
   const firstExam=index.activities.get(examRound.snapshot.activityIds[0]);await choose(firstExam);await play('learn-submit');
+  assert.equal(await page.locator('.learn-passage-details').getAttribute('open'),null,'Later questions keep the long passage available without forcing another long scroll');
   assert.equal(await page.locator('.learn-feedback,.learn-answer-review').count(),0);
   await play('home');await page.reload();await ready(page);await play('learn-hub');await play('learn-resume',examRound.snapshot.id);
   assert.equal((await p()).sessions[examRound.snapshot.id].deadline,examRound.deadline,'Reload keeps the original time budget');

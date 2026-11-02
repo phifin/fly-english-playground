@@ -70,21 +70,21 @@
       "domain": "vocabulary",
       "title": {
         "en": "Simple Food Tastes",
-        "vi": "V? m?n ?n ??n gi?n"
+        "vi": "Các vị quen thuộc"
       },
       "canDo": {
         "en": "Use familiar words for sweet, salty, and spicy food and state a simple preference.",
-        "vi": "D?ng t? quen thu?c ch? m?n ng?t, m?n, cay v? n?u s? th?ch ??n gi?n."
+        "vi": "Dùng từ quen thuộc để nói về món ngọt, mặn và cay, rồi nêu sở thích đơn giản."
       },
       "prerequisites": [],
       "teaching": [
         {
           "en": "Taste adjectives describe food: The mango is sweet.",
-          "vi": "T?nh t? v? m? t? m?n ?n: Qu? xo?i ng?t."
+          "vi": "Tính từ chỉ vị giúp mô tả món ăn: The mango is sweet — Quả xoài ngọt."
         },
         {
           "en": "Use a familiar food clue: Salt makes popcorn salty.",
-          "vi": "D?ng d?u hi?u quen thu?c: Mu?i l?m b?ng ng? c? v? m?n."
+          "vi": "Dựa vào thực phẩm quen thuộc: Salt makes popcorn salty — Muối làm bỏng ngô có vị mặn."
         }
       ],
       "lexicon": [
@@ -93,7 +93,7 @@
           "term": "sweet",
           "meaning": {
             "en": "having a taste like sugar",
-            "vi": "ng?t, c? v? nh? ???ng"
+            "vi": "ngọt, có vị như đường"
           },
           "example": "The red berry tastes sweet.",
           "family": "sweeten; sweet fruit"
@@ -103,7 +103,7 @@
           "term": "salty",
           "meaning": {
             "en": "having a taste like salt",
-            "vi": "m?n, c? v? nh? mu?i"
+            "vi": "mặn, có vị như muối"
           },
           "example": "The soup is salty after I add salt.",
           "family": "salt (noun/verb); salty food"
@@ -113,7 +113,7 @@
           "term": "spicy",
           "meaning": {
             "en": "having a hot taste from pepper or chilli",
-            "vi": "cay, c? v? n?ng t? ti?u ho?c ?t"
+            "vi": "cay, có vị nóng từ tiêu hoặc ớt"
           },
           "example": "A little pepper makes the sauce spicy.",
           "family": "spice (noun); spicy sauce"
@@ -128,7 +128,7 @@
           "context": "Mina pours honey on plain oatmeal. She does not add salt or pepper.",
           "explanation": {
             "en": "Honey tastes sweet; the context rules out salt and pepper.",
-            "vi": "M?t ong c? v? ng?t; ng? c?nh kh?ng c? mu?i hay ti?u."
+            "vi": "Mật ong có vị ngọt. Ngữ cảnh cho biết Mina không thêm muối hay tiêu."
           },
           "sourceIds": [
             "source-cefr-companion-2020",
@@ -158,7 +158,7 @@
           "context": "No sugar or pepper is added to the popcorn.",
           "explanation": {
             "en": "Salty describes the taste that salt gives food.",
-            "vi": "Salty m? t? v? m? mu?i t?o cho m?n ?n."
+            "vi": "Salty mô tả vị mặn do muối tạo ra trong món ăn."
           },
           "sourceIds": [
             "source-cambridge-dictionary"
@@ -175,7 +175,7 @@
           "context": "A cook adds a little chilli. It makes the stew hot on the tongue, but no extra sugar or salt is added.",
           "explanation": {
             "en": "Spicy describes the hot taste from chilli.",
-            "vi": "Spicy m? t? v? cay n?ng t? ?t."
+            "vi": "Spicy mô tả vị cay nóng do ớt tạo ra."
           },
           "sourceIds": [
             "source-cambridge-dictionary"
@@ -233,7 +233,7 @@
           "term": "helmet",
           "meaning": {
             "en": "a hard hat that protects the head",
-            "vi": "m? c?ng b?o v? ??u"
+            "vi": "mũ cứng giúp bảo vệ đầu"
           },
           "example": "My blue helmet is on the chair.",
           "family": "cycle helmet; wear a helmet"
@@ -243,7 +243,7 @@
           "term": "rule",
           "meaning": {
             "en": "an instruction that says what people may or must do",
-            "vi": "quy t?c cho bi?t m?i ng??i ???c ho?c ph?i l?m g?"
+            "vi": "quy tắc cho biết mọi người được hoặc phải làm gì"
           },
           "example": "One rule says to walk inside.",
           "family": "follow a rule; rule (verb)"
@@ -253,7 +253,7 @@
           "term": "safe",
           "meaning": {
             "en": "not likely to cause harm",
-            "vi": "an to?n, ?t c? kh? n?ng g?y h?i"
+            "vi": "an toàn, ít có khả năng gây hại"
           },
           "example": "This path is safe for young children.",
           "family": "safely; safety"
@@ -268,7 +268,7 @@
           "context": "A sign at the craft table says every child has to wear eye glasses before using the small tools.",
           "explanation": {
             "en": "Must says the glasses are required; can makes them optional and mustn't forbids them.",
-            "vi": "Must n?i k?nh l? b?t bu?c; can bi?n vi?c ?? th?nh t?y ch?n c?n mustn't c?m."
+            "vi": "Must diễn tả việc bắt buộc phải đeo kính; can cho phép lựa chọn, còn mustn’t diễn tả điều cấm."
           },
           "sourceIds": [
             "source-bc-a1-a2-grammar"
@@ -701,7 +701,7 @@
           "context": "The shop promised a repaired camera by Friday. Inez receives it on Thursday and checks that it works.",
           "explanation": {
             "en": "Her worry ends before the trip, so relieved describes her feeling.",
-            "vi": "N?i lo k?t th?c tr??c chuy?n ?i n?n relieved m? t? c?m x?c c?a c?."
+            "vi": "Nỗi lo kết thúc trước chuyến đi, nên relieved mô tả cảm giác nhẹ nhõm của cô ấy."
           },
           "sourceIds": [
             "source-cefr-companion-2020",
@@ -748,7 +748,7 @@
           "context": "A planner chooses a route that avoids steep steps, connects to the bus stop, and is open on weekdays.",
           "explanation": {
             "en": "Practical fits a route that can be used successfully in the actual situation.",
-            "vi": "Practical ph? h?p v?i tuy?n ???ng c? th? s? d?ng hi?u qu? trong th?c t?."
+            "vi": "Practical phù hợp với tuyến đường có thể sử dụng hiệu quả trong thực tế."
           },
           "sourceIds": [
             "source-cambridge-dictionary"
@@ -870,7 +870,7 @@
           "context": "A friend asks what to do about a small leak under the sink. It is not an emergency.",
           "explanation": {
             "en": "Should presents sensible advice; must sounds like a requirement, while can only states ability.",
-            "vi": "Should ??a l?i khuy?n h?p l?; must n?u y?u c?u c?n can ch? n?i v? kh? n?ng."
+            "vi": "Should đưa ra lời khuyên hợp lý; must nêu yêu cầu bắt buộc, còn can chỉ khả năng."
           },
           "sourceIds": [
             "source-bc-a1-a2-grammar"
@@ -1024,7 +1024,7 @@
           "context": "A card says: First rinse the jar. Next dry it. Finally, place it back on the shelf.",
           "explanation": {
             "en": "The last instruction puts the dry jar back on its shelf.",
-            "vi": "H??ng d?n cu?i ??t chi?c l? kh? tr? l?i k?."
+            "vi": "Hướng dẫn cuối yêu cầu đặt chiếc lọ khô trở lại kệ."
           },
           "sourceIds": [
             "source-cefr-companion-2020"
@@ -1471,7 +1471,7 @@
           "context": "Volunteers want to prepare the room before guests come.",
           "explanation": {
             "en": "Decide is followed by to plus the base verb, so the two-word form is to arrive.",
-            "vi": "Decide theo sau b?i to v? ??ng t? nguy?n th?, n?n d?ng hai t? l? to arrive."
+            "vi": "Decide theo sau bởi to và động từ nguyên thể, nên cụm hai từ cần điền là to arrive."
           },
           "sourceIds": [
             "source-bc-b1-b2-grammar"
@@ -1488,7 +1488,7 @@
           "context": "The group is choosing how to collect feedback after the event.",
           "explanation": {
             "en": "Suggested is followed by an -ing form here: asking is correct; suggested to ask and suggested ask are not standard in this pattern.",
-            "vi": "Suggested theo sau b?i d?ng -ing ? ??y: asking l? ??ng; suggested to ask v? suggested ask kh?ng chu?n trong c?u tr?c n?y."
+            "vi": "Suggested theo sau bởi dạng -ing ở đây: asking là đúng; suggested to ask và suggested ask không chuẩn trong cấu trúc này."
           },
           "sourceIds": [
             "source-bc-b1-b2-grammar"
@@ -1610,7 +1610,7 @@
           "context": "The team sees a long queue but has not counted the number of seats visitors need.",
           "explanation": {
             "en": "Infer means draw a possible conclusion from available evidence, without claiming it was measured directly.",
-            "vi": "Infer ngh?a l? r?t k?t lu?n c? th? c? t? b?ng ch?ng, kh?ng kh?ng ??nh ?? l? ?i?u ?? ?o tr?c ti?p."
+            "vi": "Infer nghĩa là rút ra kết luận có thể có từ bằng chứng, không khẳng định điều đó đã được đo trực tiếp."
           },
           "sourceIds": [
             "source-cefr-companion-2020"
