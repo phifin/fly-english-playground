@@ -91,8 +91,8 @@ export async function verifyPlatform({newContext,observe,ready,noError,axe,base,
   const calendar=await readFile(await downloaded.path(),'utf8');assert.match(calendar,/BEGIN:VCALENDAR/);assert.match(calendar,/RRULE:FREQ=WEEKLY/);assert.ok(calendar.includes('?learn=today'));
   await page.screenshot({path:fileURLToPath(new URL('release-learning-goals-vi-320.png',directory)),fullPage:true});
   const retained=(await snapshot()).events.filter(e=>e.kind==='attempt').length;
-  await play('home');await play('mode','kids');await play('learn-hub');assert.equal(await page.locator('.learn-young [data-action="little-open"]').count(),1);
-  await play('home');await play('mode','serious');await play('learn-hub');
+  await play('home');await play('settings');await play('mode','kids');await play('home');await play('learn-hub');assert.equal(await page.locator('.learn-young [data-action="little-open"]').count(),1);
+  await play('home');await play('settings');await play('mode','serious');await play('home');await play('learn-hub');
   assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,retained);
   await page.goto(new URL('?learn=today',base).href);await ready(page);await page.locator('[data-learning-page="hub"]').waitFor();
   assert.equal((await p()).preferences.goal,3);

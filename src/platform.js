@@ -69,6 +69,7 @@ export function createLearningPlatform({getContext, write, render, isActive, fet
   function timerTick(){
     if(!isActive()||ctx().profile?.id!==owner||state.page!=='session'){clearInterval(timer);timer=null;return;}
     const s=round();if(!s?.deadline){clearInterval(timer);timer=null;return;}
+    if(s.complete){clearInterval(timer);timer=null;return;}
     if(s.expired){clearInterval(timer);timer=null;state.feedback=null;render();return;}
     const seconds=Math.max(0,Math.ceil((s.deadline-Date.now())/1000));
     const clock=globalThis.document?.querySelector('[data-learning-clock]');

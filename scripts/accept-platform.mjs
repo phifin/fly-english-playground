@@ -5,7 +5,9 @@ import {assess} from '../src/learning.js';
 const root=new URL('../',import.meta.url),levels=['A1','A2','B1','B2','C1','C2'];
 const exact=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).sort().join()===keys.slice().sort().join();
 const txt=(v,max=3000,empty=false)=>typeof v==='string'&&(empty||v.trim().length>0)&&v.length<=max&&v.trim()===v&&v===v.normalize('NFC')&&!/[<>\u0000-\u001f\ufffd]/u.test(v);
-const localized=v=>exact(v,['en','vi'])&&txt(v.en)&&txt(v.vi);
+// Literal question marks inside Vietnamese words indicate a lossy encoding path,
+// not a font fallback issue. Normal question punctuation is still permitted.
+const localized=v=>exact(v,['en','vi'])&&txt(v.en)&&txt(v.vi)&&!/[\p{L}]\?[\p{L}]|\?[\p{L}]/u.test(v.vi);
 export function validatePlatform(batch){
  const fail=reason=>{throw Error('Platform content: '+reason);},ids=new Set(),questions=new Set(),terms=new Set();
  const id=value=>{if(typeof value!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)||ids.has(value))fail('duplicate/invalid ID '+value);ids.add(value);};
@@ -20,6 +22,7 @@ export function validatePlatform(batch){
    if(!Array.isArray(a.options)||![3,4].includes(a.options.length)||new Set(a.options.map(o=>o.id)).size!==a.options.length||new Set(a.options.map(o=>o.text.toLowerCase())).size!==a.options.length||a.options.some(o=>!exact(o,['id','text'])||!txt(o.id,80)||!txt(o.text))||!a.options.some(o=>o.id===a.answer))fail('choice '+a.id);
   }else if(a.type==='gap'){
    if(!Array.isArray(a.accepted)||!a.accepted.length||a.accepted.some(v=>!txt(v,500))||new Set(a.accepted.map(v=>v.toLowerCase())).size!==a.accepted.length)fail('gap '+a.id);
+   const copied=a.prompt.match(/(?:use|complete with)\s+([A-Z]+)\s+unchanged/i);if(copied&&a.accepted.some(v=>v.toLowerCase()===copied[1].toLowerCase()))fail('prompt supplies the whole answer '+a.id);
   }else{
    if(!Array.isArray(a.tokens)||a.tokens.length<3||a.tokens.length>18||a.tokens.some(o=>!exact(o,['id','text'])||!txt(o.id,80)||!txt(o.text))||new Set(a.tokens.map(o=>o.id)).size!==a.tokens.length||!Array.isArray(a.alternatives))fail('order '+a.id);
    for(const answer of [a.answer,...a.alternatives])if(!Array.isArray(answer)||answer.length!==a.tokens.length||new Set(answer).size!==answer.length||answer.some(x=>!a.tokens.some(t=>t.id===x)))fail('order answer '+a.id);
