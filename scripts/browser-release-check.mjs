@@ -1,3 +1,4 @@
+import {verifyDesign} from './browser-design-check.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -153,6 +154,10 @@ try {
     await target.waitForFunction(() => document.querySelector('#app')?.getAttribute('aria-busy') === 'false' || document.querySelector('.startup-error h1'));
     if (await target.locator('.startup-error h1').count()) throw new Error(await target.locator('.startup-error').innerText());
   }
+  async function routeToControl(target,name) {
+    if(!['settings','atlas','review'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
+    await target.locator('[data-action="'+(name==='settings'?'account':'home')+'"]:visible').first().click();await ready(target);
+  }
   async function noError(target = page) { assert.equal(await target.locator('.alert.error').count(), 0, await target.locator('.alert.error').allTextContents()); }
   async function revealDetails(locator, target = page) {
     // Follow the same disclosure path as a person. Never force clicks through
@@ -174,7 +179,7 @@ try {
     await ready(); if (!allowError) await noError();
   }
   const button = (action, suffix = '') => page.locator(`[data-action="${action}"]${suffix}:visible`).first();
-  const action = (name, suffix = '', options) => click(button(name, suffix), options);
+  const action = async (name, suffix = '', options) => {await routeToControl(page,name);return click(button(name, suffix), options);};
   async function select(selector, value) { await ready(); await page.locator(selector).selectOption(value); await ready(); await noError(); }
   async function chooseProfile(id) { await action('account'); await action('choose-profile', `[data-id="${id}"]`); }
   async function activeId() { return page.evaluate(() => localStorage.getItem('atlas-active-profile')); }
@@ -540,10 +545,10 @@ try {
     assert.equal(traveler.name, travelerName);
     assert.equal(traveler.settings.language, 'vi', 'New travelers must inherit the guidance chosen before registration.');
     assert.equal(committed.events.length, 0, 'Onboarding preferences must not manufacture learning evidence.');
-    await arrivalPage.locator('.main-nav [data-action="settings"]').click(); await ready(arrivalPage);
+    await routeToControl(arrivalPage,'settings');await arrivalPage.locator('[data-action="settings"]:visible').first().click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="mode"][data-value="kids"]').click(); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Play-first selection must not redefine guidance language.');
-    await arrivalPage.locator('.main-nav [data-action="atlas"]').click(); await ready(arrivalPage);
+    await routeToControl(arrivalPage,'atlas');await arrivalPage.locator('[data-action="atlas"]:visible').first().click(); await ready(arrivalPage);
     await arrivalPage.locator('.profile-pill').click(); await ready(arrivalPage);
     const resume = arrivalPage.locator(`.learner-picker [data-action="choose-profile"][data-id="${traveler.id}"]`);
     assert.equal((await withinFirstViewport(resume)).inViewport, true, 'Returning travelers need a visible resume action above the fold.');
@@ -577,7 +582,7 @@ try {
     const pictureSaved=(await arrivalPage.evaluate(readImportState)).snapshot;
     assert.equal(pictureSaved.events.filter(e=>e.kind==='mission'&&e.payload.experience==='picture-play-v1').length,6);
     assert.equal(pictureSaved.events.filter(e=>['attempt','placement'].includes(e.kind)).length,0);
-    await arrivalPage.locator('.main-nav [data-action="atlas"]').click();await ready(arrivalPage);
+    await routeToControl(arrivalPage,'atlas');await arrivalPage.locator('[data-action="atlas"]:visible').first().click();await ready(arrivalPage);
     await arrivalPage.reload({waitUntil:'domcontentloaded'});await ready(arrivalPage);
     assert.equal(canonical((await arrivalPage.evaluate(readImportState)).snapshot.events),canonical(pictureSaved.events));
     check('Adult-assisted picture play gives retry feedback, keyboard/touch targets and a six-picture collection that persists without CEFR evidence.');
@@ -596,7 +601,7 @@ try {
   placementPage.setDefaultTimeout(15000); placementPage.setDefaultNavigationTimeout(45000);
   try {
     const pbutton = name => placementPage.locator(`[data-action="${name}"]:visible`).first();
-    const pclick = async name => { await pbutton(name).click(); await ready(placementPage); await noError(placementPage); };
+    const pclick = async name => { await routeToControl(placementPage,name);await pbutton(name).click(); await ready(placementPage); await noError(placementPage); };
     const snapshot = async () => (await placementPage.evaluate(readImportState)).snapshot;
     const begin = async () => { await pclick('journal'); await pclick('start-placement'); await pclick('placement-begin'); };
     const answer = async () => {
@@ -695,7 +700,7 @@ try {
   toy.setDefaultTimeout(15000); toy.setDefaultNavigationTimeout(45000);
   try {
     const control = (name, value) => toy.locator(`[data-action="${name}"]${value ? `[data-value="${value}"]` : ''}:visible`).first();
-    const play = async (name, value) => { await ready(toy); await control(name, value).click(); await ready(toy); await noError(toy); };
+    const play = async (name, value) => { await ready(toy);await routeToControl(toy,name); await control(name, value).click(); await ready(toy); await noError(toy); };
     const snapshot = async () => (await toy.evaluate(readImportState)).snapshot;
     const layout = () => toy.locator('.workshop-spot').evaluateAll(spots => Object.fromEntries(spots
       .filter(spot => spot.querySelector('.workshop-placed[data-prop]'))
@@ -866,7 +871,7 @@ try {
   const experienceContext = await newContext(); const experience = await experienceContext.newPage(); observe(experience);
   try {
     const control = (name, value) => experience.locator(`[data-action="${name}"]${value ? `[data-value="${value}"]` : ''}:visible`).first();
-    const play = async (name, value) => { await ready(experience); await control(name, value).click(); await ready(experience); await noError(experience); };
+    const play = async (name, value) => { await ready(experience);await routeToControl(experience,name); await control(name, value).click(); await ready(experience); await noError(experience); };
     const snapshot = async () => (await experience.evaluate(readImportState)).snapshot;
     const assessed = value => value.events.filter(event => ['attempt', 'placement', 'reward'].includes(event.kind));
     const layout = () => experience.locator('.workshop-spot').evaluateAll(spots => Object.fromEntries(spots
@@ -1104,7 +1109,7 @@ try {
       releaseOutage();
       await pollAsyncResult(async () => consoleErrors.length > 0 && blocked.length > 0,
         { timeoutMs: 15000, intervalMs: 100, description: 'the requested SDK module failing during guest entry' });
-      await outagePage.locator('.account-pill-copy small').filter({ hasText: /Guest|Khách/ }).waitFor();
+      await outagePage.locator('.account-pill-copy small').filter({ hasText: /Account|Tài khoản/ }).waitFor();
       await ready(outagePage);
       assert.ok(blocked.length > 0, 'The real adapter must attempt a pinned SDK load before the outage can be tested.');
       assert.equal(await form.locator('[name="name"]').inputValue(), name, 'An SDK outage must preserve the typed traveler name.');
@@ -1419,6 +1424,7 @@ try {
   }
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
+  await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   report.passed = true;
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);
 } catch (error) {
@@ -1440,3 +1446,4 @@ try {
   for (const context of contexts) await context.close().catch(() => {});
   if (browser) await browser.close().catch(() => {});
 }
+

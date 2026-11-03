@@ -1,0 +1,25 @@
+{
+  "family": "Nunito",
+  "license": "SIL OFL 1.1",
+  "licenseFile": "assets/fonts.css",
+  "subsets": [
+    {
+      "file": "nunito-vietnamese.woff2",
+      "source": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOuaBXso.woff2",
+      "bytes": 13096,
+      "sha256": "61e5958cf3c731423456b31739aa454317ea3bdcb205dd87090e94f632c3642b"
+    },
+    {
+      "file": "nunito-latin-ext.woff2",
+      "source": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIO-aBXso.woff2",
+      "bytes": 35588,
+      "sha256": "2c8d792869818ecb253a46bc3c63c7013df7aac2f69291c3c85e5cdc94160960"
+    },
+    {
+      "file": "nunito-latin.woff2",
+      "source": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofINeaB.woff2",
+      "bytes": 39128,
+      "sha256": "ba344451eab25b217a165363b1982048a5e5830a0daf36577973955a04cac793"
+    }
+  ]
+}

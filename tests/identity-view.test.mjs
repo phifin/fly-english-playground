@@ -61,7 +61,7 @@ test('account page and header hide another account learner and escape names',()=
 test('Vietnamese identity guidance is native Unicode and independent of experience mode',()=>{
  const vi=accountView({language:'vi',profiles:[local]});
  assert.match(vi,/Tài khoản và người học/);
- assert.match(vi,/Khách trên thiết bị này/);
+ assert.match(vi,/Hồ sơ chưa liên kết tài khoản/);
  assert.equal(vi,vi.normalize('NFC'));
  assert.match(googleButton({language:'vi'}),/Đăng nhập bằng Google/);
  assert.throws(()=>googleButton({action:'" onclick=evil'}),/Unsupported/);
