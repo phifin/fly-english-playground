@@ -38,6 +38,9 @@ export async function verifyPlatform({newContext,observe,ready,noError,axe,base,
    await play('guidance-language',language);await page.setViewportSize({width:320,height:740});
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Learning hub fits a narrow phone');
    assert.equal(await page.locator('.learn-course-card').count(),4);
+   const dayLabels=await page.locator('.learn-habit .learn-week li>span').allTextContents();
+   assert.equal(dayLabels.length,7);
+   if(language==='vi')assert.ok(dayLabels.every(label=>/^(CN|T[2-7])$/.test(label)),'Vietnamese weekday labels fit narrow progress columns');
    await axe(`${language} learning hub at 320px`,page);
    await page.screenshot({path:fileURLToPath(new URL(`release-learning-${language}-320.png`,directory)),fullPage:true});
   }
@@ -100,6 +103,30 @@ export async function verifyPlatform({newContext,observe,ready,noError,axe,base,
   await page.goto(new URL('?learn=today',base).href);await ready(page);await page.locator('[data-learning-page="hub"]').waitFor();
   assert.equal((await p()).preferences.goal,3);
   check('Study goals, Vietnamese calendar download, Today deep link, and experience-mode changes preserve responses and learner preferences.');
+  // Exercise the new lazy-loaded course through the release worker, not just a
+  // cached home page. Keep a real unfinished response across offline reload.
+  await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller));
+  await play('learn-lesson',objective.id);await play('learn-start',objective.id);
+  const offlineRound=Object.values((await p()).sessions).filter(s=>!s.finished&&s.snapshot.kind==='daily').at(-1);
+  assert.ok(offlineRound);
+  const offlineItem=index.activities.get(offlineRound.snapshot.activityIds[0]);await choose(offlineItem);
+  await play('learn-hub');
+  const beforeOffline=(await snapshot()).events.filter(e=>e.kind==='attempt').map(e=>e.id).sort();
+  await context.setOffline(true);
+  try{
+   await page.reload();await ready(page);await play('learn-hub');await play('learn-resume',offlineRound.snapshot.id);
+   assert.equal(await page.locator('[data-learning-activity]').getAttribute('data-learning-activity'),offlineItem.id);
+   if(offlineItem.type==='choice')assert.equal(await control('learn-choose',offlineItem.answer).getAttribute('aria-pressed'),'true');
+   await finish();
+   const afterOffline=(await snapshot()).events.filter(e=>e.kind==='attempt');
+   assert.ok(beforeOffline.every(id=>afterOffline.some(e=>e.id===id)),'Offline lesson retains all prior answers');
+   assert.equal(afterOffline.length,beforeOffline.length+2,'Offline completion stores two new answers without duplicates');
+   await page.reload();await ready(page);await play('learn-hub');await play('learn-resume',offlineRound.snapshot.id);
+   await page.locator('[data-learning-complete]').waitFor();
+   assert.equal((await p()).sessions[offlineRound.snapshot.id].correct,2);
+   assert.equal((await p()).preferences.goal,3);
+  }finally{await context.setOffline(false);}
+  check('Downloaded lessons resume drafts and save completed answers across offline reloads, preserving previous evidence and study goals.');
   report.learningPlatform={objectives:batch.objectives.length,lexicalTargets:index.lexicon.size,lessonResponses:2,checkpointResponses:checkRound.total,examResponses:8,transcriptSupported:2,calendarExport:true,widths:[320,390]};
  }catch(error){
   await page.screenshot({path:fileURLToPath(new URL('release-platform-failure.png',directory)),fullPage:true}).catch(()=>{});

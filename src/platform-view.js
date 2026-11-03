@@ -18,9 +18,13 @@ export function platformView({batch,index,progress,profile,state={},language='en
  const stage=id=>stages[progress.objectives[id]?.stage??'new'];
  const empty=(title,copy)=>`${head(title)}<p class="learn-empty">${esc(copy)}</p>`;
  const objectiveCard=(o,reason='')=>`<article class="learn-course-card"><div class="learn-card-meta"><span>${esc(o.level)} · ${esc(domains[o.domain])}</span>${reason?`<span class="learn-reason">${esc(reason)}</span>`:''}</div><h3>${esc(loc(o.title))}</h3><p>${esc(loc(o.canDo))}</p><small>${esc(stage(o.id))}</small>${button(t('Open lesson →','Mở bài học →'),'learn-lesson',o.id,'primary')}</article>`;
- const weekday=value=>new Intl.DateTimeFormat(language==='vi'?'vi-VN':'en',{weekday:'short',timeZone:'UTC'}).format(new Date(`${value}T12:00:00Z`));
+ const weekday=(value,full=false)=>{
+  const day=new Date(`${value}T12:00:00Z`);
+  if(language==='vi'&&!full)return ['CN','T2','T3','T4','T5','T6','T7'][day.getUTCDay()];
+  return new Intl.DateTimeFormat(language==='vi'?'vi-VN':'en',{weekday:full?'long':'short',timeZone:'UTC'}).format(day);
+ };
  const date=value=>{try{return new Intl.DateTimeFormat(language==='vi'?'vi-VN':'en',{dateStyle:'medium'}).format(new Date(value));}catch{return '';}};
- const activeDays=()=>`<ul class="learn-week" aria-label="${t('Your last seven days','Bảy ngày gần đây')}">${progress.habits.days.map(day=>`<li class="${day.attempts?'is-active':''}"><span>${esc(weekday(day.day))}</span><strong aria-label="${esc(t(`${day.attempts} responses`,`${day.attempts} câu trả lời`))}">${day.attempts?'✓':'·'}</strong></li>`).join('')}</ul>`;
+ const activeDays=()=>`<ul class="learn-week" aria-label="${t('Your last seven days','Bảy ngày gần đây')}">${progress.habits.days.map(day=>`<li class="${day.attempts?'is-active':''}"><span aria-label="${esc(weekday(day.day,true))}">${esc(weekday(day.day))}</span><strong aria-label="${esc(t(`${day.attempts} responses`,`${day.attempts} câu trả lời`))}">${day.attempts?'✓':'·'}</strong></li>`).join('')}</ul>`;
  const passage=(text,{open=false,question=false}={})=>{
   if(!text)return '';
   const body=`<div class="learn-passage" lang="en" translate="no">${text.split(/ (?=[A-E]\. )/).map(part=>`<p>${esc(part)}</p>`).join('')}</div>`;
