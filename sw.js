@@ -90,7 +90,13 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== 'GET' || request.headers.has('authorization') || url.origin !== SCOPE.origin
-      || !url.pathname.startsWith(SCOPE.pathname) || url.search) return;
+      || !url.pathname.startsWith(SCOPE.pathname)) return;
+  // The calendar's public Today link uses the same release shell. Only this
+  // exact navigation query is safe; auth callbacks and arbitrary query requests
+  // remain outside the cache, including fetches of this URL as a subresource.
+  const todayNavigation = request.mode === 'navigate' && url.search === '?learn=today'
+    && (url.pathname === SCOPE.pathname || url.pathname === new URL('index.html', SCOPE).pathname);
+  if (url.search && !todayNavigation) return;
   const path = url.pathname.slice(SCOPE.pathname.length) || 'index.html';
   if (!safePublicPath(path)) return;
   event.respondWith((async () => {

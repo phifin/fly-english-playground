@@ -154,9 +154,13 @@ async function workerHarness() {
     self: { registration: { scope }, clients: { claim: async () => {} }, skipWaiting: () => {}, addEventListener: (type, listener) => listeners.set(type, listener) } };
   vm.runInNewContext((await readFile(new URL('sw.js', root), 'utf8')).replaceAll('__ATLAS_RELEASE_ID__', 'test-release'), context);
   const dispatch = async type => { let result; listeners.get(type)({ waitUntil: promise => { result = promise; } }); await result; };
-  const request = async (path, options) => {
+  const request = async (path, { navigation = false, ...options } = {}) => {
     let response;
-    listeners.get('fetch')({ request: new Request(new URL(path, scope), options), respondWith: promise => { response = promise; } });
+    const req = new Request(new URL(path, scope), options);
+    // Node cannot construct a navigation Request; this property represents the
+    // browser-supplied request mode for the worker event under test.
+    if (navigation) Object.defineProperty(req, 'mode', { value: 'navigate' });
+    listeners.get('fetch')({ request: req, respondWith: promise => { response = promise; } });
     return response === undefined ? null : await response;
   };
   return { dispatch, request, stores, scope, offline: () => { networkEnabled = false; } };
@@ -184,4 +188,19 @@ test('offline worker scopes its cache, preserves private boundaries, and never s
   assert.equal(await worker.request('src/main.js', { headers: { Authorization: 'Bearer private' } }), null);
   await assert.rejects(worker.request('data/published/missing.json'), /offline/);
   assert.equal(worker.stores.has('another-app-cache'), true);
+});
+
+test('offline Today navigation reuses only the public shell and never caches query variants', async () => {
+  const worker = await workerHarness();
+  await worker.dispatch('install'); await worker.dispatch('activate'); worker.offline();
+  for (const path of ['./?learn=today', 'index.html?learn=today']) {
+    assert.equal(await (await worker.request(path, { navigation: true })).text(), 'ATLAS SHELL');
+    assert.equal(await worker.request(path), null, 'Subresource fetch is not navigation');
+    assert.equal(await worker.request(path, { navigation: true, headers: { Authorization: 'Bearer private' } }), null);
+  }
+  for (const path of ['./?learn=today&code=secret', './?learn=other', './?learn=today&learn=today',
+    './?code=secret', 'src/main.js?learn=today', 'data/published/atlas.json?learn=today', '../other/?learn=today']) {
+    assert.equal(await worker.request(path, { navigation: true }), null, path);
+  }
+  for (const store of worker.stores.values()) assert.ok([...store.keys()].every(url => !url.includes('?')));
 });
