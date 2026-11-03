@@ -114,14 +114,14 @@ export async function verifyPlatform({newContext,observe,ready,noError,axe,base,
   const beforeOffline=(await snapshot()).events.filter(e=>e.kind==='attempt').map(e=>e.id).sort();
   await context.setOffline(true);
   try{
-   await page.reload();await ready(page);await play('learn-hub');await play('learn-resume',offlineRound.snapshot.id);
+   await page.reload();await ready(page);await page.locator('[data-learning-page="hub"]').waitFor();await play('learn-resume',offlineRound.snapshot.id);
    assert.equal(await page.locator('[data-learning-activity]').getAttribute('data-learning-activity'),offlineItem.id);
    if(offlineItem.type==='choice')assert.equal(await control('learn-choose',offlineItem.answer).getAttribute('aria-pressed'),'true');
    await finish();
    const afterOffline=(await snapshot()).events.filter(e=>e.kind==='attempt');
    assert.ok(beforeOffline.every(id=>afterOffline.some(e=>e.id===id)),'Offline lesson retains all prior answers');
    assert.equal(afterOffline.length,beforeOffline.length+2,'Offline completion stores two new answers without duplicates');
-   await page.reload();await ready(page);await play('learn-hub');await play('learn-resume',offlineRound.snapshot.id);
+   await page.reload();await ready(page);await page.locator('[data-learning-page="hub"]').waitFor();await play('learn-resume',offlineRound.snapshot.id);
    await page.locator('[data-learning-complete]').waitFor();
    assert.equal((await p()).sessions[offlineRound.snapshot.id].correct,2);
    assert.equal((await p()).preferences.goal,3);
