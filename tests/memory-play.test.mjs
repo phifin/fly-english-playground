@@ -10,6 +10,12 @@ test('pairs require two different cards and remain stable across saved turns',()
 test('malformed memory snapshots cannot fabricate invalid cards or matched open states',()=>{
  const s=createMemory(littleWords);for(const bad of [{...s,cards:['fake']},{...s,found:[s.cards[0]],turns:0},{...s,open:[0,4]},{...s,open:[6]},{...s,offset:-1}])assert.equal(restoreMemory(bad,littleWords),null);
 });
+test('new picture sets vary card positions while restoring the same round exactly',()=>{
+ const pattern=s=>s.cards.map(id=>s.cards.indexOf(id));
+ const first=createMemory(littleWords),next=createMemory(littleWords,3);
+ assert.notDeepEqual(pattern(first),pattern(next));assert.deepEqual(restoreMemory(next,littleWords),next);
+ assert.equal(new Set(next.cards).size,3);
+});
 test('concealed cards do not expose words in accessible names; bilingual layouts retain semantic buttons',()=>{
  const s=createMemory(littleWords);for(const language of ['en','vi']){const html=memoryView({session:s,words:littleWords,language});assert.equal((html.match(/data-action="memory-flip"/g)||[]).length,6);assert.doesNotMatch(html,/aria-label="cat/);assert.equal(html,html.normalize('NFC'));}
 });

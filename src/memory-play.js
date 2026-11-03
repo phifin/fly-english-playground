@@ -5,7 +5,11 @@ export function createMemory(words,offset=0){
  const ids=words.map(w=>w.id),start=Number.isSafeInteger(offset)&&offset>=0?offset%ids.length:0;
  if(new Set(ids).size<3)throw Error('Three accepted pictures required');
  const chosen=[0,1,2].map(n=>ids[(start+n)%ids.length]);
- return{version:1,offset:start,cards:[chosen[0],chosen[1],chosen[2],chosen[1],chosen[0],chosen[2]],open:[],found:[],turns:0};
+ const cards=[chosen[0],chosen[1],chosen[2],chosen[1],chosen[0],chosen[2]];
+ // Stable per round for reloads, with fresh positions for the next picture set.
+ let seed=(start+1)*7919;
+ if(start)for(let i=cards.length-1;i>0;i--){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const j=seed%(i+1);[cards[i],cards[j]]=[cards[j],cards[i]];}
+ return{version:1,offset:start,cards,open:[],found:[],turns:0};
 }
 export function restoreMemory(value,words){
  if(!value||value.version!==1||!Number.isSafeInteger(value.offset)||value.offset<0||value.offset>=words.length)return null;

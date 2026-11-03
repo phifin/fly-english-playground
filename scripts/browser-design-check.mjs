@@ -11,6 +11,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   try{await page.locator('.atlas-boot').waitFor();await page.screenshot({path:fileURLToPath(new URL('release-design-loading.png',directory))});}finally{release();}
   await ready(page);await page.unroute('**/src/main.js');await play('guidance-language','vi');
   const loaded=await page.evaluate(async()=>{const faces=await document.fonts.load('800 32px Nunito','Tiếng Việt: ă â ê ô ơ ư đ Ắ Ễ Ộ Ự');return faces.length>0&&faces.every(f=>f.status==='loaded');});assert.equal(loaded,true,'Self-hosted display font and Vietnamese subsets load');
+  assert.match(await page.locator('h1').evaluate(el=>getComputedStyle(el).fontFamily),/Nunito/,'Vietnamese display headings use the loaded font, not a stale language override');
   await page.screenshot({path:fileURLToPath(new URL('release-design-welcome-vi.png',directory)),fullPage:true});
   await play('start-traveler');
   for(const width of [1440,390,320]){

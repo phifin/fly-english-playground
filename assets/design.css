@@ -1,5 +1,8 @@
 /* Product primitives: expressive display, quiet reading, task-first layouts. */
 :root{--display-font:'Nunito',var(--reading-font);--space-section:clamp(1.5rem,4vw,3rem);--focus:#176a57}
+html:lang(vi) h1,html:lang(vi) h2,html:lang(vi) h3{font-family:var(--display-font)}
+.guidance-switch button:not([aria-pressed=true]){color:#365e4b}
+.masthead .guidance-switch:before{content:'';width:18px;height:18px;flex:0 0 18px;padding:0;margin-inline:.55rem .25rem;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23365e4b' stroke-width='1.7'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c5 5 5 13 0 18M12 3c-5 5-5 13 0 18'/%3E%3C/svg%3E") center/contain no-repeat}
 .wordmark,.edition,h1,h2,h3,.home-heading h1,.welcome h1,.entry-form h1{font-family:var(--display-font);font-weight:800;letter-spacing:normal;line-height:1.25}
 .wordmark{font-weight:650}.wordmark strong{font-weight:900;font-style:normal}.edition{font-size:.88rem;font-weight:700;color:#587254;transform:rotate(-2deg)}
 .activity-prompt,.source-card,.learn-passage,.studio-script{font-family:var(--reading-font);letter-spacing:normal;line-height:1.7}
