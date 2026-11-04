@@ -1,5 +1,7 @@
 /* Product primitives: expressive display, quiet reading, task-first layouts. */
 :root{--display-font:'Nunito',var(--reading-font);--space-section:clamp(1.5rem,4vw,3rem);--focus:#176a57}
+/* A confirmation is waiting for the player, not performing background work. */
+body:has(.atlas-dialog[open]) .busy-indicator{display:none}
 html:lang(vi) h1,html:lang(vi) h2,html:lang(vi) h3{font-family:var(--display-font)}
 .guidance-switch button:not([aria-pressed=true]){color:#365e4b}
 .guidance-switch button[aria-pressed=true]:hover,.guidance-switch button[aria-pressed=true]:active{background:#274e3c;color:#fff}

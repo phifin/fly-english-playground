@@ -41,6 +41,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
    await button('memory-flip',String(i)).focus();await page.keyboard.press('Enter');
    if(n===pairs.length-1&&i===pairs[n].at(-1)){
     await page.locator('dialog[open]').waitFor();assert.equal(await page.evaluate(()=>document.querySelector('dialog').contains(document.activeElement)),true);
+    assert.equal(await page.locator('.busy-indicator').isVisible(),false,'Waiting for a dialog choice must not look like unfinished background work');
     await axe('Memory completion dialog',page);await page.screenshot({path:fileURLToPath(new URL('release-design-reward-320.png',directory))});
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('[data-action="memory-again"]').evaluate(el=>el===document.activeElement),true,'Completion dismissal restores focus to the next playable action');
