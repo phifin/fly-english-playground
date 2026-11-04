@@ -9,7 +9,7 @@ export function showDialog({title,message,confirmLabel,cancelLabel,celebrate=fal
   const actions=document.createElement('div');actions.className='button-row';
   let settled=false;
   const finish=value=>{if(settled)return;settled=true;dialog.close();dialog.remove();
-   const fallback=document.querySelector('[data-action="memory-again"],main button:not(:disabled),main h1');
+   const fallback=document.querySelector('[data-action="memory-again"]')||document.querySelector('main button:not(:disabled)')||document.querySelector('main h1');
    const target=previous?.isConnected&&previous!==document.body&&!previous.disabled?previous:fallback;
    target?.focus({preventScroll:true});resolve(value);
   };
