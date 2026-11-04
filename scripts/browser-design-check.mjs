@@ -43,6 +43,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
     await page.locator('dialog[open]').waitFor();assert.equal(await page.evaluate(()=>document.querySelector('dialog').contains(document.activeElement)),true);
     await axe('Memory completion dialog',page);await page.screenshot({path:fileURLToPath(new URL('release-design-reward-320.png',directory))});
     await page.keyboard.press('Escape');
+    assert.equal(await page.locator('[data-action="memory-again"]').evaluate(el=>el===document.activeElement),true,'Completion dismissal restores focus to the next playable action');
    }
    await ready(page);await noError(page);s=(await snapshot()).events.filter(e=>e.payload?.experience==='memory-pairs-v1').at(-1).payload.session;
   }
@@ -53,5 +54,9 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   await play('home');await play('account');await play('settings');await axe('Account preferences after navigation redesign',page);
   report.designReview={fontLoaded:true,entryWidths:[1440,390,320],navigationDestinations:3,memoryPairs:3,modalKeyboardDismissal:true,noAssessedMemoryEvidence:true};
   check('Task-first bilingual entry, self-hosted Vietnamese display fonts, three-destination navigation, private account tools, resumed memory pairs and keyboard-accessible completion dialog work without new proficiency evidence.');
+ }catch(error){
+  report.designFailure={message:error.message,screen:await page.locator('#app').innerText().catch(()=>''),url:page.url()};
+  await page.screenshot({path:fileURLToPath(new URL('release-design-failure.png',directory)),fullPage:true}).catch(()=>{});
+  throw error;
  }finally{await context.close();}
 }

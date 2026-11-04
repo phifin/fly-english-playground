@@ -1355,7 +1355,8 @@ try {
   await clean.goto(base.href); await ready(clean); await upload(familyBackup, { target: clean });
   await clean.locator(`.profile-grid [data-action="choose-profile"][data-id="${mainId}"]`).click(); await ready(clean);
   await journal(expected, clean);
-  await clean.locator('.main-nav [data-action="settings"]').click(); await ready(clean);
+  await routeToControl(clean,'settings');
+  await clean.locator('[data-action="settings"]:visible').first().click(); await ready(clean);
   assert.equal(canonical(savedData(await backup(clean))), canonical(savedData(familyBackup)));
   const quotedBackup = structuredClone(familyBackup);
   const quotedProfile = quotedBackup.profiles.find(value => value.id === mainId);
@@ -1425,6 +1426,7 @@ try {
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
   await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
+  assert.deepEqual(report.errors, [], 'New design journeys must also complete without console errors or uncaught exceptions.');
   report.passed = true;
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);
 } catch (error) {
