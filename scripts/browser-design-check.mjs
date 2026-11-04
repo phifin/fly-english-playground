@@ -4,6 +4,9 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
  const button=(name,value)=>page.locator(`[data-action="${name}"]${value===undefined?'':`[data-value="${value}"]`}:visible`).first();
  const play=async(name,value)=>{await button(name,value).click();await ready(page);await noError(page);};
  const snapshot=async()=>(await page.evaluate(readImportState)).snapshot;
+ // IndexedDB getAll follows primary-key order, not the chronological event order used by the app.
+ const savedMemory=async()=>(await snapshot()).events.filter(e=>e.kind==='mission'&&e.payload?.experience==='memory-pairs-v1')
+  .sort((a,b)=>a.at.localeCompare(b.at)||a.id.localeCompare(b.id)).at(-1).payload.session;
  try{
   let release;const gate=new Promise(resolve=>{release=resolve;});
   await page.route('**/src/main.js',async route=>{await gate;await route.continue();});
@@ -33,7 +36,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   const before=(await snapshot()).events.filter(e=>e.kind==='attempt').length;
   await play('memory-flip','0');await page.reload();await ready(page);await play('little-open');await play('memory-open');
   assert.equal(await page.locator('.memory-card.is-open').count(),1,'Reopening restores the selected card');
-  let s=(await snapshot()).events.filter(e=>e.payload?.experience==='memory-pairs-v1').at(-1).payload.session;
+  let s=await savedMemory();
   const pairs=[...new Set(s.cards)].map(id=>s.cards.flatMap((word,i)=>word===id?[i]:[]));
   await page.screenshot({path:fileURLToPath(new URL('release-design-memory-320.png',directory)),fullPage:true});await axe('Memory pairs at 320px',page);
   for(let n=0;n<pairs.length;n++)for(const i of pairs[n]){
@@ -46,10 +49,13 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('[data-action="memory-again"]').evaluate(el=>el===document.activeElement),true,'Completion dismissal restores focus to the next playable action');
    }
-   await ready(page);await noError(page);s=(await snapshot()).events.filter(e=>e.payload?.experience==='memory-pairs-v1').at(-1).payload.session;
+   await ready(page);await noError(page);s=await savedMemory();
+   assert.equal(await page.locator('.memory-card.is-found').count(),s.found.length*2,'Visible matched pairs agree with the latest persisted event');
   }
   assert.equal(s.found.length,3);assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,before,'Memory games never fabricate assessed evidence');
   await play('guidance-language','en');assert.equal(await page.locator('[data-memory-complete="true"]').count(),1);
+  await page.reload();await ready(page);await play('little-open');await play('memory-open');
+  assert.equal(await page.locator('.memory-card.is-found').count(),6,'All completed pairs survive a full reload');
   await page.screenshot({path:fileURLToPath(new URL('release-design-memory-complete-en.png',directory)),fullPage:true});
   await play('memory-again');assert.equal(await page.locator('.memory-card.is-open').count(),0);
   await play('home');await play('account');await play('settings');await axe('Account preferences after navigation redesign',page);
