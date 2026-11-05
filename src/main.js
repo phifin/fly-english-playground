@@ -80,12 +80,11 @@ function renderGuidance(){
  const target=selector?app.querySelector(selector):null;
  const heading=app.querySelector('.activity-top')??app.querySelector('main h1');
  if(!heading)return;
- heading.insertAdjacentHTML('afterend',btn('ⓘ '+t('Show me how','Hướng dẫn cách chơi'),'guide-replay','data-value="'+topic+'"','help-launcher text-button'));
  const shown=ui.guideReplay===topic||guideStatus(events,topic)==='new'||ui.guideCelebrate===topic;
+ if(!shown||!target)heading.insertAdjacentHTML('afterend',btn('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v6m0-10v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'+t('Show me how','Hướng dẫn cách chơi'),'guide-replay','data-value="'+topic+'"','help-launcher text-button'));
  if(!shown||!target)return;
  target.dataset.guideTarget='true';
- const anchor=topic==='home'?target.closest('.home-recommendation')??target:target;
- anchor.insertAdjacentHTML('beforebegin',guideView({topic,language:language(),complete:ui.guideCelebrate===topic,help:ui.guideReplay===topic,variant:ui.screen==='little'?ui.little?.mode:null}));
+ target.insertAdjacentHTML(topic==='home'?'afterend':'beforebegin',guideView({topic,language:language(),complete:ui.guideCelebrate===topic,help:ui.guideReplay===topic,variant:ui.screen==='little'?ui.little?.mode:null}));
 }
 const currentPlacementPool=()=>placementPool(pack,ui.placementMethod??NEW_PLACEMENT_METHOD);
 const currentSavedPlacement=()=>savedPlacement(events,{pack,activities:content().activities,grade:assess});

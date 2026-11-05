@@ -1349,7 +1349,9 @@ try {
   const familyBackup = await backup();
   assert.equal(familyBackup.profiles.length, 3);
   assert.equal(familyBackup.profiles.find(p => p.id === childId).guardianId, mainId);
-  assert.equal(familyBackup.events.filter(event => event.profileId === otherId).length, 0);
+  const otherEvents=familyBackup.events.filter(event=>event.profileId===otherId);
+  assert.equal(learningEvents(otherEvents).length,0,'Another learner has no gameplay or assessment evidence from this learner');
+  assert.equal(otherEvents.filter(event=>event.payload?.experience==='learning-entry-v1'&&event.payload.level==='A1').length,1,'The other learner retains only its explicit starting choice');
   assert.equal(familyBackup.events.filter(event => event.profileId === childId && event.kind === 'attempt').length, 1);
   assert.equal(canonical(familyBackup.events.filter(event => event.profileId === mainId)), canonical(mainEvents), 'Other travelers cannot alter the first traveler’s history.');
   await upload(familyBackup); await upload(familyBackup);
