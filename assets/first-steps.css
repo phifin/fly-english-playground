@@ -1,0 +1,112 @@
+/* First-action guidance. These rules load after design.css; all imagery is local SVG. */
+.guide-art{display:block;width:100%;max-width:320px;height:auto;aspect-ratio:8/5;flex:none;margin-inline:auto}
+.guide-art--compact{max-width:120px}
+.first-steps{width:min(100%,1040px);margin:1rem auto 2rem;padding:clamp(1rem,3vw,2rem);border:0;border-radius:26px;background:#fffdf5}
+.first-steps-heading{display:grid;grid-template-columns:minmax(0,1fr) 180px;align-items:center;gap:1.25rem;margin-bottom:1.4rem}
+.first-steps-heading h1,.first-steps-heading h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.25;margin:0 0 .65rem;max-width:24ch}
+.first-steps-heading p{max-width:48ch;margin:0;line-height:1.6}
+.first-steps-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem}
+.guide-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:1.1rem;border:1px solid #cbd8be;border-radius:20px;background:#eef3e5;color:#274e3e;text-align:left;gap:.5rem}
+.guide-card:nth-child(2){background:#f9eed5;border-color:#e3cda3}
+.guide-card:nth-child(3){background:#e7f2ef;border-color:#bcd8d2}
+.guide-card .guide-art{max-width:230px;margin:0 auto .3rem}
+.guide-card h2,.guide-card h3,.guide-card>strong{font-family:var(--display-font);font-size:1.35rem;line-height:1.3;margin:0}
+.guide-card p{font-size:.92rem;line-height:1.6;margin:0 0 .6rem;flex:1}
+.guide-card>button,.guide-card>.button{margin-top:auto;min-height:46px;align-self:stretch}
+button.guide-card{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+button.guide-card:hover:not(:disabled){background:#e4eedb;border-color:#6c9177;box-shadow:0 5px 0 #31594a14;transform:translateY(-2px)}
+button.guide-card:active:not(:disabled){transform:translateY(0);box-shadow:none}
+.first-steps-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.25rem}
+.first-steps-footer p{font-size:.85rem;line-height:1.6;margin:0;max-width:55ch}
+.first-steps-footer button{min-height:44px}
+.guide-bubble{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:.75rem;background:#fff7df;border:1px solid #d7c79e;border-radius:18px;padding:.8rem 1rem;margin:1rem 0;color:#315443;max-width:760px;scroll-margin-block:1rem}
+.guide-bubble>.guide-art{max-width:76px}
+.guide-bubble p{line-height:1.55;margin:0;font-size:.95rem}
+.guide-bubble h2,.guide-bubble h3,.guide-bubble strong{margin:0 0 .25rem;font-size:1.05rem;line-height:1.4}
+.guide-bubble .button-row{margin:.5rem 0 0;gap:.5rem}
+.guide-bubble button{min-height:44px}
+.guide-step-count{display:block;color:#596d52;font-size:.8rem;margin-bottom:.3rem}
+.guide-spotlight,[data-guide-target=true]{position:relative;outline:3px solid #a36b22;outline-offset:5px;scroll-margin-block:6rem;border-radius:12px}
+[data-guide-target=true]:focus-visible{outline-color:#176a57;outline-width:4px}
+.guide-bubble[data-guide-state=success]{background:#eaf2dd;border-color:#aec38d}
+/* Keep help in the page flow; a second fixed widget competes with notifications. */
+.help-launcher{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-width:44px;min-height:44px;padding:.45rem .7rem;border:0;border-radius:14px;background:#e9efdf;color:#315443;line-height:1.4;white-space:normal}
+.help-launcher svg{width:24px;height:24px;flex:none}
+.help-launcher:hover:not(:disabled){background:#dbe7cd;color:#244634}
+.help-launcher:focus-visible{outline:3px solid #176a57;outline-offset:3px}
+/* Explicit state colors defeat the old global light hover with inherited white text. */
+#app .alert.notice{align-items:center;gap:.6rem;max-width:min(440px,calc(100vw - 1.5rem));overflow-wrap:anywhere;padding:.7rem .75rem .7rem 1rem;line-height:1.5}
+#app .alert.notice:before{margin:0;flex-basis:24px;height:24px;font-size:.9rem}
+#app .alert.notice button[data-action=dismiss-notice]{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;flex:none;padding:.45rem .6rem;border:0;border-radius:10px;background:#365f4e;color:#fff;text-decoration:none;line-height:1.3;white-space:nowrap;box-shadow:none}
+#app .alert.notice button[data-action=dismiss-notice]:hover:not(:disabled){background:#49735f;color:#fff;border-color:transparent}
+#app .alert.notice button[data-action=dismiss-notice]:active:not(:disabled){background:#1d3d31;color:#fff;transform:none}
+#app .alert.notice button[data-action=dismiss-notice]:focus-visible{outline:2px solid #fff;outline-offset:2px;background:#365f4e;color:#fff;box-shadow:none}
+/* One notification lane. Busy work temporarily supersedes a previous success. */
+#app[aria-busy=true] .alert.notice{visibility:hidden;pointer-events:none}
+body:has(.atlas-dialog[open]) #app .alert.notice{visibility:hidden;pointer-events:none}
+.masthead .guidance-switch{padding:2px;gap:0;border:0;border-radius:25px;background:#e7ecdf}
+.masthead .guidance-switch:before{width:16px;height:16px;flex-basis:16px;margin-inline:.35rem .15rem}
+.masthead .guidance-switch button{min-width:44px;min-height:44px;padding:.45rem .55rem;font-size:.78rem;line-height:1.25;border:0;border-radius:22px;background:transparent;color:#365e4b}
+.masthead .guidance-switch button:not([aria-pressed=true]):hover:not(:disabled){background:#d8e2d0;color:#274e3c}
+.masthead .guidance-switch button[aria-pressed=true]{background:#315e4b;color:#fff}
+.masthead .guidance-switch button[aria-pressed=true]:hover:not(:disabled),.masthead .guidance-switch button[aria-pressed=true]:active:not(:disabled){background:#274e3c;color:#fff}
+.masthead .guidance-switch button:focus-visible{outline:2px solid #176a57;outline-offset:-3px;box-shadow:none}
+.masthead .guidance-switch button[aria-pressed=true]:focus-visible{outline-color:#fff}
+@media(max-width:680px){
+ .first-steps{padding:1rem;margin:.5rem auto 1.5rem;border-radius:20px}
+ .first-steps-heading{grid-template-columns:minmax(0,1fr) 96px;gap:.5rem;margin-bottom:1rem}
+ .first-steps-heading h1,.first-steps-heading h2{font-size:1.65rem;margin-bottom:.5rem}
+ .first-steps-heading p{font-size:.92rem}
+ .first-steps-choices{grid-template-columns:1fr;gap:.75rem}
+ .guide-card{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:center;gap:.35rem .75rem;padding:.85rem}
+ .guide-card .guide-art{grid-column:1;grid-row:1/4;max-width:90px;margin:0}
+ .guide-card h2,.guide-card h3,.guide-card>strong{grid-column:2;font-size:1.15rem}
+ .guide-card p{grid-column:2;font-size:.87rem;margin:0}
+ .guide-card>button,.guide-card>.button{grid-column:2;justify-self:stretch;margin-top:.4rem;padding:.5rem .65rem}
+ .guide-bubble{grid-template-columns:56px minmax(0,1fr);gap:.5rem;padding:.7rem}
+ .guide-bubble p{font-size:.9rem}
+ .guide-bubble .button-row{gap:.25rem}
+ .guide-bubble .button-row button{font-size:.85rem;padding:.5rem}
+ .masthead .account-pill{padding-inline:.3rem}
+}
+@media(max-width:360px){
+ .first-steps-heading{grid-template-columns:1fr}.first-steps-heading>.guide-art{display:none}
+ .guide-card{grid-template-columns:70px minmax(0,1fr);gap:.3rem .6rem}
+ .guide-card .guide-art{max-width:70px}
+ .masthead .guidance-switch button{padding-inline:.4rem}
+ #app .alert.notice{right:.5rem;bottom:max(.5rem,env(safe-area-inset-bottom));max-width:calc(100vw - 1rem);gap:.45rem;font-size:.85rem;padding:.6rem}
+}
+@media(prefers-reduced-motion:reduce){button.guide-card{transition:none}button.guide-card:hover:not(:disabled){transform:none}}
+[data-quality=eco] button.guide-card,[data-motion=reduced] button.guide-card{transition:none}
+[data-quality=eco] button.guide-card:hover:not(:disabled),[data-motion=reduced] button.guide-card:hover:not(:disabled){transform:none}
+@media(forced-colors:active){
+ .guide-card,.guide-bubble{border:1px solid CanvasText}
+ .guide-spotlight,[data-guide-target=true],.masthead .guidance-switch button[aria-pressed=true]{outline:2px solid Highlight}
+ #app .alert.notice button[data-action=dismiss-notice]{border:1px solid ButtonText}
+}
+/* A single recommended first action; alternatives remain visible without equal emphasis. */
+.home-recommendation{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(160px,.7fr);align-items:center;gap:1.5rem;background:#edf2df;border-radius:24px;padding:clamp(1.2rem,3vw,2rem);margin:1rem 0 1.5rem}
+.home-recommendation h2{font:800 clamp(1.5rem,3vw,2.2rem)/1.3 var(--display-font);margin:.45rem 0}
+.home-recommendation p{max-width:46ch;margin:.5rem 0 1rem}
+.home-other-heading{font-size:1.2rem;margin:1.4rem 0 .8rem}
+.experience-choices .experience-card{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;padding:1.1rem}
+.experience-choices .experience-card>.guide-art{max-width:150px;align-self:center}
+.experience-choices .experience-card h2{font-size:1.25rem;margin:0 0 .35rem}
+.experience-choices .experience-card p{margin:0}
+.experience-choices .experience-card button{margin-top:auto;align-self:stretch}
+.home-next{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.first-steps-child{display:flex;align-items:center;gap:.7rem;width:100%;padding:.7rem 1rem;margin-top:1rem;text-align:left;background:transparent;border:1px solid #d4dacb;border-radius:16px}
+.first-steps-child>.guide-art{width:86px;margin:0}.first-steps-child>span{display:grid;gap:.3rem}.first-steps-child strong{font-size:1.05rem}
+.first-steps-ranges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.75rem}
+.first-steps-ranges .guide-card{display:flex;flex-direction:column;align-items:flex-start}
+.first-steps-choices button.guide-card>span:not([aria-hidden]){font-size:.9rem;line-height:1.5}
+.practice-help{margin:.65rem 0 1rem;border-radius:16px;background:#edf2e7;padding:.35rem .75rem}
+.practice-help>.text-button{min-height:44px;text-align:left}
+.practice-help-body{padding:.35rem 0 .65rem}.word-buttons{display:flex;flex-wrap:wrap;gap:.4rem}
+.word-buttons button{min-height:44px;padding:.5rem .8rem;border:1px solid #8caa93;border-radius:12px;background:#fffef7;color:#274e3e}
+.word-buttons button[aria-pressed=true]{background:#315e4b;color:#fff;border-color:#315e4b}
+.word-buttons button:hover:not(:disabled){background:#dce9d2;color:#274e3e}
+.word-meaning{background:#fffdf5;padding:.8rem;border-radius:12px;margin-top:.7rem}.word-meaning p{margin:.35rem 0;line-height:1.6}.word-example{font-style:italic}
+.contextual-hint{line-height:1.6;border-inline-start:3px solid #7c9a62;padding:.35rem .75rem}.practice-help small{display:block;margin-top:.65rem;color:#425c46;line-height:1.5}
+@media(max-width:680px){.home-recommendation{grid-template-columns:minmax(0,1fr) 100px;gap:.5rem;padding:1rem}.home-recommendation .guide-art{width:100px}.home-recommendation h2{font-size:1.5rem}.experience-choices .experience-card{display:grid;grid-template-columns:76px minmax(0,1fr);gap:.6rem}.experience-choices .experience-card>.guide-art{width:76px;grid-row:1/3}.experience-choices .experience-card button{grid-column:2}.first-steps-choices .guide-card>span{grid-column:2}.first-steps-choices .guide-card>span[aria-hidden]{display:none}.first-steps-ranges{grid-template-columns:1fr}}
+@media(max-width:360px){.home-recommendation{grid-template-columns:1fr}.home-recommendation>.guide-art{display:none}}

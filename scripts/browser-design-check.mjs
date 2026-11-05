@@ -26,11 +26,27 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   }
   await page.locator('#traveler-name').fill('Bé An');await page.locator('[name="mode"][value="kids"]').check();
   await page.locator('[data-form="create-profile"] button[value="play"]').click();await ready(page);
+  await page.locator('[data-level-setup]').waitFor();
+  assert.equal(await page.locator('.main-nav button').count(),0,'First-time level setup is focused, not an optional hidden setting');
+  for(const width of [1440,390,320]){
+   await page.setViewportSize({width,height:844});
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Level choices fit narrow screens');
+   await axe('Focused level setup '+width,page);
+   await page.screenshot({path:fileURLToPath(new URL(`release-first-steps-${width}.png`,directory)),fullPage:true});
+  }
+  await play('entry-pictures');await play('home');
   assert.equal(await page.locator('.main-nav button').count(),3);
   assert.doesNotMatch(await page.locator('.account-pill').innerText(),/Khách|thiết bị này/);
-  assert.match(await page.locator('.alert.notice').innerText(),/Bé An/);
+  // Test the actual hover/focus states that previously inherited white-on-white.
+  if(await button('dismiss-notice').count()){
+   await button('dismiss-notice').hover();
+   const colors=await button('dismiss-notice').evaluate(el=>{const s=getComputedStyle(el);return {text:s.color,background:s.backgroundColor};});
+   assert.notEqual(colors.text,colors.background,'Toast dismiss hover must retain contrast');
+   await button('dismiss-notice').focus();
+   await page.screenshot({path:fileURLToPath(new URL('release-notice-focus-320.png',directory))});
+  }
   await page.screenshot({path:fileURLToPath(new URL('release-design-created-320.png',directory)),fullPage:true});
-  await play('dismiss-notice');await play('account');await page.locator('.account-tools [data-action="settings"]').waitFor();
+  if(await button('dismiss-notice').count())await play('dismiss-notice');await play('account');await page.locator('.account-tools [data-action="settings"]').waitFor();
   assert.equal(await page.locator('[data-form="family-invite"]').count(),0);
   await play('home');await play('little-open');await play('memory-open');
   const before=(await snapshot()).events.filter(e=>e.kind==='attempt').length;

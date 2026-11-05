@@ -1,0 +1,9 @@
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Reveal only after a persisted support receipt. Never mounted in assessments.
+export function practiceSupportView({support,language='en',open=false,index=null,hint=false}={}){
+ if(!support)return '';
+ const t=(en,vi)=>language==='vi'?vi:en,loc=x=>x?.[language]??x?.en??'';
+ const terms=Array.isArray(support.terms)?support.terms:[];
+ const term=Number.isInteger(index)&&index>=0?terms[index]:null;
+ return `<section class="practice-help" aria-label="${t('Help with this passage','Hỗ trợ đọc bài')}"><button type="button" class="text-button" data-action="practice-help" aria-expanded="${open}">${t('Need a word or a hint?','Cần tra từ hoặc gợi ý?')}</button>${open?`<div class="practice-help-body"><div class="word-buttons">${terms.map((v,i)=>`<button type="button" data-action="practice-word" data-value="${i}" aria-pressed="${i===index}" lang="en" translate="no">${esc(v.text)}</button>`).join('')}${support.hint?`<button type="button" data-action="practice-hint" aria-pressed="${hint}">${t('Show a hint','Xem gợi ý')}</button>`:''}</div>${term?`<div class="word-meaning" role="status"><strong lang="en" translate="no">${esc(term.text)}</strong><p>${esc(loc(term.meaning))}</p><p class="word-example" lang="en" translate="no">${esc(term.example?.en)}</p>${language==='vi'?`<p>${esc(term.example?.vi)}</p>`:''}</div>`:''}${hint?`<p class="contextual-hint" role="status">${esc(loc(support.hint))}</p>`:''}${term||hint?`<small>${t('Saved as practice with help. You can try independently another day.','Lượt này được ghi nhận là có hỗ trợ. Bạn có thể tự thử lại vào hôm khác.')}</small>`:''}</div>`:''}</section>`;
+}

@@ -11,6 +11,7 @@ import { validCloudConfig } from '../src/cloud.js';
 import {checkWorkshop} from './accept-workshop.mjs';
 import {checkPlacement} from './accept-placement.mjs';
 import {checkLittle} from './accept-little.mjs';
+import {checkPracticeRelease} from './validate-practice-edition.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 const hash = body => createHash('sha256').update(body).digest('hex');
@@ -30,6 +31,7 @@ async function inventory(directory, prefix = '') {
 export async function build({ sourceRoot = defaultRoot, config = null } = {}) {
   sourceRoot = resolve(sourceRoot);
   if(sourceRoot===resolve(defaultRoot)){
+    await checkPracticeRelease();
     await checkWorkshop();
     await checkPlacement();
     await checkLittle();
