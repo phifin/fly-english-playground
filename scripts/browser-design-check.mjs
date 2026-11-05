@@ -38,11 +38,16 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   assert.equal(await page.locator('.main-nav button').count(),3);
   assert.doesNotMatch(await page.locator('.account-pill').innerText(),/Khách|thiết bị này/);
   // Test the actual hover/focus states that previously inherited white-on-white.
-  if(await button('dismiss-notice').count()){
+  await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);
+  await button('dismiss-notice').waitFor();
+  {
    await button('dismiss-notice').hover();
-   const colors=await button('dismiss-notice').evaluate(el=>{const s=getComputedStyle(el);return {text:s.color,background:s.backgroundColor};});
-   assert.notEqual(colors.text,colors.background,'Toast dismiss hover must retain contrast');
+   const contrast=await button('dismiss-notice').evaluate(el=>{const s=getComputedStyle(el),l=c=>{const v=c.match(/[\d.]+/g).slice(0,3).map(n=>{const x=Number(n)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;});return .2126*v[0]+.7152*v[1]+.0722*v[2];};const a=l(s.color),b=l(s.backgroundColor);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);});
+   assert.ok(contrast>=4.5,'Toast dismiss hover retains readable text contrast');
+   await page.keyboard.press('Tab');
    await button('dismiss-notice').focus();
+   assert.equal(await button('dismiss-notice').evaluate(el=>parseFloat(getComputedStyle(el).outlineWidth)>=2),true,'Keyboard dismiss focus stays visible');
+   await axe('Notification hover and keyboard focus',page);
    await page.screenshot({path:fileURLToPath(new URL('release-notice-focus-320.png',directory))});
   }
   await page.screenshot({path:fileURLToPath(new URL('release-design-created-320.png',directory)),fullPage:true});

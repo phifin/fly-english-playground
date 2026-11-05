@@ -1037,11 +1037,13 @@ try {
       assert.equal(await experience.locator('.workshop-drag-ghost,.is-picked-up,.is-drop-target').count(), 0, 'Pointer feedback must clean up after the drop.');
     };
     await experience.setViewportSize({ width: 1440, height: 1000 });
-    const beforeDrag = (await snapshot()).events.length;
+    const placements=value=>value.events.filter(e=>e.kind==='mission'&&e.payload?.experience==='workshop-layout-v1');
+    const beforeDrag = placements(await snapshot()).length;
     await drag('boat', 'water', false);
-    assert.equal((await snapshot()).events.length, beforeDrag + 1, 'The synthetic mouse click after a drop must not duplicate a placement.');
+    assert.equal(placements(await snapshot()).length, beforeDrag + 1, 'The synthetic mouse click after a drop must not duplicate a placement.');
+    assert.equal((await snapshot()).events.filter(e=>e.payload?.experience==='guide-v1'&&e.payload.topic==='workshop'&&e.payload.state==='completed').length,1,'The first completed manipulation creates one separate tutorial receipt.');
     await experience.setViewportSize({ width: 390, height: 844 }); await drag('shell', 'sand', true);
-    assert.equal((await snapshot()).events.length, beforeDrag + 2, 'A native touch sequence must commit exactly one placement.');
+    assert.equal(placements(await snapshot()).length, beforeDrag + 2, 'A native touch sequence must commit exactly one placement.');
     assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)));
     report.experiences = { quickActivities: answered, responseTypes: [...types], littlePictures: 4, pointerTypes: ['mouse', 'touch'], widths: [320, 390, 1440] };
     check('Home offers pictures, short practice and optional construction; five accepted activities resume across reload and contribute exactly five real learning attempts.');
