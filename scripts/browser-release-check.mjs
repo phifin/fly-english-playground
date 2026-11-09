@@ -1275,7 +1275,11 @@ try {
         check('A supported unsubmitted draft survives navigation, mode/language changes and reload.');
       }
       await solve(activity); submitted++; seenTypes.add(activity.type);
-      if (missionIndex === 0 && (index === 0 || activity.type === 'gap')) assert.match(await page.locator('.feedback').innerText(), /Supported practice/);
+      if (missionIndex === 0 && (index === 0 || activity.type === 'gap')) {
+        assert.match(await page.locator('.feedback').innerText(), /You used help for this answer/);
+        const attempts=(await page.evaluate(readImportState)).snapshot.events.filter(e=>e.profileId===mainId&&e.kind==='attempt'&&e.payload.activityId===activity.id).sort((a,b)=>a.at.localeCompare(b.at)||a.id.localeCompare(b.id));
+        assert.equal(attempts.at(-1).payload.supported,true,'Assisted feedback must agree with the stored response');
+      }
       await finishMoment(mode);
     }
     await button('collect-discovery').waitFor({state:'visible'});
