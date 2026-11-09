@@ -12,6 +12,7 @@ test('only the explicitly selected assistance is revealed and explains supported
  const html=practiceSupportView({support,open:true,index:0,language:'vi'});
  assert.match(html,/Ở bên cạnh/);assert.match(html,/có hỗ trợ/);assert.ok(!html.includes('Tìm một vị trí.'));
  assert.match(practiceSupportView({support,open:true,hint:true}),/Look for one place/);
+ const reviewed=practiceSupportView({support,open:true,index:0,afterResponse:true});assert.match(reviewed,/submitted response stays saved/);assert.doesNotMatch(reviewed,/Saved as practice with help/);
  const dangerous=structuredClone(support);dangerous.terms[0].meaning.en='<img onerror="bad">';
  assert.ok(!practiceSupportView({support:dangerous,open:true,index:0}).includes('<img'));
 });

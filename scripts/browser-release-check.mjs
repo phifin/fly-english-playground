@@ -204,7 +204,7 @@ try {
     // No app state, storage, successful response or render function is mocked.
     await page.evaluate(() => window.dispatchEvent(new Event('online')));
     await ready(); await noError();
-    await page.locator('.alert.notice').filter({ hasText: /Connection restored|Đã kết nối lại/ }).waitFor({ state: 'visible' });
+    await page.locator('.alert.notice').filter({ hasText: /You’re back online\.|Đã có kết nối mạng\./ }).waitFor({ state: 'visible' });
     for (const [field, value] of Object.entries(values)) {
       assert.equal(await form.locator(`[name="${field}"]`).inputValue(), value,
         `A background connection notification must preserve the ${name} form's ${field}.`);

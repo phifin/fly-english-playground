@@ -71,6 +71,10 @@ jobs:
           node scripts/accept-little.mjs --check
           node scripts/build.mjs
           node -e 'const fs=require("node:fs");const {releaseId}=JSON.parse(fs.readFileSync("dist/build-report.json","utf8"));if(!/^[a-f0-9]{20}$/.test(releaseId))throw new Error("Invalid build identity");fs.appendFileSync(process.env.GITHUB_OUTPUT,"release_id="+releaseId+"\n");'
+      # Preview can exercise entry UI during review; production requires accepted content.
+      - name: Require reviewed practice edition before production
+        if: github.ref == 'refs/heads/main'
+        run: node scripts/validate-practice-edition.mjs --check
       - name: Install isolated browser verification tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/atlas-browser" --no-save --package-lock=false --ignore-scripts @playwright/test@1.64.1 axe-core@4.14.0
