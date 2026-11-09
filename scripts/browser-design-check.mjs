@@ -31,6 +31,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   for(const width of [1440,390,320]){
    await page.setViewportSize({width,height:844});
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Level choices fit narrow screens');
+   const childStart=await button('entry-pictures').boundingBox();assert.ok(childStart.y+childStart.height<844,'Kids setup keeps the pre-reader option in the first viewport');
    await axe('Focused level setup '+width,page);
    await page.screenshot({path:fileURLToPath(new URL(`release-first-steps-${width}.png`,directory)),fullPage:true});
   }

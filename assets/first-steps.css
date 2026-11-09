@@ -112,3 +112,5 @@ body:has(.atlas-dialog[open]) #app .alert.notice{visibility:hidden;pointer-event
 @media(max-width:360px){.home-recommendation{grid-template-columns:1fr}.home-recommendation>.guide-art{display:none}}
 .home-recommendation .guide-bubble{grid-template-columns:42px minmax(0,1fr);padding:.6rem;margin:.9rem 0 0;border:0;background:#fffdf5}
 .home-recommendation .guide-bubble>.guide-art{width:42px}.home-recommendation .guide-bubble strong{display:none}.home-recommendation .guide-bubble p{font-size:.9rem;margin:0}.home-recommendation .guide-bubble button{font-size:.85rem;padding:.4rem;min-height:44px}.home-recommendation .guide-bubble .guide-actions{margin:0}
+
+.first-steps-child+.first-steps-choices{margin-top:1rem}

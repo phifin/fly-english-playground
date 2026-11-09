@@ -37,4 +37,7 @@ test('focused bilingual setup has explicit choices, plain range descriptions and
   assert.ok(guideView({topic:'order',language}).includes(language==='en'?'arrows':'mũi tên'));
  }
  assert.ok(firstStepsView({revisit:true}).includes('data-action="home"'));
+ const kids=firstStepsView({mode:'kids'});
+ assert.ok(kids.indexOf('data-action="entry-pictures"')<kids.indexOf('data-action="entry-beginner"'),'Picture entry is prominent for Kids, not automatically selected');
+ assert.ok(kids.includes('data-action="placement-begin"'),'Kids readers can still choose placement');
 });

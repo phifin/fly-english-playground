@@ -1,4 +1,4 @@
-# First-time learning refinement — preview work, 5 November 2026
+# First-time learning refinement — preview verified, 9 November 2026
 
 Production remains `0fecb0e4dd47e776ef2039084d2c4382c18c3314` until a separately verified release. This is not a completed curriculum correction.
 
@@ -16,7 +16,8 @@ Research references (research only, no copied exercises): [British Council A1 re
 
 ## Verification and resume
 
-- Local unit/regression suite: 401 passes, four emulator-dependent skips. Local static build succeeds with revised-content activation off. Browser changes are prepared; hosted results must be recorded separately.
+- Preview commit `0c30f73c2098d5cdb5b41c86954f18db594b9c26`, workflow `41986398022`: build and Firestore jobs passed; production jobs correctly skipped on the work branch. 401 ordinary test passes/four emulator-dependent skips, four actual emulator passes, 37 browser checks and 30 axe surfaces with zero violations. Preview release `5794af7b3df85df09c4f`. No unexpected browser errors. Original content remains active; contextual vocabulary verification explicitly reports pending-content-review.
+- Downloaded artifact `13395903653`, SHA256 `dd3839e3c738551fbfbb8d531f599930051789bc1940983f3c3be85e93903212`; inspected screenshots in `artifacts/first-steps-verified/`. Review found and fixed a home guide that pushed the primary action downward and a missing help glyph. Notification hover contrast and keyboard focus now have actual browser checks. A final refinement brings the pre-reader choice before reading choices for Kids (without choosing it automatically); its new browser check is pending the next run.
 - Run the existing hosted preview workflow and inspect screenshots at 320/390/1440 widths, focus/hover states, initial setup, skipped/replayed guides and returning profiles. No physical-device or real-child enjoyment claim.
 - Complete Luna's staged `practice-support-1.json` and review report; independently inspect every changed key, explanation, prerequisite and contextual term. Validator contract is `scripts/validate-practice-edition.mjs`. No `approved` field authorizes acceptance.
 - Accept only reviewed data, publish `practice-edition.json`, activate the exact filename in `practice-release.js`, and run the full browser support journey. Test previous placement sessions against original keys and new sessions against revised keys.
