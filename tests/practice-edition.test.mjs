@@ -4,13 +4,21 @@ import {readFile} from 'node:fs/promises';
 import {applyPracticeEdition,practiceSupport} from '../src/practice-edition.js';
 import {indexContent,deriveProgress,suggestPractice,assess} from '../src/learning.js';
 import {quickActivities,savedQuick} from '../src/quick-practice.js';
-import {validatePracticeEdition} from '../scripts/validate-practice-edition.mjs';
+import {validatePracticeEdition,practiceSupportCoverage} from '../scripts/validate-practice-edition.mjs';
 
 const old={id:'a1-small-01',type:'gap',skill:'language',focus:'be',accepted:['is']};
 const pack={missions:[{id:'a1-small',level:'A1',activities:[old]},{id:'a1-next',level:'A1',activities:[{...old,id:'a1-next-01'}]}]};
 const assistance={terms:[{text:'book',meaning:{en:'Something to read.',vi:'Sách để đọc.'},example:{en:'This is a book.',vi:'Đây là một quyển sách.'}}],hint:{en:'Read the sentence again.',vi:'Đọc lại câu nhé.'},prerequisites:['Recognise a familiar object.']};
 const edition={schemaVersion:1,editionId:'practice-support-1',revisions:[{replaces:old.id,missionId:'a1-small',activity:{...old,id:old.id+'-v2',accepted:['are']},...assistance}],support:[]};
 const attempt=(activityId,answer,id='e1',at='2026-10-01T12:00:00.000Z')=>({kind:'attempt',id,at,payload:{activityId,answer,supported:false}});
+
+test('beginner coverage follows active versions and does not count empty or historical help',()=>{
+ assert.deepEqual(practiceSupportCoverage(pack,edition),{byLevel:{A1:{activities:2,supported:1,terms:1}},missing:['a1-next-01']});
+ const empty={...edition,support:[{activityId:'a1-next-01',...assistance,terms:[]}]};
+ assert.deepEqual(practiceSupportCoverage(pack,empty).missing,['a1-next-01']);
+ const complete={...edition,support:[{activityId:'a1-next-01',...assistance}]};
+ assert.deepEqual(practiceSupportCoverage(pack,complete),{byLevel:{A1:{activities:2,supported:2,terms:2}},missing:[]});
+});
 
 test('edition never mutates original definitions, keys, or the source pack',()=>{
  const before=structuredClone(pack),next=applyPracticeEdition(pack,edition),index=indexContent(next);
@@ -28,6 +36,17 @@ test('historical achievements remain earned without manufacturing replacement ma
  assert.equal(p.due.length,0);assert.equal(p.attempts,1);
  const fresh=deriveProgress([attempt(old.id+'-v2','are')],next);
  assert.equal(fresh.rewards.has('a1-small'),true);assert.equal(fresh.independent,1);assert.equal(fresh.records[old.id],undefined);
+});
+
+test('post-response vocabulary review preserves earlier evidence and supports later same-day attempts',()=>{
+ const next=applyPracticeEdition(pack,edition),id=old.id+'-v2';
+ const answered=attempt(id,'are','answered','2026-11-09T01:00:00.000Z');
+ const help={kind:'support',id:'lookup',at:'2026-11-09T01:01:00.000Z',payload:{activityId:id,reason:'vocabulary-menu'}};
+ assert.equal(deriveProgress([answered,help],next).records[id].independent,1);
+ const retry=attempt(id,'are','retry','2026-11-09T01:02:00.000Z');
+ assert.equal(deriveProgress([answered,help,retry],next).records[id].independent,1,'Same-day help still applies even if a caller forgets the supported flag');
+ const later=attempt(id,'are','later','2026-11-10T01:00:00.000Z');
+ assert.equal(deriveProgress([answered,help,retry,later],next).records[id].independent,2,'Later unassisted retrieval remains possible');
 });
 
 test('mixed old/new partial completions cannot fabricate a mission accomplishment',()=>{

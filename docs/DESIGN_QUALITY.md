@@ -24,6 +24,16 @@ Nunito is the display/brand face; ordinary lesson text and controls retain a rea
 4. Check original Vietnamese glyphs and wording; distinguish source corruption, fallback, spacing and browser translation. Keep app-authored guidance marked against automatic translation.
 5. Preserve all release evidence and explicit limits. Emulator authentication is not live Google consent. Desktop Chrome is not iOS/Safari or a low-end phone. Real-child enjoyment needs family observation.
 
+## First learning interaction and educational release gate
+
+- A default A1 profile is not a starting-level choice. New readers must explicitly choose beginner, a plain-language range, or a completed short check. Existing valid selection and real learning history prevent repeated setup. Pre-reading readiness is separate from mode and proficiency.
+- Put the recommended action before guidance. Point to the real control; complete guidance on a real interaction and remember skip/completion per learner. Keep replay available. Do not add an overlay that prevents keyboard or touch use of the target.
+- Inspect beginner content for incidental vocabulary, number of relations, prerequisites, instruction burden and answer ambiguity, not merely sentence length. Review all changed keys and both-language explanations. Official descriptors guide editorial judgment; they do not validate an automatic level score.
+- Give revised tasks new IDs. Preserve original keys, saved placement pools and historical achievements. A corrected task must not inherit mastery from an older definition.
+- Persist assistance before revealing meanings or hints. Exclude help from placement. Reviewing help after an answer must not rewrite or visually relabel that submitted response.
+- Independently accept staged educational data with pinned source/submission hashes. A submitter's approval field is not evidence. Every active A1/A2 task requires contextual vocabulary support; the main workflow enforces the accepted-edition gate.
+- Check actual notification hover/focus, slow or failed writes, phone-width starting choices, saved guidance, old/new placement versions and assistance after reload. Content activation must run the browser vocabulary journey; a preview reporting pending-content-review is not completion.
+
 ## Current review scope and unresolved work
 
 The November design branch starts from the verified production release, not the unaccepted curriculum branch. It reviews welcome, entry, account, navigation, child picture games, construction, practice, placement, journal, settings, cloud/family copy and standalone study via existing and new browser journeys. It adds memory pairs without new educational claims. The pending curriculum/exam/listening expansion remains preserved on work/learning-platform and must receive these shared UI changes when integrated.

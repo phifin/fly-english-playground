@@ -72,13 +72,29 @@ export function validatePracticeEdition(pack,edition,{today=new Date().toISOStri
 }
 
 /** The submitter cannot approve itself: Sol's separate review pins both inputs. */
+export function practiceSupportCoverage(pack,edition){
+ const active=applyPracticeEdition(pack,edition),byLevel={},missing=[];
+ for(const mission of active.missions){
+  byLevel[mission.level]??={activities:0,supported:0,terms:0};
+  for(const activity of mission.activities){
+   const terms=active.practiceEdition.support[activity.id]?.terms??[];
+   byLevel[mission.level].activities++;byLevel[mission.level].terms+=terms.length;
+   if(terms.length)byLevel[mission.level].supported++;
+   else if(['A1','A2'].includes(mission.level))missing.push(activity.id);
+  }
+ }
+ return {byLevel,missing};
+}
+
 export async function checkPracticeEdition(){
  const read=async path=>JSON.parse(await readFile(new URL(path,root),'utf8'));
  const pack=await read('data/published/atlas.json'),submission=await read('data/staging/practice-support-1.json'),review=await read('data/reviews/practice-support-acceptance.json'),published=await read('data/published/practice-edition.json');
  const errors=validatePracticeEdition(pack,submission);
  if(errors.length)throw new Error('Invalid practice edition: '+errors.join('\n'));
+ const coverage=practiceSupportCoverage(pack,submission);
+ if(coverage.missing.length)throw new Error('Beginner contextual support missing: '+coverage.missing.join(', '));
  if(review.decision!=='accept'||review.reviewedBy!=='Sol'||review.editionId!==submission.editionId||review.baseSha256!==contentHash(pack)||review.submissionSha256!==contentHash(submission)||contentHash(published)!==contentHash(submission))throw new Error('Practice edition differs from independent acceptance.');
- return {audited:submission.audit.length,revised:submission.revisions.length,supported:submission.support.length+submission.revisions.length,scope:'Practice calibration review; no psychometric validation or CEFR certification.'};
+ return {audited:submission.audit.length,revised:submission.revisions.length,supported:submission.support.length+submission.revisions.length,coverage:coverage.byLevel,scope:'Practice calibration review; no psychometric validation or CEFR certification.'};
 }
 
 export async function checkPracticeRelease(){
