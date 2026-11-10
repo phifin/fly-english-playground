@@ -149,7 +149,7 @@ try {
   }
   function observe(target) {
     target.on('pageerror', error => report.errors.push(error.message));
-    target.on('console', message => { if (message.type() === 'error') report.errors.push(message.text()); });
+    target.on('console', message => { if (message.type() === 'error') report.errors.push(`${message.text()} [${message.location().url || target.url()}]`); });
   }
   const context = await newContext(); page = await context.newPage(); observe(page);
   page.setDefaultTimeout(15000); page.setDefaultNavigationTimeout(45000);
