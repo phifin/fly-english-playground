@@ -30,7 +30,9 @@ export function validatePracticeEdition(pack,edition,{today=new Date().toISOStri
   if(array(r.prerequisites,p+'.prerequisites',1,8)){r.prerequisites.forEach((v,i)=>text(v,p+`.prerequisites[${i}]`,500));if(new Set(r.prerequisites).size!==r.prerequisites.length)fail(p+'.prerequisites','duplicate');}
   localized(r.hint,p+'.hint');
   if(array(r.terms,p+'.terms',0,8)){
-   const seen=new Set(),english=activity?JSON.stringify([activity.context,activity.prompt,activity.options?.map(o=>o.text),activity.tokens?.map(o=>o.text),activity.pairs?.map(o=>[o.left,o.right])]).toLocaleLowerCase('en'):'';
+   // Instructions are visible before answering and may also need vocabulary
+   // help. Answer keys, feedback and model answers deliberately stay excluded.
+   const seen=new Set(),english=activity?JSON.stringify([activity.context,activity.prompt,activity.instruction?.en,activity.options?.map(o=>o.text),activity.tokens?.map(o=>o.text),activity.pairs?.map(o=>[o.left,o.right])]).toLocaleLowerCase('en'):'';
    for(const [i,term] of r.terms.entries()){
     const q=p+`.terms[${i}]`;if(!exact(term,q,['text','meaning','example']))continue;
     if(text(term.text,q+'.text',100)){const key=term.text.toLocaleLowerCase('en');if(seen.has(key))fail(q,'duplicate term');seen.add(key);if(activity&&!english.includes(key))fail(q,'term absent from this activity');}

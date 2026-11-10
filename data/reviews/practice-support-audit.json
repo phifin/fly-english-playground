@@ -1,0 +1,722 @@
+[
+  {
+    "activityId": "a1-lantern-harbor-01",
+    "decision": "revise",
+    "reason": "The key boathouse is stated directly, but learners had to sort blue gate, pier, boathouse, lighthouse and bell across several relations; the cold-start vocabulary and spatial load are too high for one A1 clue.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-read-place-clues."
+  },
+  {
+    "activityId": "a1-lantern-harbor-02",
+    "decision": "revise",
+    "reason": "The accepted is fits the singular lighthouse target. The surrounding context stacks lighthouse, boathouse, ropes and boats, which adds avoidable vocabulary before the basic agreement decision.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-there-be-singular."
+  },
+  {
+    "activityId": "a1-lantern-harbor-03",
+    "decision": "revise",
+    "reason": "The three matches are textually distinct, but lantern/gate/lighthouse/pier and above/inside/beside all compete for attention; the mapping is unique only after several unfamiliar words are understood.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-object-and-place."
+  },
+  {
+    "activityId": "a1-lantern-harbor-04",
+    "decision": "revise",
+    "reason": "The order key follows first/next/then, so it is unambiguous. Behind, boathouse and lighthouse make the route lexically and spatially denser than the basic sequence target.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-simple-route."
+  },
+  {
+    "activityId": "a1-lantern-harbor-05",
+    "decision": "revise",
+    "reason": "The prompt asks for two self-written map sentences, but the example uses bell/lighthouse/pier facts not supplied in the visitor context. Open writing is self-review and has no score.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-location-sentences."
+  },
+  {
+    "activityId": "a1-lantern-harbor-shell-bell-01",
+    "decision": "revise",
+    "reason": "The key inside the shell hut is explicit, but shell hut, harbor gate and tide pool create topic-vocabulary demand beyond the single location lookup.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-find-a-place-in-a-short-note."
+  },
+  {
+    "activityId": "a1-lantern-harbor-shell-bell-02",
+    "decision": "revise",
+    "reason": "The accepted are is grammatically correct for two shells. Tide pool, shell hut and pier are incidental to plural agreement and complicate the original A1 context.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-there-are-with-plural-nouns."
+  },
+  {
+    "activityId": "a1-lantern-harbor-shell-bell-03",
+    "decision": "revise",
+    "reason": "The three pairings are explicit and distinct, but rope/pier/hut/lighthouse are unnecessary topic terms; the answer key itself has no collision.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-things-to-locations."
+  },
+  {
+    "activityId": "a1-lantern-harbor-shell-bell-04",
+    "decision": "revise",
+    "reason": "The first/next/then sequence is clear. Shell hut and harbor landmarks make the original directions harder than the three-step order target.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-three-simple-directions."
+  },
+  {
+    "activityId": "a1-lantern-harbor-shell-bell-05",
+    "decision": "revise",
+    "reason": "The writing criteria are understandable, but the example refers to shell-bell facts not supplied in the visitor setup; it is open self-review, not scored.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-short-map-clues."
+  },
+  {
+    "activityId": "a1-lantern-harbor-color-teller-01",
+    "decision": "revise",
+    "reason": "Yellow is stated verbatim; green is assigned to another speaker and blue is absent. The correct option is clear, but the 40-word setup is unnecessary for this one-choice reading target.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-identify-a-personal-choice."
+  },
+  {
+    "activityId": "a1-lantern-harbor-color-teller-02",
+    "decision": "revise",
+    "reason": "The accepted it is correct for the singular paper tail; the prompt repeats the target sentence and the context adds a lantern studio story that does not support additional inference.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-use-a-subject-pronoun-for-an-object."
+  },
+  {
+    "activityId": "a1-lantern-harbor-color-teller-03",
+    "decision": "retain",
+    "reason": "Silver/Rin, green/Omar and blue/Tia are explicitly paired, with no second key. This is direct matching practice and relies on ordinary color/shape vocabulary.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-people-to-stated-choices."
+  },
+  {
+    "activityId": "a1-lantern-harbor-color-teller-04",
+    "decision": "retain",
+    "reason": "First/next/last fix the sequence and make the key unambiguous. The simple make-order task is appropriate A1 practice once the paper words are known.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-a-simple-making-sequence."
+  },
+  {
+    "activityId": "a1-lantern-harbor-color-teller-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The open preference prompt and rubric align, but there is no machine scoring. The model supports self-review only. It has no operational scoring.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-about-a-personal-preference."
+  },
+  {
+    "activityId": "a1-lantern-harbor-rooftop-kites-01",
+    "decision": "revise",
+    "reason": "Stripes is stated directly; dots are Jo's choice and clouds are not supported. The answer is unique, but the original club narrative is long for a single A1 retrieval item.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-find-a-stated-personal-choice."
+  },
+  {
+    "activityId": "a1-lantern-harbor-rooftop-kites-02",
+    "decision": "revise",
+    "reason": "The accepted they is correct for two names, but the original context already says They, exposing the answer before the gap.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-use-a-plural-subject-pronoun."
+  },
+  {
+    "activityId": "a1-lantern-harbor-rooftop-kites-03",
+    "decision": "revise",
+    "reason": "The original prompt calls every left-side item a kite part, although green circle is a decoration; ribbon/sail/frame also require vocabulary beyond a cold A1 match.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-familiar-things-to-actions."
+  },
+  {
+    "activityId": "a1-lantern-harbor-rooftop-kites-04",
+    "decision": "retain",
+    "reason": "First/next/last identify the order and the key is clear. This checks sequence following, not broader reading ability.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-order-steps-from-sequence-words."
+  },
+  {
+    "activityId": "a1-lantern-harbor-rooftop-kites-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The two-sentence toy/game prompt has self-check criteria and a model, but no operational scoring; it remains practice-only. It has no operational scoring.",
+    "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-simple-sentences-about-a-choice."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-tin-01",
+    "decision": "retain",
+    "reason": "Old bench is the unique noon location; the cart is explicitly later. The time contrast is clear, though seed tin/cart are less familiar than the target diary skill.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-locate-a-detail-in-a-diary."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-tin-02",
+    "decision": "retain",
+    "reason": "Found is the correct irregular past form and the prompt gives the base verb. The one-word gap checks a focused A2 form with a direct past-time cue.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-past-simple-irregular-verb."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-tin-03",
+    "decision": "retain",
+    "reason": "Each seed has one stated planting place. Moon beans, silver mint, thyme and fountain are topic vocabulary, so success partly reflects gardening words rather than description reading.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-read-short-practical-descriptions."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-tin-04",
+    "decision": "retain",
+    "reason": "Morning/noon/after lunch make the event order unique. The time-marker skill is clear and the garden nouns add some incidental load.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-sequence-past-events-from-time-markers."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-tin-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — Two-sentence past writing has relevant criteria and example but no automatic scorer; use only for learner self-review. It has no operational scoring.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-short-past-account."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-rain-plan-01",
+    "decision": "retain",
+    "reason": "Show the pond map is directly linked to after lunch; the gate and seed walk are earlier. The distractors are time-distinct and the key is unique.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-find-a-future-plan-in-a-notice."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-rain-plan-02",
+    "decision": "retain",
+    "reason": "Will check is the only accepted form under the stated will + base verb rule; tomorrow and the future-plan context remove tense ambiguity.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-simple-future-statement."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-rain-plan-03",
+    "decision": "retain",
+    "reason": "Each event is paired with a different time phrase in the notice; the four matches are explicit and one-to-one.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-match-events-to-schedule-times."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-rain-plan-04",
+    "decision": "retain",
+    "reason": "First/then/last explicitly determine the order. The sequence is unambiguous but low in inference demand.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-follow-ordered-preparation-instructions."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-rain-plan-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The open future-plan prompt aligns with its rubric/example, but there is no scoring rule; it is practice-only. It has no operational scoring.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-simple-future-plan."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-sculpture-01",
+    "decision": "retain",
+    "reason": "Tall Acorn at 31 cm is the unique maximum; the measurement comparison is clear and supports the superlative.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-compare-measured-heights."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-sculpture-02",
+    "decision": "revise",
+    "reason": "The original context names paper flowers before the blank, directly exposing the accepted answer; this is a genuine key leak, not just a low-level item.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-countable-plural."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-sculpture-03",
+    "decision": "revise",
+    "reason": "The original many/a little/a few pairings are stated, but seed pods/soil/clay bowls are niche and both many and a few are grammatical with plural count nouns; learners must copy the pairing, not infer a unique grammar rule.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-match-quantity-pairings-in-a-note."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-sculpture-04",
+    "decision": "retain",
+    "reason": "The chunks form the printed wider-than comparison; the note states the relation and the requested syntax narrows the order.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-order-a-comparative-sentence."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-seed-sculpture-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The prompt allows varied comparisons and the rubric is self-review only; no objective scoring for quantity accuracy is defined. It has no operational scoring.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-comparison-with-quantity-language."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-garden-invitation-01",
+    "decision": "revise",
+    "reason": "Would you mind is the clear request. The original explanation wrongly calls “You can move bowls if you want” ability; in context it offers permission/choice, so that distractor distinction needs correction.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-recognise-a-polite-request."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-garden-invitation-02",
+    "decision": "retain",
+    "reason": "Would completes the fixed polite formula and lending is appropriately -ing; the form cue is explicit and the answer is unique.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-polite-would-you-mind-question."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-garden-invitation-03",
+    "decision": "retain",
+    "reason": "Could you asks for help, Would you like to invites, and We could suggests a plan. The group-message context fixes these speech-act readings.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-distinguish-requests-invitations-and-suggestions."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-garden-invitation-04",
+    "decision": "retain",
+    "reason": "The word groups form the standard Would you like to + activity + with us question; the order is constrained by the frame.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-order-a-polite-invitation."
+  },
+  {
+    "activityId": "a2-wildseed-gardens-garden-invitation-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The prompt elicits an invitation and plan, but the rubric is only self-review and does not score pragmatic appropriateness. It has no operational scoring.",
+    "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-polite-plan."
+  },
+  {
+    "activityId": "b1-tideglass-isles-chart-letter-01",
+    "decision": "retain",
+    "reason": "Relieved and a little foolish support the keyed reading of Neri's reaction; this is one local inference with a clear textual basis.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-infer-a-writers-reaction."
+  },
+  {
+    "activityId": "b1-tideglass-isles-chart-letter-02",
+    "decision": "retain",
+    "reason": "Was copying is the correct past continuous phrase for an ongoing event interrupted by the bell; the prompt specifies the form and two-word response.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-use-past-continuous-for-background-action."
+  },
+  {
+    "activityId": "b1-tideglass-isles-chart-letter-03",
+    "decision": "retain",
+    "reason": "Neri's self-correction, Jin's marker recommendation and Vale's echo explanation are distinct; each mapping has a stated reason.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-connect-viewpoints-with-their-reasons."
+  },
+  {
+    "activityId": "b1-tideglass-isles-chart-letter-04",
+    "decision": "retain",
+    "reason": "7:30, 7:40 and later establish the answer order; the chronology is explicit and key has no viable alternative.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-order-a-narrative-from-time-markers."
+  },
+  {
+    "activityId": "b1-tideglass-isles-chart-letter-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The reflection prompt asks for a first view and new evidence, but its rubric is not an operational writing scale. It has no operational scoring.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-an-evidence-based-opinion."
+  },
+  {
+    "activityId": "b1-tideglass-isles-two-paths-01",
+    "decision": "retain",
+    "reason": "The ridge is recommended because its posts stay visible after noon; the contrast with tide-hidden markers supports one answer. This is a modest local inference.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-compare-two-viewpoints-and-reasons."
+  },
+  {
+    "activityId": "b1-tideglass-isles-two-paths-02",
+    "decision": "retain",
+    "reason": "All five accepted linkers can introduce the stated contrast/concession before a full clause; the task explicitly allows five forms, so the key set is adequate.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-choose-a-contrast-linker-by-structure."
+  },
+  {
+    "activityId": "b1-tideglass-isles-two-paths-03",
+    "decision": "retain",
+    "reason": "Neri's speed, Jin's visible posts and the guide's late-arrival need are separately stated; pairings are unique.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-match-viewpoints-to-supporting-details."
+  },
+  {
+    "activityId": "b1-tideglass-isles-two-paths-04",
+    "decision": "retain",
+    "reason": "Before noon/after noon/at the end determine sequence. The rule is clear, though marker words make the order easy.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-follow-a-route-that-changes-by-time."
+  },
+  {
+    "activityId": "b1-tideglass-isles-two-paths-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The prompt requests a preference plus supporting note detail, but the writing response is not automatically scored. It has no operational scoring.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-supported-recommendation."
+  },
+  {
+    "activityId": "b1-tideglass-isles-moon-moth-model-01",
+    "decision": "retain",
+    "reason": "Light passing through thin paper is explicitly Eni's reason; distractors contradict the passage and the key is unique.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-understand-a-characters-reason."
+  },
+  {
+    "activityId": "b1-tideglass-isles-moon-moth-model-02",
+    "decision": "retain",
+    "reason": "In order / so as are valid two-word purpose phrases before the printed to. The prompt carefully states the word count; lamp/model geometry in the support example should keep the wall/model relation fixed.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-form-a-purpose-phrase-before-an-infinitive."
+  },
+  {
+    "activityId": "b1-tideglass-isles-moon-moth-model-03",
+    "decision": "retain",
+    "reason": "Each action-purpose pair is stated in the note; no competing intention is supported.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-match-actions-to-stated-purposes."
+  },
+  {
+    "activityId": "b1-tideglass-isles-moon-moth-model-04",
+    "decision": "retain",
+    "reason": "First/then/after/finally give the order; the answer key follows the narrative and is unambiguous.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-follow-events-in-a-past-narrative."
+  },
+  {
+    "activityId": "b1-tideglass-isles-moon-moth-model-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The creative narrative prompt and two-point rubric support reflection only; there is no independent production scoring. It has no operational scoring.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-narrative-with-a-reason."
+  },
+  {
+    "activityId": "b1-tideglass-isles-borrowed-tide-song-01",
+    "decision": "retain",
+    "reason": "Leaving the line open for a future singer supports the keyed intention, but that purpose is inferred from the ending rather than quoted as a motive; explanation should preserve that distinction.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-infer-a-characters-intention."
+  },
+  {
+    "activityId": "b1-tideglass-isles-borrowed-tide-song-02",
+    "decision": "retain",
+    "reason": "To is the correct infinitive marker and the context explicitly states Tavi's purpose of recording sounds.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-use-an-infinitive-of-purpose."
+  },
+  {
+    "activityId": "b1-tideglass-isles-borrowed-tide-song-03",
+    "decision": "retain",
+    "reason": "Borrowing, sitting by sea grass and leaving a line open each have one stated purpose; mappings are distinct.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-connect-choices-and-purposes."
+  },
+  {
+    "activityId": "b1-tideglass-isles-borrowed-tide-song-04",
+    "decision": "retain",
+    "reason": "First/then/after establish the sequence; the narrative order is clear.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-order-narrative-events."
+  },
+  {
+    "activityId": "b1-tideglass-isles-borrowed-tide-song-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The prompt allows an invented story and the rubric is reflective; the engine does not score it. It has no operational scoring.",
+    "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-story-about-a-change-of-plan."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-01",
+    "decision": "retain",
+    "reason": "The rule requires two dry readings; the blank east display fails to confirm that condition, so wait is the only supported action.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-interpret-conditional-evidence."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-02",
+    "decision": "retain",
+    "reason": "Had tested correctly forms the third conditional against the known failed past check; the scaffold specifies past perfect and two words.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-third-conditional-past-counterfactual."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Logs A-D map uniquely to pass/fail statuses; missing east reading, missing time check and clock tolerance are distinguished. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-match-evidence-to-rule-status."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — The key follows fact → rule consequence → wait action. The logical sequence is sound but prompt gives each reasoning role explicitly. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-sequence-evidence-reasoning."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The recommendation is rubric/model guided and not operationally scored, so evidentiary accuracy cannot be treated as measured writing. It has no operational scoring.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-evidence-based-recommendation."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-echoing-gears-01",
+    "decision": "retain",
+    "reason": "Two possible causes remain open in the report; the key preserves uncertainty, while the other choices claim proof without evidence.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-read-a-qualified-technical-conclusion."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-echoing-gears-02",
+    "decision": "retain",
+    "reason": "Was returning follows the requested standard backshift after said; the original quotation and reporting time make the intended answer clear.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-backshift-reported-present-continuous."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-echoing-gears-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Pulse count is an observation, faded mark only a possible issue, later repair does not isolate cause; distinctions are explicit. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-distinguish-observation-from-inference."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-echoing-gears-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Before/during/next morning make the order unique; technical terms add some domain load. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-sequence-evidence-in-a-technical-report."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-echoing-gears-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The evidence note requires attribution and a limit, but the rubric is self-review and no analytic score is collected. It has no operational scoring.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-reported-evidence-note."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-three-voices-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The key preserves Leta's metaphor and contrast. Other choices are conspicuously literal or unrelated, so the item is useful practice but weak as a B2 placement discriminator. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-preserve-a-reported-viewpoint."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-three-voices-02",
+    "decision": "retain",
+    "reason": "Were tuning correctly backshifts plural are tuning after said. The instruction directly names tense and timeframe.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-backshift-a-present-continuous-report."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-three-voices-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Draw a distinction, lend weight and take issue are mapped to their conventional functions; definitions are clear but this is collocation recognition. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-understand-editorial-collocations."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-three-voices-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — The requested claim/image/response sequence is explicit in the style note; it rehearses structure with little inference. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-organise-a-short-review-blurb."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-three-voices-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The review prompt/rubric are open and self-reviewed; no score supports level classification. It has no operational scoring.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-review-with-attributed-viewpoint."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-review-or-manual-01",
+    "decision": "retain",
+    "reason": "The evaluative sentence is the only review statement; command and safety options are obvious genre contrasts.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-identify-evaluative-review-language."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-review-or-manual-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Air completes the fixed idiom; this is one-word phrase recall and too narrow to distinguish B2 starting ability. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-complete-a-familiar-collocation."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-review-or-manual-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Review evaluates, manual instructs, blurb introduces; each definition has one clear match. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-distinguish-review-manual-and-blurb."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-review-or-manual-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Response/detail/judgement order is stated by the editor, so key is direct and low in discrimination. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-order-parts-of-a-short-review."
+  },
+  {
+    "activityId": "b2-clockwork-canopy-review-or-manual-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The open review task has rubric/example but no scoring standard; practice-only. It has no operational scoring.",
+    "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-supported-review."
+  },
+  {
+    "activityId": "c1-prism-observatory-amber-line-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The qualified summary is right, but the other options make overtly contradicted or overconfident claims; this is weak C1 placement discrimination. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-preserve-hedging-in-a-summary."
+  },
+  {
+    "activityId": "c1-prism-observatory-amber-line-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Having compared is the correct perfect-participle opener and same-subject relation; the one-form gap names the target directly. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-a-perfect-participle-clause."
+  },
+  {
+    "activityId": "c1-prism-observatory-amber-line-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Observation, cautious inference and overclaim are distinguished correctly; labels make this narrow evidence-strength practice. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-distinguish-claim-strengths."
+  },
+  {
+    "activityId": "c1-prism-observatory-amber-line-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Both observation orders are explicitly allowed and the limitation belongs last; the key and alternative are internally consistent. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-organise-a-cautious-evidence-summary."
+  },
+  {
+    "activityId": "c1-prism-observatory-amber-line-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The formal note prompt/rubric asks for uncertainty, observation and limitation but does not score written C1 performance. It has no operational scoring.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-qualified-formal-note."
+  },
+  {
+    "activityId": "c1-prism-observatory-mirror-report-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The second estimate replaces the first while retaining a lower-bound use; distractors overstate or discard that concession. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-interpret-a-qualified-formal-correction."
+  },
+  {
+    "activityId": "c1-prism-observatory-mirror-report-02",
+    "decision": "revise",
+    "reason": "The target phrase is valid with the named subject: The earlier signal is believed to have affected. Reporting-passive labels vary; the revision should describe the visible subject + is believed + perfect infinitive construction.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-perfect-infinitive-in-impersonal-passive."
+  },
+  {
+    "activityId": "c1-prism-observatory-mirror-report-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Replacement, concession and attributed influence map to distinct quoted functions; the wording is formal and narrow. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-read-functions-of-formal-reporting-phrases."
+  },
+  {
+    "activityId": "c1-prism-observatory-mirror-report-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Finding → qualification → recommendation follows the explicit style note; useful consolidation, not standalone C1 evidence. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-sequence-a-formal-report-structure."
+  },
+  {
+    "activityId": "c1-prism-observatory-mirror-report-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The formal correction is open-ended, with a reflective rubric only; no scored production evidence. It has no operational scoring.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-edit-an-overclaim-with-a-qualification."
+  },
+  {
+    "activityId": "c1-prism-observatory-glass-choir-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — Although brief + feels complete preserves concession and evaluation; alternative options change the stance. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-read-a-concessive-evaluation."
+  },
+  {
+    "activityId": "c1-prism-observatory-glass-choir-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Even though matches a stated fact; even if would introduce a hypothetical condition. The prompt clearly excludes that reading. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-a-two-word-concessive-linker-for-a-fact."
+  },
+  {
+    "activityId": "c1-prism-observatory-glass-choir-03",
+    "decision": "revise",
+    "reason": "The original matching options overlap: whereas is followed by a full clause and also links two contrasting clauses, so both the generic full-clause label and the relation label can describe it. Revise with explicit sentence continuations that distinguish the linker patterns.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-distinguish-linker-structures."
+  },
+  {
+    "activityId": "c1-prism-observatory-glass-choir-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Only after requires did before the subject, then base verb settle; the prompt supplies the construction and order. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-order-a-fronted-only-after-construction."
+  },
+  {
+    "activityId": "c1-prism-observatory-glass-choir-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The program-note response is self-reviewed only; no writing score validates C1 production. It has no operational scoring.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-concessive-program-note."
+  },
+  {
+    "activityId": "c1-prism-observatory-program-edit-01",
+    "decision": "revise",
+    "reason": "The original formal option added 'restrained' and 'finely balanced', altering the draft's meaning; the corrected version should preserve positive evaluation without those extra claims.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-select-formal-evaluative-register."
+  },
+  {
+    "activityId": "c1-prism-observatory-program-edit-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Did is the past auxiliary under fronted Not only; the prompt states the inversion rule, making this a narrow form check and weak placement item. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-form-not-only-inversion-in-the-past."
+  },
+  {
+    "activityId": "c1-prism-observatory-program-edit-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — This motif refers back, whereas marks contrast, and in the final room gives location; each relation is distinct. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-follow-reference-and-contrast-in-a-text."
+  },
+  {
+    "activityId": "c1-prism-observatory-program-edit-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Topic → contrast → synthesis is specified and signalled by the wording; practice-only ordering. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-organise-cohesive-paragraph-movement."
+  },
+  {
+    "activityId": "c1-prism-observatory-program-edit-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The writing task has a rubric/example but no operational register/cohesion scoring; it cannot establish C1 production. It has no operational scoring.",
+    "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-cohesive-formal-program-note."
+  },
+  {
+    "activityId": "c2-unwritten-sky-margin-marks-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — Not inconsiderable implies meaningful influence, not sole cause; options trivialize or overclaim, so discrimination is weak for C2 routing. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-interpret-understated-evaluation."
+  },
+  {
+    "activityId": "c2-unwritten-sky-margin-marks-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Face completes the fixed idiom on the face of it; a direct one-word idiom task is not a broad C2 measure. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-understand-a-first-impression-idiom."
+  },
+  {
+    "activityId": "c2-unwritten-sky-margin-marks-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Tentative, scope-limited and concessive phrases match their examples; explicit matching supports recognition only. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-match-pragmatic-functions-to-wording."
+  },
+  {
+    "activityId": "c2-unwritten-sky-margin-marks-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — The symbol claim, two supporting sightings and limitation have one coherent key; alternative order of independent details is accepted. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-organise-evidence-with-a-qualified-conclusion."
+  },
+  {
+    "activityId": "c2-unwritten-sky-margin-marks-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The note prompt/rubric is reflective and unscored; it cannot measure nuanced C2 writing. It has no operational scoring.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-nuanced-curatorial-note."
+  },
+  {
+    "activityId": "c2-unwritten-sky-quiet-caption-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The correction preserves accuracy for an earlier season while limiting present relevance; the reading is supported by the revised caption. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-the-scope-of-a-correction."
+  },
+  {
+    "activityId": "c2-unwritten-sky-quiet-caption-02",
+    "decision": "revise",
+    "reason": "But completes all but unreadable. Original explanation improperly used side-light evidence to imply partial readability in ordinary light; the candidate needs the corrected explanation and remains practice-only.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-interpret-the-idiom-all-but."
+  },
+  {
+    "activityId": "c2-unwritten-sky-quiet-caption-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Not necessarily, hardly and nothing short of have distinct pragmatic force; the mapping is clear but bounded. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-match-pragmatic-force-to-phrasing."
+  },
+  {
+    "activityId": "c2-unwritten-sky-quiet-caption-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — The omission is observation, marginal note/compass are independent details, and final inference is limited; both evidence orders are valid. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-independent-evidence-before-a-limited-inference."
+  },
+  {
+    "activityId": "c2-unwritten-sky-quiet-caption-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The caption-writing prompt has self-review criteria but no scoring; practice-only. It has no operational scoring.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-nuanced-gallery-caption."
+  },
+  {
+    "activityId": "c2-unwritten-sky-museum-of-almosts-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The intended reading is that the label turns a partial apology into polished praise and the museum's generosity may serve its image; wording remains literary and interpretation-dependent. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-qualified-praise-and-implied-censure."
+  },
+  {
+    "activityId": "c2-unwritten-sky-museum-of-almosts-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Equivocal fits wording open to two readings; the first-letter and definition cues make the gap much more constrained than broad C2 stance interpretation. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-name-an-equivocal-editorial-stance."
+  },
+  {
+    "activityId": "c2-unwritten-sky-museum-of-almosts-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Qualified praise, unreserved praise and neutral count are uniquely represented by the three phrases. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-distinguish-qualified-praise-from-neutral-description."
+  },
+  {
+    "activityId": "c2-unwritten-sky-museum-of-almosts-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Description → apparent praise → qualification follows the explicit editorial plan; it is structural practice, not independent C2 evidence. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-a-qualified-editorial-note."
+  },
+  {
+    "activityId": "c2-unwritten-sky-museum-of-almosts-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The note prompt asks for fact/interpretation separation, but self-review is not scored for C2 writing. It has no operational scoring.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-qualified-museum-note."
+  },
+  {
+    "activityId": "c2-unwritten-sky-editors-pencil-01",
+    "decision": "practice-only",
+    "reason": "Practice-only — The revision frames the blank as a possible reader benefit while explicitly withholding a claim about poet intent; that is the best supported reading. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-a-figurative-editorial-reframing."
+  },
+  {
+    "activityId": "c2-unwritten-sky-editors-pencil-02",
+    "decision": "practice-only",
+    "reason": "Practice-only — Figuratively and metaphorically are both accepted and fit the prompt's restricted word families; key set is appropriately plural. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-name-a-non-literal-editorial-phrase."
+  },
+  {
+    "activityId": "c2-unwritten-sky-editors-pencil-03",
+    "decision": "practice-only",
+    "reason": "Practice-only — Open interpretation, downgrade and bounded endorsement have distinct functions; the text supports each match. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-distinguish-pragmatic-effects-of-editorial-phrases."
+  },
+  {
+    "activityId": "c2-unwritten-sky-editors-pencil-04",
+    "decision": "practice-only",
+    "reason": "Practice-only — Observation → possible reader effect → limit on intention is explicitly requested and keyed; practice-only. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-observation-interpretation-and-limit."
+  },
+  {
+    "activityId": "c2-unwritten-sky-editors-pencil-05",
+    "decision": "practice-only",
+    "reason": "Practice-only — The revision prompt/rubric targets nuanced uncertainty but supplies no scoring model; practice-only. It has no operational scoring.",
+    "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-revise-an-overconfident-editorial-caption."
+  }
+]

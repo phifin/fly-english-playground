@@ -116,3 +116,12 @@ test('support rejects unrelated vocabulary, duplicates and malformed localized d
  const duplicate={...auditOnly,support:[{...support,terms:[]},{...support,terms:[]}]};assert.ok(validatePracticeEdition(corpus,duplicate).some(e=>e.includes('duplicate')));
  const malformed=structuredClone(candidate);malformed.support[0].hint.vi='<script>';assert.ok(validatePracticeEdition(corpus,malformed).some(e=>e.includes('safe nonempty')));
 });
+
+test('instruction vocabulary is eligible but hidden answers and explanations do not qualify',()=>{
+ const m=corpus.missions[0],source=m.activities.find(a=>a.type==='gap');
+ const fixture=structuredClone(corpus),activity=fixture.missions[0].activities.find(a=>a.id===source.id);
+ activity.instruction.en='Use the instruction-only-term.';activity.explanation.en='An explanation-only-term.';activity.accepted=['answer-only-term'];
+ const candidate=structuredClone(auditOnly),support={activityId:source.id,...assistance,terms:[{...assistance.terms[0],text:'instruction-only-term'}]};
+ candidate.support=[support];assert.deepEqual(validatePracticeEdition(fixture,candidate),[]);
+ for(const text of ['explanation-only-term','answer-only-term']){support.terms[0].text=text;assert.ok(validatePracticeEdition(fixture,candidate).some(e=>e.includes('term absent')));}
+});

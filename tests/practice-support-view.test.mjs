@@ -23,6 +23,13 @@ test('first action matches reading readiness independently of mode',()=>{
   assert.ok(!html.includes('<unsafe>'));assert.equal((html.match(/class="primary"/g)||[]).length,1);
  }
 });
+
+test('word illustrations appear only after reveal and never misrepresent a phrase as one object',()=>{
+ const illustrated={...support,terms:[{...support.terms[0],text:'cup'}]};
+ assert.doesNotMatch(practiceSupportView({support:illustrated,open:true}),/word-picture/);
+ assert.match(practiceSupportView({support:illustrated,open:true,index:0}),/word-picture/);
+ for(const text of ['two cups','blue cup','under the cup']){illustrated.terms[0].text=text;assert.doesNotMatch(practiceSupportView({support:illustrated,open:true,index:0}),/word-picture/);}
+});
 test('focused initial setup offers an explicit choice without an arbitrary continue',()=>{
  for(const language of ['en','vi']){
   const html=firstStepsView({language});for(const action of ['entry-beginner','entry-manual','entry-pictures','placement-begin'])assert.ok(html.includes(`data-action="${action}"`));

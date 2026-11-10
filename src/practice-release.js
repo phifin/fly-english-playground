@@ -1,2 +1,2 @@
-// Set only after Sol accepts the staged edition and its published hash is pinned.
-export const practiceEditionFile = null;
+// Independently reviewed edition; original definitions remain available for saved evidence.
+export const practiceEditionFile = 'practice-edition.json';

@@ -1,4 +1,12 @@
-# First-time learning refinement — preview verified, 9 November 2026
+# First-time learning refinement — accepted candidate, 10 November 2026
+
+The corrected edition is independently accepted and activated in the candidate, not yet deployed. All 120 original activities were audited: 22 versioned revisions, 60 narrow practice-only judgments and 38 retain decisions. Contextual help covers 56 tasks, including all 40 A1/A2 activities. See `data/reviews/practice-support-sol-review.md` for editorial decisions and placement limitations.
+
+Activated local suite: 405 passed, four emulator-only skips, zero failures (409 total). Strict edition validation and full build pass. Candidate build `fb0016b04370f87a37e2`: 67 public files, 150375 gzip JavaScript bytes. Historical answer keys and placement sessions remain available; replacement tasks inherit no old mastery. Help disclosure records assistance first; post-answer review does not rewrite the submitted answer. Exact familiar-object definitions can use existing illustrations.
+
+Engineering preview `0955ccbda4630e55cf50718f544fc3c024b9c6a7`, workflow `42576247193`, passed before activation. The activated candidate still requires hosted browser help/reload/post-answer checks, screenshot inspection, actual emulator tests, main deployment and published-browser verification. Production remains the hash below. Root pending curriculum is separate. No Firebase rules, credentials, billing or account schemas changed. Physical-device rendering, positive production OAuth and real-child enjoyment are not verified by these automated checks.
+
+## Historical checkpoint (superseded content status)
 
 Production remains `0fecb0e4dd47e776ef2039084d2c4382c18c3314` until a separately verified release. This is not a completed curriculum correction.
 

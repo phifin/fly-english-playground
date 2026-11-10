@@ -1,0 +1,10 @@
+{
+  "decision": "accept",
+  "reviewedBy": "Sol",
+  "editionId": "practice-support-1",
+  "reviewedAt": "2026-11-10T02:05:29.462Z",
+  "baseSha256": "c94c09e00b84622751b932cb323f8df94a32151fa35132169c482d596847db22",
+  "submissionSha256": "71fa8f87d1d9aad3cce3fb41a4e2f9adf238bcaa354108a1cc31bda1b65d35aa",
+  "scope": "Editorial practice calibration and contextual support; not psychometric CEFR validation.",
+  "review": "data/reviews/practice-support-sol-review.md"
+}
