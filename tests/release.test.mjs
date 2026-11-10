@@ -171,6 +171,13 @@ test('every actual built asset is accepted by the offline worker manifest gate',
  assert.ok(manifest.files.some(f=>f.path==='assets/workshop.css'));
  assert.equal(context.safePublicPath('assets/private.html'),false);
  assert.equal(context.safePublicPath('data/staging/workshop-briefs-v1.json'),false);
+ assert.ok(manifest.files.some(f=>f.path==='404.html'));
+ const missing=await readFile(new URL('dist/404.html',root),'utf8');
+ assert.match(missing,/data-atlas-not-found/);
+ assert.match(missing,/lang="vi"/);
+ assert.match(missing,/href="\/fly-english-playground\/"/);
+ assert.match(missing,/Content-Security-Policy/);
+ assert.doesNotMatch(missing,/<script|http-equiv="refresh"/i,'Missing pages never redirect or boot the app in place of absent data.');
 });
 
 test('offline worker scopes its cache, preserves private boundaries, and never substitutes HTML for JSON', async () => {
