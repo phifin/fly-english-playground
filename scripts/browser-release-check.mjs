@@ -1,3 +1,6 @@
+import {verifyFirstSteps} from './browser-first-steps.mjs';
+import {applyPracticeEdition} from '../src/practice-edition.js';
+import {practiceEditionFile} from '../src/practice-release.js';
 import {verifyDesign} from './browser-design-check.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
@@ -24,6 +27,7 @@ const report = {
   limitations: ['Chromium with a mobile viewport is not a real low-end phone.',
     'No live Google sign-in, cloud data synchronization, educational efficacy or complete WCAG certification is tested.'],
 };
+const learningEvents=events=>events.filter(e=>!['learning-entry-v1','guide-v1'].includes(e.payload?.experience));
 const check = message => { report.checks.push(message); console.log(`PASS: ${message}`); };
 const localModule = value => value.startsWith('file:') ? value : pathToFileURL(resolve(value)).href;
 const canonical = value => JSON.stringify(value, (_, v) => v && typeof v === 'object' && !Array.isArray(v)
@@ -87,7 +91,8 @@ try {
   assert.ok(playwright, 'Install optional Playwright tooling separately or set ATLAS_PLAYWRIGHT_MODULE. This script downloads nothing.');
   const response = await fetch(new URL('data/published/atlas.json', base));
   assert.equal(response.status, 200, 'Build and start the public preview with an accepted learning library before running browser checks.');
-  const pack = await response.json();
+  let pack = await response.json();
+  if(practiceEditionFile){const r=await fetch(new URL('data/published/'+practiceEditionFile,base));assert.equal(r.status,200);pack=applyPracticeEdition(pack,await r.json());}
   assert.equal(pack.schemaVersion, 1);
   const boardResponse = await fetch(new URL('data/published/boards.json', base));
   assert.equal(boardResponse.status, 200, 'The release needs accepted expedition boards, not staged submissions.');
@@ -199,7 +204,7 @@ try {
     // No app state, storage, successful response or render function is mocked.
     await page.evaluate(() => window.dispatchEvent(new Event('online')));
     await ready(); await noError();
-    await page.locator('.alert.notice').filter({ hasText: /Connection restored|Đã kết nối lại/ }).waitFor({ state: 'visible' });
+    await page.locator('.alert.notice').filter({ hasText: /You’re back online\.|Đã có kết nối mạng\./ }).waitFor({ state: 'visible' });
     for (const [field, value] of Object.entries(values)) {
       assert.equal(await form.locator(`[name="${field}"]`).inputValue(), value,
         `A background connection notification must preserve the ${name} form's ${field}.`);
@@ -228,6 +233,7 @@ try {
     assert.equal(await form.locator(`[name="mode"][value="${mode}"]`).isChecked(), true,
       'A background update must preserve the selected way to play.');
     await click(form.locator('button[type="submit"][value="play"]'));
+    await page.locator('[data-level-setup]').waitFor();await action('entry-beginner');
     const id = await activeId();
     assert.equal(await button('finish-onboard').count(), 0, 'New players must enter play without a second configuration page.');
     assert.equal(await page.locator('body').evaluate((element, value) => element.classList.contains(`mode-${value}`), mode), true);
@@ -536,6 +542,7 @@ try {
     assert.equal(await kind.inputValue(), 'independent');
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
     await form.locator('button[type="submit"][value="play"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('[data-level-setup]').waitFor();await arrivalPage.locator('[data-action="entry-beginner"]').click();await ready(arrivalPage);
     await arrivalPage.locator('.experience-home').waitFor({ state: 'visible' });
     assert.equal(await arrivalPage.locator('[data-action="finish-onboard"]').count(),0);
     assert.equal(await arrivalPage.locator('.expedition-grid').count(),0);
@@ -544,7 +551,7 @@ try {
     const traveler = committed.profiles[0];
     assert.equal(traveler.name, travelerName);
     assert.equal(traveler.settings.language, 'vi', 'New travelers must inherit the guidance chosen before registration.');
-    assert.equal(committed.events.length, 0, 'Onboarding preferences must not manufacture learning evidence.');
+    assert.equal(learningEvents(committed.events).length, 0, 'Onboarding preferences must not manufacture learning evidence.');
     await routeToControl(arrivalPage,'settings');await arrivalPage.locator('[data-action="settings"]:visible').first().click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="mode"][data-value="kids"]').click(); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('html').getAttribute('lang'), 'vi', 'Play-first selection must not redefine guidance language.');
@@ -561,7 +568,7 @@ try {
     assert.equal(committed.profiles[0].id, traveler.id);
     assert.equal(committed.profiles[0].settings.language, 'vi');
     assert.equal(committed.profiles[0].settings.mode, 'kids');
-    assert.deepEqual(committed.events, [], 'Resume and mode changes must preserve the untouched learning journal.');
+    assert.deepEqual(learningEvents(committed.events), [], 'Resume and mode changes must preserve the untouched learning journal.');
     report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
     await arrivalPage.locator('.main-nav [data-action="library"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
@@ -571,7 +578,7 @@ try {
     assert.equal(await arrivalPage.locator('.picture-card').count(),3);
     await arrivalPage.locator('.picture-card:not([data-value="lantern"])').first().click(); await ready(arrivalPage);
     assert.equal(await arrivalPage.locator('[data-action="picture-next"]').count(),0,'Wrong picture selections do not advance or earn a collection');
-    assert.equal((await arrivalPage.evaluate(readImportState)).snapshot.events.length,0);
+    assert.equal(learningEvents((await arrivalPage.evaluate(readImportState)).snapshot.events).length,0);
     for(const word of pictureWords){
       const card=arrivalPage.locator('[data-action="picture-pick"][data-value="'+word+'"]');
       const box=await card.boundingBox();assert.ok(box.width>=44&&box.height>=44);
@@ -603,7 +610,7 @@ try {
     const pbutton = name => placementPage.locator(`[data-action="${name}"]:visible`).first();
     const pclick = async name => { await routeToControl(placementPage,name);await pbutton(name).click(); await ready(placementPage); await noError(placementPage); };
     const snapshot = async () => (await placementPage.evaluate(readImportState)).snapshot;
-    const begin = async () => { await pclick('journal'); await pclick('start-placement'); await pclick('placement-begin'); };
+    const begin = async () => { if(!await placementPage.locator('[data-level-setup]').count()){await pclick('journal');await pclick('start-placement');}await pclick('placement-begin'); };
     const answer = async () => {
       const id = await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item');
       const activity = pack.missions.flatMap(m => m.activities).find(a => a.id === id);
@@ -618,7 +625,7 @@ try {
     await placementPage.goto(base.href); await ready(placementPage);
     await pclick('start-traveler');
     await placementPage.locator('#traveler-name').fill('Starting point CI');
-    await placementPage.locator('[data-form="create-profile"] button[value="placement"]').click(); await ready(placementPage);
+    await placementPage.locator('[data-form="create-profile"] button[value="play"]').click(); await ready(placementPage);
     await pbutton('placement-begin').waitFor();
     assert.equal((await snapshot()).events.length, 0, 'Choosing an optional check-in must not manufacture evidence.');
     for (const language of ['en', 'vi']) {
@@ -638,7 +645,7 @@ try {
     const pendingId = await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item');
     const beforeResume = await snapshot();
     assert.equal(beforeResume.events.filter(e => e.kind === 'placement').length, 1);
-    await pclick('atlas'); await placementPage.reload({ waitUntil: 'domcontentloaded' }); await ready(placementPage);
+    await pclick('placement-exit'); await placementPage.reload({ waitUntil: 'domcontentloaded' }); await ready(placementPage);
     await begin();
     assert.equal(await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item'), pendingId,
       'Reloading must resume after the last committed response, without restarting or duplicating it.');
@@ -672,16 +679,16 @@ try {
     assert.match(await placementPage.locator('.placement-result').innerText(), /A1/);
     assert.equal((await snapshot()).profiles[0].journey.region, 'C2', 'A retake must preserve the current path before acceptance.');
     await pclick('start-placement');
-    await placementPage.locator('.manual-range > summary').click();
+    await pclick('entry-manual');
     await placementPage.locator('[data-action="placement-manual"][data-value="B1"]').click(); await ready(placementPage);
     const manual = await snapshot();
     assert.equal(manual.profiles[0].journey.region, 'B1');
-    await pclick('journal'); await pclick('start-placement'); await pclick('placement-assisted');
-    await placementPage.locator('.workshop[data-workshop-mode="free"]').waitFor();
+    await pclick('journal'); await pclick('start-placement'); await pclick('entry-pictures');
+    await placementPage.locator('.little-play').waitFor();
     const assisted = await snapshot();
     assert.equal(assisted.profiles[0].settings.mode, 'balanced');
     assert.equal(assisted.profiles[0].journey.region, 'B1', 'Adult-assisted play must not assign a reading level.');
-    assert.equal(canonical(assisted.events), canonical(manual.events), 'Assisted entry must not create assessment evidence.');
+    assert.equal(canonical(learningEvents(assisted.events)), canonical(learningEvents(manual.events)), 'Assisted entry must not create assessment evidence.');
     await placementPage.locator('.profile-pill').click(); await ready(placementPage);
     assert.equal(await placementPage.locator('[data-identity-state="guest"]').count(), 1);
     assert.equal(await placementPage.locator('.learner-card').count(), 1);
@@ -714,9 +721,9 @@ try {
     await toy.locator('#traveler-name').fill('Harbor construction CI');
     await toy.locator('[name="mode"][value="kids"]').check();
     await toy.locator('[data-form="create-profile"] button[type="submit"][value="play"]').click(); await ready(toy);
-    await toy.locator('.experience-home').waitFor(); await play('atlas');
+    await toy.locator('[data-level-setup]').waitFor();await play('entry-beginner');await toy.locator('.experience-home').waitFor(); await play('atlas');
     await toy.locator('.workshop[data-workshop-mode="free"]').waitFor();
-    assert.equal((await snapshot()).events.length, 0, 'Entering free construction does not manufacture saved actions.');
+    assert.equal(learningEvents((await snapshot()).events).length, 0, 'Entering free construction does not manufacture saved actions.');
     assert.equal(await toy.locator('.expedition-grid,[data-action="submit"]').count(), 0,
       'The play-first entry is a toy, without a route grid or a separate answer submission.');
     assert.equal(await toy.locator('.workshop-toy').count(), 6);
@@ -727,7 +734,7 @@ try {
     }
     await control('workshop-select', 'boat').focus(); await control('workshop-select', 'boat').press('Enter'); await ready(toy);
     assert.equal(await control('workshop-select', 'boat').getAttribute('aria-pressed'), 'true');
-    assert.equal((await snapshot()).events.length, 0, 'Selecting a prop is not a completed learning action.');
+    assert.equal(learningEvents((await snapshot()).events).length, 0, 'Selecting a prop is not a completed learning action.');
     await control('workshop-place', 'water').tap(); await ready(toy); await noError(toy);
     assert.deepEqual(await layout(), { water: 'boat' });
     const initial = await snapshot();
@@ -896,11 +903,11 @@ try {
     await experience.goto(base.href); await ready(experience); await play('start-traveler');
     await experience.locator('#traveler-name').fill('Many ways CI');
     await experience.locator('[data-form="create-profile"] button[type="submit"][value="play"]').click(); await ready(experience);
-    await experience.locator('.experience-home').waitFor();
+    await experience.locator('[data-level-setup]').waitFor();await play('entry-beginner');await experience.locator('.experience-home').waitFor();
     assert.equal(await experience.locator('.workshop,.quick-session,.little-play,.expedition-grid').count(), 0,
       'First entry must offer understandable ways to play, with no forced adventure or placement.');
     for (const name of ['little-open', 'quick-start', 'atlas']) assert.equal(await experience.locator(`.experience-home [data-action="${name}"]`).count(), 1);
-    assert.equal((await snapshot()).events.length, 0);
+    assert.equal(learningEvents((await snapshot()).events).length, 0);
     assert.equal(await experience.locator('[data-action="family"],[data-form="family-invite"]').count(), 0, 'Guest home must not expose family administration.');
     await play('account');
     assert.equal(await experience.locator('[data-action="family"],[data-form="family-invite"]').count(), 0, 'Guest account controls must not expose owner-only family administration.');
@@ -1030,11 +1037,13 @@ try {
       assert.equal(await experience.locator('.workshop-drag-ghost,.is-picked-up,.is-drop-target').count(), 0, 'Pointer feedback must clean up after the drop.');
     };
     await experience.setViewportSize({ width: 1440, height: 1000 });
-    const beforeDrag = (await snapshot()).events.length;
+    const placements=value=>value.events.filter(e=>e.kind==='mission'&&e.payload?.experience==='workshop-layout-v1');
+    const beforeDrag = placements(await snapshot()).length;
     await drag('boat', 'water', false);
-    assert.equal((await snapshot()).events.length, beforeDrag + 1, 'The synthetic mouse click after a drop must not duplicate a placement.');
+    assert.equal(placements(await snapshot()).length, beforeDrag + 1, 'The synthetic mouse click after a drop must not duplicate a placement.');
+    assert.equal((await snapshot()).events.filter(e=>e.payload?.experience==='guide-v1'&&e.payload.topic==='workshop'&&e.payload.state==='completed').length,1,'The first completed manipulation creates one separate tutorial receipt.');
     await experience.setViewportSize({ width: 390, height: 844 }); await drag('shell', 'sand', true);
-    assert.equal((await snapshot()).events.length, beforeDrag + 2, 'A native touch sequence must commit exactly one placement.');
+    assert.equal(placements(await snapshot()).length, beforeDrag + 2, 'A native touch sequence must commit exactly one placement.');
     assert.equal(canonical(assessed(await snapshot())), canonical(assessed(quickSaved)));
     report.experiences = { quickActivities: answered, responseTypes: [...types], littlePictures: 4, pointerTypes: ['mouse', 'touch'], widths: [320, 390, 1440] };
     check('Home offers pictures, short practice and optional construction; five accepted activities resume across reload and contribute exactly five real learning attempts.');
@@ -1266,7 +1275,11 @@ try {
         check('A supported unsubmitted draft survives navigation, mode/language changes and reload.');
       }
       await solve(activity); submitted++; seenTypes.add(activity.type);
-      if (missionIndex === 0 && (index === 0 || activity.type === 'gap')) assert.match(await page.locator('.feedback').innerText(), /Supported practice/);
+      if (missionIndex === 0 && (index === 0 || activity.type === 'gap')) {
+        assert.match(await page.locator('.feedback').innerText(), /You used help for this answer/);
+        const attempts=(await page.evaluate(readImportState)).snapshot.events.filter(e=>e.profileId===mainId&&e.kind==='attempt'&&e.payload.activityId===activity.id).sort((a,b)=>a.at.localeCompare(b.at)||a.id.localeCompare(b.id));
+        assert.equal(attempts.at(-1).payload.supported,true,'Assisted feedback must agree with the stored response');
+      }
       await finishMoment(mode);
     }
     await button('collect-discovery').waitFor({state:'visible'});
@@ -1340,7 +1353,9 @@ try {
   const familyBackup = await backup();
   assert.equal(familyBackup.profiles.length, 3);
   assert.equal(familyBackup.profiles.find(p => p.id === childId).guardianId, mainId);
-  assert.equal(familyBackup.events.filter(event => event.profileId === otherId).length, 0);
+  const otherEvents=familyBackup.events.filter(event=>event.profileId===otherId);
+  assert.equal(learningEvents(otherEvents).length,0,'Another learner has no gameplay or assessment evidence from this learner');
+  assert.equal(otherEvents.filter(event=>event.payload?.experience==='learning-entry-v1'&&event.payload.level==='A1').length,1,'The other learner retains only its explicit starting choice');
   assert.equal(familyBackup.events.filter(event => event.profileId === childId && event.kind === 'attempt').length, 1);
   assert.equal(canonical(familyBackup.events.filter(event => event.profileId === mainId)), canonical(mainEvents), 'Other travelers cannot alter the first traveler’s history.');
   await upload(familyBackup); await upload(familyBackup);
@@ -1426,6 +1441,7 @@ try {
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
   await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
+  await verifyFirstSteps({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   assert.deepEqual(report.errors, [], 'New design journeys must also complete without console errors or uncaught exceptions.');
   report.passed = true;
   console.log(`PASS: ${report.checks.length} release browser checks; ${submitted + 1} submitted test attempts. Artifacts: artifacts/release-*.png and release-browser-report.json.`);

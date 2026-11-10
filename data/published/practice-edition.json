@@ -1,0 +1,4167 @@
+{
+  "schemaVersion": 1,
+  "editionId": "practice-support-1",
+  "reviewedAt": "2026-11-10",
+  "sources": [
+    {
+      "id": "coe-companion-volume-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment — Companion volume (2020)",
+      "url": "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4",
+      "usage": "Used as a broad reference for reading, vocabulary and interaction demands across levels; descriptors informed the review but were not reproduced as activities or scoring rules.",
+      "accessed": "2026-11-05"
+    },
+    {
+      "id": "coe-global-scale",
+      "title": "Common European Framework of Reference for Languages: Global scale",
+      "url": "https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale/",
+      "usage": "Used to check that beginner content concerns familiar concrete communication and that higher-band labels remain broad reference points, not evidence of test validity.",
+      "accessed": "2026-11-05"
+    },
+    {
+      "id": "british-council-a1-reading",
+      "title": "A1 reading — LearnEnglish, British Council",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/reading/a1",
+      "usage": "Used as a primary educational reference for familiar-topic beginner texts and short practical formats; no text or exercise was copied.",
+      "accessed": "2026-11-05"
+    },
+    {
+      "id": "british-council-there-is-are",
+      "title": "Using 'there is' and 'there are' — LearnEnglish, British Council",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/using-there-there-are",
+      "usage": "Checked the singular/plural distinction in the A1 revisions; no exercise wording was reproduced.",
+      "accessed": "2026-11-05"
+    }
+  ],
+  "revisions": [
+    {
+      "replaces": "a1-lantern-harbor-01",
+      "missionId": "a1-lantern-harbor",
+      "activity": {
+        "id": "a1-lantern-harbor-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Which object is under the bench?",
+        "context": "A red bag is under a bench.",
+        "instruction": {
+          "en": "Read one short clue. Choose the object under the bench.",
+          "vi": "Đọc một gợi ý ngắn. Chọn đồ vật ở dưới ghế dài."
+        },
+        "explanation": {
+          "en": "The clue says the red bag is under the bench, so the bag is the object there.",
+          "vi": "Gợi ý cho biết chiếc túi đỏ ở dưới ghế dài, nên túi là đồ vật ở vị trí đó."
+        },
+        "focus": "a1-read-place-clues",
+        "options": [
+          {
+            "id": "bag",
+            "text": "The red bag"
+          },
+          {
+            "id": "cup",
+            "text": "A blue cup"
+          },
+          {
+            "id": "book",
+            "text": "A book"
+          }
+        ],
+        "answer": "bag"
+      },
+      "rationale": {
+        "en": "The source cold-start asked learners to resolve several linked harbor locations and supplied unfamiliar terms before the target clue. This version keeps the same short location-reading objective and choice format, with one familiar object and one relation.",
+        "vi": "Bản gốc mở đầu bằng nhiều vị trí liên kết ở bến cảng và nhiều từ ít quen thuộc trước khi người học tìm được manh mối cần thiết. Bản này giữ mục tiêu đọc gợi ý vị trí ngắn và dạng chọn đáp án, nhưng chỉ dùng một đồ vật quen thuộc và một quan hệ vị trí."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize the place word under"
+      ],
+      "terms": [
+        {
+          "text": "red bag",
+          "meaning": {
+            "en": "a bag that is red",
+            "vi": "chiếc túi màu đỏ"
+          },
+          "example": {
+            "en": "The red bag is mine.",
+            "vi": "Chiếc túi đỏ là của tôi."
+          }
+        },
+        {
+          "text": "under",
+          "meaning": {
+            "en": "in a lower place than something",
+            "vi": "ở bên dưới"
+          },
+          "example": {
+            "en": "The bag is under the bench.",
+            "vi": "Chiếc túi ở dưới ghế dài."
+          }
+        },
+        {
+          "text": "bench",
+          "meaning": {
+            "en": "a long seat for more than one person",
+            "vi": "ghế dài"
+          },
+          "example": {
+            "en": "We sit on the bench.",
+            "vi": "Chúng tôi ngồi trên ghế dài."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find the sentence that says where the bag is. Look for the word under.",
+        "vi": "Tìm câu cho biết chiếc túi ở đâu. Hãy chú ý từ under."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-03",
+      "missionId": "a1-lantern-harbor",
+      "activity": {
+        "id": "a1-lantern-harbor-03-v2",
+        "type": "match",
+        "skill": "reading",
+        "prompt": "Match each thing to its place in the short note.",
+        "context": "A book is on the table. A ball is under a chair. A cup is beside the door.",
+        "instruction": {
+          "en": "Match each object with the place named in its sentence.",
+          "vi": "Nối mỗi đồ vật với vị trí được nêu trong câu."
+        },
+        "explanation": {
+          "en": "The note gives one place for each object: the book is on the table, the ball is under a chair and the cup is beside the door.",
+          "vi": "Ghi chú nêu một vị trí cho mỗi đồ vật: sách ở trên bàn, bóng ở dưới ghế và cốc ở cạnh cửa."
+        },
+        "focus": "a1-match-object-and-place",
+        "pairs": [
+          {
+            "id": "book-place",
+            "left": "The book",
+            "right": "On the table"
+          },
+          {
+            "id": "ball-place",
+            "left": "The ball",
+            "right": "Under a chair"
+          },
+          {
+            "id": "cup-place",
+            "left": "The cup",
+            "right": "Beside the door"
+          }
+        ]
+      },
+      "rationale": {
+        "en": "The original matching set depended on several harbor-specific nouns. Common room objects keep the same object-to-place reading task and make each pairing directly visible in one short sentence.",
+        "vi": "Bài nối ban đầu phụ thuộc vào nhiều danh từ riêng về bến cảng. Đồ vật quen thuộc trong phòng vẫn giữ nhiệm vụ đọc và nối đồ vật với vị trí, đồng thời cho thấy từng cặp ngay trong một câu ngắn."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize common place words"
+      ],
+      "terms": [
+        {
+          "text": "on",
+          "meaning": {
+            "en": "touching the top surface of something",
+            "vi": "ở trên"
+          },
+          "example": {
+            "en": "The book is on the table.",
+            "vi": "Quyển sách ở trên bàn."
+          }
+        },
+        {
+          "text": "under",
+          "meaning": {
+            "en": "in a lower place than something",
+            "vi": "ở bên dưới"
+          },
+          "example": {
+            "en": "The ball is under a chair.",
+            "vi": "Quả bóng ở dưới ghế."
+          }
+        },
+        {
+          "text": "beside",
+          "meaning": {
+            "en": "next to something",
+            "vi": "ở cạnh"
+          },
+          "example": {
+            "en": "The cup is beside the door.",
+            "vi": "Cái cốc ở cạnh cửa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Read one sentence at a time. Match the object to the place word in that sentence.",
+        "vi": "Đọc từng câu một. Nối đồ vật với từ chỉ vị trí trong câu đó."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-04",
+      "missionId": "a1-lantern-harbor",
+      "activity": {
+        "id": "a1-lantern-harbor-04-v2",
+        "type": "order",
+        "skill": "reading",
+        "prompt": "Put the three short steps in the order shown by the note.",
+        "context": "First, go to the door. Next, walk to the table. Then, put the cup on the table.",
+        "instruction": {
+          "en": "Follow the three short steps and place them in order.",
+          "vi": "Làm theo ba bước ngắn và sắp xếp chúng theo thứ tự."
+        },
+        "explanation": {
+          "en": "The note says to go to the door first, walk to the table next and put the cup on the table last.",
+          "vi": "Ghi chú yêu cầu đến cửa trước, đi tới bàn tiếp theo rồi đặt cốc lên bàn sau cùng."
+        },
+        "focus": "a1-follow-simple-route",
+        "tokens": [
+          {
+            "id": "door-first",
+            "text": "Go to the door."
+          },
+          {
+            "id": "table-next",
+            "text": "Walk to the table."
+          },
+          {
+            "id": "cup-then",
+            "text": "Put the cup on the table."
+          }
+        ],
+        "answer": [
+          "door-first",
+          "table-next",
+          "cup-then"
+        ],
+        "alternatives": []
+      },
+      "rationale": {
+        "en": "The original route used several less familiar harbor locations, including a behind relation. The replacement keeps the same three-step ordering format but uses everyday objects and visible sequence words.",
+        "vi": "Lộ trình ban đầu dùng một số địa điểm ít quen thuộc ở bến cảng, trong đó có quan hệ phía sau. Bản sửa giữ dạng sắp xếp ba bước nhưng dùng đồ vật thường gặp và từ chỉ trình tự rõ ràng."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize first, next and then"
+      ],
+      "terms": [
+        {
+          "text": "first",
+          "meaning": {
+            "en": "before the other steps",
+            "vi": "đầu tiên"
+          },
+          "example": {
+            "en": "First, go to the door.",
+            "vi": "Đầu tiên, hãy đến cửa."
+          }
+        },
+        {
+          "text": "next",
+          "meaning": {
+            "en": "after the first step",
+            "vi": "tiếp theo"
+          },
+          "example": {
+            "en": "Next, walk to the table.",
+            "vi": "Tiếp theo, đi tới bàn."
+          }
+        },
+        {
+          "text": "then",
+          "meaning": {
+            "en": "after that",
+            "vi": "sau đó"
+          },
+          "example": {
+            "en": "Then, put the cup on the table.",
+            "vi": "Sau đó, đặt cốc lên bàn."
+          }
+        },
+        {
+          "text": "door",
+          "meaning": {
+            "en": "the part of a room that opens for people to enter",
+            "vi": "cửa"
+          },
+          "example": {
+            "en": "Go to the door.",
+            "vi": "Hãy đến cửa."
+          }
+        },
+        {
+          "text": "table",
+          "meaning": {
+            "en": "a piece of furniture with a flat top",
+            "vi": "cái bàn"
+          },
+          "example": {
+            "en": "The cup is on the table.",
+            "vi": "Cái cốc ở trên bàn."
+          }
+        },
+        {
+          "text": "cup",
+          "meaning": {
+            "en": "a small container for drinking",
+            "vi": "cái cốc"
+          },
+          "example": {
+            "en": "Put the cup on the table.",
+            "vi": "Đặt cốc lên bàn."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the time words first, next and then. They tell you the order.",
+        "vi": "Dựa vào các từ chỉ trình tự first, next và then. Chúng cho biết thứ tự."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-shell-bell-01",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "activity": {
+        "id": "a1-lantern-harbor-shell-bell-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Where is the blue cup?",
+        "context": "The blue cup is on the bench.",
+        "instruction": {
+          "en": "Read the short clue and choose the cup's place.",
+          "vi": "Đọc gợi ý ngắn rồi chọn vị trí của chiếc cốc."
+        },
+        "explanation": {
+          "en": "The clue says the blue cup is on the bench.",
+          "vi": "Gợi ý cho biết chiếc cốc màu xanh ở trên ghế dài."
+        },
+        "focus": "a1-find-a-place-in-a-short-note",
+        "options": [
+          {
+            "id": "on-bench",
+            "text": "On the bench"
+          },
+          {
+            "id": "under-bench",
+            "text": "Under the bench"
+          },
+          {
+            "id": "beside-table",
+            "text": "Beside the table"
+          }
+        ],
+        "answer": "on-bench"
+      },
+      "rationale": {
+        "en": "The shell hut and nearby objects made the original location question depend on topic vocabulary. This version retains the same single-place retrieval objective and choice type with a familiar cup and bench.",
+        "vi": "Nhà vỏ sò và các vật xung quanh khiến câu hỏi vị trí ban đầu phụ thuộc vào từ vựng theo chủ đề. Bản này giữ mục tiêu tìm một vị trí và dạng chọn đáp án, với chiếc cốc và ghế dài quen thuộc."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize on"
+      ],
+      "terms": [
+        {
+          "text": "blue cup",
+          "meaning": {
+            "en": "a cup that is blue",
+            "vi": "chiếc cốc màu xanh"
+          },
+          "example": {
+            "en": "The blue cup is on the bench.",
+            "vi": "Chiếc cốc màu xanh ở trên ghế dài."
+          }
+        },
+        {
+          "text": "on",
+          "meaning": {
+            "en": "touching the top surface of something",
+            "vi": "ở trên"
+          },
+          "example": {
+            "en": "The cup is on the bench.",
+            "vi": "Cốc ở trên ghế dài."
+          }
+        },
+        {
+          "text": "bench",
+          "meaning": {
+            "en": "a long seat for more than one person",
+            "vi": "ghế dài"
+          },
+          "example": {
+            "en": "The blue cup is on the bench.",
+            "vi": "Chiếc cốc màu xanh ở trên ghế dài."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for the place word that follows the cup in the clue.",
+        "vi": "Tìm từ chỉ vị trí đứng sau chiếc cốc trong gợi ý."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-shell-bell-02",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "activity": {
+        "id": "a1-lantern-harbor-shell-bell-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Complete the sentence with the present form of be. Enter one word: There ___ two cups on the table.",
+        "context": "A picture shows two cups on one table.",
+        "instruction": {
+          "en": "Use the present form of be and write one word.",
+          "vi": "Dùng dạng hiện tại của be và viết một từ."
+        },
+        "explanation": {
+          "en": "Use are because cups is plural. The sentence describes two cups.",
+          "vi": "Dùng are vì cups là danh từ số nhiều. Câu nói về hai chiếc cốc."
+        },
+        "focus": "a1-there-are-with-plural-nouns",
+        "accepted": [
+          "are"
+        ]
+      },
+      "rationale": {
+        "en": "The original grammar key was sound, but its context added less common shell-harbor words and a tide-pool reference. The replacement keeps the plural there are target and removes unrelated vocabulary.",
+        "vi": "Đáp án ngữ pháp ban đầu đúng, nhưng ngữ cảnh thêm các từ ít quen thuộc về vỏ sò, bến cảng và hồ thủy triều. Bản sửa giữ mục tiêu there are với danh từ số nhiều và bỏ từ vựng không liên quan."
+      },
+      "prerequisites": [
+        "Know one and more than one",
+        "Recognize plural nouns"
+      ],
+      "terms": [
+        {
+          "text": "two cups",
+          "meaning": {
+            "en": "two drinking containers",
+            "vi": "hai chiếc cốc"
+          },
+          "example": {
+            "en": "There are two cups on the table.",
+            "vi": "Có hai chiếc cốc trên bàn."
+          }
+        },
+        {
+          "text": "table",
+          "meaning": {
+            "en": "a piece of furniture with a flat top",
+            "vi": "cái bàn"
+          },
+          "example": {
+            "en": "The cups are on the table.",
+            "vi": "Những chiếc cốc ở trên bàn."
+          }
+        },
+        {
+          "text": "present form of be",
+          "meaning": {
+            "en": "is or are used with there to say what exists now",
+            "vi": "dạng is hoặc are dùng với there để nói vật đang có ở đâu"
+          },
+          "example": {
+            "en": "There are two cups.",
+            "vi": "Có hai chiếc cốc."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The noun after the blank is cups. Two cups means more than one, so use the plural form of be.",
+        "vi": "Danh từ sau chỗ trống là cups. Two cups nghĩa là nhiều hơn một, nên dùng dạng số nhiều của be."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-shell-bell-03",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "activity": {
+        "id": "a1-lantern-harbor-shell-bell-03-v2",
+        "type": "match",
+        "skill": "reading",
+        "prompt": "Match each thing to its place in the short note.",
+        "context": "A ball is under the chair. A book is on the table. A cup is beside the door.",
+        "instruction": {
+          "en": "Match each object with the place named in its sentence.",
+          "vi": "Nối mỗi đồ vật với vị trí được nêu trong câu."
+        },
+        "explanation": {
+          "en": "The note gives one place for each object: the ball is under the chair, the book is on the table and the cup is beside the door.",
+          "vi": "Ghi chú nêu một vị trí cho mỗi đồ vật: bóng ở dưới ghế, sách ở trên bàn và cốc ở cạnh cửa."
+        },
+        "focus": "a1-match-things-to-locations",
+        "pairs": [
+          {
+            "id": "ball",
+            "left": "The ball",
+            "right": "Under the chair"
+          },
+          {
+            "id": "book",
+            "left": "The book",
+            "right": "On the table"
+          },
+          {
+            "id": "cup",
+            "left": "The cup",
+            "right": "Beside the door"
+          }
+        ]
+      },
+      "rationale": {
+        "en": "The original matching set required shell, pier and hut vocabulary. This version preserves the same three-object location matching task with common objects and short, independent clues.",
+        "vi": "Bài nối ban đầu cần từ vựng về vỏ sò, cầu tàu và nhà nhỏ. Bản này giữ nhiệm vụ nối vị trí cho ba đồ vật nhưng dùng đồ vật quen thuộc và các gợi ý ngắn, độc lập."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize on, under and beside"
+      ],
+      "terms": [
+        {
+          "text": "ball",
+          "meaning": {
+            "en": "a round object used in games",
+            "vi": "quả bóng"
+          },
+          "example": {
+            "en": "The ball is under the chair.",
+            "vi": "Quả bóng ở dưới ghế."
+          }
+        },
+        {
+          "text": "book",
+          "meaning": {
+            "en": "pages joined together for reading",
+            "vi": "quyển sách"
+          },
+          "example": {
+            "en": "The book is on the table.",
+            "vi": "Quyển sách ở trên bàn."
+          }
+        },
+        {
+          "text": "beside",
+          "meaning": {
+            "en": "next to something",
+            "vi": "ở cạnh"
+          },
+          "example": {
+            "en": "The cup is beside the door.",
+            "vi": "Cốc ở cạnh cửa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find the place phrase in each sentence, then match it to the named object.",
+        "vi": "Tìm cụm từ chỉ vị trí trong từng câu rồi nối với đồ vật được nêu."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-shell-bell-04",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "activity": {
+        "id": "a1-lantern-harbor-shell-bell-04-v2",
+        "type": "order",
+        "skill": "reading",
+        "prompt": "Put the three short steps in the order shown by the note.",
+        "context": "First, find the cup. Next, take it to the table. Then, sit on the chair.",
+        "instruction": {
+          "en": "Follow the three steps and place them in order.",
+          "vi": "Làm theo ba bước và sắp xếp chúng theo thứ tự."
+        },
+        "explanation": {
+          "en": "The note says to find the cup first, take it to the table next and sit on the chair last.",
+          "vi": "Ghi chú yêu cầu tìm cốc trước, mang cốc đến bàn tiếp theo rồi ngồi xuống ghế sau cùng."
+        },
+        "focus": "a1-follow-three-simple-directions",
+        "tokens": [
+          {
+            "id": "find",
+            "text": "Find the cup."
+          },
+          {
+            "id": "take",
+            "text": "Take it to the table."
+          },
+          {
+            "id": "sit",
+            "text": "Sit on the chair."
+          }
+        ],
+        "answer": [
+          "find",
+          "take",
+          "sit"
+        ],
+        "alternatives": []
+      },
+      "rationale": {
+        "en": "The original directions depended on shell-hut and harbor landmark vocabulary. The new sequence retains the same order-following objective while using familiar words and explicit sequence markers.",
+        "vi": "Chỉ dẫn ban đầu phụ thuộc vào từ vựng về nhà vỏ sò và địa điểm ở bến cảng. Trình tự mới giữ mục tiêu làm theo thứ tự nhưng dùng từ quen thuộc và dấu hiệu trình tự rõ ràng."
+      },
+      "prerequisites": [
+        "Know common object words",
+        "Recognize first, next and then"
+      ],
+      "terms": [
+        {
+          "text": "first",
+          "meaning": {
+            "en": "before the other steps",
+            "vi": "đầu tiên"
+          },
+          "example": {
+            "en": "First, find the cup.",
+            "vi": "Đầu tiên, hãy tìm chiếc cốc."
+          }
+        },
+        {
+          "text": "next",
+          "meaning": {
+            "en": "after the first step",
+            "vi": "tiếp theo"
+          },
+          "example": {
+            "en": "Next, take it to the table.",
+            "vi": "Tiếp theo, mang cốc đến bàn."
+          }
+        },
+        {
+          "text": "then",
+          "meaning": {
+            "en": "after that",
+            "vi": "sau đó"
+          },
+          "example": {
+            "en": "Then, sit on the chair.",
+            "vi": "Sau đó, ngồi xuống ghế."
+          }
+        },
+        {
+          "text": "cup",
+          "meaning": {
+            "en": "a small container for drinking",
+            "vi": "cái cốc"
+          },
+          "example": {
+            "en": "Find the cup.",
+            "vi": "Hãy tìm chiếc cốc."
+          }
+        },
+        {
+          "text": "table",
+          "meaning": {
+            "en": "a piece of furniture with a flat top",
+            "vi": "cái bàn"
+          },
+          "example": {
+            "en": "Take the cup to the table.",
+            "vi": "Mang cốc đến bàn."
+          }
+        },
+        {
+          "text": "chair",
+          "meaning": {
+            "en": "a seat for one person",
+            "vi": "cái ghế"
+          },
+          "example": {
+            "en": "Sit on the chair.",
+            "vi": "Ngồi xuống ghế."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The words first, next and then give the order. Follow those words.",
+        "vi": "Các từ first, next và then cho biết thứ tự. Hãy làm theo các từ đó."
+      }
+    },
+    {
+      "replaces": "a2-wildseed-gardens-seed-sculpture-02",
+      "missionId": "a2-wildseed-gardens-seed-sculpture",
+      "activity": {
+        "id": "a2-wildseed-gardens-seed-sculpture-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Use the countable noun ‘flower’ in its plural form: The maker counted five yellow ___ on the model.",
+        "context": "The maker counts each paper decoration one at a time and writes the total in a notebook.",
+        "instruction": {
+          "en": "Enter the plural form of the countable noun given in the prompt.",
+          "vi": "Nhập dạng số nhiều của danh từ đếm được được nêu trong câu hỏi."
+        },
+        "explanation": {
+          "en": "The number five requires a plural countable noun. The prompt gives flower as the noun to change.",
+          "vi": "Số five yêu cầu danh từ đếm được ở dạng số nhiều. Câu hỏi cho sẵn flower là danh từ cần đổi dạng."
+        },
+        "focus": "a2-form-a-countable-plural",
+        "accepted": [
+          "flowers"
+        ]
+      },
+      "rationale": {
+        "en": "The original context said the sculpture was covered with paper flowers, giving away the exact accepted noun before the gap. This version keeps the same regular plural target and countable-noun prompt while removing the answer-bearing context.",
+        "vi": "Ngữ cảnh ban đầu cho biết tác phẩm phủ đầy hoa giấy, qua đó tiết lộ chính danh từ được chấp nhận trước chỗ trống. Bản này giữ mục tiêu danh từ số nhiều có quy tắc và danh từ đếm được, nhưng bỏ ngữ cảnh làm lộ đáp án."
+      },
+      "prerequisites": [
+        "Know singular and plural nouns",
+        "Use a number with a plural countable noun"
+      ],
+      "terms": [
+        {
+          "text": "countable noun",
+          "meaning": {
+            "en": "a noun for something that can be counted",
+            "vi": "danh từ đếm được"
+          },
+          "example": {
+            "en": "Five flowers is a count of flowers.",
+            "vi": "Five flowers là cách đếm hoa."
+          }
+        },
+        {
+          "text": "flower",
+          "meaning": {
+            "en": "the part of a plant that can have petals",
+            "vi": "bông hoa"
+          },
+          "example": {
+            "en": "The maker counts five yellow flowers.",
+            "vi": "Người làm đếm năm bông hoa màu vàng."
+          }
+        },
+        {
+          "text": "five yellow",
+          "meaning": {
+            "en": "the number five and the colour yellow",
+            "vi": "năm vật màu vàng"
+          },
+          "example": {
+            "en": "Five yellow flowers are on the model.",
+            "vi": "Có năm bông hoa màu vàng trên mô hình."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The number five tells you there is more than one. Add the usual plural ending to flower.",
+        "vi": "Số five cho biết có nhiều hơn một. Thêm đuôi số nhiều thông thường vào flower."
+      }
+    },
+    {
+      "replaces": "a2-wildseed-gardens-seed-sculpture-03",
+      "missionId": "a2-wildseed-gardens-seed-sculpture",
+      "activity": {
+        "id": "a2-wildseed-gardens-seed-sculpture-03-v2",
+        "type": "match",
+        "skill": "reading",
+        "prompt": "Match each quantity phrase to the noun it describes in the picnic note.",
+        "context": "The picnic note says: We have many apples, a little water and a few cups.",
+        "instruction": {
+          "en": "Match each quantity phrase with its noun.",
+          "vi": "Nối mỗi cụm từ chỉ lượng với danh từ tương ứng."
+        },
+        "explanation": {
+          "en": "The note pairs many with apples, a little with water and a few with cups. Many and a few both go with plural countable nouns, so follow the note's pairings.",
+          "vi": "Ghi chú ghép many với apples, a little với water và a few với cups. Many và a few đều có thể đi với danh từ đếm được số nhiều, nên hãy theo các cặp trong ghi chú."
+        },
+        "focus": "a2-match-quantity-pairings-in-a-note",
+        "pairs": [
+          {
+            "id": "many",
+            "left": "many",
+            "right": "apples"
+          },
+          {
+            "id": "little",
+            "left": "a little",
+            "right": "water"
+          },
+          {
+            "id": "few",
+            "left": "a few",
+            "right": "cups"
+          }
+        ]
+      },
+      "rationale": {
+        "en": "The original item uses seed and sculpture terms, and its explanation has to warn that more than one quantifier is grammatically possible. The new picnic note preserves countable/uncountable quantity language with familiar words and transparent pairings.",
+        "vi": "Bài ban đầu dùng từ về hạt giống và tác phẩm điêu khắc; phần giải thích còn phải cảnh báo rằng nhiều từ chỉ lượng có thể đúng về ngữ pháp. Ghi chú dã ngoại mới giữ cách dùng từ chỉ lượng với danh từ đếm được/không đếm được, bằng từ quen thuộc và các cặp rõ ràng."
+      },
+      "prerequisites": [
+        "Know singular and plural countable nouns",
+        "Recognize a little with an uncountable noun"
+      ],
+      "terms": [
+        {
+          "text": "many apples",
+          "meaning": {
+            "en": "a large number of apples",
+            "vi": "nhiều quả táo"
+          },
+          "example": {
+            "en": "We have many apples.",
+            "vi": "Chúng tôi có nhiều quả táo."
+          }
+        },
+        {
+          "text": "a little water",
+          "meaning": {
+            "en": "a small amount of water",
+            "vi": "một ít nước"
+          },
+          "example": {
+            "en": "We have a little water.",
+            "vi": "Chúng tôi có một ít nước."
+          }
+        },
+        {
+          "text": "a few cups",
+          "meaning": {
+            "en": "a small number of cups",
+            "vi": "một vài chiếc cốc"
+          },
+          "example": {
+            "en": "We have a few cups.",
+            "vi": "Chúng tôi có một vài chiếc cốc."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the exact pairings in the picnic note. Many and a few go with the plural countable words here; a little goes with water.",
+        "vi": "Dựa theo đúng các cặp trong ghi chú dã ngoại. Ở đây many và a few đi với danh từ số nhiều đếm được; a little đi với water."
+      }
+    },
+    {
+      "replaces": "a2-wildseed-gardens-garden-invitation-01",
+      "missionId": "a2-wildseed-gardens-garden-invitation",
+      "activity": {
+        "id": "a2-wildseed-gardens-garden-invitation-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Which message is the most polite request for help?",
+        "context": "Asha wants a neighbor to carry a clay bird. She wants to ask politely, not give an order or say what the neighbor is able to do.",
+        "instruction": {
+          "en": "Choose the message that asks for help politely.",
+          "vi": "Chọn lời nhắn nhờ giúp đỡ một cách lịch sự."
+        },
+        "explanation": {
+          "en": "Would you mind carrying this clay bird? is a polite request. Carry this clay bird now is a direct order. You are able to carry this clay bird only states ability; it does not ask for help.",
+          "vi": "Would you mind carrying this clay bird? là lời nhờ lịch sự. Carry this clay bird now là mệnh lệnh trực tiếp. You are able to carry this clay bird chỉ nói về khả năng, không nhờ giúp đỡ."
+        },
+        "focus": "a2-recognise-a-polite-request",
+        "options": [
+          {
+            "id": "order",
+            "text": "Carry this clay bird now."
+          },
+          {
+            "id": "polite",
+            "text": "Would you mind carrying this clay bird?"
+          },
+          {
+            "id": "ability",
+            "text": "You are able to carry this clay bird."
+          }
+        ],
+        "answer": "polite"
+      },
+      "rationale": {
+        "en": "The original explanation incorrectly classified “You can move bowls if you want” as an ability statement; in context it offers permission or an option. The replacement makes the contrast explicit with a direct order and a clear ability statement.",
+        "vi": "Phần giải thích ban đầu phân loại sai “You can move bowls if you want” là câu nói về khả năng; trong ngữ cảnh, câu này cho phép hoặc đưa ra lựa chọn. Bản sửa phân biệt rõ với một mệnh lệnh trực tiếp và một câu thực sự nêu khả năng."
+      },
+      "prerequisites": [
+        "Recognize a question",
+        "Understand a polite request"
+      ],
+      "terms": [
+        {
+          "text": "polite request",
+          "meaning": {
+            "en": "a respectful way to ask someone to do something",
+            "vi": "lời nhờ vả lịch sự"
+          },
+          "example": {
+            "en": "Would you mind carrying this clay bird?",
+            "vi": "Bạn có phiền mang giúp chú chim đất sét này không?"
+          }
+        },
+        {
+          "text": "carry",
+          "meaning": {
+            "en": "to hold and move something from one place to another",
+            "vi": "mang, xách"
+          },
+          "example": {
+            "en": "Please carry the cup to the table.",
+            "vi": "Làm ơn mang cốc đến bàn."
+          }
+        },
+        {
+          "text": "able to",
+          "meaning": {
+            "en": "having the skill or possibility to do something",
+            "vi": "có thể, có khả năng"
+          },
+          "example": {
+            "en": "You are able to carry the box.",
+            "vi": "Bạn có thể mang chiếc hộp."
+          }
+        }
+      ],
+      "hint": {
+        "en": "A request asks someone to do something. Would you mind + verb-ing is a polite way to ask.",
+        "vi": "Lời nhờ yêu cầu ai đó làm việc gì. Would you mind + động từ thêm -ing là cách hỏi lịch sự."
+      }
+    },
+    {
+      "replaces": "c1-prism-observatory-mirror-report-02",
+      "missionId": "c1-prism-observatory-mirror-report",
+      "activity": {
+        "id": "c1-prism-observatory-mirror-report-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Complete the reporting passive with the perfect infinitive of affect. Enter three words: The earlier signal is believed ___ the prism's recorded angle before the second scan.",
+        "context": "The second scan was made after the earlier signal. The report does not say the signal was the only influence on the prism.",
+        "instruction": {
+          "en": "Use to + have + the past participle of affect after “The earlier signal is believed”.",
+          "vi": "Dùng to + have + quá khứ phân từ của affect sau “The earlier signal is believed”."
+        },
+        "explanation": {
+          "en": "The named subject is followed by is believed and a perfect infinitive: to have affected. The infinitive places the possible effect before the present report.",
+          "vi": "Sau chủ ngữ được nêu là is believed và động từ nguyên mẫu hoàn thành to have affected. Cấu trúc này cho biết ảnh hưởng có thể đã xảy ra trước thời điểm báo cáo."
+        },
+        "focus": "c1-use-perfect-infinitive-in-personal-reporting-passive",
+        "accepted": [
+          "to have affected"
+        ]
+      },
+      "rationale": {
+        "en": "Clarifies the named-subject reporting pattern while preserving its meaning and perfect-infinitive target. References vary in their use of the label impersonal; the exercise now describes the actual construction.",
+        "vi": "Làm rõ cấu trúc tường thuật có chủ ngữ cụ thể, giữ nguyên nghĩa và mục tiêu dùng động từ nguyên mẫu hoàn thành. Các tài liệu dùng thuật ngữ impersonal khác nhau; bài này mô tả trực tiếp cấu trúc đang dùng."
+      },
+      "prerequisites": [
+        "Know the past participle of affect",
+        "Recognize to have + past participle"
+      ],
+      "terms": [
+        {
+          "text": "reporting passive",
+          "meaning": {
+            "en": "a passive pattern used to report a belief or claim without naming its source",
+            "vi": "cấu trúc bị động thuật lại một nhận định mà không nêu nguồn"
+          },
+          "example": {
+            "en": "The signal is believed to have changed.",
+            "vi": "Tín hiệu được cho là đã thay đổi."
+          }
+        },
+        {
+          "text": "perfect infinitive",
+          "meaning": {
+            "en": "to have followed by a past participle, for an earlier event",
+            "vi": "động từ nguyên mẫu hoàn thành, diễn tả sự việc xảy ra trước"
+          },
+          "example": {
+            "en": "The signal is believed to have changed.",
+            "vi": "Tín hiệu được cho là đã thay đổi."
+          }
+        },
+        {
+          "text": "affect",
+          "meaning": {
+            "en": "to cause a change in something",
+            "vi": "ảnh hưởng đến"
+          },
+          "example": {
+            "en": "The signal may affect the reading.",
+            "vi": "Tín hiệu có thể ảnh hưởng đến số đo."
+          }
+        },
+        {
+          "text": "recorded angle",
+          "meaning": {
+            "en": "the angle written down in the report",
+            "vi": "góc đã được ghi lại"
+          },
+          "example": {
+            "en": "The report gives the recorded angle.",
+            "vi": "Báo cáo nêu góc đã được ghi lại."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep the named subject. After is believed, use to have followed by the past participle of affect.",
+        "vi": "Giữ nguyên chủ ngữ. Sau is believed, dùng to have rồi đến quá khứ phân từ của affect."
+      }
+    },
+    {
+      "replaces": "c1-prism-observatory-program-edit-01",
+      "missionId": "c1-prism-observatory-program-edit",
+      "activity": {
+        "id": "c1-prism-observatory-program-edit-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Which revision best suits a formal exhibition program while keeping the positive evaluation?",
+        "context": "The draft says, ‘The sound piece is pretty cool and the ending is really nice.’ The editor wants a concise, formal sentence that keeps the positive evaluation without using conversational praise.",
+        "instruction": {
+          "en": "Choose the revision with the most suitable register and a positive evaluation.",
+          "vi": "Chọn cách sửa có văn phong phù hợp và nhận xét tích cực."
+        },
+        "explanation": {
+          "en": "The selected sentence remains positive and uses measured language suitable for a program. The other choices keep conversational praise or make the evaluation vague.",
+          "vi": "Câu được chọn vẫn mang ý tích cực và dùng cách diễn đạt chừng mực, phù hợp với chương trình. Các lựa chọn khác giữ lời khen khẩu ngữ hoặc nhận xét mơ hồ."
+        },
+        "focus": "c1-select-formal-evaluative-register",
+        "options": [
+          {
+            "id": "formal",
+            "text": "The sound piece is engaging, and the ending is particularly effective."
+          },
+          {
+            "id": "casual",
+            "text": "The sound piece is super cool, and the ending is really nice."
+          },
+          {
+            "id": "vague",
+            "text": "The sound piece is good, and the ending is good too."
+          }
+        ],
+        "answer": "formal"
+      },
+      "rationale": {
+        "en": "The original keyed rewrite introduced “restrained” and “finely balanced”, which add claims absent from the draft. The revised key keeps the source's positive stance while testing formal register.",
+        "vi": "Đáp án sửa ban đầu đưa thêm ý “restrained” và “finely balanced” mà bản nháp không có. Đáp án mới giữ sắc thái tích cực của câu gốc nhưng vẫn kiểm tra văn phong trang trọng."
+      },
+      "prerequisites": [
+        "Recognize positive evaluation",
+        "Distinguish formal and conversational wording"
+      ],
+      "terms": [
+        {
+          "text": "formal",
+          "meaning": {
+            "en": "suitable for careful or official writing",
+            "vi": "trang trọng, phù hợp văn viết cẩn trọng"
+          },
+          "example": {
+            "en": "The report uses formal language.",
+            "vi": "Báo cáo dùng ngôn ngữ trang trọng."
+          }
+        },
+        {
+          "text": "positive evaluation",
+          "meaning": {
+            "en": "an opinion that says something is good or effective",
+            "vi": "nhận xét tích cực"
+          },
+          "example": {
+            "en": "The review gives a positive evaluation.",
+            "vi": "Bài đánh giá đưa ra nhận xét tích cực."
+          }
+        },
+        {
+          "text": "engaging",
+          "meaning": {
+            "en": "interesting and able to hold attention",
+            "vi": "cuốn hút"
+          },
+          "example": {
+            "en": "The sound piece is engaging.",
+            "vi": "Tác phẩm âm thanh rất cuốn hút."
+          }
+        },
+        {
+          "text": "particularly effective",
+          "meaning": {
+            "en": "especially successful at doing its job",
+            "vi": "đặc biệt hiệu quả"
+          },
+          "example": {
+            "en": "The ending is particularly effective.",
+            "vi": "Phần kết đặc biệt hiệu quả."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare each option with the draft. Keep the positive meaning and choose wording suited to a formal program.",
+        "vi": "So sánh từng lựa chọn với bản nháp. Giữ ý tích cực và chọn cách diễn đạt phù hợp với chương trình trang trọng."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-02",
+      "missionId": "a1-lantern-harbor",
+      "activity": {
+        "id": "a1-lantern-harbor-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Complete the sentence with the present form of be. Enter one word: There ___ one cup on the table.",
+        "context": "A picture shows one cup on a table.",
+        "instruction": {
+          "en": "Write one word to complete the sentence.",
+          "vi": "Viết một từ để hoàn thành câu."
+        },
+        "explanation": {
+          "en": "Use is because the sentence describes one cup.",
+          "vi": "Dùng is vì câu nói về một chiếc cốc."
+        },
+        "focus": "a1-there-be-singular",
+        "accepted": [
+          "is"
+        ]
+      },
+      "rationale": {
+        "en": "The original item's answer was correct, but it was the second quick activity and surrounded the target grammar with lighthouse, pier, boathouse and rope vocabulary. This keeps the singular there is target in one familiar sentence.",
+        "vi": "Đáp án ban đầu đúng, nhưng đây là hoạt động nhanh thứ hai và từ vựng quanh mục tiêu ngữ pháp gồm lighthouse, pier, boathouse và ropes. Bản này giữ mục tiêu there is số ít trong một câu quen thuộc."
+      },
+      "prerequisites": [
+        "Know one and more than one",
+        "Recognize a singular noun"
+      ],
+      "terms": [
+        {
+          "text": "one cup",
+          "meaning": {
+            "en": "one small container for drinking",
+            "vi": "một chiếc cốc"
+          },
+          "example": {
+            "en": "There is one cup on the table.",
+            "vi": "Có một chiếc cốc trên bàn."
+          }
+        },
+        {
+          "text": "table",
+          "meaning": {
+            "en": "a piece of furniture with a flat top",
+            "vi": "cái bàn"
+          },
+          "example": {
+            "en": "The cup is on the table.",
+            "vi": "Chiếc cốc ở trên bàn."
+          }
+        },
+        {
+          "text": "present form of be",
+          "meaning": {
+            "en": "is or are used with there to say what exists now",
+            "vi": "dạng is hoặc are dùng với there để nói vật đang có ở đâu"
+          },
+          "example": {
+            "en": "There is one cup.",
+            "vi": "Có một chiếc cốc."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look at the noun after the blank: one cup means one thing, so use the singular form of be.",
+        "vi": "Nhìn vào danh từ sau chỗ trống: one cup nghĩa là một vật, nên dùng dạng số ít của be."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-color-teller-01",
+      "missionId": "a1-lantern-harbor-color-teller",
+      "activity": {
+        "id": "a1-lantern-harbor-color-teller-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Which color does Niko choose for his lantern?",
+        "context": "Niko chooses yellow for his lantern.",
+        "instruction": {
+          "en": "Choose the color named in the short sentence.",
+          "vi": "Chọn màu được nêu trong câu ngắn."
+        },
+        "explanation": {
+          "en": "The sentence says Niko chooses yellow.",
+          "vi": "Câu cho biết Niko chọn màu vàng."
+        },
+        "focus": "a1-identify-a-personal-choice",
+        "options": [
+          {
+            "id": "yellow",
+            "text": "Yellow"
+          },
+          {
+            "id": "green",
+            "text": "Green"
+          },
+          {
+            "id": "blue",
+            "text": "Blue"
+          }
+        ],
+        "answer": "yellow"
+      },
+      "rationale": {
+        "en": "The original answer was directly stated but the one-clue task used a long fictional setup. This replacement keeps the personal-choice reading target and choice format while removing incidental narrative details.",
+        "vi": "Đáp án ban đầu được nêu trực tiếp nhưng câu hỏi một manh mối lại dùng phần dẫn chuyện dài. Bản này giữ mục tiêu đọc lựa chọn cá nhân và dạng chọn đáp án, đồng thời bỏ chi tiết kể chuyện không cần thiết."
+      },
+      "prerequisites": [
+        "Recognize common color words",
+        "Find a stated choice"
+      ],
+      "terms": [
+        {
+          "text": "yellow",
+          "meaning": {
+            "en": "the color of ripe lemons",
+            "vi": "màu vàng"
+          },
+          "example": {
+            "en": "Niko chooses yellow.",
+            "vi": "Niko chọn màu vàng."
+          }
+        },
+        {
+          "text": "chooses",
+          "meaning": {
+            "en": "picks one thing",
+            "vi": "chọn"
+          },
+          "example": {
+            "en": "Niko chooses a color.",
+            "vi": "Niko chọn một màu."
+          }
+        },
+        {
+          "text": "lantern",
+          "meaning": {
+            "en": "a light, often inside a paper cover",
+            "vi": "đèn lồng"
+          },
+          "example": {
+            "en": "Niko chooses yellow for his lantern.",
+            "vi": "Niko chọn màu vàng cho đèn lồng."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Read the short sentence and look for the color after chooses.",
+        "vi": "Đọc câu ngắn và tìm màu đứng sau chooses."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-color-teller-02",
+      "missionId": "a1-lantern-harbor-color-teller",
+      "activity": {
+        "id": "a1-lantern-harbor-color-teller-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Use a subject pronoun for ‘the cup’: ___ is blue.",
+        "context": "There is one blue cup on the table.",
+        "instruction": {
+          "en": "Enter one subject pronoun for the cup.",
+          "vi": "Nhập một đại từ chủ ngữ thay cho the cup."
+        },
+        "explanation": {
+          "en": "The cup is one object, so use the subject pronoun it.",
+          "vi": "Chiếc cốc là một đồ vật, nên dùng đại từ chủ ngữ it."
+        },
+        "focus": "a1-use-a-subject-pronoun-for-an-object",
+        "accepted": [
+          "it"
+        ]
+      },
+      "rationale": {
+        "en": "Keeps the same pronoun target with familiar people or objects and removes incidental craft vocabulary and answer-bearing setup.",
+        "vi": "Giữ mục tiêu dùng đại từ với người hoặc đồ vật quen thuộc, bỏ từ vựng thủ công không cần thiết và phần dẫn làm lộ đáp án."
+      },
+      "prerequisites": [
+        "Know that a pronoun can replace a thing",
+        "Identify the subject of a sentence"
+      ],
+      "terms": [
+        {
+          "text": "cup",
+          "meaning": {
+            "en": "a small container for drinking",
+            "vi": "cái cốc"
+          },
+          "example": {
+            "en": "The cup is blue.",
+            "vi": "Chiếc cốc màu xanh."
+          }
+        },
+        {
+          "text": "subject pronoun",
+          "meaning": {
+            "en": "a word used as the subject instead of a noun",
+            "vi": "đại từ dùng làm chủ ngữ thay cho danh từ"
+          },
+          "example": {
+            "en": "It is blue.",
+            "vi": "Nó màu xanh."
+          }
+        },
+        {
+          "text": "blue",
+          "meaning": {
+            "en": "the colour of a clear daytime sky",
+            "vi": "màu xanh dương"
+          },
+          "example": {
+            "en": "I have a blue cup.",
+            "vi": "Tôi có một chiếc cốc màu xanh."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The cup is one thing. Choose the pronoun used for one object.",
+        "vi": "Chiếc cốc là một vật. Chọn đại từ dùng cho một đồ vật."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-rooftop-kites-01",
+      "missionId": "a1-lantern-harbor-rooftop-kites",
+      "activity": {
+        "id": "a1-lantern-harbor-rooftop-kites-01-v2",
+        "type": "choice",
+        "skill": "reading",
+        "prompt": "Which kite pattern does Sami choose?",
+        "context": "Sami chooses stripes for his kite. Jo chooses dots.",
+        "instruction": {
+          "en": "Choose the pattern named for Sami.",
+          "vi": "Chọn họa tiết được nêu cho Sami."
+        },
+        "explanation": {
+          "en": "The note says Sami chooses stripes. Jo chooses dots.",
+          "vi": "Ghi chú cho biết Sami chọn sọc. Jo chọn chấm bi."
+        },
+        "focus": "a1-find-a-stated-personal-choice",
+        "options": [
+          {
+            "id": "dots",
+            "text": "Dots"
+          },
+          {
+            "id": "stripes",
+            "text": "Stripes"
+          },
+          {
+            "id": "clouds",
+            "text": "Small clouds"
+          }
+        ],
+        "answer": "stripes"
+      },
+      "rationale": {
+        "en": "The original asks for one stated choice but gives unnecessary rooftop-club and visual-comparison detail. The revision keeps the same reading target and distinguishes Sami's choice from Jo's in two short sentences.",
+        "vi": "Bản gốc hỏi một lựa chọn được nêu nhưng thêm chi tiết không cần thiết về câu lạc bộ trên mái nhà và so sánh hình ảnh. Bản sửa giữ mục tiêu đọc hiểu và phân biệt lựa chọn của Sami với Jo trong hai câu ngắn."
+      },
+      "prerequisites": [
+        "Recognize common patterns",
+        "Find a stated choice"
+      ],
+      "terms": [
+        {
+          "text": "stripes",
+          "meaning": {
+            "en": "long narrow lines, often repeated",
+            "vi": "các đường sọc"
+          },
+          "example": {
+            "en": "Sami chooses stripes.",
+            "vi": "Sami chọn họa tiết sọc."
+          }
+        },
+        {
+          "text": "dots",
+          "meaning": {
+            "en": "small round marks",
+            "vi": "các chấm nhỏ"
+          },
+          "example": {
+            "en": "Jo chooses dots.",
+            "vi": "Jo chọn chấm bi."
+          }
+        },
+        {
+          "text": "kite pattern",
+          "meaning": {
+            "en": "a repeated design on a kite",
+            "vi": "họa tiết trên diều"
+          },
+          "example": {
+            "en": "Which kite pattern does Sami choose?",
+            "vi": "Sami chọn họa tiết nào cho diều?"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find Sami's sentence. Do not use Jo's different choice.",
+        "vi": "Tìm câu của Sami. Đừng nhầm với lựa chọn khác của Jo."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-rooftop-kites-02",
+      "missionId": "a1-lantern-harbor-rooftop-kites",
+      "activity": {
+        "id": "a1-lantern-harbor-rooftop-kites-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Replace both names with one subject pronoun: Lio and May play together. ___ play together.",
+        "context": "Lio and May are two friends.",
+        "instruction": {
+          "en": "Enter one subject pronoun that replaces both names.",
+          "vi": "Nhập một đại từ chủ ngữ thay cho cả hai tên."
+        },
+        "explanation": {
+          "en": "Lio and May are two people, so use they.",
+          "vi": "Lio và May là hai người, nên dùng they."
+        },
+        "focus": "a1-use-a-plural-subject-pronoun",
+        "accepted": [
+          "they"
+        ]
+      },
+      "rationale": {
+        "en": "Keeps the same pronoun target with familiar people or objects and removes incidental craft vocabulary and answer-bearing setup.",
+        "vi": "Giữ mục tiêu dùng đại từ với người hoặc đồ vật quen thuộc, bỏ từ vựng thủ công không cần thiết và phần dẫn làm lộ đáp án."
+      },
+      "prerequisites": [
+        "Know that a pronoun can replace two names",
+        "Use a subject before a verb"
+      ],
+      "terms": [
+        {
+          "text": "Lio and May",
+          "meaning": {
+            "en": "the two people named in the sentence",
+            "vi": "hai người được nêu tên trong câu"
+          },
+          "example": {
+            "en": "Lio and May are friends.",
+            "vi": "Lio và May là bạn."
+          }
+        },
+        {
+          "text": "together",
+          "meaning": {
+            "en": "with each other",
+            "vi": "cùng nhau"
+          },
+          "example": {
+            "en": "The friends play together.",
+            "vi": "Các bạn chơi cùng nhau."
+          }
+        },
+        {
+          "text": "subject pronoun",
+          "meaning": {
+            "en": "a word used as the subject instead of names or a noun",
+            "vi": "đại từ dùng làm chủ ngữ thay cho tên hoặc danh từ"
+          },
+          "example": {
+            "en": "They play together.",
+            "vi": "Họ chơi cùng nhau."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The subject names two people. Replace both names with one plural subject pronoun.",
+        "vi": "Chủ ngữ nêu hai người. Thay cả hai tên bằng một đại từ chủ ngữ số nhiều."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-05",
+      "missionId": "a1-lantern-harbor",
+      "activity": {
+        "id": "a1-lantern-harbor-05-v2",
+        "type": "writing",
+        "skill": "writing",
+        "prompt": "Write two short sentences for a visitor. Use there is/there are and one place word from the room note.",
+        "context": "A room has one book on the table and two cups beside the door.",
+        "instruction": {
+          "en": "Write two short sentences. Use there is/there are and one place word from the room note.",
+          "vi": "Viết hai câu ngắn. Dùng there is/there are và một từ chỉ vị trí trong ghi chú về căn phòng."
+        },
+        "explanation": {
+          "en": "A clear room clue names an object and gives its place; use there is for one thing and there are for more than one.",
+          "vi": "Gợi ý rõ ràng về căn phòng nêu đồ vật và vị trí; dùng there is cho một vật và there are cho nhiều vật."
+        },
+        "focus": "a1-write-location-sentences",
+        "rubric": [
+          {
+            "en": "I use there is/there are correctly for one thing or more than one thing.",
+            "vi": "Tôi dùng đúng there is/there are cho một vật hoặc nhiều vật."
+          },
+          {
+            "en": "I give at least one accurate place clue from the room note.",
+            "vi": "Tôi nêu ít nhất một vị trí chính xác theo ghi chú về căn phòng."
+          }
+        ],
+        "example": "There is a book on the table. There are two cups beside the door."
+      },
+      "rationale": {
+        "en": "The old writing example named a bell inside a lighthouse and boats beside a pier, but those facts were absent from the prompt. The revision provides a matching familiar room note and model while keeping the same writing objective.",
+        "vi": "Ví dụ viết cũ nêu chuông trong hải đăng và thuyền cạnh cầu tàu nhưng các dữ kiện này không có trong yêu cầu. Bản sửa cung cấp ghi chú về căn phòng quen thuộc khớp với ví dụ, đồng thời giữ mục tiêu viết."
+      },
+      "prerequisites": [
+        "Form there is and there are",
+        "Use a basic place word"
+      ],
+      "terms": [
+        {
+          "text": "one book",
+          "meaning": {
+            "en": "one set of pages for reading",
+            "vi": "một quyển sách"
+          },
+          "example": {
+            "en": "There is a book on the table.",
+            "vi": "Có một quyển sách trên bàn."
+          }
+        },
+        {
+          "text": "two cups",
+          "meaning": {
+            "en": "two small containers for drinking",
+            "vi": "hai chiếc cốc"
+          },
+          "example": {
+            "en": "There are two cups beside the door.",
+            "vi": "Có hai chiếc cốc cạnh cửa."
+          }
+        },
+        {
+          "text": "beside",
+          "meaning": {
+            "en": "next to something",
+            "vi": "ở cạnh"
+          },
+          "example": {
+            "en": "The cups are beside the door.",
+            "vi": "Những chiếc cốc ở cạnh cửa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the room note for your facts. Check is with one thing and are with more than one.",
+        "vi": "Dùng ghi chú về căn phòng làm dữ kiện. Kiểm tra is đi với một vật và are đi với nhiều vật."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-shell-bell-05",
+      "missionId": "a1-lantern-harbor-shell-bell",
+      "activity": {
+        "id": "a1-lantern-harbor-shell-bell-05-v2",
+        "type": "writing",
+        "skill": "writing",
+        "prompt": "Write two short sentences. Say what is in the room and where one object is.",
+        "context": "A room note says: There is a book on the table. There are two cups beside the door.",
+        "instruction": {
+          "en": "Use there is/there are and a place word from the room note. Check that the place matches.",
+          "vi": "Dùng there is/there are và một từ chỉ vị trí trong ghi chú về căn phòng. Kiểm tra xem vị trí có khớp không."
+        },
+        "explanation": {
+          "en": "A helpful room sentence names an object and gives its place. Use there is for one thing and there are for more than one.",
+          "vi": "Câu hữu ích về căn phòng nêu đồ vật và vị trí. Dùng there is cho một vật và there are cho nhiều vật."
+        },
+        "focus": "a1-write-short-map-clues",
+        "rubric": [
+          {
+            "en": "I use there is/there are to match one object or more than one.",
+            "vi": "Tôi dùng there is/there are phù hợp với một vật hoặc nhiều vật."
+          },
+          {
+            "en": "I give one clear and accurate place clue.",
+            "vi": "Tôi nêu một gợi ý vị trí rõ ràng và chính xác."
+          }
+        ],
+        "example": "There is a book on the table. There are two cups beside the door."
+      },
+      "rationale": {
+        "en": "The original writing prompt referred to map facts not supplied in its visitor context or example. This version supplies its own familiar room facts and aligns the example with them.",
+        "vi": "Yêu cầu viết ban đầu nhắc đến dữ kiện bản đồ không có trong phần dẫn hoặc ví dụ. Bản này cung cấp dữ kiện quen thuộc về căn phòng và làm ví dụ khớp với chúng."
+      },
+      "prerequisites": [
+        "Use there is with one thing and there are with more than one",
+        "Write a short sentence"
+      ],
+      "terms": [
+        {
+          "text": "room note",
+          "meaning": {
+            "en": "a short message with information about a room",
+            "vi": "ghi chú ngắn về căn phòng"
+          },
+          "example": {
+            "en": "The room note names a book and two cups.",
+            "vi": "Ghi chú về căn phòng nêu một quyển sách và hai chiếc cốc."
+          }
+        },
+        {
+          "text": "there is/there are",
+          "meaning": {
+            "en": "a way to say that something exists in a place",
+            "vi": "cấu trúc nói có vật gì ở một nơi"
+          },
+          "example": {
+            "en": "There is a book on the table.",
+            "vi": "Có một quyển sách trên bàn."
+          }
+        },
+        {
+          "text": "beside",
+          "meaning": {
+            "en": "next to something",
+            "vi": "ở cạnh"
+          },
+          "example": {
+            "en": "The cups are beside the door.",
+            "vi": "Những chiếc cốc ở cạnh cửa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use one fact from the room note and make sure its place word stays the same.",
+        "vi": "Dùng một dữ kiện trong ghi chú về căn phòng và giữ nguyên từ chỉ vị trí."
+      }
+    },
+    {
+      "replaces": "a1-lantern-harbor-rooftop-kites-03",
+      "missionId": "a1-lantern-harbor-rooftop-kites",
+      "activity": {
+        "id": "a1-lantern-harbor-rooftop-kites-03-v2",
+        "type": "match",
+        "skill": "reading",
+        "prompt": "Match each familiar object to the action named in the note.",
+        "context": "Leo draws a sun. Mina colors a star. Tom cuts a paper circle.",
+        "instruction": {
+          "en": "Match each object with the action in its sentence.",
+          "vi": "Nối mỗi đồ vật với hành động trong câu tương ứng."
+        },
+        "explanation": {
+          "en": "The note says Leo draws a sun, Mina colors a star and Tom cuts a paper circle.",
+          "vi": "Ghi chú cho biết Leo vẽ mặt trời, Mina tô màu ngôi sao và Tom cắt một hình tròn bằng giấy."
+        },
+        "focus": "a1-match-familiar-things-to-actions",
+        "pairs": [
+          {
+            "id": "sun",
+            "left": "A sun",
+            "right": "Leo draws a sun."
+          },
+          {
+            "id": "star",
+            "left": "A star",
+            "right": "Mina colors a star."
+          },
+          {
+            "id": "circle",
+            "left": "A paper circle",
+            "right": "Tom cuts a paper circle."
+          }
+        ]
+      },
+      "rationale": {
+        "en": "The original prompt called all left-hand items kite parts, although one was a green circle, and required learning ribbon, sail and frame. The revision keeps the object-action matching target with familiar art objects and verbs.",
+        "vi": "Yêu cầu ban đầu gọi tất cả đồ vật ở cột trái là bộ phận của diều, dù một món là hình tròn màu xanh, đồng thời đòi hỏi biết ribbon, sail và frame. Bản sửa giữ mục tiêu nối đồ vật với hành động bằng đồ vật và động từ quen thuộc."
+      },
+      "prerequisites": [
+        "Know common colors and objects",
+        "Match a familiar object to an action"
+      ],
+      "terms": [
+        {
+          "text": "draws",
+          "meaning": {
+            "en": "makes a picture with a pen or pencil",
+            "vi": "vẽ"
+          },
+          "example": {
+            "en": "Leo draws a sun.",
+            "vi": "Leo vẽ mặt trời."
+          }
+        },
+        {
+          "text": "colors",
+          "meaning": {
+            "en": "adds color to a picture",
+            "vi": "tô màu"
+          },
+          "example": {
+            "en": "Mina colors a star.",
+            "vi": "Mina tô màu ngôi sao."
+          }
+        },
+        {
+          "text": "cuts",
+          "meaning": {
+            "en": "uses scissors to divide paper",
+            "vi": "cắt"
+          },
+          "example": {
+            "en": "Tom cuts a paper circle.",
+            "vi": "Tom cắt một hình tròn bằng giấy."
+          }
+        },
+        {
+          "text": "paper circle",
+          "meaning": {
+            "en": "a round shape cut from paper",
+            "vi": "hình tròn bằng giấy"
+          },
+          "example": {
+            "en": "Tom cuts a paper circle.",
+            "vi": "Tom cắt một hình tròn bằng giấy."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the action word in each sentence. Match it to the object the person acts on.",
+        "vi": "Tìm động từ chỉ hành động trong từng câu. Nối với đồ vật mà người đó tác động lên."
+      }
+    },
+    {
+      "replaces": "c2-unwritten-sky-quiet-caption-02",
+      "missionId": "c2-unwritten-sky-quiet-caption",
+      "activity": {
+        "id": "c2-unwritten-sky-quiet-caption-02-v2",
+        "type": "gap",
+        "skill": "language",
+        "prompt": "Complete the fixed degree expression with one word: The inscription is all ___ unreadable under ordinary light.",
+        "context": "Side-light reveals the individual letters, but ordinary gallery light leaves the inscription almost impossible to read.",
+        "instruction": {
+          "en": "Enter the word that makes the fixed expression mean ‘almost’.",
+          "vi": "Nhập từ tạo thành cụm cố định có nghĩa là ‘gần như’."
+        },
+        "explanation": {
+          "en": "All but means almost. Here the inscription is nearly impossible to read in ordinary light. The side-light sentence describes a different lighting condition.",
+          "vi": "All but có nghĩa là gần như. Ở đây, dòng chữ gần như không thể đọc được dưới ánh sáng thông thường. Câu nói về ánh sáng xiên mô tả một điều kiện chiếu sáng khác."
+        },
+        "focus": "c2-interpret-the-idiom-all-but",
+        "accepted": [
+          "but"
+        ]
+      },
+      "rationale": {
+        "en": "The original explanation incorrectly used visibility under side-light as evidence about readability under ordinary light. This version keeps the same idiom item and separates those conditions explicitly.",
+        "vi": "Phần giải thích ban đầu dùng việc nhìn thấy chữ dưới ánh sáng xiên làm bằng chứng cho khả năng đọc dưới ánh sáng thông thường. Bản này giữ nguyên bài thành ngữ và phân biệt rõ hai điều kiện chiếu sáng."
+      },
+      "prerequisites": [
+        "Recognize a fixed idiom",
+        "Distinguish almost from completely"
+      ],
+      "terms": [
+        {
+          "text": "inscription",
+          "meaning": {
+            "en": "words written or cut on an object or surface",
+            "vi": "dòng chữ được viết hoặc khắc trên một vật hay bề mặt"
+          },
+          "example": {
+            "en": "The inscription is difficult to read.",
+            "vi": "Dòng chữ rất khó đọc."
+          }
+        },
+        {
+          "text": "unreadable",
+          "meaning": {
+            "en": "too difficult to read",
+            "vi": "không thể đọc được"
+          },
+          "example": {
+            "en": "Ordinary light leaves it almost impossible to read.",
+            "vi": "Ánh sáng thông thường khiến nó gần như không thể đọc được."
+          }
+        },
+        {
+          "text": "ordinary light",
+          "meaning": {
+            "en": "usual light in a room",
+            "vi": "ánh sáng thông thường"
+          },
+          "example": {
+            "en": "The gallery uses ordinary light.",
+            "vi": "Phòng trưng bày dùng ánh sáng thông thường."
+          }
+        },
+        {
+          "text": "side-light",
+          "meaning": {
+            "en": "light that comes from the side",
+            "vi": "ánh sáng chiếu từ bên cạnh"
+          },
+          "example": {
+            "en": "Side-light reveals the letters.",
+            "vi": "Ánh sáng chiếu xiên làm lộ các chữ."
+          }
+        }
+      ],
+      "hint": {
+        "en": "All but means almost here. Use the ordinary-light sentence to choose the meaning.",
+        "vi": "Ở đây all but có nghĩa là gần như. Dựa vào câu về ánh sáng thông thường để chọn nghĩa."
+      }
+    },
+    {
+      "replaces": "c1-prism-observatory-glass-choir-03",
+      "missionId": "c1-prism-observatory-glass-choir",
+      "activity": {
+        "id": "c1-prism-observatory-glass-choir-03-v2",
+        "type": "match",
+        "skill": "reading",
+        "prompt": "Match each linker to its continuation in the three quoted sentences.",
+        "context": "The program contains three descriptions: ‘Despite the loose brushwork, the image feels precise’; ‘Although the brushwork is loose, the image feels precise’; and ‘Whereas the first panel is quiet, the second is bright.’",
+        "instruction": {
+          "en": "Use the exact sentence continuations in the program. Some linkers can introduce similar structures.",
+          "vi": "Nối từ nối với phần câu đi ngay sau nó trong ba ví dụ. Một số từ nối có thể dùng với cấu trúc giống nhau."
+        },
+        "explanation": {
+          "en": "These matches follow the quoted examples. Despite takes a noun phrase here. Both although and whereas introduce clauses: although signals concession, while whereas contrasts the two panels. A full clause is not unique to although.",
+          "vi": "Các cặp nối dựa vào đúng ba câu ví dụ. Ở đây, despite đi với cụm danh từ. Cả although và whereas đều mở đầu mệnh đề: although diễn tả ý nhượng bộ, còn whereas đối chiếu hai bức tranh. Mệnh đề đầy đủ không phải là cấu trúc riêng của although."
+        },
+        "focus": "c1-distinguish-linker-structures",
+        "pairs": [
+          {
+            "id": "despite",
+            "left": "Despite",
+            "right": "the loose brushwork, the image feels precise"
+          },
+          {
+            "id": "although",
+            "left": "Although",
+            "right": "the brushwork is loose, the image feels precise"
+          },
+          {
+            "id": "whereas",
+            "left": "Whereas",
+            "right": "the first panel is quiet, the second is bright"
+          }
+        ]
+      },
+      "rationale": {
+        "en": "The original generic structure labels overlapped. Match explicit continuations instead, and explain the shared clause structure honestly.",
+        "vi": "Các nhãn cấu trúc cũ bị chồng lấn. Bài sửa yêu cầu nối phần câu cụ thể và giải thích rõ cấu trúc mệnh đề dùng chung."
+      },
+      "prerequisites": [
+        "Distinguish a noun phrase from a clause.",
+        "Treat this scaffolded task as consolidation, not proof of broad C1 ability."
+      ],
+      "terms": [
+        {
+          "text": "brushwork",
+          "meaning": {
+            "en": "The way an artist uses brush strokes in a painting.",
+            "vi": "Cách họa sĩ thể hiện các nét cọ trên tranh."
+          },
+          "example": {
+            "en": "The artist uses loose brushwork to suggest movement.",
+            "vi": "Họa sĩ dùng nét cọ phóng khoáng để gợi chuyển động."
+          }
+        },
+        {
+          "text": "panel",
+          "meaning": {
+            "en": "One separate part of the artwork being compared.",
+            "vi": "Một phần riêng của tác phẩm đang được so sánh."
+          },
+          "example": {
+            "en": "The left panel shows a garden.",
+            "vi": "Phần tranh bên trái vẽ một khu vườn."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Read the words immediately after each linker in the quoted sentences. Match the whole continuation, not a general grammar label.",
+        "vi": "Đọc phần ngay sau mỗi từ nối trong câu trích dẫn. Nối toàn bộ phần câu đó, không chọn theo nhãn ngữ pháp chung."
+      }
+    }
+  ],
+  "support": [
+    {
+      "activityId": "a1-lantern-harbor-color-teller-03",
+      "prerequisites": [
+        "Recognize names and simple statements",
+        "Match a person to a stated choice"
+      ],
+      "terms": [
+        {
+          "text": "silver moon",
+          "meaning": {
+            "en": "a moon shape in the color silver",
+            "vi": "hình mặt trăng màu bạc"
+          },
+          "example": {
+            "en": "Rin likes the silver moon.",
+            "vi": "Rin thích hình mặt trăng màu bạc."
+          }
+        },
+        {
+          "text": "green leaf",
+          "meaning": {
+            "en": "a leaf shape in the color green",
+            "vi": "hình chiếc lá màu xanh lá"
+          },
+          "example": {
+            "en": "Omar likes the green leaf.",
+            "vi": "Omar thích hình chiếc lá màu xanh lá."
+          }
+        },
+        {
+          "text": "blue wave",
+          "meaning": {
+            "en": "a wave shape in the color blue",
+            "vi": "hình gợn sóng màu xanh dương"
+          },
+          "example": {
+            "en": "Tia likes the blue wave.",
+            "vi": "Tia thích hình gợn sóng màu xanh dương."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Match each name to the color the person says they like.",
+        "vi": "Nối từng cái tên với màu người đó nói mình thích."
+      }
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-04",
+      "prerequisites": [
+        "Recognize first, next and last",
+        "Follow a short sequence"
+      ],
+      "terms": [
+        {
+          "text": "first",
+          "meaning": {
+            "en": "before the other steps",
+            "vi": "đầu tiên"
+          },
+          "example": {
+            "en": "First, choose a color.",
+            "vi": "Đầu tiên, chọn màu."
+          }
+        },
+        {
+          "text": "next",
+          "meaning": {
+            "en": "after the first step",
+            "vi": "tiếp theo"
+          },
+          "example": {
+            "en": "Next, fold the paper.",
+            "vi": "Tiếp theo, gấp giấy."
+          }
+        },
+        {
+          "text": "last",
+          "meaning": {
+            "en": "at the end",
+            "vi": "cuối cùng"
+          },
+          "example": {
+            "en": "Last, draw a moon.",
+            "vi": "Cuối cùng, vẽ mặt trăng."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the sequence words first, next and last to put the actions in order.",
+        "vi": "Dựa vào các từ first, next và last để sắp xếp hành động."
+      }
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-05",
+      "prerequisites": [
+        "Write a subject and a simple present verb",
+        "Name a color or shape"
+      ],
+      "terms": [
+        {
+          "text": "I like",
+          "meaning": {
+            "en": "words used to name something you enjoy",
+            "vi": "cụm từ nói điều mình thích"
+          },
+          "example": {
+            "en": "I like blue circles.",
+            "vi": "Tôi thích những hình tròn màu xanh."
+          }
+        },
+        {
+          "text": "subject",
+          "meaning": {
+            "en": "the person or thing the sentence is about",
+            "vi": "chủ ngữ"
+          },
+          "example": {
+            "en": "I draw one on my lantern.",
+            "vi": "Tôi vẽ một hình lên đèn lồng."
+          }
+        },
+        {
+          "text": "simple present verb",
+          "meaning": {
+            "en": "a present form used for facts and habits",
+            "vi": "động từ hiện tại đơn"
+          },
+          "example": {
+            "en": "I draw a moon.",
+            "vi": "Tôi vẽ mặt trăng."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Start with I like and a color or shape. In the next sentence, say what you do with it.",
+        "vi": "Bắt đầu bằng I like và một màu hoặc hình dạng. Ở câu tiếp theo, nói bạn làm gì với nó."
+      }
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-04",
+      "prerequisites": [
+        "Recognize first, next and last",
+        "Follow a short sequence"
+      ],
+      "terms": [
+        {
+          "text": "choose",
+          "meaning": {
+            "en": "to pick one thing",
+            "vi": "chọn"
+          },
+          "example": {
+            "en": "Choose a kite color.",
+            "vi": "Hãy chọn màu diều."
+          }
+        },
+        {
+          "text": "fold",
+          "meaning": {
+            "en": "to bend paper over itself",
+            "vi": "gấp"
+          },
+          "example": {
+            "en": "Fold two paper sheets.",
+            "vi": "Gấp hai tờ giấy."
+          }
+        },
+        {
+          "text": "tail",
+          "meaning": {
+            "en": "the long part at the back of a kite",
+            "vi": "đuôi diều"
+          },
+          "example": {
+            "en": "Add the long tail last.",
+            "vi": "Cuối cùng, gắn đuôi dài."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Follow the note's first, next and last steps.",
+        "vi": "Làm theo các bước first, next và last trong ghi chú."
+      }
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-05",
+      "prerequisites": [
+        "Write a short sentence with I like",
+        "Name a toy or game"
+      ],
+      "terms": [
+        {
+          "text": "toy",
+          "meaning": {
+            "en": "something a child can play with",
+            "vi": "đồ chơi"
+          },
+          "example": {
+            "en": "I like my paper kite.",
+            "vi": "Tôi thích con diều giấy."
+          }
+        },
+        {
+          "text": "game",
+          "meaning": {
+            "en": "an activity people play for fun",
+            "vi": "trò chơi"
+          },
+          "example": {
+            "en": "I like this game.",
+            "vi": "Tôi thích trò chơi này."
+          }
+        },
+        {
+          "text": "fly",
+          "meaning": {
+            "en": "to make a kite move and stay in the air, usually by holding its string",
+            "vi": "thả diều"
+          },
+          "example": {
+            "en": "I fly a kite with my cousin.",
+            "vi": "Tôi thả diều cùng anh/chị/em họ."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Name a toy or game you like. Then use a simple present verb for an action.",
+        "vi": "Nêu một món đồ chơi hoặc trò chơi bạn thích. Sau đó dùng động từ hiện tại đơn giản để nói về một hành động."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-01",
+      "prerequisites": [
+        "Recognize simple past-time markers",
+        "Follow a short diary entry"
+      ],
+      "terms": [
+        {
+          "text": "at noon",
+          "meaning": {
+            "en": "at twelve o'clock in the middle of the day",
+            "vi": "vào buổi trưa"
+          },
+          "example": {
+            "en": "At noon, Asha found the tin.",
+            "vi": "Buổi trưa, Asha tìm thấy chiếc hộp."
+          }
+        },
+        {
+          "text": "under the old bench",
+          "meaning": {
+            "en": "in a lower place than the old bench",
+            "vi": "ở dưới chiếc ghế dài cũ"
+          },
+          "example": {
+            "en": "The tin was under the old bench.",
+            "vi": "Chiếc hộp ở dưới ghế dài cũ."
+          }
+        },
+        {
+          "text": "after lunch",
+          "meaning": {
+            "en": "later than the meal at midday",
+            "vi": "sau bữa trưa"
+          },
+          "example": {
+            "en": "After lunch, she carried it away.",
+            "vi": "Sau bữa trưa, cô mang nó đi."
+          }
+        },
+        {
+          "text": "blue tin",
+          "meaning": {
+            "en": "a small metal container coloured blue",
+            "vi": "chiếc hộp thiếc nhỏ màu xanh"
+          },
+          "example": {
+            "en": "Asha found the blue tin under a bench.",
+            "vi": "Asha tìm thấy chiếc hộp màu xanh dưới ghế dài."
+          }
+        },
+        {
+          "text": "garden cart",
+          "meaning": {
+            "en": "a small wheeled vehicle for carrying things in a garden",
+            "vi": "xe đẩy nhỏ có bánh dùng để chở đồ trong vườn"
+          },
+          "example": {
+            "en": "She carried the tin to the garden cart.",
+            "vi": "Cô mang hộp đến xe đẩy trong vườn."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Separate the noon event from what happened later after lunch.",
+        "vi": "Phân biệt sự việc vào buổi trưa với việc xảy ra sau bữa trưa."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-02",
+      "prerequisites": [
+        "Know the base form find",
+        "Recognize a past-time sentence"
+      ],
+      "terms": [
+        {
+          "text": "find",
+          "meaning": {
+            "en": "to discover where something is",
+            "vi": "tìm thấy"
+          },
+          "example": {
+            "en": "Asha finds the tin.",
+            "vi": "Asha tìm thấy chiếc hộp."
+          }
+        },
+        {
+          "text": "past simple",
+          "meaning": {
+            "en": "a verb form for a completed past event",
+            "vi": "thì quá khứ đơn"
+          },
+          "example": {
+            "en": "She found it at noon.",
+            "vi": "Cô ấy tìm thấy nó vào buổi trưa."
+          }
+        },
+        {
+          "text": "blue tin",
+          "meaning": {
+            "en": "a small metal container coloured blue",
+            "vi": "chiếc hộp thiếc nhỏ màu xanh"
+          },
+          "example": {
+            "en": "Asha found the blue tin under a bench.",
+            "vi": "Asha tìm thấy chiếc hộp màu xanh dưới ghế dài."
+          }
+        },
+        {
+          "text": "garden cart",
+          "meaning": {
+            "en": "a small wheeled vehicle for carrying things in a garden",
+            "vi": "xe đẩy nhỏ có bánh dùng để chở đồ trong vườn"
+          },
+          "example": {
+            "en": "She carried the tin to the garden cart.",
+            "vi": "Cô mang hộp đến xe đẩy trong vườn."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find is irregular. Use found for the completed event in the diary.",
+        "vi": "Find là động từ bất quy tắc. Dùng found cho sự việc đã hoàn tất trong nhật ký."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-03",
+      "prerequisites": [
+        "Read a simple planting label",
+        "Match each seed to a place"
+      ],
+      "terms": [
+        {
+          "text": "shady place",
+          "meaning": {
+            "en": "a place without much direct sun",
+            "vi": "nơi có bóng râm"
+          },
+          "example": {
+            "en": "Silver mint grows in a shady place.",
+            "vi": "Bạc hà bạc mọc ở nơi râm mát."
+          }
+        },
+        {
+          "text": "warm box",
+          "meaning": {
+            "en": "a box kept warm",
+            "vi": "chiếc hộp ấm"
+          },
+          "example": {
+            "en": "Moon beans need a warm box.",
+            "vi": "Đậu Moon cần một chiếc hộp ấm."
+          }
+        },
+        {
+          "text": "fountain",
+          "meaning": {
+            "en": "a structure where water flows or sprays",
+            "vi": "đài phun nước"
+          },
+          "example": {
+            "en": "The pot is beside the fountain.",
+            "vi": "Chậu cây ở cạnh đài phun nước."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Each label gives one different place. Match the full seed name to its place.",
+        "vi": "Mỗi nhãn nêu một vị trí riêng. Nối tên hạt giống với vị trí tương ứng."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-04",
+      "prerequisites": [
+        "Recognize morning, noon and after lunch",
+        "Put events in time order"
+      ],
+      "terms": [
+        {
+          "text": "morning",
+          "meaning": {
+            "en": "the early part of the day",
+            "vi": "buổi sáng"
+          },
+          "example": {
+            "en": "Asha checked the gate in the morning.",
+            "vi": "Asha kiểm tra cổng vào buổi sáng."
+          }
+        },
+        {
+          "text": "noon",
+          "meaning": {
+            "en": "the middle of the day",
+            "vi": "buổi trưa"
+          },
+          "example": {
+            "en": "At noon, she found the tin.",
+            "vi": "Buổi trưa, cô tìm thấy chiếc hộp."
+          }
+        },
+        {
+          "text": "after lunch",
+          "meaning": {
+            "en": "later than the midday meal",
+            "vi": "sau bữa trưa"
+          },
+          "example": {
+            "en": "After lunch, she carried it to the cart.",
+            "vi": "Sau bữa trưa, cô mang nó đến xe đẩy."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the time markers morning, noon and after lunch. They already tell you the sequence.",
+        "vi": "Dùng các mốc morning, noon và after lunch. Các mốc này cho biết trình tự."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-05",
+      "prerequisites": [
+        "Use one past verb form",
+        "Put two events in a clear order"
+      ],
+      "terms": [
+        {
+          "text": "past-time word",
+          "meaning": {
+            "en": "a word that tells when something happened before now",
+            "vi": "từ chỉ thời gian trong quá khứ"
+          },
+          "example": {
+            "en": "Yesterday, I found a blue tin.",
+            "vi": "Hôm qua, tôi tìm thấy một chiếc hộp màu xanh."
+          }
+        },
+        {
+          "text": "next",
+          "meaning": {
+            "en": "after the event just described",
+            "vi": "tiếp theo"
+          },
+          "example": {
+            "en": "Next, I put it on the cart.",
+            "vi": "Tiếp theo, tôi đặt nó lên xe đẩy."
+          }
+        },
+        {
+          "text": "diary",
+          "meaning": {
+            "en": "a personal record of events",
+            "vi": "nhật ký"
+          },
+          "example": {
+            "en": "Asha writes in the garden diary.",
+            "vi": "Asha viết trong nhật ký làm vườn."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Say when you found the object, then tell what happened after that.",
+        "vi": "Nói bạn tìm thấy đồ vật khi nào, rồi kể điều xảy ra sau đó."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-01",
+      "prerequisites": [
+        "Read a short schedule or notice",
+        "Recognize after lunch"
+      ],
+      "terms": [
+        {
+          "text": "notice",
+          "meaning": {
+            "en": "a short public message with information",
+            "vi": "thông báo ngắn"
+          },
+          "example": {
+            "en": "Read the Saturday notice.",
+            "vi": "Đọc thông báo thứ Bảy."
+          }
+        },
+        {
+          "text": "after lunch",
+          "meaning": {
+            "en": "later than the midday meal",
+            "vi": "sau bữa trưa"
+          },
+          "example": {
+            "en": "Lio will show the map after lunch.",
+            "vi": "Lio sẽ giới thiệu bản đồ sau bữa trưa."
+          }
+        },
+        {
+          "text": "closes",
+          "meaning": {
+            "en": "shuts and stops letting people in",
+            "vi": "đóng cửa"
+          },
+          "example": {
+            "en": "The garden closes at four.",
+            "vi": "Khu vườn đóng cửa lúc bốn giờ."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for the words after lunch. Then find the action in the same sentence.",
+        "vi": "Tìm cụm after lunch. Sau đó tìm hành động trong cùng câu."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-02",
+      "prerequisites": [
+        "Know will + base verb",
+        "Recognize a future time word"
+      ],
+      "terms": [
+        {
+          "text": "tomorrow",
+          "meaning": {
+            "en": "the day after today",
+            "vi": "ngày mai"
+          },
+          "example": {
+            "en": "Tomorrow, the team will check the jars.",
+            "vi": "Ngày mai, nhóm sẽ kiểm tra các lọ."
+          }
+        },
+        {
+          "text": "will",
+          "meaning": {
+            "en": "a word used before a verb for a future plan",
+            "vi": "từ dùng trước động từ để nói về kế hoạch tương lai"
+          },
+          "example": {
+            "en": "They will check the jars.",
+            "vi": "Họ sẽ kiểm tra các lọ."
+          }
+        },
+        {
+          "text": "base form",
+          "meaning": {
+            "en": "the basic dictionary form of a verb",
+            "vi": "dạng nguyên mẫu của động từ"
+          },
+          "example": {
+            "en": "Use check after will.",
+            "vi": "Dùng check sau will."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Put will before the base form of the verb in brackets.",
+        "vi": "Đặt will trước dạng nguyên mẫu của động từ trong ngoặc."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-03",
+      "prerequisites": [
+        "Read a short schedule",
+        "Match events with time phrases"
+      ],
+      "terms": [
+        {
+          "text": "opens",
+          "meaning": {
+            "en": "begins letting people enter",
+            "vi": "mở cửa"
+          },
+          "example": {
+            "en": "The gate opens at nine.",
+            "vi": "Cổng mở lúc chín giờ."
+          }
+        },
+        {
+          "text": "begins",
+          "meaning": {
+            "en": "starts",
+            "vi": "bắt đầu"
+          },
+          "example": {
+            "en": "The seed walk begins at ten.",
+            "vi": "Buổi đi dạo xem hạt giống bắt đầu lúc mười giờ."
+          }
+        },
+        {
+          "text": "after lunch",
+          "meaning": {
+            "en": "later than the midday meal",
+            "vi": "sau bữa trưa"
+          },
+          "example": {
+            "en": "Lio shows the pond map after lunch.",
+            "vi": "Lio giới thiệu bản đồ ao sau bữa trưa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Match each job to the time phrase in its sentence. The notice gives four clear times.",
+        "vi": "Nối mỗi công việc với cụm thời gian trong câu. Thông báo nêu bốn mốc rõ ràng."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-04",
+      "prerequisites": [
+        "Recognize first, then and last",
+        "Follow short preparation instructions"
+      ],
+      "terms": [
+        {
+          "text": "fill",
+          "meaning": {
+            "en": "to make something full",
+            "vi": "đổ đầy"
+          },
+          "example": {
+            "en": "Fill the rain jars first.",
+            "vi": "Đổ đầy các lọ hứng mưa trước."
+          }
+        },
+        {
+          "text": "cover",
+          "meaning": {
+            "en": "to put something over another thing",
+            "vi": "che phủ"
+          },
+          "example": {
+            "en": "Cover the bean bed next.",
+            "vi": "Tiếp theo, che luống đậu."
+          }
+        },
+        {
+          "text": "last",
+          "meaning": {
+            "en": "at the end",
+            "vi": "cuối cùng"
+          },
+          "example": {
+            "en": "Last, place the sign by the gate.",
+            "vi": "Cuối cùng, đặt biển cạnh cổng."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Follow the order words first, then and last.",
+        "vi": "Làm theo các từ chỉ thứ tự first, then và last."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-05",
+      "prerequisites": [
+        "Use will or a future time phrase",
+        "Name a simple job"
+      ],
+      "terms": [
+        {
+          "text": "tomorrow",
+          "meaning": {
+            "en": "the day after today",
+            "vi": "ngày mai"
+          },
+          "example": {
+            "en": "Tomorrow, the team will check the jars.",
+            "vi": "Ngày mai, nhóm sẽ kiểm tra các lọ."
+          }
+        },
+        {
+          "text": "job",
+          "meaning": {
+            "en": "a task that someone needs to do",
+            "vi": "công việc"
+          },
+          "example": {
+            "en": "Checking the rain jars is one job.",
+            "vi": "Kiểm tra các lọ hứng mưa là một công việc."
+          }
+        },
+        {
+          "text": "time phrase",
+          "meaning": {
+            "en": "a group of words that says when",
+            "vi": "cụm từ chỉ thời gian"
+          },
+          "example": {
+            "en": "The team will work after lunch.",
+            "vi": "Nhóm sẽ làm việc sau bữa trưa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Name one job and give a time that fits it. Use will for a future action.",
+        "vi": "Nêu một công việc và thời gian phù hợp. Dùng will cho hành động trong tương lai."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-01",
+      "prerequisites": [
+        "Read measurements in centimetres",
+        "Compare three heights"
+      ],
+      "terms": [
+        {
+          "text": "tallest",
+          "meaning": {
+            "en": "having the greatest height",
+            "vi": "cao nhất"
+          },
+          "example": {
+            "en": "Tall Acorn is the tallest sculpture.",
+            "vi": "Tall Acorn là tác phẩm cao nhất."
+          }
+        },
+        {
+          "text": "centimetres",
+          "meaning": {
+            "en": "units used to measure length or height",
+            "vi": "xăng-ti-mét, đơn vị đo chiều dài hoặc chiều cao"
+          },
+          "example": {
+            "en": "It is 31 centimetres high.",
+            "vi": "Tác phẩm cao 31 xăng-ti-mét."
+          }
+        },
+        {
+          "text": "greatest height",
+          "meaning": {
+            "en": "the largest measurement from bottom to top",
+            "vi": "chiều cao lớn nhất"
+          },
+          "example": {
+            "en": "Choose the sculpture with the greatest height.",
+            "vi": "Chọn tác phẩm có chiều cao lớn nhất."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare the three numbers. The greatest height is the tallest sculpture.",
+        "vi": "So sánh ba con số. Chiều cao lớn nhất thuộc về tác phẩm cao nhất."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-04",
+      "prerequisites": [
+        "Recognize a comparative adjective",
+        "Use than to compare two things"
+      ],
+      "terms": [
+        {
+          "text": "wider than",
+          "meaning": {
+            "en": "more wide in measurement compared with",
+            "vi": "rộng hơn"
+          },
+          "example": {
+            "en": "The spiral frame is wider than the round frame.",
+            "vi": "Khung xoắn rộng hơn khung tròn."
+          }
+        },
+        {
+          "text": "frame",
+          "meaning": {
+            "en": "a structure that supports or holds something",
+            "vi": "khung"
+          },
+          "example": {
+            "en": "The spiral frame can hold seed pods.",
+            "vi": "Khung xoắn có thể giữ các quả có hạt."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The word wider compares two frames. Put the comparative phrase before than.",
+        "vi": "Từ wider so sánh hai chiếc khung. Đặt cụm so sánh trước than."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-05",
+      "prerequisites": [
+        "Compare two objects",
+        "Know that some nouns are countable and some are not"
+      ],
+      "terms": [
+        {
+          "text": "comparative adjective",
+          "meaning": {
+            "en": "an adjective form used to compare two things",
+            "vi": "tính từ so sánh"
+          },
+          "example": {
+            "en": "The clay frame is heavier than the paper one.",
+            "vi": "Khung đất sét nặng hơn khung giấy."
+          }
+        },
+        {
+          "text": "quantity word",
+          "meaning": {
+            "en": "a word that tells how much or how many",
+            "vi": "từ chỉ lượng"
+          },
+          "example": {
+            "en": "We use many seed pods.",
+            "vi": "Chúng tôi dùng nhiều quả có hạt."
+          }
+        },
+        {
+          "text": "countable object",
+          "meaning": {
+            "en": "an object that can be counted one by one",
+            "vi": "vật đếm được"
+          },
+          "example": {
+            "en": "There are many seed pods.",
+            "vi": "Có nhiều quả có hạt."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare two items and check whether your quantity word fits the noun.",
+        "vi": "So sánh hai vật và kiểm tra từ chỉ lượng có phù hợp với danh từ hay không."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-02",
+      "prerequisites": [
+        "Recognize the phrase Would you mind",
+        "Know the -ing form after mind"
+      ],
+      "terms": [
+        {
+          "text": "mind",
+          "meaning": {
+            "en": "to be bothered by something; used here in a polite request",
+            "vi": "cảm thấy phiền; ở đây dùng trong lời nhờ lịch sự"
+          },
+          "example": {
+            "en": "Would you mind opening the door?",
+            "vi": "Bạn mở cửa giúp tôi được không?"
+          }
+        },
+        {
+          "text": "lending",
+          "meaning": {
+            "en": "giving something for a short time for someone to use",
+            "vi": "cho mượn"
+          },
+          "example": {
+            "en": "Would you mind lending me your sketch?",
+            "vi": "Bạn có phiền cho tôi mượn bản phác thảo không?"
+          }
+        },
+        {
+          "text": "for a moment",
+          "meaning": {
+            "en": "for a short time",
+            "vi": "trong chốc lát"
+          },
+          "example": {
+            "en": "May I borrow it for a moment?",
+            "vi": "Tôi mượn nó trong chốc lát được không?"
+          }
+        }
+      ],
+      "hint": {
+        "en": "The fixed question begins Would you mind. The next verb takes -ing.",
+        "vi": "Câu hỏi lịch sự cố định bắt đầu bằng Would you mind. Động từ tiếp theo thêm -ing."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-03",
+      "prerequisites": [
+        "Recognize common question forms",
+        "Identify the purpose of a short message"
+      ],
+      "terms": [
+        {
+          "text": "Could you",
+          "meaning": {
+            "en": "a polite way to ask someone to do something",
+            "vi": "cách lịch sự để nhờ ai làm gì"
+          },
+          "example": {
+            "en": "Could you carry this clay bird?",
+            "vi": "Bạn có thể mang giúp chú chim đất sét này không?"
+          }
+        },
+        {
+          "text": "Would you like to",
+          "meaning": {
+            "en": "a polite way to invite someone",
+            "vi": "cách lịch sự để mời ai đó"
+          },
+          "example": {
+            "en": "Would you like to join our paper garden?",
+            "vi": "Bạn có muốn tham gia khu vườn giấy của chúng tôi không?"
+          }
+        },
+        {
+          "text": "We could",
+          "meaning": {
+            "en": "a phrase for suggesting a possible plan",
+            "vi": "cụm từ dùng để đề xuất một kế hoạch có thể thực hiện"
+          },
+          "example": {
+            "en": "We could make a rain picture together.",
+            "vi": "Chúng ta có thể cùng làm một bức tranh mưa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Ask what each speaker wants: help, participation or a shared idea.",
+        "vi": "Xác định người nói muốn gì: nhờ giúp, mời tham gia hay nêu ý tưởng chung."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-04",
+      "prerequisites": [
+        "Recognize Would you like to",
+        "Put a question in its usual word order"
+      ],
+      "terms": [
+        {
+          "text": "Would you like to",
+          "meaning": {
+            "en": "a polite way to invite someone",
+            "vi": "cách lịch sự để mời ai đó"
+          },
+          "example": {
+            "en": "Would you like to paint with us?",
+            "vi": "Bạn có muốn vẽ cùng chúng tôi không?"
+          }
+        },
+        {
+          "text": "leaf pattern",
+          "meaning": {
+            "en": "a design that looks like leaves",
+            "vi": "họa tiết chiếc lá"
+          },
+          "example": {
+            "en": "Would you like to paint a leaf pattern?",
+            "vi": "Bạn có muốn vẽ họa tiết chiếc lá không?"
+          }
+        },
+        {
+          "text": "with us",
+          "meaning": {
+            "en": "together with our group",
+            "vi": "cùng với chúng tôi"
+          },
+          "example": {
+            "en": "Paint the pattern with us.",
+            "vi": "Hãy vẽ họa tiết cùng chúng tôi."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Start with Would you like to, then name the activity and add with us.",
+        "vi": "Bắt đầu bằng Would you like to, sau đó nêu hoạt động và thêm with us."
+      }
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-05",
+      "prerequisites": [
+        "Write a polite question",
+        "Name a creative activity"
+      ],
+      "terms": [
+        {
+          "text": "invitation",
+          "meaning": {
+            "en": "a message asking someone to take part",
+            "vi": "lời mời tham gia"
+          },
+          "example": {
+            "en": "Would you like to make a rain picture?",
+            "vi": "Bạn có muốn làm một bức tranh mưa không?"
+          }
+        },
+        {
+          "text": "polite question",
+          "meaning": {
+            "en": "a respectful question that makes a request or invitation",
+            "vi": "câu hỏi lịch sự dùng để nhờ hoặc mời"
+          },
+          "example": {
+            "en": "Would you like to join us?",
+            "vi": "Bạn có muốn tham gia cùng chúng tôi không?"
+          }
+        },
+        {
+          "text": "plan",
+          "meaning": {
+            "en": "an idea about what someone will do",
+            "vi": "kế hoạch"
+          },
+          "example": {
+            "en": "We could use blue paper.",
+            "vi": "Chúng ta có thể dùng giấy màu xanh."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Name the activity, ask politely and say what you plan to do.",
+        "vi": "Nêu hoạt động, hỏi một cách lịch sự và nói kế hoạch của bạn."
+      }
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-01",
+      "prerequisites": [
+        "Compare two short opinions",
+        "Use a stated reason to make a choice"
+      ],
+      "terms": [
+        {
+          "text": "pebble path",
+          "meaning": {
+            "en": "a route covered with small stones",
+            "vi": "lối đi phủ sỏi"
+          },
+          "example": {
+            "en": "The pebble path is quick at low tide.",
+            "vi": "Lối đi phủ sỏi nhanh hơn khi thủy triều thấp."
+          }
+        },
+        {
+          "text": "ridge path",
+          "meaning": {
+            "en": "a route along a long raised area",
+            "vi": "lối đi trên sườn cao"
+          },
+          "example": {
+            "en": "The ridge path stays above the water.",
+            "vi": "Lối đi trên sườn cao luôn ở phía trên mặt nước."
+          }
+        },
+        {
+          "text": "after noon",
+          "meaning": {
+            "en": "later than twelve o'clock in the day",
+            "vi": "sau buổi trưa"
+          },
+          "example": {
+            "en": "The guide recommends the ridge after noon.",
+            "vi": "Người hướng dẫn chọn lối đi trên cao sau buổi trưa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The question asks about visitors after noon. Check which route stays marked when the water rises.",
+        "vi": "Câu hỏi hỏi về khách đến sau buổi trưa. Hãy xem lối nào vẫn có dấu đường khi nước dâng."
+      }
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-02",
+      "prerequisites": [
+        "Know how a purpose phrase works",
+        "Use the base verb after to"
+      ],
+      "terms": [
+        {
+          "text": "purpose phrase",
+          "meaning": {
+            "en": "words that explain why someone did something",
+            "vi": "cụm từ chỉ mục đích"
+          },
+          "example": {
+            "en": "Eni moved the lamp to make a larger shadow.",
+            "vi": "Eni di chuyển đèn để tạo bóng lớn hơn."
+          }
+        },
+        {
+          "text": "lamp closer",
+          "meaning": {
+            "en": "a lamp moved nearer to something",
+            "vi": "đèn được đưa lại gần hơn"
+          },
+          "example": {
+            "en": "Eni moved the lamp closer to the paper wall.",
+            "vi": "Eni đưa đèn lại gần bức tường giấy hơn."
+          }
+        },
+        {
+          "text": "shadow larger",
+          "meaning": {
+            "en": "a shadow that grows in size",
+            "vi": "bóng lớn hơn"
+          },
+          "example": {
+            "en": "Eni moved the lamp closer to the paper moth while keeping the moth and wall fixed.",
+            "vi": "Eni đưa đèn lại gần con bướm giấy hơn, đồng thời giữ nguyên vị trí của bướm và bức tường."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The blank is before the printed to. Add a two-word phrase that states Eni's purpose.",
+        "vi": "Chỗ trống nằm trước từ to đã in sẵn. Điền cụm hai từ nêu mục đích của Eni."
+      }
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-01",
+      "prerequisites": [
+        "Follow a short past narrative",
+        "Connect an action with an intention"
+      ],
+      "terms": [
+        {
+          "text": "recording",
+          "meaning": {
+            "en": "a stored version of sound",
+            "vi": "bản ghi âm"
+          },
+          "example": {
+            "en": "Tavi borrowed an old recording.",
+            "vi": "Tavi mượn một bản ghi âm cũ."
+          }
+        },
+        {
+          "text": "last line",
+          "meaning": {
+            "en": "the final line in a song or text",
+            "vi": "dòng cuối cùng"
+          },
+          "example": {
+            "en": "He left the song's last line open.",
+            "vi": "Anh ấy để trống dòng cuối của bài hát."
+          }
+        },
+        {
+          "text": "future singer",
+          "meaning": {
+            "en": "a person who will sing later",
+            "vi": "người sẽ hát sau này"
+          },
+          "example": {
+            "en": "He left room for a future singer.",
+            "vi": "Anh ấy chừa chỗ cho người hát sau này."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look at the final choice: Tavi leaves the line open. Ask who can add something later.",
+        "vi": "Xem lựa chọn cuối: Tavi để trống dòng cuối. Hãy nghĩ xem ai có thể thêm điều gì sau này."
+      }
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-01",
+      "prerequisites": [
+        "Distinguish observation from possible cause",
+        "Read a qualified conclusion"
+      ],
+      "terms": [
+        {
+          "text": "three pulses",
+          "meaning": {
+            "en": "three repeated signals or beats",
+            "vi": "ba nhịp tín hiệu"
+          },
+          "example": {
+            "en": "The chamber returned three pulses.",
+            "vi": "Buồng vọng lại ba nhịp."
+          }
+        },
+        {
+          "text": "faded gear mark",
+          "meaning": {
+            "en": "a mark that has become less clear",
+            "vi": "dấu đã phai mờ"
+          },
+          "example": {
+            "en": "The west gear's mark had faded.",
+            "vi": "Dấu trên bánh răng phía tây đã phai."
+          }
+        },
+        {
+          "text": "possible cause",
+          "meaning": {
+            "en": "a reason that may explain an event",
+            "vi": "nguyên nhân có thể"
+          },
+          "example": {
+            "en": "The report gives two possible causes.",
+            "vi": "Báo cáo nêu hai nguyên nhân có thể."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep both causes open. The report says may and does not decide between them.",
+        "vi": "Giữ cả hai nguyên nhân ở mức có thể. Báo cáo dùng may và chưa chọn nguyên nhân nào."
+      }
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-01",
+      "prerequisites": [
+        "Understand a reported viewpoint",
+        "Recognize figurative language"
+      ],
+      "terms": [
+        {
+          "text": "imitate birds",
+          "meaning": {
+            "en": "copy the sounds or actions of birds",
+            "vi": "bắt chước chim"
+          },
+          "example": {
+            "en": "Leta says the leaves do not imitate birds.",
+            "vi": "Leta nói những chiếc lá không bắt chước chim."
+          }
+        },
+        {
+          "text": "a vocabulary",
+          "meaning": {
+            "en": "a set of words used for communication",
+            "vi": "vốn từ"
+          },
+          "example": {
+            "en": "She says they give the wind a vocabulary.",
+            "vi": "Cô nói chúng trao cho gió một vốn từ."
+          }
+        },
+        {
+          "text": "metaphor",
+          "meaning": {
+            "en": "a phrase that describes one thing as another",
+            "vi": "ẩn dụ"
+          },
+          "example": {
+            "en": "The wind has a vocabulary is a metaphor.",
+            "vi": "Gió có vốn từ là một ẩn dụ."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep Leta's contrast: the leaves do not copy birds; they give the wind a vocabulary.",
+        "vi": "Giữ sự tương phản của Leta: lá không bắt chước chim mà trao cho gió một vốn từ."
+      }
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-02",
+      "prerequisites": [
+        "Recognize a fixed expression",
+        "Understand a welcome change"
+      ],
+      "terms": [
+        {
+          "text": "breath of fresh",
+          "meaning": {
+            "en": "the beginning of a fixed expression for a welcome change",
+            "vi": "phần đầu của cụm cố định nói về điều đổi mới đáng mừng"
+          },
+          "example": {
+            "en": "The quiet guide is a breath of fresh air.",
+            "vi": "Cuốn hướng dẫn yên tĩnh là một làn gió mới."
+          }
+        },
+        {
+          "text": "collocation",
+          "meaning": {
+            "en": "words that commonly occur together",
+            "vi": "kết hợp từ thường đi cùng nhau"
+          },
+          "example": {
+            "en": "A breath of fresh air is a common collocation.",
+            "vi": "A breath of fresh air là một kết hợp từ thông dụng."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Complete the fixed expression. It ends with the noun air.",
+        "vi": "Hoàn thành cụm cố định. Cụm này kết thúc bằng danh từ air."
+      }
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-01",
+      "prerequisites": [
+        "Distinguish a recorded observation from its cause",
+        "Recognize cautious wording"
+      ],
+      "terms": [
+        {
+          "text": "preliminary note",
+          "meaning": {
+            "en": "an early report that may be updated",
+            "vi": "ghi chú ban đầu, có thể được cập nhật"
+          },
+          "example": {
+            "en": "The preliminary note is not final.",
+            "vi": "Ghi chú ban đầu chưa phải kết luận cuối."
+          }
+        },
+        {
+          "text": "two millimetres",
+          "meaning": {
+            "en": "a small measurement of length",
+            "vi": "hai mi-li-mét"
+          },
+          "example": {
+            "en": "The line moved by about two millimetres.",
+            "vi": "Đường vạch dịch chuyển khoảng hai mi-li-mét."
+          }
+        },
+        {
+          "text": "lens temperature",
+          "meaning": {
+            "en": "how warm or cool the lens is",
+            "vi": "nhiệt độ của thấu kính"
+          },
+          "example": {
+            "en": "The lens temperature also changed.",
+            "vi": "Nhiệt độ thấu kính cũng thay đổi."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Choose a summary that says what the scans suggest and keeps the cause open.",
+        "vi": "Chọn câu tóm tắt nêu điều các lần quét gợi ý và vẫn để ngỏ nguyên nhân."
+      }
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-04",
+      "prerequisites": [
+        "Recognize fronted time phrases",
+        "Know auxiliary inversion after Only after"
+      ],
+      "terms": [
+        {
+          "text": "Only after",
+          "meaning": {
+            "en": "a phrase that puts a time condition first",
+            "vi": "cụm đặt điều kiện thời gian lên đầu câu"
+          },
+          "example": {
+            "en": "Only after the note faded did the prism settle.",
+            "vi": "Chỉ sau khi nốt nhạc tắt, lăng kính mới ổn định."
+          }
+        },
+        {
+          "text": "auxiliary",
+          "meaning": {
+            "en": "a helping verb such as did; this task places it before the subject",
+            "vi": "trợ động từ, chẳng hạn did; bài này đặt trợ động từ trước chủ ngữ"
+          },
+          "example": {
+            "en": "Only after the bell rang did we leave.",
+            "vi": "Chỉ sau khi chuông reo, chúng tôi mới rời đi."
+          }
+        },
+        {
+          "text": "settle into blue",
+          "meaning": {
+            "en": "to become steady in a blue colour",
+            "vi": "ổn định ở sắc xanh"
+          },
+          "example": {
+            "en": "The prism settled into blue.",
+            "vi": "Lăng kính ổn định ở sắc xanh."
+          }
+        }
+      ],
+      "hint": {
+        "en": "After Only after, use did before the subject. Keep the main verb in its base form.",
+        "vi": "Sau Only after, dùng did trước chủ ngữ. Giữ động từ chính ở dạng nguyên mẫu."
+      }
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-01",
+      "prerequisites": [
+        "Understand a qualified correction",
+        "Recognize a lower bound"
+      ],
+      "terms": [
+        {
+          "text": "superseded",
+          "meaning": {
+            "en": "replaced by something newer",
+            "vi": "được thay thế bằng thông tin mới hơn"
+          },
+          "example": {
+            "en": "The second reading superseded the first.",
+            "vi": "Số đo thứ hai thay thế số đo đầu tiên."
+          }
+        },
+        {
+          "text": "lower bound",
+          "meaning": {
+            "en": "a reliable minimum value",
+            "vi": "giới hạn dưới đáng tin cậy"
+          },
+          "example": {
+            "en": "The first estimate remains a useful lower bound.",
+            "vi": "Ước tính đầu vẫn là giới hạn dưới hữu ích."
+          }
+        },
+        {
+          "text": "though",
+          "meaning": {
+            "en": "a linking word that introduces a contrast",
+            "vi": "mặc dù"
+          },
+          "example": {
+            "en": "Though it is older, the estimate is still useful.",
+            "vi": "Dù cũ hơn, ước tính vẫn hữu ích."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The later estimate replaces the earlier one, but the text keeps one limited use for it.",
+        "vi": "Ước tính mới thay thế ước tính cũ, nhưng câu vẫn giữ lại một công dụng có giới hạn."
+      }
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-02",
+      "prerequisites": [
+        "Know past simple auxiliary did",
+        "Recognize inversion after Not only"
+      ],
+      "terms": [
+        {
+          "text": "Not only",
+          "meaning": {
+            "en": "a phrase that gives special emphasis when placed first",
+            "vi": "cụm nhấn mạnh khi được đặt ở đầu câu"
+          },
+          "example": {
+            "en": "Not only did the artist return to circles.",
+            "vi": "Nghệ sĩ không chỉ quay lại với hình tròn."
+          }
+        },
+        {
+          "text": "past simple",
+          "meaning": {
+            "en": "a verb form for a completed past event",
+            "vi": "thì quá khứ đơn"
+          },
+          "example": {
+            "en": "The artist returned to circles last year.",
+            "vi": "Nghệ sĩ quay lại với hình tròn vào năm ngoái."
+          }
+        },
+        {
+          "text": "base form",
+          "meaning": {
+            "en": "the basic dictionary form of a verb",
+            "vi": "dạng nguyên mẫu của động từ"
+          },
+          "example": {
+            "en": "Use return after did.",
+            "vi": "Dùng return sau did."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Because Not only begins the sentence and the event is past, use did before the subject.",
+        "vi": "Vì Not only đứng đầu câu và sự việc ở quá khứ, dùng did trước chủ ngữ."
+      }
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-01",
+      "prerequisites": [
+        "Recognize an understated expression",
+        "Distinguish influence from sole cause"
+      ],
+      "terms": [
+        {
+          "text": "not inconsiderable",
+          "meaning": {
+            "en": "understated wording meaning quite significant",
+            "vi": "cách nói giảm nhẹ có nghĩa là khá đáng kể"
+          },
+          "example": {
+            "en": "The marks had a not inconsiderable influence.",
+            "vi": "Những dấu này có ảnh hưởng khá đáng kể."
+          }
+        },
+        {
+          "text": "influence",
+          "meaning": {
+            "en": "the effect one thing has on another",
+            "vi": "ảnh hưởng"
+          },
+          "example": {
+            "en": "The marks influenced later mapmaking.",
+            "vi": "Những dấu này ảnh hưởng đến việc vẽ bản đồ về sau."
+          }
+        },
+        {
+          "text": "sole cause",
+          "meaning": {
+            "en": "the only reason something happened",
+            "vi": "nguyên nhân duy nhất"
+          },
+          "example": {
+            "en": "The note does not call the marks the sole cause.",
+            "vi": "Ghi chú không gọi những dấu này là nguyên nhân duy nhất."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The phrase understates an influence that matters. It does not say the marks caused every later change.",
+        "vi": "Cụm từ nói giảm về một ảnh hưởng đáng kể. Nó không nói những dấu này gây ra mọi thay đổi về sau."
+      }
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-01",
+      "prerequisites": [
+        "Interpret a metaphor",
+        "Separate a reader's response from an author's intention"
+      ],
+      "terms": [
+        {
+          "text": "breathing space",
+          "meaning": {
+            "en": "a pause or open area that feels restful",
+            "vi": "khoảng nghỉ tạo cảm giác dễ chịu"
+          },
+          "example": {
+            "en": "The editor calls the blank a breathing space.",
+            "vi": "Biên tập viên gọi khoảng trống là một khoảng nghỉ."
+          }
+        },
+        {
+          "text": "documented intention",
+          "meaning": {
+            "en": "a purpose that is recorded as the author's own",
+            "vi": "ý định được ghi nhận của tác giả"
+          },
+          "example": {
+            "en": "The caption does not claim a documented intention.",
+            "vi": "Lời chú thích không khẳng định ý định đã được ghi nhận."
+          }
+        },
+        {
+          "text": "reader’s response",
+          "meaning": {
+            "en": "the way a reader experiences a text",
+            "vi": "cảm nhận của người đọc"
+          },
+          "example": {
+            "en": "The phrase describes a reader response.",
+            "vi": "Cụm từ mô tả cảm nhận của người đọc."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The new phrase offers a possible effect for readers. It does not prove that the poet intended it.",
+        "vi": "Cụm từ mới nêu hiệu ứng có thể có với người đọc. Nó không chứng minh nhà thơ có chủ ý tạo ra hiệu ứng đó."
+      }
+    }
+  ],
+  "audit": [
+    {
+      "activityId": "a1-lantern-harbor-01",
+      "decision": "revise",
+      "reason": "The key boathouse is stated directly, but learners had to sort blue gate, pier, boathouse, lighthouse and bell across several relations; the cold-start vocabulary and spatial load are too high for one A1 clue.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-read-place-clues."
+    },
+    {
+      "activityId": "a1-lantern-harbor-02",
+      "decision": "revise",
+      "reason": "The accepted is fits the singular lighthouse target. The surrounding context stacks lighthouse, boathouse, ropes and boats, which adds avoidable vocabulary before the basic agreement decision.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-there-be-singular."
+    },
+    {
+      "activityId": "a1-lantern-harbor-03",
+      "decision": "revise",
+      "reason": "The three matches are textually distinct, but lantern/gate/lighthouse/pier and above/inside/beside all compete for attention; the mapping is unique only after several unfamiliar words are understood.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-object-and-place."
+    },
+    {
+      "activityId": "a1-lantern-harbor-04",
+      "decision": "revise",
+      "reason": "The order key follows first/next/then, so it is unambiguous. Behind, boathouse and lighthouse make the route lexically and spatially denser than the basic sequence target.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-simple-route."
+    },
+    {
+      "activityId": "a1-lantern-harbor-05",
+      "decision": "revise",
+      "reason": "The prompt asks for two self-written map sentences, but the example uses bell/lighthouse/pier facts not supplied in the visitor context. Open writing is self-review and has no score.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-location-sentences."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-01",
+      "decision": "revise",
+      "reason": "The key inside the shell hut is explicit, but shell hut, harbor gate and tide pool create topic-vocabulary demand beyond the single location lookup.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-find-a-place-in-a-short-note."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-02",
+      "decision": "revise",
+      "reason": "The accepted are is grammatically correct for two shells. Tide pool, shell hut and pier are incidental to plural agreement and complicate the original A1 context.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-there-are-with-plural-nouns."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-03",
+      "decision": "revise",
+      "reason": "The three pairings are explicit and distinct, but rope/pier/hut/lighthouse are unnecessary topic terms; the answer key itself has no collision.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-things-to-locations."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-04",
+      "decision": "revise",
+      "reason": "The first/next/then sequence is clear. Shell hut and harbor landmarks make the original directions harder than the three-step order target.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-three-simple-directions."
+    },
+    {
+      "activityId": "a1-lantern-harbor-shell-bell-05",
+      "decision": "revise",
+      "reason": "The writing criteria are understandable, but the example refers to shell-bell facts not supplied in the visitor setup; it is open self-review, not scored.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-short-map-clues."
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-01",
+      "decision": "revise",
+      "reason": "Yellow is stated verbatim; green is assigned to another speaker and blue is absent. The correct option is clear, but the 40-word setup is unnecessary for this one-choice reading target.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-identify-a-personal-choice."
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-02",
+      "decision": "revise",
+      "reason": "The accepted it is correct for the singular paper tail; the prompt repeats the target sentence and the context adds a lantern studio story that does not support additional inference.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-use-a-subject-pronoun-for-an-object."
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-03",
+      "decision": "retain",
+      "reason": "Silver/Rin, green/Omar and blue/Tia are explicitly paired, with no second key. This is direct matching practice and relies on ordinary color/shape vocabulary.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-people-to-stated-choices."
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-04",
+      "decision": "retain",
+      "reason": "First/next/last fix the sequence and make the key unambiguous. The simple make-order task is appropriate A1 practice once the paper words are known.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-follow-a-simple-making-sequence."
+    },
+    {
+      "activityId": "a1-lantern-harbor-color-teller-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The open preference prompt and rubric align, but there is no machine scoring. The model supports self-review only. It has no operational scoring.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-about-a-personal-preference."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-01",
+      "decision": "revise",
+      "reason": "Stripes is stated directly; dots are Jo's choice and clouds are not supported. The answer is unique, but the original club narrative is long for a single A1 retrieval item.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The choice item checks one response against a context. Target: a1-find-a-stated-personal-choice."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-02",
+      "decision": "revise",
+      "reason": "The accepted they is correct for two names, but the original context already says They, exposing the answer before the gap.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The gap checks one bounded form or phrase. Target: a1-use-a-plural-subject-pronoun."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-03",
+      "decision": "revise",
+      "reason": "The original prompt calls every left-side item a kite part, although green circle is a decoration; ribbon/sail/frame also require vocabulary beyond a cold A1 match.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The match checks a finite set of stated relations. Target: a1-match-familiar-things-to-actions."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-04",
+      "decision": "retain",
+      "reason": "First/next/last identify the order and the key is clear. This checks sequence following, not broader reading ability.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The order item uses supplied sequence or rhetorical cues. Target: a1-order-steps-from-sequence-words."
+    },
+    {
+      "activityId": "a1-lantern-harbor-rooftop-kites-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The two-sentence toy/game prompt has self-check criteria and a model, but no operational scoring; it remains practice-only. It has no operational scoring.",
+      "levelRationale": "A1 should involve familiar concrete language and short, direct communication. The source item's harbor/kite theme sometimes adds vocabulary or multiple relations beyond that prerequisite; even a revised one-step item only supports guided practice. The open writing has no automatic score. Target: a1-write-simple-sentences-about-a-choice."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-01",
+      "decision": "retain",
+      "reason": "Old bench is the unique noon location; the cart is explicitly later. The time contrast is clear, though seed tin/cart are less familiar than the target diary skill.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-locate-a-detail-in-a-diary."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-02",
+      "decision": "retain",
+      "reason": "Found is the correct irregular past form and the prompt gives the base verb. The one-word gap checks a focused A2 form with a direct past-time cue.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-past-simple-irregular-verb."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-03",
+      "decision": "retain",
+      "reason": "Each seed has one stated planting place. Moon beans, silver mint, thyme and fountain are topic vocabulary, so success partly reflects gardening words rather than description reading.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-read-short-practical-descriptions."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-04",
+      "decision": "retain",
+      "reason": "Morning/noon/after lunch make the event order unique. The time-marker skill is clear and the garden nouns add some incidental load.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-sequence-past-events-from-time-markers."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-tin-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — Two-sentence past writing has relevant criteria and example but no automatic scorer; use only for learner self-review. It has no operational scoring.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-short-past-account."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-01",
+      "decision": "retain",
+      "reason": "Show the pond map is directly linked to after lunch; the gate and seed walk are earlier. The distractors are time-distinct and the key is unique.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-find-a-future-plan-in-a-notice."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-02",
+      "decision": "retain",
+      "reason": "Will check is the only accepted form under the stated will + base verb rule; tomorrow and the future-plan context remove tense ambiguity.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-simple-future-statement."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-03",
+      "decision": "retain",
+      "reason": "Each event is paired with a different time phrase in the notice; the four matches are explicit and one-to-one.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-match-events-to-schedule-times."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-04",
+      "decision": "retain",
+      "reason": "First/then/last explicitly determine the order. The sequence is unambiguous but low in inference demand.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-follow-ordered-preparation-instructions."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-rain-plan-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The open future-plan prompt aligns with its rubric/example, but there is no scoring rule; it is practice-only. It has no operational scoring.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-simple-future-plan."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-01",
+      "decision": "retain",
+      "reason": "Tall Acorn at 31 cm is the unique maximum; the measurement comparison is clear and supports the superlative.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-compare-measured-heights."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-02",
+      "decision": "revise",
+      "reason": "The original context names paper flowers before the blank, directly exposing the accepted answer; this is a genuine key leak, not just a low-level item.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-countable-plural."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-03",
+      "decision": "revise",
+      "reason": "The original many/a little/a few pairings are stated, but seed pods/soil/clay bowls are niche and both many and a few are grammatical with plural count nouns; learners must copy the pairing, not infer a unique grammar rule.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-match-quantity-pairings-in-a-note."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-04",
+      "decision": "retain",
+      "reason": "The chunks form the printed wider-than comparison; the note states the relation and the requested syntax narrows the order.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-order-a-comparative-sentence."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-seed-sculpture-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The prompt allows varied comparisons and the rubric is self-review only; no objective scoring for quantity accuracy is defined. It has no operational scoring.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-comparison-with-quantity-language."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-01",
+      "decision": "revise",
+      "reason": "Would you mind is the clear request. The original explanation wrongly calls “You can move bowls if you want” ability; in context it offers permission/choice, so that distractor distinction needs correction.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The choice item checks one response against a context. Target: a2-recognise-a-polite-request."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-02",
+      "decision": "retain",
+      "reason": "Would completes the fixed polite formula and lending is appropriately -ing; the form cue is explicit and the answer is unique.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The gap checks one bounded form or phrase. Target: a2-form-a-polite-would-you-mind-question."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-03",
+      "decision": "retain",
+      "reason": "Could you asks for help, Would you like to invites, and We could suggests a plan. The group-message context fixes these speech-act readings.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The match checks a finite set of stated relations. Target: a2-distinguish-requests-invitations-and-suggestions."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-04",
+      "decision": "retain",
+      "reason": "The word groups form the standard Would you like to + activity + with us question; the order is constrained by the frame.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The order item uses supplied sequence or rhetorical cues. Target: a2-order-a-polite-invitation."
+    },
+    {
+      "activityId": "a2-wildseed-gardens-garden-invitation-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The prompt elicits an invitation and plan, but the rubric is only self-review and does not score pragmatic appropriateness. It has no operational scoring.",
+      "levelRationale": "A2 can cover simple routine messages and practical descriptions. This task is a plausible supported practice target, but its garden/theme vocabulary and small item format limit broader inference. The open writing has no automatic score. Target: a2-write-a-polite-plan."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-01",
+      "decision": "retain",
+      "reason": "Relieved and a little foolish support the keyed reading of Neri's reaction; this is one local inference with a clear textual basis.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-infer-a-writers-reaction."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-02",
+      "decision": "retain",
+      "reason": "Was copying is the correct past continuous phrase for an ongoing event interrupted by the bell; the prompt specifies the form and two-word response.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-use-past-continuous-for-background-action."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-03",
+      "decision": "retain",
+      "reason": "Neri's self-correction, Jin's marker recommendation and Vale's echo explanation are distinct; each mapping has a stated reason.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-connect-viewpoints-with-their-reasons."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-04",
+      "decision": "retain",
+      "reason": "7:30, 7:40 and later establish the answer order; the chronology is explicit and key has no viable alternative.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-order-a-narrative-from-time-markers."
+    },
+    {
+      "activityId": "b1-tideglass-isles-chart-letter-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The reflection prompt asks for a first view and new evidence, but its rubric is not an operational writing scale. It has no operational scoring.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-an-evidence-based-opinion."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-01",
+      "decision": "retain",
+      "reason": "The ridge is recommended because its posts stay visible after noon; the contrast with tide-hidden markers supports one answer. This is a modest local inference.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-compare-two-viewpoints-and-reasons."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-02",
+      "decision": "retain",
+      "reason": "All five accepted linkers can introduce the stated contrast/concession before a full clause; the task explicitly allows five forms, so the key set is adequate.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-choose-a-contrast-linker-by-structure."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-03",
+      "decision": "retain",
+      "reason": "Neri's speed, Jin's visible posts and the guide's late-arrival need are separately stated; pairings are unique.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-match-viewpoints-to-supporting-details."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-04",
+      "decision": "retain",
+      "reason": "Before noon/after noon/at the end determine sequence. The rule is clear, though marker words make the order easy.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-follow-a-route-that-changes-by-time."
+    },
+    {
+      "activityId": "b1-tideglass-isles-two-paths-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The prompt requests a preference plus supporting note detail, but the writing response is not automatically scored. It has no operational scoring.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-supported-recommendation."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-01",
+      "decision": "retain",
+      "reason": "Light passing through thin paper is explicitly Eni's reason; distractors contradict the passage and the key is unique.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-understand-a-characters-reason."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-02",
+      "decision": "retain",
+      "reason": "In order / so as are valid two-word purpose phrases before the printed to. The prompt carefully states the word count; lamp/model geometry in the support example should keep the wall/model relation fixed.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-form-a-purpose-phrase-before-an-infinitive."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-03",
+      "decision": "retain",
+      "reason": "Each action-purpose pair is stated in the note; no competing intention is supported.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-match-actions-to-stated-purposes."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-04",
+      "decision": "retain",
+      "reason": "First/then/after/finally give the order; the answer key follows the narrative and is unambiguous.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-follow-events-in-a-past-narrative."
+    },
+    {
+      "activityId": "b1-tideglass-isles-moon-moth-model-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The creative narrative prompt and two-point rubric support reflection only; there is no independent production scoring. It has no operational scoring.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-narrative-with-a-reason."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-01",
+      "decision": "retain",
+      "reason": "Leaving the line open for a future singer supports the keyed intention, but that purpose is inferred from the ending rather than quoted as a motive; explanation should preserve that distinction.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The choice item checks one response against a context. Target: b1-infer-a-characters-intention."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-02",
+      "decision": "retain",
+      "reason": "To is the correct infinitive marker and the context explicitly states Tavi's purpose of recording sounds.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The gap checks one bounded form or phrase. Target: b1-use-an-infinitive-of-purpose."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-03",
+      "decision": "retain",
+      "reason": "Borrowing, sitting by sea grass and leaving a line open each have one stated purpose; mappings are distinct.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The match checks a finite set of stated relations. Target: b1-connect-choices-and-purposes."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-04",
+      "decision": "retain",
+      "reason": "First/then/after establish the sequence; the narrative order is clear.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The order item uses supplied sequence or rhetorical cues. Target: b1-order-narrative-events."
+    },
+    {
+      "activityId": "b1-tideglass-isles-borrowed-tide-song-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The prompt allows an invented story and the rubric is reflective; the engine does not score it. It has no operational scoring.",
+      "levelRationale": "The short text asks for local inference, connected-event reading or reason linking consistent with B1 practice. Invented island topics and a single item narrow evidence and vocabulary coverage. The open writing has no automatic score. Target: b1-write-a-story-about-a-change-of-plan."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-01",
+      "decision": "retain",
+      "reason": "The rule requires two dry readings; the blank east display fails to confirm that condition, so wait is the only supported action.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-interpret-conditional-evidence."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-02",
+      "decision": "retain",
+      "reason": "Had tested correctly forms the third conditional against the known failed past check; the scaffold specifies past perfect and two words.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-third-conditional-past-counterfactual."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Logs A-D map uniquely to pass/fail statuses; missing east reading, missing time check and clock tolerance are distinguished. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-match-evidence-to-rule-status."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — The key follows fact → rule consequence → wait action. The logical sequence is sound but prompt gives each reasoning role explicitly. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-sequence-evidence-reasoning."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The recommendation is rubric/model guided and not operationally scored, so evidentiary accuracy cannot be treated as measured writing. It has no operational scoring.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-evidence-based-recommendation."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-01",
+      "decision": "retain",
+      "reason": "Two possible causes remain open in the report; the key preserves uncertainty, while the other choices claim proof without evidence.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-read-a-qualified-technical-conclusion."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-02",
+      "decision": "retain",
+      "reason": "Was returning follows the requested standard backshift after said; the original quotation and reporting time make the intended answer clear.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-backshift-reported-present-continuous."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Pulse count is an observation, faded mark only a possible issue, later repair does not isolate cause; distinctions are explicit. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-distinguish-observation-from-inference."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Before/during/next morning make the order unique; technical terms add some domain load. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-sequence-evidence-in-a-technical-report."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-echoing-gears-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The evidence note requires attribution and a limit, but the rubric is self-review and no analytic score is collected. It has no operational scoring.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-reported-evidence-note."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The key preserves Leta's metaphor and contrast. Other choices are conspicuously literal or unrelated, so the item is useful practice but weak as a B2 placement discriminator. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-preserve-a-reported-viewpoint."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-02",
+      "decision": "retain",
+      "reason": "Were tuning correctly backshifts plural are tuning after said. The instruction directly names tense and timeframe.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-backshift-a-present-continuous-report."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Draw a distinction, lend weight and take issue are mapped to their conventional functions; definitions are clear but this is collocation recognition. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-understand-editorial-collocations."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — The requested claim/image/response sequence is explicit in the style note; it rehearses structure with little inference. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-organise-a-short-review-blurb."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-three-voices-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The review prompt/rubric are open and self-reviewed; no score supports level classification. It has no operational scoring.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-review-with-attributed-viewpoint."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-01",
+      "decision": "retain",
+      "reason": "The evaluative sentence is the only review statement; command and safety options are obvious genre contrasts.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The choice item checks one response against a context. Target: b2-identify-evaluative-review-language."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Air completes the fixed idiom; this is one-word phrase recall and too narrow to distinguish B2 starting ability. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The gap checks one bounded form or phrase. Target: b2-complete-a-familiar-collocation."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Review evaluates, manual instructs, blurb introduces; each definition has one clear match. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The match checks a finite set of stated relations. Target: b2-distinguish-review-manual-and-blurb."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Response/detail/judgement order is stated by the editor, so key is direct and low in discrimination. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The order item uses supplied sequence or rhetorical cues. Target: b2-order-parts-of-a-short-review."
+    },
+    {
+      "activityId": "b2-clockwork-canopy-review-or-manual-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The open review task has rubric/example but no scoring standard; practice-only. It has no operational scoring.",
+      "levelRationale": "The activity practices a careful report, contrast or multi-step condition associated with B2 work. Technical context and explicit task scaffolding narrow the construct; it cannot establish B2 ability. The open writing has no automatic score. Target: b2-write-a-supported-review."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The qualified summary is right, but the other options make overtly contradicted or overconfident claims; this is weak C1 placement discrimination. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-preserve-hedging-in-a-summary."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Having compared is the correct perfect-participle opener and same-subject relation; the one-form gap names the target directly. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-a-perfect-participle-clause."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Observation, cautious inference and overclaim are distinguished correctly; labels make this narrow evidence-strength practice. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-distinguish-claim-strengths."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Both observation orders are explicitly allowed and the limitation belongs last; the key and alternative are internally consistent. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-organise-a-cautious-evidence-summary."
+    },
+    {
+      "activityId": "c1-prism-observatory-amber-line-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The formal note prompt/rubric asks for uncertainty, observation and limitation but does not score written C1 performance. It has no operational scoring.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-qualified-formal-note."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The second estimate replaces the first while retaining a lower-bound use; distractors overstate or discard that concession. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-interpret-a-qualified-formal-correction."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-02",
+      "decision": "revise",
+      "reason": "The target phrase is valid with the named subject: The earlier signal is believed to have affected. Reporting-passive labels vary; the revision should describe the visible subject + is believed + perfect infinitive construction.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-perfect-infinitive-in-impersonal-passive."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Replacement, concession and attributed influence map to distinct quoted functions; the wording is formal and narrow. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-read-functions-of-formal-reporting-phrases."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Finding → qualification → recommendation follows the explicit style note; useful consolidation, not standalone C1 evidence. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-sequence-a-formal-report-structure."
+    },
+    {
+      "activityId": "c1-prism-observatory-mirror-report-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The formal correction is open-ended, with a reflective rubric only; no scored production evidence. It has no operational scoring.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-edit-an-overclaim-with-a-qualification."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — Although brief + feels complete preserves concession and evaluation; alternative options change the stance. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-read-a-concessive-evaluation."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Even though matches a stated fact; even if would introduce a hypothetical condition. The prompt clearly excludes that reading. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-use-a-two-word-concessive-linker-for-a-fact."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-03",
+      "decision": "revise",
+      "reason": "The original matching options overlap: whereas is followed by a full clause and also links two contrasting clauses, so both the generic full-clause label and the relation label can describe it. Revise with explicit sentence continuations that distinguish the linker patterns.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-distinguish-linker-structures."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Only after requires did before the subject, then base verb settle; the prompt supplies the construction and order. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-order-a-fronted-only-after-construction."
+    },
+    {
+      "activityId": "c1-prism-observatory-glass-choir-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The program-note response is self-reviewed only; no writing score validates C1 production. It has no operational scoring.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-concessive-program-note."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-01",
+      "decision": "revise",
+      "reason": "The original formal option added 'restrained' and 'finely balanced', altering the draft's meaning; the corrected version should preserve positive evaluation without those extra claims.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The choice item checks one response against a context. Target: c1-select-formal-evaluative-register."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Did is the past auxiliary under fronted Not only; the prompt states the inversion rule, making this a narrow form check and weak placement item. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The gap checks one bounded form or phrase. Target: c1-form-not-only-inversion-in-the-past."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — This motif refers back, whereas marks contrast, and in the final room gives location; each relation is distinct. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The match checks a finite set of stated relations. Target: c1-follow-reference-and-contrast-in-a-text."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Topic → contrast → synthesis is specified and signalled by the wording; practice-only ordering. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The order item uses supplied sequence or rhetorical cues. Target: c1-organise-cohesive-paragraph-movement."
+    },
+    {
+      "activityId": "c1-prism-observatory-program-edit-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The writing task has a rubric/example but no operational register/cohesion scoring; it cannot establish C1 production. It has no operational scoring.",
+      "levelRationale": "The item addresses formal register, cohesion or qualified claims, but its brief text and named feature cue under-sample the lengthy, nuanced range associated with C1. The open writing has no automatic score. Target: c1-write-a-cohesive-formal-program-note."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — Not inconsiderable implies meaningful influence, not sole cause; options trivialize or overclaim, so discrimination is weak for C2 routing. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-interpret-understated-evaluation."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Face completes the fixed idiom on the face of it; a direct one-word idiom task is not a broad C2 measure. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-understand-a-first-impression-idiom."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Tentative, scope-limited and concessive phrases match their examples; explicit matching supports recognition only. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-match-pragmatic-functions-to-wording."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — The symbol claim, two supporting sightings and limitation have one coherent key; alternative order of independent details is accepted. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-organise-evidence-with-a-qualified-conclusion."
+    },
+    {
+      "activityId": "c2-unwritten-sky-margin-marks-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The note prompt/rubric is reflective and unscored; it cannot measure nuanced C2 writing. It has no operational scoring.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-nuanced-curatorial-note."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The correction preserves accuracy for an earlier season while limiting present relevance; the reading is supported by the revised caption. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-the-scope-of-a-correction."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-02",
+      "decision": "revise",
+      "reason": "But completes all but unreadable. Original explanation improperly used side-light evidence to imply partial readability in ordinary light; the candidate needs the corrected explanation and remains practice-only.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-interpret-the-idiom-all-but."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Not necessarily, hardly and nothing short of have distinct pragmatic force; the mapping is clear but bounded. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-match-pragmatic-force-to-phrasing."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — The omission is observation, marginal note/compass are independent details, and final inference is limited; both evidence orders are valid. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-independent-evidence-before-a-limited-inference."
+    },
+    {
+      "activityId": "c2-unwritten-sky-quiet-caption-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The caption-writing prompt has self-review criteria but no scoring; practice-only. It has no operational scoring.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-nuanced-gallery-caption."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The intended reading is that the label turns a partial apology into polished praise and the museum's generosity may serve its image; wording remains literary and interpretation-dependent. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-qualified-praise-and-implied-censure."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Equivocal fits wording open to two readings; the first-letter and definition cues make the gap much more constrained than broad C2 stance interpretation. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-name-an-equivocal-editorial-stance."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Qualified praise, unreserved praise and neutral count are uniquely represented by the three phrases. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-distinguish-qualified-praise-from-neutral-description."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Description → apparent praise → qualification follows the explicit editorial plan; it is structural practice, not independent C2 evidence. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-a-qualified-editorial-note."
+    },
+    {
+      "activityId": "c2-unwritten-sky-museum-of-almosts-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The note prompt asks for fact/interpretation separation, but self-review is not scored for C2 writing. It has no operational scoring.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-write-a-qualified-museum-note."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-01",
+      "decision": "practice-only",
+      "reason": "Practice-only — The revision frames the blank as a possible reader benefit while explicitly withholding a claim about poet intent; that is the best supported reading. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The choice item checks one response against a context. Target: c2-infer-a-figurative-editorial-reframing."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-02",
+      "decision": "practice-only",
+      "reason": "Practice-only — Figuratively and metaphorically are both accepted and fit the prompt's restricted word families; key set is appropriately plural. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The gap checks one bounded form or phrase. Target: c2-name-a-non-literal-editorial-phrase."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-03",
+      "decision": "practice-only",
+      "reason": "Practice-only — Open interpretation, downgrade and bounded endorsement have distinct functions; the text supports each match. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The match checks a finite set of stated relations. Target: c2-distinguish-pragmatic-effects-of-editorial-phrases."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-04",
+      "decision": "practice-only",
+      "reason": "Practice-only — Observation → possible reader effect → limit on intention is explicitly requested and keyed; practice-only. Its explicit cueing or narrow selected response is formative consolidation, not evidence of the whole level.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The order item uses supplied sequence or rhetorical cues. Target: c2-order-observation-interpretation-and-limit."
+    },
+    {
+      "activityId": "c2-unwritten-sky-editors-pencil-05",
+      "decision": "practice-only",
+      "reason": "Practice-only — The revision prompt/rubric targets nuanced uncertainty but supplies no scoring model; practice-only. It has no operational scoring.",
+      "levelRationale": "The item offers high-level pragmatic/idiomatic practice, but one curated passage or constrained response cannot represent the broad fine-point comprehension required for C2. The open writing has no automatic score. Target: c2-revise-an-overconfident-editorial-caption."
+    }
+  ]
+}

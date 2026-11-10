@@ -14,13 +14,15 @@ test('actual accepted pool is pinned and covers all six practice ranges',async()
 test('actual upper route includes reading and language use without awarding mastery',()=>{
  const rs=responses(),result=startingPointResult(rs,placementItems,activities,assess);
  assert.equal(result.level,'C2');assert.equal(result.count,10);assert.deepEqual(result.skills.sort(),['language-use','reading']);
- const p=deriveProgress([event({...result,stage:'accepted',sessionId:'test',level:'A1'})],pack);
+ const p=deriveProgress([event({...result,stage:'accepted',sessionId:'test'})],pack);
  assert.equal(p.recommendation.level,'C2');assert.equal(p.attempts,0);assert.equal(p.rewards.size,0);assert.equal(p.retained,0);assert.equal(p.due.length,0);
 });
 test('unfinished, forged and failed placement summaries never establish advanced evidence',()=>{
  const rs=responses(false),payload={method:'starting-point-v2',responses:rs,sessionId:'test',level:'C2',count:10};
  assert.equal(deriveProgress([event({...payload,stage:'progress'})],pack).recommendation,null);
- assert.equal(deriveProgress([event({...payload,stage:'accepted'})],pack).recommendation.level,'A1');
+ assert.equal(deriveProgress([event({...payload,stage:'accepted'})],pack).recommendation,null,'A contradictory summary cannot become an accepted result');
+ const honest={...startingPointResult(rs,placementItems,activities,assess),sessionId:'test',stage:'accepted'};
+ assert.equal(deriveProgress([event(honest)],pack).recommendation.level,'A1');
  assert.equal(deriveProgress([event({...payload,responses:[],stage:'accepted'})],pack).recommendation,null);
 });
 test('retaking or manually changing the starting range preserves actual past learning',()=>{

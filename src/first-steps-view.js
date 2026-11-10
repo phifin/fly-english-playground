@@ -1,0 +1,30 @@
+import {guideArt} from './guide-art.js';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ranges=[['A1','I’m just beginning','Tôi mới bắt đầu'],['A2','I understand simple everyday English','Tôi hiểu những câu đơn giản hằng ngày'],['B1','I can follow familiar stories and conversations','Tôi hiểu chuyện và hội thoại quen thuộc'],['B2','I can discuss ideas and read detailed texts','Tôi có thể trao đổi ý kiến và đọc bài dài'],['C1','I’m comfortable with complex English','Tôi hiểu và sử dụng tiếng Anh phức tạp'],['C2','I practise subtle meaning and precise expression','Tôi muốn luyện sắc thái và cách diễn đạt chính xác']];
+export function firstStepsView({language='en',manual=false,revisit=false,mode='balanced'}={}){
+ const t=(en,vi)=>language==='vi'?vi:en;
+ const card=(art,title,copy,action)=>`<button class="guide-card" data-action="${action}">${guideArt(art)}<strong>${title}</strong><span>${copy}</span><span aria-hidden="true">→</span></button>`;
+ const child=`<button class="first-steps-child" data-action="entry-pictures">${guideArt('pictures')}<span><strong>${t('Learning with a child who isn’t reading yet?','Bé chưa tự đọc được?')}</strong><span>${t('Start with pictures and a grown-up →','Cùng người lớn chơi với tranh →')}</span></span></button>`;
+ const choices=`<div class="first-steps-choices">${card('beginner',t('Start with the basics','Học từ đầu'),t('Familiar words. One small step at a time.','Từ quen thuộc, câu ngắn, học từng bước.'),'entry-beginner')}${card('placement',t('Help me choose','Giúp tôi chọn mức học'),t('Try a short reading check. No timer.','Thử vài câu đọc hiểu, không bấm giờ.'),'placement-begin')}${card('manual',t('I know my level','Tôi đã biết trình độ'),t('Choose the description that fits you.','Chọn mô tả phù hợp với bạn.'),'entry-manual')}</div>`;
+ return `<section class="first-steps" aria-labelledby="first-steps-title" data-level-setup><header class="first-steps-heading"><div><p class="eyebrow">${t('LET’S FIND YOUR START','CHỌN MỨC HỌC ĐỂ BẮT ĐẦU')}</p><h1 id="first-steps-title">${t('English that feels right for you.','Bắt đầu với bài vừa sức')}</h1><p>${t('Choose a starting point before your first lesson. You can change it later.','Chọn mức học trước khi làm bài. Bạn có thể đổi lại bất cứ lúc nào.')}</p></div>${guideArt('welcome')}</header>${manual?`<button class="back-link" data-action="entry-options">← ${t('Other ways to start','Chọn cách khác')}</button><div class="first-steps-ranges">${ranges.map(([id,en,vi])=>`<button class="guide-card" data-action="placement-manual" data-value="${id}"><strong>${esc(t(en,vi))}</strong><span>${id}</span></button>`).join('')}</div>`:mode==='kids'?child+choices:choices+child}${revisit?`<button class="text-button" data-action="home">${t('Keep my current starting point','Giữ mức học hiện tại')}</button>`:''}<p class="fineprint">${t('A starting recommendation helps choose practice. It is not a certificate of English ability.','Mức khởi đầu giúp chọn bài luyện tập, không phải chứng nhận trình độ tiếng Anh.')}</p></section>`;
+}
+
+const guidance={
+ home:['Choose the highlighted activity. I’ll show you the first step.','Chọn hoạt động được đánh dấu. Mình sẽ hướng dẫn bước đầu nhé.'],
+ choice:['Read the short text. Choose one answer, then check it.','Đọc đoạn ngắn, chọn một câu trả lời rồi kiểm tra.'],
+ gap:['Type the missing word in the box, then check your answer.','Điền từ còn thiếu vào ô rồi kiểm tra.'],
+ match:['Choose a matching answer for each line. Then check the pairs.','Chọn phần phù hợp cho từng dòng rồi kiểm tra các cặp.'],
+ order:['Use the up and down arrows to put the pieces in order. Then check your answer.','Dùng mũi tên lên, xuống để xếp các phần theo thứ tự rồi kiểm tra.'],
+ writing:['Write your own answer. Use the checklist to review it; there is no automatic writing score.','Viết câu trả lời của bạn rồi tự xem lại theo danh sách. Bài viết không được chấm điểm tự động.'],
+ memory:['Turn over two cards. Look for the same picture.','Lật hai thẻ, tìm hai hình giống nhau.'],
+ pictures:['Tap a picture. Listen together, then try the next one.','Chạm vào hình. Cùng nghe rồi thử hình tiếp theo.'],
+ workshop:['Choose a toy, then tap a glowing place to put it there.','Chọn đồ chơi rồi chạm vào một chỗ được đánh dấu để đặt vào.'],
+ review:['Choose something to practise again. Your earlier progress stays saved.','Chọn bài muốn luyện lại. Kết quả trước đó vẫn được giữ.'],
+};
+export function guideView({topic,language='en',complete=false,help=false,variant=null}={}){
+ const t=(en,vi)=>language==='vi'?vi:en;
+ const pictureGuidance={explore:['Tap the big picture to hear its name. Say it together, then go to the next picture.','Chạm vào tranh lớn để nghe tên gọi. Cùng đọc rồi xem tranh tiếp theo.'],find:['Tap the speaker to hear a word, then choose its picture.','Chạm loa để nghe một từ rồi chọn bức tranh phù hợp.'],match:['Look at the big picture. Tap the small picture that looks the same.','Nhìn tranh lớn rồi chạm vào hình nhỏ giống tranh mẫu.']};
+ const pictureVariant=topic.startsWith('picture-')?topic.slice(8):variant;
+ const copy=(topic==='pictures'||topic.startsWith('picture-'))&&pictureGuidance[pictureVariant]?pictureGuidance[pictureVariant]:guidance[topic];if(!copy)return '';
+ return `<aside class="guide-bubble" aria-label="${t('Nim’s guide','Nim hướng dẫn')}" data-guide-topic="${topic}">${guideArt(complete?'celebrate':'help')}<div><strong>${complete?t('You did it!','Bạn làm được rồi!'):t('Let’s try it together','Cùng thử nhé')}</strong><p>${complete?t('Your response is saved. Read the feedback, then continue when you’re ready.','Câu trả lời đã được lưu. Xem giải thích rồi tiếp tục nhé.'):t(...copy)}</p><div class="guide-actions">${complete?`<button data-action="guide-complete" data-value="${topic}">${t('Got it','Mình hiểu rồi')}</button>`:`<button class="text-button" data-action="guide-skip" data-value="${topic}">${help?t('Close help','Đóng hướng dẫn'):t('I can try on my own','Tôi muốn tự thử')}</button>`}</div></div></aside>`;
+}

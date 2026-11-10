@@ -26,11 +26,33 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   }
   await page.locator('#traveler-name').fill('Bé An');await page.locator('[name="mode"][value="kids"]').check();
   await page.locator('[data-form="create-profile"] button[value="play"]').click();await ready(page);
+  await page.locator('[data-level-setup]').waitFor();
+  assert.equal(await page.locator('.main-nav button').count(),0,'First-time level setup is focused, not an optional hidden setting');
+  for(const width of [1440,390,320]){
+   await page.setViewportSize({width,height:844});
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Level choices fit narrow screens');
+   const childStart=await button('entry-pictures').boundingBox();assert.ok(childStart.y+childStart.height<844,'Kids setup keeps the pre-reader option in the first viewport');
+   await axe('Focused level setup '+width,page);
+   await page.screenshot({path:fileURLToPath(new URL(`release-first-steps-${width}.png`,directory)),fullPage:true});
+  }
+  await play('entry-pictures');await play('home');
   assert.equal(await page.locator('.main-nav button').count(),3);
   assert.doesNotMatch(await page.locator('.account-pill').innerText(),/Khách|thiết bị này/);
-  assert.match(await page.locator('.alert.notice').innerText(),/Bé An/);
+  // Test the actual hover/focus states that previously inherited white-on-white.
+  await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);
+  await button('dismiss-notice').waitFor();
+  {
+   await button('dismiss-notice').hover();
+   const contrast=await button('dismiss-notice').evaluate(el=>{const s=getComputedStyle(el),l=c=>{const v=c.match(/[\d.]+/g).slice(0,3).map(n=>{const x=Number(n)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;});return .2126*v[0]+.7152*v[1]+.0722*v[2];};const a=l(s.color),b=l(s.backgroundColor);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);});
+   assert.ok(contrast>=4.5,'Toast dismiss hover retains readable text contrast');
+   await page.keyboard.press('Tab');
+   await button('dismiss-notice').focus();
+   assert.equal(await button('dismiss-notice').evaluate(el=>parseFloat(getComputedStyle(el).outlineWidth)>=2),true,'Keyboard dismiss focus stays visible');
+   await axe('Notification hover and keyboard focus',page);
+   await page.screenshot({path:fileURLToPath(new URL('release-notice-focus-320.png',directory))});
+  }
   await page.screenshot({path:fileURLToPath(new URL('release-design-created-320.png',directory)),fullPage:true});
-  await play('dismiss-notice');await play('account');await page.locator('.account-tools [data-action="settings"]').waitFor();
+  if(await button('dismiss-notice').count())await play('dismiss-notice');await play('account');await page.locator('.account-tools [data-action="settings"]').waitFor();
   assert.equal(await page.locator('[data-form="family-invite"]').count(),0);
   await play('home');await play('little-open');await play('memory-open');
   const before=(await snapshot()).events.filter(e=>e.kind==='attempt').length;

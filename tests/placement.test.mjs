@@ -29,5 +29,5 @@ test('duplicates, malformed answers and submitted correctness flags cannot mint 
  const response={activityId:'A20',answer:false,skipped:false,correct:true};
  assert.deepEqual(placementEvidence([response,response,{activityId:'unknown',answer:true,skipped:false}],items,activities,grade).map(e=>e.correct),[false]);
  assert.deepEqual(placementEvidence([{activityId:'A20',answer:{correct:true},skipped:false}],items,activities,grade),[]);
- const p={method:'starting-point-v2',sessionId:'x',responses:[]};assert.deepEqual(savedPlacement([{kind:'placement',at:'2026-10-26',id:'a',payload:p}]),p);
+ const p={method:'starting-point-v2',sessionId:'x',stage:'progress',responses:[]};assert.deepEqual(savedPlacement([{kind:'placement',at:'2026-10-26',id:'a',payload:p}]),p);
 });

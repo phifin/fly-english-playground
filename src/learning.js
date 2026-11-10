@@ -1,5 +1,5 @@
 /** Deterministic learning evidence. World rewards never imply CEFR certification. */
-import {startingPointResult} from './placement.js';
+import {PLACEMENT_METHODS,placementPool,acceptedPlacementResult} from './placement.js';
 import {placementItems} from './placement-content.js';
 export const LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
 export const REGIONS = [
@@ -58,6 +58,11 @@ export function validDraftAnswer(a,value) {
 const DAY=86400000, INTERVALS=[1,3,7,14,30];
 export function indexContent(pack) {
   const missions=new Map(),activities=new Map();
+  // Historical definitions are read-only evidence. Active replacements have new
+  // IDs, so an old answer can never be graded against a revised answer key.
+  const activeIds=new Set(pack.missions.flatMap(m=>m.activities.map(a=>a.id)));
+  for(const m of pack.historicalMissions??[])for(const a of m.activities)
+    if(!activeIds.has(a.id))activities.set(a.id,{...a,missionId:m.id,level:m.level,retired:true});
   for(const m of pack.missions) { missions.set(m.id,m); for(const a of m.activities) activities.set(a.id,{...a,missionId:m.id,level:m.level}); }
   return {missions,activities};
 }
@@ -72,13 +77,13 @@ export function deriveProgress(events, pack, now=Date.now()) {
     const p=event.payload??{};
     if(event.kind==='support'&&activities.has(p.activityId))supportDays[p.activityId]=event.at.slice(0,10);
     if(event.kind==='placement') {
-      if(p.method==='starting-point-v2') {
+      if(PLACEMENT_METHODS.includes(p.method)) {
         if(p.stage==='accepted'&&typeof p.sessionId==='string'&&Array.isArray(p.responses)) {
-          const result=startingPointResult(p.responses,placementItems,activities,assess);
+          const result=acceptedPlacementResult(p,placementPool(pack,p.method,placementItems),activities,assess);
           // Recompute from actual responses; imported result labels cannot promote a learner.
-          if(result.count>=4)recommendation={...result,at:event.at};
+          if(result)recommendation={...result,at:event.at};
         }
-      } else if(LEVELS.includes(p.level)) recommendation={level:p.level,at:event.at,method:p.method??'orientation',count:p.count??0};
+      } else if((p.method===undefined||['manual-start','content-orientation','orientation'].includes(p.method))&&LEVELS.includes(p.level)) recommendation={level:p.level,at:event.at,method:p.method??'orientation',count:p.count??0};
     }
     if(event.kind==='observatory') observatory=p;
     if(event.kind==='draft' && activities.has(p.activityId)&&validDraftAnswer(activities.get(p.activityId),p.answer)) drafts[p.activityId]={...p,savedAt:event.at};
@@ -87,7 +92,7 @@ export function deriveProgress(events, pack, now=Date.now()) {
     let result;
     try { result=assess(a,p.answer); } catch { continue; }
     if(!result.complete) continue;
-    const r=records[a.id]??={id:a.id,missionId:a.missionId,focus:a.focus,level:a.level,attempts:0,correct:0,independent:0,completed:false,streak:0,due:null,lastDay:null,last:null};
+    const r=records[a.id]??={id:a.id,missionId:a.missionId,focus:a.focus,level:a.level,retired:a.retired===true,attempts:0,correct:0,independent:0,completed:false,streak:0,due:null,lastDay:null,last:null};
     r.attempts++; r.last={...p,at:event.at,result}; r.completed ||= result.correct===true||result.correct===null;
     if(result.correct===true) r.correct++;
     if(result.automatic) {
@@ -110,10 +115,10 @@ export function deriveProgress(events, pack, now=Date.now()) {
     delete drafts[a.id];
   }
   // Accomplishments derive from actual complete activities, never submitted reward flags.
-  for(const m of missions.values()) if(m.activities.every(a=>records[a.id]?.completed)) rewards.add(m.id);
-  const due=Object.values(records).filter(r=>r.due!==null&&r.due<=now).sort((a,b)=>a.due-b.due);
-  const practiced=Object.values(records), graded=practiced.filter(r=>activities.get(r.id).type!=='writing');
-  return {records,rewards,due,drafts,recommendation,observatory,attempts:practiced.reduce((s,r)=>s+r.attempts,0),independent:graded.filter(r=>r.independent>0).length,retained:graded.filter(r=>r.streak>=3).length};
+  for(const m of [...missions.values(),...(pack.historicalMissions??[])]) if(m.activities.every(a=>records[a.id]?.completed)) rewards.add(m.id);
+  const due=Object.values(records).filter(r=>!r.retired&&r.due!==null&&r.due<=now).sort((a,b)=>a.due-b.due);
+  const practiced=Object.values(records), graded=practiced.filter(r=>activities.get(r.id).type!=='writing'),activeGraded=graded.filter(r=>!r.retired),historicalGraded=graded.filter(r=>r.retired);
+  return {records,rewards,due,drafts,recommendation,observatory,attempts:practiced.reduce((s,r)=>s+r.attempts,0),independent:graded.filter(r=>r.independent>0).length,retained:graded.filter(r=>r.streak>=3).length,activeEvidence:{independent:activeGraded.filter(r=>r.independent>0).length,retained:activeGraded.filter(r=>r.streak>=3).length},historicalEvidence:{independent:historicalGraded.filter(r=>r.independent>0).length,retained:historicalGraded.filter(r=>r.streak>=3).length}};
 }
 
 export function availableMissions(pack,level,progress) {
@@ -138,7 +143,7 @@ export function newEvent(kind,payload,clock=new Date()) {
 
 /** Small transparent recommendation heuristic, never a proficiency promotion. */
 export function suggestPractice(progress,level){
- const recent=Object.values(progress.records).filter(r=>r.level===level&&r.last?.result.automatic).sort((a,b)=>b.last.at.localeCompare(a.last.at)).slice(0,12);
+ const recent=Object.values(progress.records).filter(r=>!r.retired&&r.level===level&&r.last?.result.automatic).sort((a,b)=>b.last.at.localeCompare(a.last.at)).slice(0,12);
  const difficult=recent.filter(r=>r.last.result.correct===false);
  if(difficult.length>=2)return {action:'review',level,reason:'repair',activityIds:difficult.map(r=>r.id)};
  if(recent.length>=8&&recent.filter(r=>r.independent>0&&r.last.result.correct===true).length/recent.length>=.85&&LEVELS.indexOf(level)<5)return {action:'region',level:LEVELS[LEVELS.indexOf(level)+1],reason:'stretch'};
