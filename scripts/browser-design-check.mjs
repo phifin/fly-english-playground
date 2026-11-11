@@ -8,6 +8,17 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
  const savedMemory=async()=>(await snapshot()).events.filter(e=>e.kind==='mission'&&e.payload?.experience==='memory-pairs-v1')
   .sort((a,b)=>a.at.localeCompare(b.at)||a.id.localeCompare(b.id)).at(-1).payload.session;
  try{
+  // A real Pages error document, not a redirect or an SPA fallback for missing data.
+  await page.goto(new URL('404.html',base).href);await page.locator('[data-atlas-not-found]').waitFor();
+  for(const width of [320,1440]){
+   await page.setViewportSize({width,height:844});
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+   const home=page.locator('[data-atlas-not-found] a');await home.focus();
+   assert.equal(await home.getAttribute('href'),base.pathname);
+   await axe('Bilingual missing-page recovery '+width,page);
+   await page.screenshot({path:fileURLToPath(new URL(`release-not-found-${width}.png`,directory)),fullPage:true});
+  }
+  await page.setViewportSize({width:390,height:844});
   let release;const gate=new Promise(resolve=>{release=resolve;});
   await page.route('**/src/main.js',async route=>{await gate;await route.continue();});
   await page.goto(base.href,{waitUntil:'commit'});

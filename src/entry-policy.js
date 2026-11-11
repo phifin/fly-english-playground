@@ -1,7 +1,7 @@
 import {PLACEMENT_METHODS,placementPool,acceptedPlacementResult} from './placement.js';
 
 const LEVELS=Object.freeze(['A1','A2','B1','B2','C1','C2']);
-export const GUIDE_TOPICS=Object.freeze(['home','choice','gap','match','order','writing','memory','pictures','picture-explore','picture-find','picture-match','workshop','review']);
+export const GUIDE_TOPICS=Object.freeze(['home','learning','progress','adventure','choice','gap','match','order','writing','memory','pictures','picture-explore','picture-find','picture-match','workshop','review']);
 const own=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
 const identifier=value=>typeof value==='string'&&/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(value);
 const plain=value=>Boolean(value&&typeof value==='object'&&!Array.isArray(value)&&[Object.prototype,null].includes(Object.getPrototypeOf(value)));

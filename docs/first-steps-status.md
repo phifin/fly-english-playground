@@ -1,3 +1,15 @@
+# First-time learning refinement — validated release candidate, 10 November 2026
+
+Candidate `f3abe4d7aafca9fd0f6fade18ae6629f8b02b8b0` passed workflow `42780103175`: 405 ordinary tests, four actual Auth/Firestore emulator tests, 37 browser journeys, 31 axe surfaces with zero violations, and zero unexpected browser errors. Runtime release `9a1ea8144f3b0c640b57`; 65 public files / 1186162 bytes verified. Activated contextual help is verified, including receipt-before-disclosure, reload persistence and immutable post-answer review. Screenshots at 320/390/1440 were inspected. Evidence artifact `13744679522`, SHA256 `03123f5d95cefa63c68cb76ba2627eb5184e140ddb8846262e25b061c0542caa`.
+
+The update adds explicit first learning-range setup, remembered/replayable mechanic guidance, illustrated next actions, compact language controls, notification interaction fixes and an independently accepted practice edition. All 120 activities audited, 22 revised with new IDs, 56 supported including all 40 A1/A2. Historical definitions and placement pools remain available. See `data/reviews/practice-support-sol-review.md` for acceptance and educational limits. Root curriculum expansion remains unaccepted and separate.
+
+This commit is prepared for production; do not call deployment verified until its main workflow's deploy and verify-production jobs succeed. No Firebase rules, credentials, account schemas, billing or existing learner data were changed. Real Google account switching/cross-device success, physical Safari/mobile behavior, subjective enjoyment and psychometric validity remain outside the verified evidence.
+
+## Earlier project state
+
+## Candidate implementation notes
+
 # First-time learning refinement — accepted candidate, 10 November 2026
 
 The corrected edition is independently accepted and activated in the candidate, not yet deployed. All 120 original activities were audited: 22 versioned revisions, 60 narrow practice-only judgments and 38 retain decisions. Contextual help covers 56 tasks, including all 40 A1/A2 activities. See `data/reviews/practice-support-sol-review.md` for editorial decisions and placement limitations.

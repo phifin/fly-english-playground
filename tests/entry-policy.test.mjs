@@ -82,7 +82,7 @@ test('receipt ordering follows timestamps and deterministic IDs rather than impo
  assert.equal(initialLearningState(profile,sameTime.reverse()).level,'A2');
 });
 test('guidance skip/completion persist independently by topic without exposing other profiles',()=>{
- assert.equal(GUIDE_TOPICS.length,13);
+ assert.equal(new Set(GUIDE_TOPICS).size,16);for(const topic of ['home','learning','progress','adventure'])assert.ok(GUIDE_TOPICS.includes(topic));
  const history=[event('mission',guide('home','skipped')),event('mission',guide('memory','completed'),1),event('mission',guide('home','completed'),2)];
  assert.equal(guideStatus(history,'home'),'completed');assert.equal(guideStatus(history,'memory'),'completed');assert.equal(guideStatus(history,'order'),'new');
  assert.equal(guideStatus([event('mission',guide('home','skipped'))],'home'),'skipped');

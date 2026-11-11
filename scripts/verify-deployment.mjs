@@ -75,7 +75,7 @@ export async function verifyDeployment({ url, expectedRelease, fetcher = globalT
   assert.deepEqual([...new Set(library.missions.map(mission => mission.level))].sort(), ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
   assert.equal(world.boards.length, library.missions.length, 'Deployed missions and boards must stay together.');
   assert.ok(library.missions.every(mission => world.boards.some(board => board.missionId === mission.id && board.level === mission.level)));
-  for (const path of privatePaths) assert.equal((await get(path)).status, 404, `Private repository path was published: ${path}`);
+  for (const path of privatePaths) assert.equal((await get(path)).status, 404, `Cannot confirm private path is absent (expected HTTP 404): ${path}`);
   return { passed: true, url: base.href, releaseId: expectedRelease, filesVerified: manifest.files.length,
     publicBytes: totalBytes, missions: library.missions.length, activities: library.missions.reduce((count, mission) => count + mission.activities.length, 0),
     boards: world.boards.length, privatePathsChecked: privatePaths.length, elapsedMs: Date.now() - started };

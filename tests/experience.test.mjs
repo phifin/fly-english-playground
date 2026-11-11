@@ -24,7 +24,7 @@ test('casual sessions and round completion never create language mastery or plac
  const p=journeyProgress(history,pack,[]);assert.equal(p.attempts,0);assert.equal(p.recommendation,null);assert.equal(p.rewards.size,0);assert.deepEqual(p.records,{});
 });
 test('home offers independent activity choices in every presentation and escapes the learner name',()=>{
- for(const mode of ['kids','balanced','serious'])for(const language of ['en','vi']){const html=homeView({language,name:'<script>',mode,level:'A1',due:0,resume:true});for(const action of ['little-open','quick-start','atlas','start-placement'])assert.ok(html.includes(`data-action="${action}"`));assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));}
+ for(const mode of ['kids','balanced','serious'])for(const language of ['en','vi']){const html=homeView({language,name:'<script>',mode,level:'A1',due:0,resume:true});for(const action of ['little-open','quick-start','atlas','adventures','library','journal'])assert.ok(html.includes(`data-action="${action}"`));assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));}
 });
 test('family management is separate and requires both approved status and server owner role',()=>{
  const owner={configured:true,uid:'owner',approved:true,familyOwner:true};

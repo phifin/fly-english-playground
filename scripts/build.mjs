@@ -47,7 +47,7 @@ export async function build({ sourceRoot = defaultRoot, config = null } = {}) {
   if (!config) config = (await import(`${pathToFileURL(join(sourceRoot, 'public-config.js')).href}?build=${Date.now()}`)).cloudConfig;
   if (config?.enabled === true && !validCloudConfig(config)) throw new Error('Enabled cloud configuration must be complete and internally consistent before publishing.');
   const paths = [];
-  for (const rootFile of ['index.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js']) {
+  for (const rootFile of ['index.html', '404.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js']) {
     try {
       const info = await lstat(join(sourceRoot, rootFile));
       if (!info.isFile() || info.isSymbolicLink()) throw new Error(`Public root must be a regular file: ${rootFile}`);
@@ -73,7 +73,7 @@ export async function build({ sourceRoot = defaultRoot, config = null } = {}) {
     files.set(path, body);
   }
   const releaseId = hash([...files].map(([path, body]) => `${path}:${hash(body)}`).join('\n')).slice(0, 20);
-  for (const path of ['index.html', 'observatory.html'].filter(path => files.has(path))) {
+  for (const path of ['index.html', '404.html', 'observatory.html'].filter(path => files.has(path))) {
     let html = files.get(path).toString('utf8');
     html = html.replace(/<meta\s+[^>]*http-equiv=["']Content-Security-Policy["'][^>]*>/gi, '');
     const policy = contentSecurityPolicy(config).replaceAll('&', '&amp;').replaceAll('"', '&quot;');

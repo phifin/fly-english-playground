@@ -7,7 +7,7 @@ export const contentTypes = {
   '.webp': 'image/webp', '.avif': 'image/avif', '.gif': 'image/gif', '.ico': 'image/x-icon',
   '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wav': 'audio/wav',
 };
-const rootFiles = new Set(['index.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js', 'offline-manifest.json', 'build-report.json']);
+const rootFiles = new Set(['index.html', '404.html', 'observatory.html', 'styles.css', 'atlas.css', 'public-config.js', 'sw.js', 'offline-manifest.json', 'build-report.json']);
 const assetTypes = new Set(['.css', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.ico', '.woff2', '.mp3', '.ogg', '.wav']);
 
 export function isPublicRelative(relative) {
