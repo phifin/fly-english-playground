@@ -423,6 +423,7 @@ try {
     assert.equal(await page.locator('meta[name="atlas-release"]').getAttribute('content'), expectedRelease,
       'The actual browser must load the expected deployed release, not an older cached shell.');
     check('The browser loaded the expected release at its configured project URL.');
+  await verifyLayout({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   }
 
   // Keep this first-visit journey independent of the three travelers whose
@@ -550,7 +551,8 @@ try {
     assert.equal(committed.profiles[0].settings.mode, 'kids');
     assert.deepEqual(learningEvents(committed.events), [], 'Resume and mode changes must preserve the untouched learning journal.');
     report.arrival = { appearance, familySelector: 'checked in layout journey', language: 'vi', inherited: true, resumed: true };
-    await arrivalPage.locator('.main-nav [data-action="library"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('.main-nav [data-action="home"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('[data-action="little-open"]:visible').first().click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
     const pictureWords=['lantern','bell','boat','shell','kite','leaf'];
     await arrivalPage.screenshot({path:fileURLToPath(new URL('release-picture-play-vietnamese.png',directory)),fullPage:true});
@@ -1421,7 +1423,6 @@ try {
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
   await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
-  await verifyLayout({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   await verifyFirstSteps({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   assert.deepEqual(report.errors, [], 'New design journeys must also complete without console errors or uncaught exceptions.');
   report.passed = true;

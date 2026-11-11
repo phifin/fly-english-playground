@@ -53,7 +53,7 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');await fits();await shot('learning-vi-text-200');
   await page.evaluate(()=>document.documentElement.style.fontSize='');
   // Native family controls remain available when adding another learner.
-  await play('account');await play('profiles');
+  await play('account');await play('profiles');await play('start-traveler');
   const form=page.locator('[data-form="create-profile"]');await form.locator('.family-options > summary').click();await ready(page);
   const kind=form.locator('[name="kind"]');await kind.focus();
   const appearance=await kind.evaluate(el=>{const s=getComputedStyle(el);return {height:el.getBoundingClientRect().height,padding:parseFloat(s.paddingRight),focus:s.outlineStyle!=='none'||s.boxShadow!=='none'};});
