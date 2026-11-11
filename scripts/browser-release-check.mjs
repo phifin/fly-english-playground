@@ -549,7 +549,7 @@ try {
     assert.equal(committed.profiles[0].settings.language, 'vi');
     assert.equal(committed.profiles[0].settings.mode, 'kids');
     assert.deepEqual(learningEvents(committed.events), [], 'Resume and mode changes must preserve the untouched learning journal.');
-    report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
+    report.arrival = { appearance, familySelector: 'checked in layout journey', language: 'vi', inherited: true, resumed: true };
     await arrivalPage.locator('.main-nav [data-action="library"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
     const pictureWords=['lantern','bell','boat','shell','kite','leaf'];
