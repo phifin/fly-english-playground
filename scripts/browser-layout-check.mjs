@@ -20,16 +20,16 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    // Read the paired rectangles in one browser task. Account restoration can
    // redraw the whole app between two separate locator.boundingBox calls.
    const handle=await page.waitForFunction(()=>{
-    const target=document.querySelector('[data-guide-target]'),bubble=document.querySelector('.coach-popover');
-    if(!target||!bubble||bubble.hidden||!target.getClientRects().length)return false;
+    const target=document.querySelector('[data-guide-target]'),bubble=document.querySelector('.coach-popover'),shade=document.querySelector('.coach-shade');
+    if(!target||!bubble||!shade||bubble.hidden||!target.getClientRects().length)return false;
     const t=target.getBoundingClientRect().toJSON(),b=bubble.getBoundingClientRect().toJSON();
     if(b.bottom>innerHeight+1||b.right>innerWidth+1)return false;
-    return {t,b};
+    return {t,b,pointerEvents:getComputedStyle(shade).pointerEvents};
    });
-   const {t,b}=await handle.jsonValue();await handle.dispose();const v=page.viewportSize();
+   const {t,b,pointerEvents}=await handle.jsonValue();await handle.dispose();const v=page.viewportSize();
    assert.ok(b.x>=0&&b.y>=0&&b.x+b.width<=v.width+1&&b.y+b.height<=v.height+1,'Coach fits the screen');
    assert.ok(b.y+b.height<=t.y+1||b.y>=t.y+t.height-1||b.x+b.width<=t.x||b.x>=t.x+t.width,'Guide does not cover its action');
-   assert.equal(await page.locator('.coach-shade').evaluate(el=>getComputedStyle(el).pointerEvents),'none');
+   assert.equal(pointerEvents,'none');
   }
   await coachContract();await shot('home-coach-vi-mobile');
   await page.setViewportSize({width:768,height:1024});await coachContract();await shot('home-coach-vi-tablet');
