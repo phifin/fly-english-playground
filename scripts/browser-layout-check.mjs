@@ -17,8 +17,16 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await page.locator('#traveler-name').fill('Minh');await page.locator('[data-form="create-profile"] button[value="play"]').click();await ready(page);
   await page.locator('[data-level-setup]').waitFor();await play('entry-beginner');await page.locator('.coach-popover').waitFor();
   async function coachContract(){
-   await page.waitForFunction(()=>{const t=document.querySelector('[data-guide-target]'),b=document.querySelector('.coach-popover');return t&&b&&!b.hidden;});
-   const b=await page.locator('.coach-popover').boundingBox(),t=await page.locator('[data-guide-target]').boundingBox(),v=page.viewportSize();
+   // Read the paired rectangles in one browser task. Account restoration can
+   // redraw the whole app between two separate locator.boundingBox calls.
+   const handle=await page.waitForFunction(()=>{
+    const target=document.querySelector('[data-guide-target]'),bubble=document.querySelector('.coach-popover');
+    if(!target||!bubble||bubble.hidden||!target.getClientRects().length)return false;
+    const t=target.getBoundingClientRect().toJSON(),b=bubble.getBoundingClientRect().toJSON();
+    if(b.bottom>innerHeight+1||b.right>innerWidth+1)return false;
+    return {t,b};
+   });
+   const {t,b}=await handle.jsonValue();await handle.dispose();const v=page.viewportSize();
    assert.ok(b.x>=0&&b.y>=0&&b.x+b.width<=v.width+1&&b.y+b.height<=v.height+1,'Coach fits the screen');
    assert.ok(b.y+b.height<=t.y+1||b.y>=t.y+t.height-1||b.x+b.width<=t.x||b.x>=t.x+t.width,'Guide does not cover its action');
    assert.equal(await page.locator('.coach-shade').evaluate(el=>getComputedStyle(el).pointerEvents),'none');
@@ -45,7 +53,7 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await play('study-begin');await page.locator('.study-session .activity-prompt').waitFor();
   assert.equal(await page.locator('.story-expedition').count(),0,'Lesson does not route into adventure');
   assert.equal((await snapshot()).profiles[0].settings.mode,mode,'Focused lesson preserves experience preference');
-  await dismissGuide();await shot('direct-lesson-vi-mobile');await axe('Direct lesson mobile',page);
+  await coachContract();await shot('direct-lesson-coach-vi-mobile');await dismissGuide();await shot('direct-lesson-vi-mobile');await axe('Direct lesson mobile',page);
   await play('home');await play('adventures');await play('begin');await visibleAction('.story-next .primary','Adventure immediate action');
   await shot('story-first-action-vi-mobile');await play('activity');await page.locator('.activity-panel').waitFor();await dismissGuide();await fits();await shot('story-response-vi-mobile');
   await play('journal');await axe('Compact learning progress mobile',page);

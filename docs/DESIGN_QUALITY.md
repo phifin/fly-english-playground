@@ -10,6 +10,16 @@ Nunito is the display/brand face; ordinary lesson text and controls retain a rea
 
 ## Shared interaction rules
 
+### Layout and guidance gate (November 2026)
+
+Learning contains direct lessons, short practice, review and listening. Story adventures belong to Activities. Progress leads with current independent evidence, retention and due review; collections remain secondary. Preserve these responsibilities when adding routes. A focused lesson must not change the stored experience mode.
+
+Use screen-specific composition, not a global reduction in text size. Check the actual first viewport at 320×740, 390×844, 768×1024, 1280×800 and 1920×1080 in both languages. The primary action must be visible; Progress must show its metrics. Long lesson text may scroll. Check 200% text scaling separately and describe it accurately rather than claiming browser zoom or mobile-device certification.
+
+Interactive coaching must target a real, visible, enabled control, preserve its focus treatment and existing accessible description, follow scrolling/resizing, and leave the control operable. Short guidance is nonmodal; Escape and the visible close action dismiss it, and Help replays it. Never infer language mastery from completing a guide. Avoid automatic repeated scrolling and overlays covering the highlighted action.
+
+`scripts/browser-layout-check.mjs` records task bounds and viewport screenshots and runs within the existing release workflow. Inspect those screenshots, including the tooltip window and phone layouts, before promotion to main. Screenshot generation alone is not review. Keep exact backup, evidence and account-isolation assertions when navigation changes; update the route a person follows rather than bypassing the interface.
+
 - Show the task before decoration. Entry's field and primary action must fit representative first viewports; never let a hero illustration precede an active form on a phone.
 - Keep visible focus, native controls, 44px targets, wrapping labels and clear active navigation. Test 320, 390 and 1440px, including longer Vietnamese labels and names.
 - Use compact dismissible notifications for saved actions. Keep errors close to the task. A dialog is appropriate for destructive cloud removal or a meaningful game completion, with native focus containment, Escape and a visible action. Do not turn every correct answer into a modal.

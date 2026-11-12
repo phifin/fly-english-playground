@@ -83,7 +83,7 @@ async function rememberGuide(topic,state='completed'){
 }
 function renderGuidance(){
  const topic=guideTopic();if(!topic)return;
- const selector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid button:not(:disabled)',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
+ const selector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
  const target=selector?app.querySelector(selector):null,heading=app.querySelector('.activity-top')??app.querySelector('main h1');
  if(!heading)return;
  const shown=ui.guideReplay===topic||guideStatus(events,topic)==='new';
@@ -397,6 +397,12 @@ function render(focusHeading=false){
  if(focusHeading){const h=app.querySelector('h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true});}scrollTo({top:0,behavior:'instant'});}
  else if(focusKey){const target=[...app.querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===focusKey);if(target){target.focus({preventScroll:true});if(selection&&'setSelectionRange'in target&&target.type!=='checkbox')try{target.setSelectionRange(...selection);}catch{}}}
  renderGuidance();
+ // Coaching is mounted after scroll restoration. Restore its controls too
+ // when a background account/status update redraws this same screen.
+ if(!focusHeading&&active?.dataset?.action?.startsWith('guide-')){
+  const replacement=[...app.querySelectorAll('[data-action]')].find(el=>el.dataset.action===active.dataset.action&&el.dataset.value===active.dataset.value);
+  replacement?.focus({preventScroll:true});
+ }
  app.setAttribute('aria-busy',String(ui.busy));
 }
 
