@@ -226,11 +226,15 @@ try {
     const form = page.locator('[data-form="create-profile"]');
     await form.locator('[name="name"]').fill(name);
     await form.locator(`[name="mode"][value="${mode}"]`).check(); await ready();
-    await revealDetails(form.locator('[name="kind"]'));
-    await form.locator('[name="kind"]').selectOption(kind);
-    await ready();
-    if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
-    await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
+    if(await form.locator('[name="kind"]').count()){
+      await revealDetails(form.locator('[name="kind"]'));
+      await form.locator('[name="kind"]').selectOption(kind);await ready();
+      if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
+      await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
+    }else{
+      assert.equal(kind,'independent');assert.equal(guardianId,'','A first learner cannot silently become a dependent');
+      await preserveFormThroughNotification('create-profile', { name });
+    }
     assert.equal(await form.locator(`[name="mode"][value="${mode}"]`).isChecked(), true,
       'A background update must preserve the selected way to play.');
     await click(form.locator('button[type="submit"][value="play"]'));

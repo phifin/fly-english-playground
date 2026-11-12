@@ -28,6 +28,7 @@
 @media(forced-colors:active){.coach-shade{box-shadow:none;border-color:Highlight}.coach-popover{border:2px solid CanvasText}}
 
 /* Checked against actual phone and text-scaled browser captures. */
+.skip-link{position:fixed;top:0;transform:translateY(-120%);max-width:calc(100vw - 2rem)}.skip-link:focus{top:1rem;transform:none;z-index:1100}
 .heading-line{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.heading-line h1{margin-right:auto}.heading-line .help-launcher{flex-shrink:0;margin:0}.activity-top{flex-wrap:wrap;gap:.4rem}.activity-top .help-launcher{margin-left:0}
 .masthead{flex-wrap:wrap}.masthead .edition{white-space:nowrap;flex:1 0 auto}.wordmark{max-width:100%;white-space:normal}
 .study-steps{display:flex;gap:.4rem}.study-steps button{flex:1;display:flex;gap:.3rem;align-items:center;justify-content:center;min-width:44px;min-height:44px}.study-step-label{font-size:.8rem}

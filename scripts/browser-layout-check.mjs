@@ -89,6 +89,8 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await play('journal');await axe('Compact learning progress mobile',page);
   await page.setViewportSize({width:1280,height:800});await play('library');
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');await fits();await shot('learning-vi-text-200');
+  assert.ok(await page.locator('.skip-link').evaluate(el=>el.getBoundingClientRect().bottom<0),'Unfocused skip link stays offscreen at enlarged text size');
+  await page.locator('.skip-link').focus();assert.ok(await page.locator('.skip-link').evaluate(el=>el.getBoundingClientRect().top>=0),'Keyboard skip link remains available');
   await page.evaluate(()=>document.documentElement.style.fontSize='');
   // Native family controls remain available when adding another learner.
   await play('account');await play('start-traveler');
