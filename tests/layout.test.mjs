@@ -22,3 +22,8 @@ test('locked lessons stay locked and names cannot inject markup',()=>{
  const html=learningHome({missions:[{mission:{id:'valid',title:{en:'<script>'},objective:{en:'<b>unsafe</b>'}},unlocked:false}]});
  assert.match(html,/data-id="valid" disabled/);assert.doesNotMatch(html,/<script>|<b>unsafe/);assert.match(html,/&lt;script&gt;/);
 });
+test('construction guidance can stay above a tray instead of covering other toys below',()=>{
+ const target={left:1066,top:430,bottom:565};
+ const p=positionCoach(target,{height:135},{width:1440,height:1000},{preferAbove:true});
+ assert.ok(p.top+135<target.top);assert.ok(p.left+p.width<=1428);
+});
