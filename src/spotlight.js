@@ -22,7 +22,10 @@ export function mountSpotlight({root,target,bubble,onEscape}){
   const x=Math.max(0,r.left-5),y=Math.max(0,r.top-5),right=Math.min(viewport.width,r.right+5),bottom=Math.min(viewport.height,r.bottom+5);
   Object.assign(shade.style,{left:x+'px',top:y+'px',width:(right-x)+'px',height:(bottom-y)+'px'});
   bubble.style.width=Math.min(320,viewport.width-24)+'px';
-  const p=positionCoach(r,bubble.getBoundingClientRect(),viewport,{preferAbove:bubble.dataset.guideTopic==='workshop'});
+  // Navigation choices follow these primary actions. Keep coaching in the
+  // heading area above them when possible instead of covering the next row.
+  const preferAbove=['home','learning','progress','adventure','workshop','review'].includes(bubble.dataset.guideTopic);
+  const p=positionCoach(r,bubble.getBoundingClientRect(),viewport,{preferAbove});
   Object.assign(bubble.style,{left:p.left+'px',top:p.top+'px'});
  }
  function schedule(){if(!frame)frame=win.requestAnimationFrame(place);}
