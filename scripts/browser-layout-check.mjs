@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
+import {applyPracticeEdition} from '../src/practice-edition.js';
+import {practiceEditionFile} from '../src/practice-release.js';
 /** Observable layout contracts plus screenshots for human visual review. */
 export async function verifyLayout({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report}){
  const context=await newContext({viewport:{width:390,height:844},hasTouch:true}),page=await context.newPage();observe(page);
@@ -54,14 +56,42 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   assert.equal(await page.locator('.story-expedition').count(),0,'Lesson does not route into adventure');
   assert.equal((await snapshot()).profiles[0].settings.mode,mode,'Focused lesson preserves experience preference');
   await coachContract();await shot('direct-lesson-coach-vi-mobile');await dismissGuide();await shot('direct-lesson-vi-mobile');await axe('Direct lesson mobile',page);
+  // Complete the new direct-learning path through its real controls. Published
+  // answer keys are test inputs, never injected learner records or fake scores.
+  let pack=await (await fetch(new URL('data/published/atlas.json',base))).json();
+  if(practiceEditionFile)pack=applyPracticeEdition(pack,await (await fetch(new URL('data/published/'+practiceEditionFile,base))).json());
+  const firstId=await page.locator('.study-steps [aria-current="step"]').getAttribute('data-id');
+  const lesson=pack.missions.find(m=>m.activities.some(a=>a.id===firstId));
+  for(const a of lesson.activities){
+   await page.locator(`.study-steps [data-id="${a.id}"][aria-current="step"]`).waitFor();
+   await dismissGuide();
+   if(a.type==='choice')await play('choose',a.answer);
+   else if(a.type==='gap')await page.locator('[data-answer="gap"]').fill(a.accepted[0]);
+   else if(a.type==='match')for(const pair of a.pairs){await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);}
+   else if(a.type==='order'){
+    for(let index=0;index<a.answer.length;index++){
+     const id=a.answer[index];let position=await page.locator('.order-list li').evaluateAll((rows,id)=>rows.findIndex(row=>row.querySelector('[data-action="move"]').dataset.id===id),id);
+     while(position>index){await page.locator(`[data-action="move"][data-id="${id}"][data-dir="-1"]`).click();await ready(page);position--;}
+    }
+   }else if(a.type==='writing'){
+    await page.locator('[data-answer="writing"]').fill(a.example);
+    for(const checkbox of await page.locator('.rubric input[type="checkbox"]').all()){await checkbox.check();await ready(page);}
+   }
+   await dismissGuide();await play('submit');await page.locator('.feedback').waitFor();await play('next');
+  }
+  await page.locator('[data-learning-home]').waitFor();
+  const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,5);
+  assert.equal(completed.profiles[0].settings.mode,mode);assert.ok(before.events.every(e=>completed.events.some(saved=>saved.id===e.id)),'Existing records survive direct lesson completion');
   await play('home');await play('adventures');await play('begin');await visibleAction('.story-next .primary','Adventure immediate action');
+  const stopRows=await page.locator('.scene-stop').evaluateAll(elements=>elements.map(el=>Math.round(el.getBoundingClientRect().top)));
+  assert.equal(new Set(stopRows).size,1,'Phone story navigation is one compact row');
   await shot('story-first-action-vi-mobile');await play('activity');await page.locator('.activity-panel').waitFor();await dismissGuide();await fits();await shot('story-response-vi-mobile');
   await play('journal');await axe('Compact learning progress mobile',page);
   await page.setViewportSize({width:1280,height:800});await play('library');
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');await fits();await shot('learning-vi-text-200');
   await page.evaluate(()=>document.documentElement.style.fontSize='');
   // Native family controls remain available when adding another learner.
-  await play('account');await play('profiles');await play('start-traveler');
+  await play('account');await play('start-traveler');
   const form=page.locator('[data-form="create-profile"]');await form.locator('.family-options > summary').click();await ready(page);
   const kind=form.locator('[name="kind"]');await kind.focus();
   const appearance=await kind.evaluate(el=>{const s=getComputedStyle(el);return {height:el.getBoundingClientRect().height,padding:parseFloat(s.paddingRight),focus:s.outlineStyle!=='none'||s.boxShadow!=='none'};});

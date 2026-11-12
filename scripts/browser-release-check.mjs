@@ -314,7 +314,7 @@ try {
     if (target === page) await action('journal');
     else { await target.locator('.main-nav [data-action="journal"]').click(); await ready(target); }
     const values = (await target.locator('.stats-grid .stat > strong').allTextContents()).map(Number);
-    assert.equal(values[0], expected.activeEvidence?.independent??expected.independent, 'Current learning evidence is profile-specific.');
+    assert.equal(values[0], expected.attempts, 'Practice response history is profile-specific.');
     assert.equal(values[1], expected.independent, 'Writing and supported attempts must not become independent evidence.');
     assert.equal(values[2], expected.retained);
     assert.equal(values[3], expected.due.length);
