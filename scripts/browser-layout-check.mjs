@@ -19,6 +19,9 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await page.locator('#traveler-name').fill('Minh');await page.locator('[data-form="create-profile"] button[value="play"]').click();await ready(page);
   await page.locator('[data-level-setup]').waitFor();await play('entry-beginner');await page.locator('.coach-popover').waitFor();
   async function coachContract(){
+   // ResizeObserver and scroll handlers position the coach on animation frames.
+   // Inspect their settled frame, not the intermediate geometry after a resize.
+   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
    // Read the paired rectangles in one browser task. Account restoration can
    // redraw the whole app between two separate locator.boundingBox calls.
    const handle=await page.waitForFunction(()=>{
@@ -34,6 +37,11 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    assert.equal(pointerEvents,'none');
   }
   await coachContract();await shot('home-coach-vi-mobile');
+  await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));
+  const scrolled=await page.evaluate(()=>scrollY);assert.ok(scrolled>0);
+  await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);
+  assert.equal(await page.evaluate(()=>scrollY),scrolled,'Background feedback must not pull a reader back to a tutorial target');
+  await page.evaluate(()=>scrollTo(0,0));await coachContract();
   await page.setViewportSize({width:768,height:1024});await coachContract();await shot('home-coach-vi-tablet');
   await control('guide-skip','home').focus();await page.keyboard.press('Escape');await ready(page);
   assert.equal(await page.locator('.coach-popover').count(),0,'Escape dismisses guidance');

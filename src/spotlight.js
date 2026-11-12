@@ -5,7 +5,7 @@ export function positionCoach(target,coach,viewport,{preferAbove=false}={}){
  const top=preferAbove&&above>=margin?above:below+height<=viewport.height-margin?below:above>=margin?above:Math.max(margin,viewport.height-height-margin);
  return {left:Math.max(margin,Math.min(target.left,viewport.width-width-margin)),top,width};
 }
-export function mountSpotlight({root,target,bubble,onEscape}){
+export function mountSpotlight({root,target,bubble,onEscape,revealTarget=true}){
  if(!target||!bubble||!target.getClientRects().length)return ()=>{};
  const win=root.ownerDocument.defaultView;
  const shade=root.ownerDocument.createElement('div');shade.className='coach-shade';shade.setAttribute('aria-hidden','true');
@@ -35,7 +35,7 @@ export function mountSpotlight({root,target,bubble,onEscape}){
  function pointerDown(event){if(event.target.closest?.('[data-action="workshop-select"]')){manipulating=true;place();}}
  function pointerEnd(){if(manipulating){manipulating=false;schedule();}}
  // Only scroll to a target once; resize/scroll observers never fight player input.
- const r=target.getBoundingClientRect();if(r.top<12||r.bottom>win.innerHeight-140)target.scrollIntoView({block:'center',behavior:'instant'});
+ const r=target.getBoundingClientRect();if(revealTarget&&(r.top<12||r.bottom>win.innerHeight-140))target.scrollIntoView({block:'center',behavior:'instant'});
  place();const observer=new ResizeObserver(schedule);observer.observe(target);observer.observe(bubble);
  win.addEventListener('resize',schedule);win.addEventListener('scroll',schedule,true);win.visualViewport?.addEventListener('resize',schedule);root.addEventListener('keydown',key);
  root.addEventListener('pointerdown',pointerDown);win.addEventListener('pointerup',pointerEnd);win.addEventListener('pointercancel',pointerEnd);

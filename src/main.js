@@ -94,7 +94,8 @@ function renderGuidance(){
  target.dataset.guideTarget='true';
  app.querySelector('main').insertAdjacentHTML('beforeend',guideView({topic,language:language(),help:ui.guideReplay===topic,variant:ui.screen==='little'?ui.little?.mode:null}));
  const bubble=app.querySelector('[data-guide-topic]');
- coachCleanup=mountSpotlight({root:app,target,bubble,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
+ const scrollKey=[profile.id,ui.screen,topic,ui.activity,selector].join(':');const revealTarget=ui.guideScrollKey!==scrollKey;ui.guideScrollKey=scrollKey;
+ coachCleanup=mountSpotlight({root:app,target,bubble,revealTarget,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
 }
 const currentPlacementPool=()=>placementPool(pack,ui.placementMethod??NEW_PLACEMENT_METHOD);
 const currentSavedPlacement=()=>savedPlacement(events,{pack,activities:content().activities,grade:assess});
@@ -441,7 +442,7 @@ async function action(name,el){
  if(name==='entry-beginner'){await chooseLearningStart('reader','A1');return;}
  if(name==='entry-pictures'||name==='placement-assisted'){await chooseLearningStart('supported-pictures');return;}
  if(name==='entry-manual'||name==='entry-options'){ui.entryManual=name==='entry-manual';ui.screen='entry';render(true);return;}
- if(name==='guide-replay'){ui.guideReplay=guideTopic();ui.guideCelebrate=null;render();app.querySelector('[data-guide-topic] button')?.focus({preventScroll:true});return;}
+ if(name==='guide-replay'){ui.guideScrollKey=null;ui.guideReplay=guideTopic();ui.guideCelebrate=null;render();app.querySelector('[data-guide-topic] button')?.focus({preventScroll:true});return;}
  if(name==='guide-skip'||name==='guide-complete'){const topic=guideTopic();await rememberGuide(topic,name==='guide-skip'?'skipped':'completed');ui.guideReplay=null;ui.guideCelebrate=null;render();app.querySelector('[data-guide-target],.help-launcher')?.focus({preventScroll:true});return;}
  if(ui.screen==='home'&&['quick-start','little-open','atlas','adventures','library','memory-open'].includes(name))await rememberGuide('home');
  if(ui.screen==='review'&&name==='review-item')await rememberGuide('review');
