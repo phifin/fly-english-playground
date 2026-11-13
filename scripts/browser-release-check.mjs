@@ -1,4 +1,5 @@
 import {verifyLayout} from './browser-layout-check.mjs';
+import {verifyMotion} from './browser-motion-check.mjs';
 import {verifyFirstSteps} from './browser-first-steps.mjs';
 import {applyPracticeEdition} from '../src/practice-edition.js';
 import {practiceEditionFile} from '../src/practice-release.js';
@@ -427,6 +428,7 @@ try {
     assert.equal(await page.locator('meta[name="atlas-release"]').getAttribute('content'), expectedRelease,
       'The actual browser must load the expected deployed release, not an older cached shell.');
     check('The browser loaded the expected release at its configured project URL.');
+  await verifyMotion({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   await verifyLayout({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   }
 
@@ -724,9 +726,12 @@ try {
     }
     await control('workshop-select', 'boat').focus(); await control('workshop-select', 'boat').press('Enter'); await ready(toy);
     assert.equal(await control('workshop-select', 'boat').getAttribute('aria-pressed'), 'true');
+    await toy.locator('.coach-popover[data-guide-step="place"]').waitFor();
+    assert.equal(await toy.locator('[data-guide-target]').getAttribute('class'),'workshop-scene','Selecting a toy advances guidance to the actual scene');
     assert.equal(learningEvents((await snapshot()).events).length, 0, 'Selecting a prop is not a completed learning action.');
     await control('workshop-place', 'water').tap(); await ready(toy); await noError(toy);
     assert.deepEqual(await layout(), { water: 'boat' });
+    assert.equal(await toy.locator('.coach-popover').count(),0,'A committed placement completes the construction introduction');
     const initial = await snapshot();
     assert.equal(workshopEvents(initial).length, 1);
     assert.equal(workshopEvents(initial)[0].payload.space, 'free');

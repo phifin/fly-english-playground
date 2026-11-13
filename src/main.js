@@ -1,6 +1,9 @@
 import {adventureLibrary} from './adventure-library.js';
 import {learningHome} from './learning-home.js';
 import {mountSpotlight} from './spotlight.js';
+import {captureVisual,finishVisual,installMotion} from './motion.js';
+import {welcomeArt} from './welcome-art.js';
+import {guideStep} from './guide-step.js';
 let coachCleanup=()=>{};
 import {initialLearningState,guideStatus} from './entry-policy.js';
 import {learningDestination,readingActionBlocked,establishLearningStart} from './entry-navigation.js';
@@ -39,6 +42,7 @@ import {createLittleSession,littleAction,restoreLittleSession,littlePlayView,lit
 import {installWorkshopInput} from './workshop-input.js';
 
 const app=document.querySelector('#app');
+installMotion(app);
 // Keep the native file chooser outside rebuilt views. Replacing/detaching it
 // between the browser's input/change events can otherwise drop an import.
 const importInput=document.createElement('input');
@@ -64,7 +68,7 @@ async function chooseLearningStart(path,level=null){
 }
 function guideTopic(){
  if(!profile)return null;
- if((ui.screen==='quick'&&ui.quick?.index<ui.quick?.ids.length)||(ui.screen==='mission'&&ui.stage==='activity'))return currentActivity()?.type??null;
+ if((ui.screen==='quick'&&ui.quick?.index<ui.quick?.ids.length)||(ui.screen==='mission'&&['activity','clue'].includes(ui.stage)))return currentActivity()?.type??null;
  if(ui.screen==='home')return 'home';
  if(ui.screen==='library')return 'learning';
  if(ui.screen==='journal')return 'progress';
@@ -81,21 +85,32 @@ async function rememberGuide(topic,state='completed'){
  if(guideStatus(events,topic)==='new')await append('mission',{experience:'guide-v1',version:1,topic,state});
  ui.guideReplay=null;
 }
-function renderGuidance(){
+function renderGuidance(previousCoach){
  const topic=guideTopic();if(!topic)return;
- const selector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
+ const defaultSelector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
+ const step=guideStep({topic,answer:ui.answer,activity:currentActivity(),stage:ui.screen==='mission'?ui.stage:null,feedback:['mission','quick'].includes(ui.screen)?ui.feedback:null,moved:ui.guideOrderFor===ui.activity,workshopSelected:ui.workshopSelected,little:ui.little,memory:ui.memory});
+ const selector=step?.selector??defaultSelector;
  const target=selector?app.querySelector(selector):null,heading=app.querySelector('.activity-top')??app.querySelector('main h1');
  if(!heading)return;
- const shown=ui.guideReplay===topic||guideStatus(events,topic)==='new';
+ const shown=ui.guideReplay===topic||ui.guideCelebrate===topic||guideStatus(events,topic)==='new';
  const helpButton=btn(t('Help','Hướng dẫn'),'guide-replay','data-value="'+topic+'"','help-launcher text-button');
- if(heading.classList.contains('activity-top'))heading.insertAdjacentHTML('beforeend',helpButton);
- else {const line=document.createElement('div');line.className='heading-line';heading.before(line);line.append(heading);line.insertAdjacentHTML('beforeend',helpButton);}
- if(!shown||!target||ui.feedback||(topic==='workshop'&&ui.workshopSelected&&ui.guideReplay!=='workshop'))return;
+ if(!app.querySelector('.help-launcher')){
+  if(heading.classList.contains('activity-top'))heading.insertAdjacentHTML('beforeend',helpButton);
+  else {const line=heading.parentElement.classList.contains('heading-line')?heading.parentElement:document.createElement('div');if(!line.classList.contains('heading-line')){line.className='heading-line';heading.before(line);line.append(heading);}line.insertAdjacentHTML('beforeend',helpButton);}
+ }
+ if(!shown||!target||target.disabled)return;
  target.dataset.guideTarget='true';
- app.querySelector('main').insertAdjacentHTML('beforeend',guideView({topic,language:language(),help:ui.guideReplay===topic,variant:ui.screen==='little'?ui.little?.mode:null}));
+ app.querySelector('main').insertAdjacentHTML('beforeend',guideView({topic,language:language(),help:ui.guideReplay===topic,variant:ui.screen==='little'?ui.little?.mode:null,step}));
  const bubble=app.querySelector('[data-guide-topic]');
+ bubble.dataset.guideStep=step?.id??'start';
  const scrollKey=[profile.id,ui.screen,topic,ui.activity,selector].join(':');const revealTarget=ui.guideScrollKey!==scrollKey;ui.guideScrollKey=scrollKey;
- coachCleanup=mountSpotlight({root:app,target,bubble,revealTarget,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
+ coachCleanup=mountSpotlight({root:app,target,bubble,revealTarget,previous:previousCoach,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
+}
+function refreshGuidance(){
+ const old=app.querySelector('.coach-popover'),previous=old&&!old.hidden?{box:old.getBoundingClientRect().toJSON()}:null;
+ coachCleanup();coachCleanup=()=>{};old?.remove();
+ // Keep the active editor/caret and viewport. No full view redraw while typing.
+ const scroll=scrollY;renderGuidance(previous);scrollTo({top:scroll,behavior:'instant'});
 }
 const currentPlacementPool=()=>placementPool(pack,ui.placementMethod??NEW_PLACEMENT_METHOD);
 const currentSavedPlacement=()=>savedPlacement(events,{pack,activities:content().activities,grade:assess});
@@ -227,7 +242,7 @@ function queueDraft(){clearTimeout(draftTimer);draftStatus();draftTimer=setTimeo
 async function navigate(screen){await saveDraft();globalThis.speechSynthesis?.cancel();ui.screen=learningDestination(screen==='atlas'?'workshop':screen,learningStart());ui.guideReplay=null;ui.guideCelebrate=null;ui.error='';ui.notice='';ui.feedback=null;ui.showModel=false;render(true);}
 function initActivity(a){
  globalThis.speechSynthesis?.cancel();
- ui.activity=a.id;ui.feedback=null;ui.showModel=false;ui.supported=false;ui.practiceHelp=false;ui.practiceTerm=null;ui.practiceHint=false;
+ ui.activity=a.id;ui.feedback=null;ui.guideCelebrate=null;ui.guideOrderFor=null;ui.showModel=false;ui.supported=false;ui.practiceHelp=false;ui.practiceTerm=null;ui.practiceHint=false;
  const draft=ui.review?null:progress.drafts[a.id];
  ui.answer=draft?.answer??(a.type==='order'?shuffle(a.tokens.map(x=>x.id),a.id):a.type==='match'?{}:a.type==='writing'?{text:'',checks:[]}:null);
  // Resuming a stored response is useful practice, but is not fresh retrieval.
@@ -255,7 +270,7 @@ async function runWorld(added){const board=currentBoard(),prior=progress.worlds.
 function header(){
  const navSection=['home','workshop','little','memory','pictures','adventures'].includes(ui.screen)||ui.screen==='mission'&&!ui.studySession?'home':['library','mission','studio','quick'].includes(ui.screen)?'library':['journal','review'].includes(ui.screen)?'journal':null;
  const mode=profile?.settings.mode??'balanced';
- return `<header class="masthead"><a class="wordmark" href="#" data-action="home"><img src="./assets/atlas-mark.svg" alt="" width="34" height="34"><span>The Unfolding <strong>Atlas</strong></span></a><span class="edition">${t('Play. Learn. Grow.','Chơi vui, học mỗi ngày.')}</span><div class="guidance-switch" role="group" aria-label="${t('Guidance language','Ngôn ngữ hướng dẫn')}"><button type="button" data-action="guidance-language" data-value="en" lang="en" aria-pressed="${language()==='en'}">English</button><button type="button" data-action="guidance-language" data-value="vi" lang="vi" aria-pressed="${language()==='vi'}">Tiếng Việt</button></div>${accountHeader({status:identityStatus(),profile,language:language()})}</header>
+ return `<header class="masthead"><a class="wordmark" href="#" data-action="home"><img src="./assets/atlas-mark.svg" alt="" width="34" height="34"><span>The Unfolding <strong>Atlas</strong></span></a><span class="edition">${t('Play. Learn. Grow.','Chơi vui, học mỗi ngày.')}</span><div class="guidance-switch" role="group" aria-label="${t('Guidance language','Ngôn ngữ hướng dẫn')}"><button type="button" data-action="guidance-language" data-value="en" lang="en" aria-pressed="${language()==='en'}">English</button><button type="button" data-action="guidance-language" data-value="vi" lang="vi" aria-pressed="${language()==='vi'}">Tiếng Việt</button><span class="language-marker" aria-hidden="true"></span></div>${accountHeader({status:identityStatus(),profile,language:language()})}</header>
  ${profile&&!['entry','onboard','little','memory','placement'].includes(ui.screen)?`<nav class="main-nav" aria-label="${t('Main navigation','Điều hướng chính')}">${[['home',t('Activities','Hoạt động')],['library',t('Study','Học tiếng Anh')],['journal',t('Progress','Tiến bộ')]].map(([route,label])=>`<button type="button" data-action="${route}" ${navSection===route?'aria-current="page"':''}>${label}${route==='review'&&progress.due.length?` <span class="badge">${progress.due.length}</span>`:''}</button>`).join('')}<span class="nav-mode">${{kids:t('Play first','Chơi để học'),balanced:t('Learn & play','Học và chơi'),serious:t('Study first','Học tập trung')}[mode]}</span></nav>`:''}`;
 }
 
@@ -265,7 +280,7 @@ function profilesScreen(){
  if(ui.entering)return entryScreen();
  let remembered;try{remembered=localStorage.getItem('atlas-active-profile');}catch{}
  const resume=profiles.find(p=>p.id===(profile?.id??remembered))??profiles[0];
- return `<section class="welcome"><div class="welcome-copy"><p class="eyebrow">${t('ENGLISH, WITH A LITTLE WONDER','HỌC TIẾNG ANH, KHÁM PHÁ ĐIỀU MỚI')}</p><h1>${t('English opens new worlds.','Khám phá tiếng Anh theo cách của bạn.')}</h1><p class="lede">${t('Play, discover and practise English at your pace.','Chơi, khám phá và học tiếng Anh theo nhịp của bạn.')}</p>${entryChoices({status:ui.cloudStatus,resume,language:language()})}</div><figure class="welcome-world">${harborArt()}<figcaption><span aria-hidden="true">✦</span><span>${t('Your first discovery is waiting.','Khám phá đầu tiên đang chờ bạn.')}<small>${t('Build, rearrange, and help a new friend.','Xây dựng, sắp xếp và giúp người bạn mới.')}</small></span></figcaption></figure></section>
+ return `<section class="welcome"><div class="welcome-copy"><p class="eyebrow">${t('ENGLISH, WITH A LITTLE WONDER','HỌC TIẾNG ANH, KHÁM PHÁ ĐIỀU MỚI')}</p><h1>${t('English opens new worlds.','Khám phá tiếng Anh theo cách của bạn.')}</h1><p class="lede">${t('Play, discover and practise English at your pace.','Chơi, khám phá và học tiếng Anh theo nhịp của bạn.')}</p>${entryChoices({status:ui.cloudStatus,resume,language:language()})}</div><figure class="welcome-world">${welcomeArt()}<figcaption><span aria-hidden="true">✦</span><span>${t('Your first discovery is waiting.','Khám phá đầu tiên đang chờ bạn.')}<small>${t('Build, rearrange, and help a new friend.','Xây dựng, sắp xếp và giúp người bạn mới.')}</small></span></figcaption></figure></section>
  <section class="returning-travelers">${profiles.length?`<h2>${t('Who’s playing today?','Hôm nay ai cùng chơi?')}</h2><div class="profile-grid">${profiles.map(p=>btn(`<span class="avatar" aria-hidden="true">${esc(p.name.slice(0,1))}</span><strong>${esc(p.name)}</strong><small>${t('Continue the journey','Tiếp tục hành trình')}</small>`,'choose-profile',`data-id="${p.id}"`,'traveler')).join('')}</div>`:''}</section>
  <details class="arrival-tools"><summary>${t('Restore a backup','Khôi phục bản sao')}</summary>${btn(t('Choose a backup file','Chọn tệp sao lưu'),'import')}</details>`;
 
@@ -362,6 +377,7 @@ function placementScreen(){
 }
 
 function render(focusHeading=false){
+ const visual=captureVisual(app);
  coachCleanup();coachCleanup=()=>{};
  const active=document.activeElement,focusKey=active?.dataset?.focusKey,selection=active&&'selectionStart'in active?[active.selectionStart,active.selectionEnd]:null;
  if(!profile&&!['profiles','account','family'].includes(ui.screen))ui.screen='profiles';
@@ -399,7 +415,7 @@ function render(focusHeading=false){
  renderedContext=context;
  if(focusHeading){const h=app.querySelector('h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true});}scrollTo({top:0,behavior:'instant'});}
  else if(focusKey){const target=[...app.querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===focusKey);if(target){target.focus({preventScroll:true});if(selection&&'setSelectionRange'in target&&target.type!=='checkbox')try{target.setSelectionRange(...selection);}catch{}}}
- renderGuidance();
+ renderGuidance(visual.coach);
  // Coaching is mounted after scroll restoration. Restore its controls too
  // when a background account/status update redraws this same screen.
  if(!focusHeading&&active?.dataset?.action?.startsWith('guide-')){
@@ -407,6 +423,7 @@ function render(focusHeading=false){
   replacement?.focus({preventScroll:true});
  }
  app.setAttribute('aria-busy',String(ui.busy));
+ finishVisual(app,visual,[context,ui.entering,ui.stage,ui.activity,ui.quick?.index,ui.placement?.answers?.length].join(':'));
 }
 
 async function submit(){
@@ -454,7 +471,7 @@ async function action(name,el){
  }
  if(name==='memory-flip'){
   const previous=ui.memory,next=flipMemory(previous,Number(el.dataset.value),littleWords);if(JSON.stringify(next)===JSON.stringify(previous))return;
-  await append('mission',{experience:'memory-pairs-v1',session:next});ui.memory=next;await rememberGuide('memory');render();
+  await append('mission',{experience:'memory-pairs-v1',session:next});ui.memory=next;if(next.turns>previous.turns)await rememberGuide('memory');render();
   if(next.found.length===3&&previous.found.length<3)await showDialog({title:t('Three pairs, well spotted!','Tìm đủ ba đôi rồi!'),message:t('Say the picture names together, then try a new set.','Cùng đọc tên các hình bằng tiếng Anh, rồi thử bộ thẻ mới nhé.'),confirmLabel:t('Keep playing','Chơi tiếp'),celebrate:true});return;
  }
 
@@ -503,7 +520,7 @@ async function action(name,el){
  if(name==='world-hint'){ui.worldHint=true;await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='world-route'){ui.worldHint=true;ui.worldRoute=findRoute(currentBoard());await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='choose'){ui.answer=el.dataset.value;queueDraft();render();return;}
- if(name==='move'){const i=ui.answer.indexOf(el.dataset.id),j=i+Number(el.dataset.dir);if(j>=0&&j<ui.answer.length)[ui.answer[i],ui.answer[j]]=[ui.answer[j],ui.answer[i]];queueDraft();render();return;}
+ if(name==='move'){const i=ui.answer.indexOf(el.dataset.id),j=i+Number(el.dataset.dir);if(j>=0&&j<ui.answer.length){[ui.answer[i],ui.answer[j]]=[ui.answer[j],ui.answer[i]];ui.guideOrderFor=ui.activity;}queueDraft();render();return;}
  if(name==='submit'){await submit();return;}
  if(['practice-help','practice-word','practice-hint'].includes(name)){
   if(!['mission','quick'].includes(ui.screen)||ui.stage!=='activity')return;
@@ -576,7 +593,7 @@ app.addEventListener('input',e=>{
  const el=e.target;if(ui.submitting)return;if(el.dataset.answer==='gap')ui.answer=el.value;
  if(el.dataset.answer==='writing')ui.answer={...ui.answer,text:el.value};
  if(el.hasAttribute('data-world-plan'))ui.worldPlan=el.value;
- if(el.dataset.answer)queueDraft();
+ if(el.dataset.answer){queueDraft();if(!e.isComposing)refreshGuidance();}
 });
 app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
@@ -587,8 +604,8 @@ const handleChange=e=>run(async()=>{
  if(el.dataset.setting==='language')await changeGuidance(el.value);
  else if(el.dataset.setting){await saveDraft();profile=await store.updateProfile(profile.id,{settings:{[el.dataset.setting]:el.dataset.setting==='sound'?el.value==='true':el.value}});setPreferences();render();}
  if(el.dataset.journey){profile=await store.updateProfile(profile.id,{journey:{[el.dataset.journey]:el.value}});render();}
- if(el.dataset.match){ui.answer={...ui.answer,[el.dataset.match]:el.value};queueDraft();}
- if(el.dataset.check!==undefined){const set=new Set(ui.answer.checks);el.checked?set.add(Number(el.dataset.check)):set.delete(Number(el.dataset.check));ui.answer={...ui.answer,checks:[...set]};queueDraft();}
+ if(el.dataset.match){ui.answer={...ui.answer,[el.dataset.match]:el.value};queueDraft();refreshGuidance();}
+ if(el.dataset.check!==undefined){const set=new Set(ui.answer.checks);el.checked?set.add(Number(el.dataset.check)):set.delete(Number(el.dataset.check));ui.answer={...ui.answer,checks:[...set]};queueDraft();refreshGuidance();}
  if(el.id==='import-file'&&el.files[0]){const file=el.files[0];el.value='';if(file.size>STORE_LIMITS.importBytes)throw new Error(t('Backup is too large.','Bản sao quá lớn.'));const data=JSON.parse(await file.text());await store.importAll(data);await refresh();ui.notice=t('Backup validated and merged. Existing history was preserved.','Bản sao đã kiểm tra và gộp. Lịch sử hiện có được giữ lại.');render();}
 });
 app.addEventListener('change',handleChange);

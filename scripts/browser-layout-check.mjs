@@ -87,22 +87,26 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   if(practiceEditionFile)pack=applyPracticeEdition(pack,await (await fetch(new URL('data/published/'+practiceEditionFile,base))).json());
   const firstId=await page.locator('.study-steps [aria-current="step"]').getAttribute('data-id');
   const lesson=pack.missions.find(m=>m.activities.some(a=>a.id===firstId));
+  const guided=async(id)=>{await page.locator(`.coach-popover[data-guide-step="${id}"]`).waitFor();assert.equal(await page.locator('[data-guide-target]').count(),1,'Only the current tutorial target retains its highlight');};
   for(const a of lesson.activities){
    await page.locator(`.study-steps [data-id="${a.id}"][aria-current="step"]`).waitFor();
-   await dismissGuide();
-   if(a.type==='choice')await play('choose',a.answer);
-   else if(a.type==='gap')await page.locator('[data-answer="gap"]').fill(a.accepted[0]);
-   else if(a.type==='match')for(const pair of a.pairs){await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);}
+   await play('guide-replay');
+   if(a.type==='choice'){await guided('choose');await play('choose',a.answer);}
+   else if(a.type==='gap'){await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);await guided('check');await page.locator('[data-answer="gap"]').fill('');await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);}
+   else if(a.type==='match')for(const [index,pair] of a.pairs.entries()){await guided('pair-'+index);assert.equal(await page.locator('[data-guide-target]').getAttribute('data-match'),pair.id);await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);}
    else if(a.type==='order'){
     for(let index=0;index<a.answer.length;index++){
      const id=a.answer[index];let position=await page.locator('.order-list li').evaluateAll((rows,id)=>rows.findIndex(row=>row.querySelector('[data-action="move"]').dataset.id===id),id);
      while(position>index){await page.locator(`[data-action="move"][data-id="${id}"][data-dir="-1"]`).click();await ready(page);position--;}
     }
    }else if(a.type==='writing'){
+    await guided('write');
     await page.locator('[data-answer="writing"]').fill(a.example);
+    await guided('review');
     for(const checkbox of await page.locator('.rubric input[type="checkbox"]').all()){await checkbox.check();await ready(page);}
    }
-   await dismissGuide();await play('submit');await page.locator('.feedback').waitFor();await play('next');
+   await guided('check');assert.equal(await page.locator('[data-guide-target]').getAttribute('data-action'),'submit');
+   await play('submit');await page.locator('.feedback').waitFor();await guided('continue');assert.equal(await page.locator('[data-guide-target]').getAttribute('data-action'),'next');await play('next');
   }
   await page.locator('[data-learning-home]').waitFor();
   const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,5);
