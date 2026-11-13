@@ -714,8 +714,12 @@ try {
       'The play-first entry is a toy, without a route grid or a separate answer submission.');
     assert.equal(await toy.locator('.workshop-toy').count(), 6);
     assert.equal(await toy.locator('.workshop-place').count(), 4);
-    for (const element of await toy.locator('.workshop-toy,.workshop-place').all()) {
-      const box = await element.boundingBox();
+    // Read one rendered frame atomically. Account restoration may replace DOM
+    // nodes between separate CDP boundingBox requests on the public site.
+    // Keep exact count and size checks; an empty/hidden control must still fail.
+    const constructionTargets = await toy.locator('.workshop-toy,.workshop-place').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().toJSON()));
+    assert.equal(constructionTargets.length, 10, 'All six toys and four places must be rendered.');
+    for (const box of constructionTargets) {
       assert.ok(box.width >= 44 && box.height >= 44, 'Every construction action needs a usable touch target.');
     }
     await control('workshop-select', 'boat').focus(); await control('workshop-select', 'boat').press('Enter'); await ready(toy);
@@ -796,14 +800,18 @@ try {
         await toy.setViewportSize(viewport);
         assert.equal(await toy.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
           `The ${language} harbor must fit ${viewport.width}px without horizontal scrolling.`);
-        for (const element of await toy.locator('.workshop-toy,.workshop-place,.workshop-remove').all()) {
-          const box = await element.boundingBox();
+        const targets = await toy.locator('.workshop-toy,.workshop-place,.workshop-remove').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().toJSON()));
+        assert.ok(targets.length >= 10, 'Responsive layout must retain every toy and place.');
+        for (const box of targets) {
           assert.ok(box.width >= 44 && box.height >= 44, `Construction targets remain usable at ${viewport.width}px.`);
         }
-        if(language==='vi')for(const label of await toy.locator('.workshop-spot-label').all()){
-          const [english,vietnamese,container]=await Promise.all([label.locator('span').boundingBox(),label.locator('small').boundingBox(),label.boundingBox()]);
+        if(language==='vi'){
+         const labels=await toy.locator('.workshop-spot-label').evaluateAll(elements=>elements.map(label=>[label.querySelector('span'),label.querySelector('small'),label].map(el=>el.getBoundingClientRect().toJSON())));
+         assert.equal(labels.length,4,'Every place retains both language labels.');
+         for(const [english,vietnamese,container] of labels){
           assert.ok(vietnamese.y>=english.y+english.height-1,`Bilingual location labels must remain on separate lines at ${viewport.width}px.`);
           for(const text of [english,vietnamese])assert.ok(text.x>=container.x-1&&text.x+text.width<=container.x+container.width+1,'Location labels must fit their own place without clipping.');
+         }
         }
         const heading = await toy.locator('.workshop h1').innerText();
         assert.equal(heading, heading.normalize('NFC')); assert.doesNotMatch(heading, /\uFFFD/);
@@ -978,8 +986,10 @@ try {
       await play('guidance-language', language);
       assert.equal(await experience.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true);
       assert.equal(await experience.locator('.little-choice svg').count(), 3, 'Pre-reader choices have recognizable pictures instead of text-only answers.');
-      for (const element of await experience.locator('.little-choice').all()) {
-        const box = await element.boundingBox(); assert.ok(box.width >= 44 && box.height >= 44);
+      const pictureTargets=await experience.locator('.little-choice').evaluateAll(elements=>elements.map(el=>el.getBoundingClientRect().toJSON()));
+      assert.equal(pictureTargets.length,3,'All three picture choices remain available.');
+      for (const box of pictureTargets) {
+        assert.ok(box.width >= 44 && box.height >= 44);
       }
       await axe(`${language} supported picture matching at 320px`, experience);
       await experience.screenshot({ path: fileURLToPath(new URL(`release-little-${language}-320.png`, directory)), fullPage: true });
