@@ -76,6 +76,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   assert.equal(await page.locator('.memory-card.is-open').count(),1,'Reopening restores the selected card');
   let s=await savedMemory();
   const pairs=[...new Set(s.cards)].map(id=>s.cards.flatMap((word,i)=>word===id?[i]:[]));
+  assert.equal(await page.locator('.memory-heading > span').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return range.getClientRects().length;}),1,'The pair counter stays on one readable line at 320px');
   await page.screenshot({path:fileURLToPath(new URL('release-design-memory-320.png',directory)),fullPage:true});await axe('Memory pairs at 320px',page);
   for(let n=0;n<pairs.length;n++)for(const i of pairs[n]){
    if(s.open.includes(i)||s.found.includes(s.cards[i]))continue;

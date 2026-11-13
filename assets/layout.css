@@ -30,6 +30,7 @@
 /* Checked against actual phone and text-scaled browser captures. */
 .skip-link{position:fixed;top:0;transform:translateY(-120%);max-width:calc(100vw - 2rem)}.skip-link:focus{top:1rem;transform:none;z-index:1100}
 .heading-line{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.heading-line h1{margin-right:auto}.heading-line .help-launcher{flex-shrink:0;margin:0}.activity-top{flex-wrap:wrap;gap:.4rem}.activity-top .help-launcher{margin-left:0}
+.memory-heading{align-items:flex-start}.memory-heading>.heading-line{min-width:0;flex:1}.memory-heading>span{white-space:nowrap;flex-shrink:0;padding-top:.6rem}
 .masthead{flex-wrap:wrap}.masthead .edition{white-space:nowrap;flex:1 0 auto}.wordmark{max-width:100%;white-space:normal}
 .study-steps{display:flex;gap:.4rem}.study-steps button{flex:1;display:flex;gap:.3rem;align-items:center;justify-content:center;min-width:44px;min-height:44px}.study-step-label{font-size:.8rem}
 @media(max-width:700px){.study-step-label{display:none}.study-steps{margin:.7rem 0}.story-expedition:not(.is-playing) .story-workspace .scene-stops{grid-template-columns:repeat(5,minmax(0,1fr))}.story-expedition:not(.is-playing) .story-workspace .scene-stop{padding:.35rem;text-align:center}.heading-line{gap:.25rem}.heading-line .help-launcher{font-size:.78rem;padding-inline:.45rem}.learning-home .task-heading{gap:.25rem}.learning-home .task-heading>button{padding-block:.35rem;min-height:44px}}
