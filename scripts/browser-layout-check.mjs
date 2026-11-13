@@ -58,11 +58,28 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    assert.equal(await page.locator('.creative-history').evaluate(el=>el.open),false,'Creations never lead the learning report');await shot(`progress-${language}-${viewport.width}`);
    await play('home');await play('adventures');await dismissGuide();await visibleAction('.adventure-primary',`Stories ${language} ${viewport.width}`);await fits();await shot(`stories-${language}-${viewport.width}`);
   }
-  await page.setViewportSize({width:390,height:844});await play('library');
+  // Visit a genuinely new story before completing its shared lesson tasks.
+  // Completion is shared across these presentations, so testing this after
+  // the lesson would accidentally inspect the reward screen instead.
+  await page.setViewportSize({width:390,height:844});
+  const beforeStory=await snapshot();
+  await play('home');await play('adventures');await play('begin');
+  await visibleAction('.story-next .primary','Adventure immediate action');
+  assert.equal(await page.locator('.story-next .primary').getAttribute('data-action'),'activity','A new adventure offers a task, not a collection reward');
+  assert.equal(await page.locator('.scene-meter progress').getAttribute('value'),'0','First adventure starts with no completed tasks');
+  await play('guide-replay');
+  await coachContract();
+  const stopRows=await page.locator('.scene-stop').evaluateAll(elements=>elements.map(el=>Math.round(el.getBoundingClientRect().top)));
+  assert.equal(new Set(stopRows).size,1,'Phone story navigation is one compact row');
+  await shot('story-first-action-vi-mobile');await play('activity');await page.locator('.activity-panel').waitFor();
+  await dismissGuide();await fits();await shot('story-response-vi-mobile');
+  assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,beforeStory.events.filter(e=>e.kind==='attempt').length,'Opening a story never fabricates learning evidence');
+  await play('library');
   const before=await snapshot(),mode=before.profiles[0].settings.mode;
   await play('study-begin');await page.locator('.study-session .activity-prompt').waitFor();
   assert.equal(await page.locator('.story-expedition').count(),0,'Lesson does not route into adventure');
   assert.equal((await snapshot()).profiles[0].settings.mode,mode,'Focused lesson preserves experience preference');
+  await play('guide-replay');
   await coachContract();await shot('direct-lesson-coach-vi-mobile');await dismissGuide();await shot('direct-lesson-vi-mobile');await axe('Direct lesson mobile',page);
   // Complete the new direct-learning path through its real controls. Published
   // answer keys are test inputs, never injected learner records or fake scores.
@@ -90,10 +107,6 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await page.locator('[data-learning-home]').waitFor();
   const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,5);
   assert.equal(completed.profiles[0].settings.mode,mode);assert.ok(before.events.every(e=>completed.events.some(saved=>saved.id===e.id)),'Existing records survive direct lesson completion');
-  await play('home');await play('adventures');await play('begin');await visibleAction('.story-next .primary','Adventure immediate action');
-  const stopRows=await page.locator('.scene-stop').evaluateAll(elements=>elements.map(el=>Math.round(el.getBoundingClientRect().top)));
-  assert.equal(new Set(stopRows).size,1,'Phone story navigation is one compact row');
-  await shot('story-first-action-vi-mobile');await play('activity');await page.locator('.activity-panel').waitFor();await dismissGuide();await fits();await shot('story-response-vi-mobile');
   await play('journal');await axe('Compact learning progress mobile',page);
   await page.setViewportSize({width:1280,height:800});await play('library');
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');await fits();await shot('learning-vi-text-200');
