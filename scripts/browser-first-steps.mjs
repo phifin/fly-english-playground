@@ -71,7 +71,7 @@ export async function verifyFirstSteps({newContext,observe,ready,noError,axe,bas
    assert.doesNotMatch(await page.locator('.feedback').innerText(),/You used help for this answer|Bạn đã dùng gợi ý cho câu này/,'Post-response help must not relabel independent feedback');
    assert.match(await page.locator('.practice-help small').innerText(),/Câu trả lời đã nộp vẫn được giữ nguyên/);
   }
-  await play('home');await play('start-placement');await play('placement-begin');
+  await play('library');await play('start-placement');await play('placement-begin');
   await page.locator('[data-placement-item]').waitFor();
   assert.equal(await page.locator('.practice-help,.word-meaning,[data-action="practice-hint"]').count(),0,'Placement never exposes practice assistance');
   for(const width of [320,768,1440]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);}

@@ -1,3 +1,4 @@
+import {verifyLayout} from './browser-layout-check.mjs';
 import {verifyFirstSteps} from './browser-first-steps.mjs';
 import {applyPracticeEdition} from '../src/practice-edition.js';
 import {practiceEditionFile} from '../src/practice-release.js';
@@ -160,8 +161,8 @@ try {
     if (await target.locator('.startup-error h1').count()) throw new Error(await target.locator('.startup-error').innerText());
   }
   async function routeToControl(target,name) {
-    if(!['settings','atlas','review'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
-    await target.locator('[data-action="'+(name==='settings'?'account':'home')+'"]:visible').first().click();await ready(target);
+    if(!['settings','atlas','adventures','review','studio','start-placement'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
+    await target.locator('[data-action="'+(name==='settings'?'account':['review','studio','start-placement'].includes(name)?'library':'home')+'"]:visible').first().click();await ready(target);
   }
   async function noError(target = page) { assert.equal(await target.locator('.alert.error').count(), 0, await target.locator('.alert.error').allTextContents()); }
   async function revealDetails(locator, target = page) {
@@ -225,11 +226,15 @@ try {
     const form = page.locator('[data-form="create-profile"]');
     await form.locator('[name="name"]').fill(name);
     await form.locator(`[name="mode"][value="${mode}"]`).check(); await ready();
-    await revealDetails(form.locator('[name="kind"]'));
-    await form.locator('[name="kind"]').selectOption(kind);
-    await ready();
-    if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
-    await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
+    if(await form.locator('[name="kind"]').count()){
+      await revealDetails(form.locator('[name="kind"]'));
+      await form.locator('[name="kind"]').selectOption(kind);await ready();
+      if (guardianId) await form.locator('[name="guardianId"]').selectOption(guardianId);
+      await preserveFormThroughNotification('create-profile', { name, kind, guardianId });
+    }else{
+      assert.equal(kind,'independent');assert.equal(guardianId,'','A first learner cannot silently become a dependent');
+      await preserveFormThroughNotification('create-profile', { name });
+    }
     assert.equal(await form.locator(`[name="mode"][value="${mode}"]`).isChecked(), true,
       'A background update must preserve the selected way to play.');
     await click(form.locator('button[type="submit"][value="play"]'));
@@ -313,19 +318,19 @@ try {
     if (target === page) await action('journal');
     else { await target.locator('.main-nav [data-action="journal"]').click(); await ready(target); }
     const values = (await target.locator('.stats-grid .stat > strong').allTextContents()).map(Number);
-    assert.equal(values[0], expected.rewards.size, 'World discoveries are profile-specific.');
+    assert.equal(values[0], expected.attempts, 'Practice response history is profile-specific.');
     assert.equal(values[1], expected.independent, 'Writing and supported attempts must not become independent evidence.');
     assert.equal(values[2], expected.retained);
     assert.equal(values[3], expected.due.length);
   }
   async function openMission(mission, mode, { assertEntry = false } = {}) {
-    await action('library');
+    await action('adventures');
     await action('region', `[data-value="${mission.level}"]`);
     await action('begin', `[data-id="${mission.id}"]`);
     if (mode === 'kids') {
-      await button('investigate').waitFor({ state: 'visible' });
+      await button('activity').waitFor({ state: 'visible' });
       assert.equal(await button('submit').count(), 0);
-      await action('investigate');
+      await action('activity');
       assert.ok(await button('ready').count(), 'Kids investigation opens a guided clue scene.');
       assert.equal(await button('submit').count(), 0, 'Kids investigates before entering the response workspace.');
     } else if (assertEntry && mode === 'balanced') {
@@ -422,6 +427,7 @@ try {
     assert.equal(await page.locator('meta[name="atlas-release"]').getAttribute('content'), expectedRelease,
       'The actual browser must load the expected deployed release, not an older cached shell.');
     check('The browser loaded the expected release at its configured project URL.');
+  await verifyLayout({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   }
 
   // Keep this first-visit journey independent of the three travelers whose
@@ -515,31 +521,10 @@ try {
     assert.equal(await form.isVisible(), true, 'The entry form stays visible without a disclosure gate.');
     await languageButton('vi').click(); await ready(arrivalPage);
     assert.equal(await name.inputValue(), travelerName);
-    await revealDetails(form.locator('[name="kind"]'), arrivalPage);
-    const kind = form.locator('[name="kind"]');
-    await arrivalPage.keyboard.press('Tab');
-    await kind.focus();
-    const selectAppearance = await kind.evaluate(element => {
-      const style = getComputedStyle(element), bounds = element.getBoundingClientRect();
-      return { height: bounds.height, width: bounds.width, native: element.tagName === 'SELECT',
-        outline: style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
-        shadow: style.boxShadow !== 'none', paddingRight: parseFloat(style.paddingRight) };
-    });
-    assert.equal(selectAppearance.native, true, 'Family profile selection must retain native keyboard and assistive-technology behavior.');
-    assert.ok(selectAppearance.height >= 44 && selectAppearance.width >= 44, 'Native selectors need comfortable control dimensions.');
-    assert.ok(selectAppearance.outline || selectAppearance.shadow, 'A focused native selector needs a visible focus treatment.');
-    assert.ok(selectAppearance.paddingRight >= 24, 'Selector text and arrow need room at the trailing edge.');
-    const familySummary = form.locator('.family-options > summary');
-    await familySummary.focus();
-    await arrivalPage.evaluate(() => window.dispatchEvent(new Event('online')));
-    await ready(arrivalPage);
-    assert.equal(await familySummary.evaluate(element => element === document.activeElement), true,
-      'A background notification must preserve focus on the nested family disclosure instead of moving it to the outer create section.');
-    assert.equal(await form.locator('.family-options').evaluate(element => element.open), true,
-      'The optional family controls must stay expanded while their summary is focused.');
-    assert.equal(await form.isVisible(), true, 'The entry form stays visible without a disclosure gate.');
-    assert.equal(await name.inputValue(), travelerName);
-    assert.equal(await kind.inputValue(), 'independent');
+    assert.equal(await form.locator('.family-options').count(),0,'First guest starts without guardian configuration.');
+    await name.focus();await arrivalPage.evaluate(() => window.dispatchEvent(new Event('online')));await ready(arrivalPage);
+    assert.equal(await name.evaluate(element=>element===document.activeElement),true,'Background feedback preserves the active form field.');
+    assert.equal(await name.inputValue(),travelerName);
     await axe('Vietnamese traveler creation at 390px', arrivalPage);
     await form.locator('button[type="submit"][value="play"]').click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-level-setup]').waitFor();await arrivalPage.locator('[data-action="entry-beginner"]').click();await ready(arrivalPage);
@@ -569,8 +554,9 @@ try {
     assert.equal(committed.profiles[0].settings.language, 'vi');
     assert.equal(committed.profiles[0].settings.mode, 'kids');
     assert.deepEqual(learningEvents(committed.events), [], 'Resume and mode changes must preserve the untouched learning journal.');
-    report.arrival = { appearance, selectAppearance, language: 'vi', inherited: true, resumed: true };
-    await arrivalPage.locator('.main-nav [data-action="library"]').click(); await ready(arrivalPage);
+    report.arrival = { appearance, familySelector: 'checked in layout journey', language: 'vi', inherited: true, resumed: true };
+    await arrivalPage.locator('.main-nav [data-action="home"]').click(); await ready(arrivalPage);
+    await arrivalPage.locator('[data-action="little-open"]:visible').first().click(); await ready(arrivalPage);
     await arrivalPage.locator('[data-action="picture-play"]').click(); await ready(arrivalPage);
     const pictureWords=['lantern','bell','boat','shell','kite','leaf'];
     await arrivalPage.screenshot({path:fileURLToPath(new URL('release-picture-play-vietnamese.png',directory)),fullPage:true});
@@ -1223,7 +1209,7 @@ try {
   assert.equal(await page.locator('body').evaluate(element => element.classList.contains('mode-balanced')), true);
   check('A background IndexedDB error preserves the foreground action lock and prevents overlapping profile changes.');
 
-  await action('library');
+  await action('adventures');
   for (const level of levels) { await action('region', `[data-value="${level}"]`); assert.equal(await page.locator(`.region-tab[data-value="${level}"]`).getAttribute('aria-pressed'), 'true'); }
   check('All six published practice regions can be selected without changing proficiency claims.');
 

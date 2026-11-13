@@ -1,7 +1,7 @@
 // A learning preference is an explicit choice. A default profile field is not.
 const readerScreens=new Set(['library','review','mission','quick','studio']);
-const learningScreens=new Set(['home','atlas','workshop','little','memory','pictures',...readerScreens]);
-const readerActions=new Set(['quick-start','begin','review-item','activity','ready','investigate','route-game','submit','retry','reveal','model','next','trail-next','collect-discovery','workshop-request','workshop-next','workshop-revisit']);
+const learningScreens=new Set(['home','atlas','adventures','workshop','little','memory','pictures',...readerScreens]);
+const readerActions=new Set(['quick-start','study-begin','begin','review-item','activity','ready','investigate','route-game','submit','retry','reveal','model','next','trail-next','collect-discovery','workshop-request','workshop-next','workshop-revisit']);
 export function learningDestination(screen,state){
  if(!state?.established&&learningScreens.has(screen))return 'entry';
  if(!state?.readerReady&&readerScreens.has(screen))return 'entry';

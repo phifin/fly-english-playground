@@ -67,10 +67,16 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   assert.equal(await page.locator('[data-form="family-invite"]').count(),0);
   await play('home');await play('little-open');await play('memory-open');
   const before=(await snapshot()).events.filter(e=>e.kind==='attempt').length;
-  await play('memory-flip','0');await page.reload();await ready(page);await play('little-open');await play('memory-open');
+  await page.screenshot({path:fileURLToPath(new URL('release-design-memory-guide-320.png',directory))});
+  await play('memory-flip','0');
+  assert.equal(await page.locator('.coach-popover').count(),0,'The first real flip retires guidance so every other card is directly reachable');
+  await page.reload();await ready(page);await play('little-open');await play('memory-open');
+  assert.equal(await page.locator('.coach-popover').count(),0,'A returning player is not retaught a successful card flip');
+  assert.equal(await page.locator('.memory-card:not(.is-open):not(:disabled)').evaluateAll(cards=>cards.every(card=>{const r=card.getBoundingClientRect();return card.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));})),true,'All remaining cards can receive pointer input');
   assert.equal(await page.locator('.memory-card.is-open').count(),1,'Reopening restores the selected card');
   let s=await savedMemory();
   const pairs=[...new Set(s.cards)].map(id=>s.cards.flatMap((word,i)=>word===id?[i]:[]));
+  assert.equal(await page.locator('.memory-heading > span').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return range.getClientRects().length;}),1,'The pair counter stays on one readable line at 320px');
   await page.screenshot({path:fileURLToPath(new URL('release-design-memory-320.png',directory)),fullPage:true});await axe('Memory pairs at 320px',page);
   for(let n=0;n<pairs.length;n++)for(const i of pairs[n]){
    if(s.open.includes(i)||s.found.includes(s.cards[i]))continue;

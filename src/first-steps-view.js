@@ -10,6 +10,9 @@ export function firstStepsView({language='en',manual=false,revisit=false,mode='b
 }
 
 const guidance={
+ learning:['Start five questions here. Lessons and listening are below.','Luyện nhanh 5 câu ở đây. Bài học và luyện nghe ở bên dưới.'],
+ progress:['Open review to practise earlier mistakes. These numbers describe your learning, not game rewards.','Mở phần ôn tập để luyện lại câu sai. Số liệu ở đây ghi nhận việc học, không phải phần thưởng trò chơi.'],
+ adventure:['Open this stop. Read its short clue, then choose or build an answer.','Mở chặng này, đọc gợi ý ngắn rồi chọn hoặc ghép câu trả lời.'],
  home:['Choose the highlighted activity. I’ll show you the first step.','Chọn hoạt động được đánh dấu. Mình sẽ hướng dẫn bước đầu nhé.'],
  choice:['Read the short text. Choose one answer, then check it.','Đọc đoạn ngắn, chọn một câu trả lời rồi kiểm tra.'],
  gap:['Type the missing word in the box, then check your answer.','Điền từ còn thiếu vào ô rồi kiểm tra.'],
