@@ -24,7 +24,7 @@ export function mountSpotlight({root,target,bubble,onEscape,revealTarget=true}){
   bubble.style.width=Math.min(320,viewport.width-24)+'px';
   // Navigation choices follow these primary actions. Keep coaching in the
   // heading area above them when possible instead of covering the next row.
-  const preferAbove=['home','learning','progress','adventure','workshop','review'].includes(bubble.dataset.guideTopic);
+  const preferAbove=['home','learning','progress','adventure','workshop','review','memory'].includes(bubble.dataset.guideTopic);
   const p=positionCoach(r,bubble.getBoundingClientRect(),viewport,{preferAbove});
   Object.assign(bubble.style,{left:p.left+'px',top:p.top+'px'});
  }

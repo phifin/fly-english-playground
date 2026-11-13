@@ -454,7 +454,7 @@ async function action(name,el){
  }
  if(name==='memory-flip'){
   const previous=ui.memory,next=flipMemory(previous,Number(el.dataset.value),littleWords);if(JSON.stringify(next)===JSON.stringify(previous))return;
-  await append('mission',{experience:'memory-pairs-v1',session:next});ui.memory=next;if(next.found.length>previous.found.length)await rememberGuide('memory');render();
+  await append('mission',{experience:'memory-pairs-v1',session:next});ui.memory=next;await rememberGuide('memory');render();
   if(next.found.length===3&&previous.found.length<3)await showDialog({title:t('Three pairs, well spotted!','Tìm đủ ba đôi rồi!'),message:t('Say the picture names together, then try a new set.','Cùng đọc tên các hình bằng tiếng Anh, rồi thử bộ thẻ mới nhé.'),confirmLabel:t('Keep playing','Chơi tiếp'),celebrate:true});return;
  }
 
