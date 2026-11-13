@@ -161,8 +161,8 @@ try {
     if (await target.locator('.startup-error h1').count()) throw new Error(await target.locator('.startup-error').innerText());
   }
   async function routeToControl(target,name) {
-    if(!['settings','atlas','adventures','review','start-placement'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
-    await target.locator('[data-action="'+(name==='settings'?'account':['review','start-placement'].includes(name)?'library':'home')+'"]:visible').first().click();await ready(target);
+    if(!['settings','atlas','adventures','review','studio','start-placement'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
+    await target.locator('[data-action="'+(name==='settings'?'account':['review','studio','start-placement'].includes(name)?'library':'home')+'"]:visible').first().click();await ready(target);
   }
   async function noError(target = page) { assert.equal(await target.locator('.alert.error').count(), 0, await target.locator('.alert.error').allTextContents()); }
   async function revealDetails(locator, target = page) {
