@@ -529,7 +529,7 @@ async function action(name,el){
  if(name==='world-translate'){ui.worldTranslation=!ui.worldTranslation;await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='world-hint'){ui.worldHint=true;await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='world-route'){ui.worldHint=true;ui.worldRoute=findRoute(currentBoard());await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
- if(name==='choose'){ui.answer=el.dataset.value;queueDraft();render();return;}
+ if(name==='choose'){ui.answer=el.dataset.value;ui.guideScrollKey=null;queueDraft();render();return;}
  if(name==='move'){const i=ui.answer.indexOf(el.dataset.id),j=i+Number(el.dataset.dir);if(j>=0&&j<ui.answer.length){[ui.answer[i],ui.answer[j]]=[ui.answer[j],ui.answer[i]];ui.guideOrderFor=ui.activity;}queueDraft();render();return;}
  if(name==='submit'){await submit();return;}
  if(['practice-help','practice-word','practice-hint'].includes(name)){
