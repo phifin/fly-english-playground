@@ -34,6 +34,17 @@ export async function verifyMotion({newContext,observe,ready,noError,axe,base,di
   await play('journal');await play('home');assert.equal(await page.locator('.experience-home').count(),1,'A new action interrupts the previous transition immediately');
   await page.evaluate(()=>{window.__atlasFreeze=false;for(const a of document.getAnimations())if(a.playState==='paused')a.play();});await settle();await dismiss();
   await play('guidance-language','en');await settle();await control('guidance-language','vi').hover();await shot('language-hover');await control('guidance-language','vi').focus();await shot('language-focus');
+  await play('library');await dismiss();await play('study-begin');await play('guide-replay');await settle();
+  await page.evaluate(()=>{window.__atlasFreeze=true;});
+  await page.locator('.choice-grid [data-action="choose"]').first().click();await ready(page);
+  await page.locator('.coach-popover[data-guide-step="check"]').waitFor();
+  for(const portion of [.15,.5,.9]){
+   await page.evaluate(portion=>{for(const a of document.getAnimations().filter(a=>a.id.startsWith('atlas-'))){a.pause();a.currentTime=a.effect.getTiming().duration*portion;}},portion);
+   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   const aligned=await page.evaluate(()=>{const t=document.querySelector('[data-guide-target]'),s=document.querySelector('.coach-shade'),b=document.querySelector('.coach-popover');const r=t.getBoundingClientRect(),q=s.getBoundingClientRect();return t.dataset.action==='submit'&&b.dataset.guideStep==='check'&&!b.hidden&&Math.abs(q.top-Math.max(0,r.top-5))<2&&Math.abs(q.left-Math.max(0,r.left-5))<2;});
+   assert.equal(aligned,true,'During motion, spotlight and instruction already belong to the next action');await shot('guide-transition-'+Math.round(portion*100));
+  }
+  await page.evaluate(()=>{window.__atlasFreeze=false;for(const a of document.getAnimations())if(a.playState==='paused')a.play();});await settle();
   await page.emulateMedia({reducedMotion:'reduce'});await play('library');
   assert.equal(await page.evaluate(()=>document.getAnimations().filter(a=>a.id.startsWith('atlas-')&&a.playState!=='finished').length),0,'OS reduced motion disables owned transitions');
   await shot('reduced-motion-study');await axe('Refined learning with reduced motion',page);

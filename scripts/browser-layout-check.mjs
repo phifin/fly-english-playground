@@ -29,12 +29,13 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
     if(!target||!bubble||!shade||bubble.hidden||!target.getClientRects().length)return false;
     const t=target.getBoundingClientRect().toJSON(),b=bubble.getBoundingClientRect().toJSON();
     if(b.bottom>innerHeight+1||b.right>innerWidth+1)return false;
-    return {t,b,pointerEvents:getComputedStyle(shade).pointerEvents};
+    return {t,b,s:shade.getBoundingClientRect().toJSON(),pointerEvents:getComputedStyle(shade).pointerEvents};
    });
-   const {t,b,pointerEvents}=await handle.jsonValue();await handle.dispose();const v=page.viewportSize();
+   const {t,b,s,pointerEvents}=await handle.jsonValue();await handle.dispose();const v=page.viewportSize();
    assert.ok(b.x>=0&&b.y>=0&&b.x+b.width<=v.width+1&&b.y+b.height<=v.height+1,'Coach fits the screen');
    assert.ok(b.y+b.height<=t.y+1||b.y>=t.y+t.height-1||b.x+b.width<=t.x||b.x>=t.x+t.width,'Guide does not cover its action');
    assert.equal(pointerEvents,'none');
+   assert.ok(Math.abs(s.x-Math.max(0,t.x-5))<2&&Math.abs(s.y-Math.max(0,t.y-5))<2&&Math.abs(s.right-Math.min(v.width,t.right+5))<2&&Math.abs(s.bottom-Math.min(v.height,t.bottom+5))<2,'Spotlight matches the current rendered target');
   }
   await coachContract();await shot('home-coach-vi-mobile');
   await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));
@@ -87,7 +88,7 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   if(practiceEditionFile)pack=applyPracticeEdition(pack,await (await fetch(new URL('data/published/'+practiceEditionFile,base))).json());
   const firstId=await page.locator('.study-steps [aria-current="step"]').getAttribute('data-id');
   const lesson=pack.missions.find(m=>m.activities.some(a=>a.id===firstId));
-  const guided=async(id)=>{await page.locator(`.coach-popover[data-guide-step="${id}"]`).waitFor();assert.equal(await page.locator('[data-guide-target]').count(),1,'Only the current tutorial target retains its highlight');};
+  const guided=async(id)=>{await page.locator(`.coach-popover[data-guide-step="${id}"]`).waitFor();assert.equal(await page.locator('[data-guide-target]').count(),1,'Only the current tutorial target retains its highlight');await coachContract();};
   for(const a of lesson.activities){
    await page.locator(`.study-steps [data-id="${a.id}"][aria-current="step"]`).waitFor();
    await play('guide-replay');
