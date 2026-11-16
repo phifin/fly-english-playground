@@ -1,5 +1,5 @@
 /* Surface and motion primitives. Educational text keeps its existing size. */
-:root{--paper:#fffdf7;--surface-soft:#edf1e6;--ink:#244e40;--lift:0 7px 24px #2d51410b;--ease-out:cubic-bezier(.2,.75,.25,1);--motion-fast:160ms;--motion-view:220ms}
+:root{--paper:#fffdf7;--surface-soft:#edf1e6;--ink:#244e40;--muted:#486151;--lift:0 7px 24px #2d51410b;--ease-out:cubic-bezier(.2,.75,.25,1);--motion-fast:160ms;--motion-view:220ms}
 body{background:#f7f5ee;color:var(--ink)}
 .masthead{border-bottom:1px solid #315e4b14}.main-nav{border-bottom-color:#315e4b14;padding-block:.35rem}
 main#main{padding-top:clamp(1.35rem,2.3vw,2rem)}
