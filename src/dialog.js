@@ -8,7 +8,10 @@ export function showDialog({title,message,confirmLabel,cancelLabel,celebrate=fal
   const copy=document.createElement('p');copy.id='atlas-dialog-message';copy.textContent=message;
   const actions=document.createElement('div');actions.className='button-row';
   let settled=false;
-  const finish=value=>{if(settled)return;settled=true;dialog.close();dialog.remove();
+  const finish=value=>{if(settled)return;settled=true;dialog.close();dialog.inert=true;
+   // Native discrete transitions may finish after close; release focus and the
+   // action immediately. Unsupported/reduced-motion browsers simply hide it.
+   dialog.addEventListener('transitionend',()=>dialog.remove(),{once:true});setTimeout(()=>dialog.remove(),180);
    const fallback=document.querySelector('[data-action="memory-again"]')||document.querySelector('main button:not(:disabled)')||document.querySelector('main h1');
    const target=previous?.isConnected&&previous!==document.body&&!previous.disabled?previous:fallback;
    target?.focus({preventScroll:true});resolve(value);

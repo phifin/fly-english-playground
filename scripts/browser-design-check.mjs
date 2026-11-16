@@ -69,9 +69,10 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   const before=(await snapshot()).events.filter(e=>e.kind==='attempt').length;
   await page.screenshot({path:fileURLToPath(new URL('release-design-memory-guide-320.png',directory))});
   await play('memory-flip','0');
-  assert.equal(await page.locator('.coach-popover').count(),0,'The first real flip retires guidance so every other card is directly reachable');
+  assert.equal(await page.locator('.coach-popover').getAttribute('data-guide-step'),'second-card','The first flip advances to choosing another card');
+  assert.equal(await page.locator('[data-guide-target]').getAttribute('class'),'memory-board','The guide opens all remaining choices rather than repeating the flipped card');
   await page.reload();await ready(page);await play('little-open');await play('memory-open');
-  assert.equal(await page.locator('.coach-popover').count(),0,'A returning player is not retaught a successful card flip');
+  assert.equal(await page.locator('.coach-popover').getAttribute('data-guide-step'),'second-card','Reload resumes the actual next interaction');
   assert.equal(await page.locator('.memory-card:not(.is-open):not(:disabled)').evaluateAll(cards=>cards.every(card=>{const r=card.getBoundingClientRect();return card.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));})),true,'All remaining cards can receive pointer input');
   assert.equal(await page.locator('.memory-card.is-open').count(),1,'Reopening restores the selected card');
   let s=await savedMemory();
@@ -89,6 +90,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
     assert.equal(await page.locator('[data-action="memory-again"]').evaluate(el=>el===document.activeElement),true,'Completion dismissal restores focus to the next playable action');
    }
    await ready(page);await noError(page);s=await savedMemory();
+   if(s.turns>0)assert.equal(await page.locator('.coach-popover').count(),0,'A completed two-card interaction retires the tutorial');
    assert.equal(await page.locator('.memory-card.is-found').count(),s.found.length*2,'Visible matched pairs agree with the latest persisted event');
   }
   assert.equal(s.found.length,3);assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,before,'Memory games never fabricate assessed evidence');

@@ -24,10 +24,10 @@ const guidance={
  workshop:['Choose a toy, then tap a glowing place to put it there.','Chọn đồ chơi rồi chạm vào một chỗ được đánh dấu để đặt vào.'],
  review:['Choose something to practise again. Your earlier progress stays saved.','Chọn bài muốn luyện lại. Kết quả trước đó vẫn được giữ.'],
 };
-export function guideView({topic,language='en',complete=false,help=false,variant=null}={}){
+export function guideView({topic,language='en',complete=false,help=false,variant=null,step=null}={}){
  const t=(en,vi)=>language==='vi'?vi:en;
  const pictureGuidance={explore:['Tap the big picture to hear its name. Say it together, then go to the next picture.','Chạm vào tranh lớn để nghe tên gọi. Cùng đọc rồi xem tranh tiếp theo.'],find:['Tap the speaker to hear a word, then choose its picture.','Chạm loa để nghe một từ rồi chọn bức tranh phù hợp.'],match:['Look at the big picture. Tap the small picture that looks the same.','Nhìn tranh lớn rồi chạm vào hình nhỏ giống tranh mẫu.']};
  const pictureVariant=topic.startsWith('picture-')?topic.slice(8):variant;
- const copy=(topic==='pictures'||topic.startsWith('picture-'))&&pictureGuidance[pictureVariant]?pictureGuidance[pictureVariant]:guidance[topic];if(!copy)return '';
+ const copy=step?.copy??((topic==='pictures'||topic.startsWith('picture-'))&&pictureGuidance[pictureVariant]?pictureGuidance[pictureVariant]:guidance[topic]);if(!copy)return '';
  return `<aside class="guide-bubble" aria-label="${t('Nim’s guide','Nim hướng dẫn')}" data-guide-topic="${topic}">${guideArt(complete?'celebrate':'help')}<div><strong>${complete?t('You did it!','Bạn làm được rồi!'):t('Let’s try it together','Cùng thử nhé')}</strong><p>${complete?t('Your response is saved. Read the feedback, then continue when you’re ready.','Câu trả lời đã được lưu. Xem giải thích rồi tiếp tục nhé.'):t(...copy)}</p><div class="guide-actions">${complete?`<button data-action="guide-complete" data-value="${topic}">${t('Got it','Mình hiểu rồi')}</button>`:`<button class="text-button" data-action="guide-skip" data-value="${topic}">${help?t('Close help','Đóng hướng dẫn'):t('I can try on my own','Tôi muốn tự thử')}</button>`}</div></div></aside>`;
 }
