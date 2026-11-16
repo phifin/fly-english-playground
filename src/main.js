@@ -109,14 +109,14 @@ function renderGuidance(previousCoach){
  const scrollKey=[profile.id,ui.screen,topic,ui.activity,selector].join(':');const revealTarget=ui.guideScrollKey!==scrollKey;ui.guideScrollKey=scrollKey;
  coachCleanup=mountSpotlight({root:app,target,bubble,revealTarget,previous:previousCoach,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
 }
-function refreshGuidance(){
+function refreshGuidance({preserveViewport=false}={}){
  const old=app.querySelector('.coach-popover'),previous=old&&!old.hidden?{box:old.getBoundingClientRect().toJSON()}:null;
  const topic=guideTopic(),step=currentGuideStep(topic);
  // Further keystrokes within one step do not rebuild its overlay or restart motion.
  if(old&&old.dataset.guideTopic===topic&&old.dataset.guideStep===(step?.id??'start'))return;
  coachCleanup();coachCleanup=()=>{};old?.remove();
  // Keep the active editor/caret and viewport. No full view redraw while typing.
- const scroll=scrollY;renderGuidance(previous);scrollTo({top:scroll,behavior:'instant'});
+ const scroll=scrollY;renderGuidance(previous);if(preserveViewport)scrollTo({top:scroll,behavior:'instant'});
 }
 const currentPlacementPool=()=>placementPool(pack,ui.placementMethod??NEW_PLACEMENT_METHOD);
 const currentSavedPlacement=()=>savedPlacement(events,{pack,activities:content().activities,grade:assess});
@@ -603,9 +603,9 @@ app.addEventListener('input',e=>{
  const el=e.target;if(ui.submitting)return;if(el.dataset.answer==='gap')ui.answer=el.value;
  if(el.dataset.answer==='writing')ui.answer={...ui.answer,text:el.value};
  if(el.hasAttribute('data-world-plan'))ui.worldPlan=el.value;
- if(el.dataset.answer){queueDraft();if(!e.isComposing)refreshGuidance();}
+ if(el.dataset.answer){queueDraft();if(!e.isComposing)refreshGuidance({preserveViewport:true});}
 });
-app.addEventListener('compositionend',e=>{if(e.target.dataset.answer&&!ui.submitting)refreshGuidance();});
+app.addEventListener('compositionend',e=>{if(e.target.dataset.answer&&!ui.submitting)refreshGuidance({preserveViewport:true});});
 app.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
 app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
