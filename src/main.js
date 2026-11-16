@@ -85,10 +85,13 @@ async function rememberGuide(topic,state='completed'){
  if(guideStatus(events,topic)==='new')await append('mission',{experience:'guide-v1',version:1,topic,state});
  ui.guideReplay=null;
 }
+function currentGuideStep(topic){
+ return guideStep({topic,answer:ui.answer,activity:currentActivity(),stage:ui.screen==='mission'?ui.stage:null,feedback:['mission','quick'].includes(ui.screen)?ui.feedback:null,moved:ui.guideOrderFor===ui.activity,workshopSelected:ui.workshopSelected,little:ui.little,memory:ui.memory});
+}
 function renderGuidance(previousCoach){
  const topic=guideTopic();if(!topic)return;
  const defaultSelector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
- const step=guideStep({topic,answer:ui.answer,activity:currentActivity(),stage:ui.screen==='mission'?ui.stage:null,feedback:['mission','quick'].includes(ui.screen)?ui.feedback:null,moved:ui.guideOrderFor===ui.activity,workshopSelected:ui.workshopSelected,little:ui.little,memory:ui.memory});
+ const step=currentGuideStep(topic);
  const selector=step?.selector??defaultSelector;
  const target=selector?app.querySelector(selector):null,heading=app.querySelector('.activity-top')??app.querySelector('main h1');
  if(!heading)return;
@@ -108,6 +111,9 @@ function renderGuidance(previousCoach){
 }
 function refreshGuidance(){
  const old=app.querySelector('.coach-popover'),previous=old&&!old.hidden?{box:old.getBoundingClientRect().toJSON()}:null;
+ const topic=guideTopic(),step=currentGuideStep(topic);
+ // Further keystrokes within one step do not rebuild its overlay or restart motion.
+ if(old&&old.dataset.guideTopic===topic&&old.dataset.guideStep===(step?.id??'start'))return;
  coachCleanup();coachCleanup=()=>{};old?.remove();
  // Keep the active editor/caret and viewport. No full view redraw while typing.
  const scroll=scrollY;renderGuidance(previous);scrollTo({top:scroll,behavior:'instant'});
@@ -173,7 +179,11 @@ async function changeGuidance(value){
  if(!['en','vi'].includes(value))return;
  await saveDraft();
  if(profile)profile=await store.updateProfile(profile.id,{settings:{language:value}});
- guidanceLanguage=writeGuidance(value);setPreferences();if(ui.error&&ui.errorSource)ui.error=errorMessage(ui.errorSource);render();
+ guidanceLanguage=writeGuidance(value);setPreferences();if(ui.error&&ui.errorSource)ui.error=errorMessage(ui.errorSource);
+ // An explicit header-language action can scroll away from a guided task.
+ // Rejoin that task once; background redraws retain the existing scroll key.
+ if(app.querySelector('.coach-popover'))ui.guideScrollKey=null;
+ render();
 }
 
 async function append(kind,payload){await store.appendEvent(profile.id,newEvent(kind,payload));ui.lastSaved=new Date();await refresh();}

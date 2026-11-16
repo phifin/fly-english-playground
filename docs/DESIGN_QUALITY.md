@@ -28,6 +28,16 @@ Interactive coaching must target a real, visible, enabled control, preserve its 
 
 ## Required release review
 
+### Motion and interaction-state gate
+
+Use the shared motion timings (160ms response, 180ms guidance, 220ms view entry). Animations never lock an action or delay a save. Navigation interrupts finite effects. Background redraws resume the visible frame instead of flashing from zero. OS reduced motion, the learner's reduced-motion preference and Eco suppress optional motion. Test these policies independently.
+
+Use surface color and spacing before adding another frame. Native fields and selected controls still need accessible boundaries. Match the specificity of existing page selectors when adjusting composition; inspect actual header-to-content spacing, not just the stylesheet.
+
+Tutorial targets derive from observable response state, never the correct answer. Test every instructed interaction, including incomplete matching, typing and clearing, text composition, correction after a wrong response, the first and second card flips, and selection followed by placement. Verify exactly one current target, synchronized instructions, no obstructed action, and stable focus after a background update or language switch. Preserve guide receipts and replay per learner. Additional keystrokes within a step must not rebuild its bubble.
+
+`scripts/browser-motion-check.mjs` freezes real Web Animations timelines for 15%, 50% and 90% screenshots, then checks rapid interruption and reduced-motion/Eco behavior. Review these intermediate frames alongside the full journeys and phone screenshots. A passing timeline assertion does not establish animation taste, low-end hardware performance or physical-device support.
+
 1. Inspect the real source and all changed routes, including empty, pending, success and error branches. Record fixed defects separately from unresolved findings.
 2. Run domain/content/security regressions and real browser journeys. Capture original EN/VI entry, the main task, completion, account and narrow layouts. Examine the images yourself; axe is not a substitute.
 3. Check first action, focus order, direct manipulation, save/reload and back navigation. Use observable state rather than a transient toast as the only success assertion.

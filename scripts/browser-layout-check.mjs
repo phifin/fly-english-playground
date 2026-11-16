@@ -92,7 +92,10 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    await page.locator(`.study-steps [data-id="${a.id}"][aria-current="step"]`).waitFor();
    await play('guide-replay');
    if(a.type==='choice'){
-    await guided('choose');await play('choose',a.answer);await guided('check');await coachContract();
+    await guided('choose');
+    const wrong=await page.locator('[data-action="choose"]').evaluateAll((nodes,right)=>nodes.find(n=>n.dataset.value!==right).dataset.value,a.answer);
+    await play('choose',wrong);await guided('check');await play('submit');await guided('retry');await coachContract();await shot('retry-coach-vi');
+    await play('retry');await play('choose',a.answer);await guided('check');await coachContract();
     await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);await guided('check');
     await play('guidance-language','en');await guided('check');await coachContract();await shot('answer-check-coach-en');
     await play('guidance-language','vi');await guided('check');await shot('answer-check-coach-vi');
@@ -117,7 +120,7 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    await play('submit');await page.locator('.feedback').waitFor();await guided('continue');assert.equal(await page.locator('[data-guide-target]').getAttribute('data-action'),'next');await play('next');
   }
   await page.locator('[data-learning-home]').waitFor();
-  const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,5);
+  const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,6,'Five tasks plus one real incorrect response remain in history');
   assert.equal(completed.profiles[0].settings.mode,mode);assert.ok(before.events.every(e=>completed.events.some(saved=>saved.id===e.id)),'Existing records survive direct lesson completion');
   await play('journal');await axe('Compact learning progress mobile',page);
   await page.setViewportSize({width:1280,height:800});await play('library');
