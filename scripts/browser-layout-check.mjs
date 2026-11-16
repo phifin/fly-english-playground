@@ -91,9 +91,17 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   for(const a of lesson.activities){
    await page.locator(`.study-steps [data-id="${a.id}"][aria-current="step"]`).waitFor();
    await play('guide-replay');
-   if(a.type==='choice'){await guided('choose');await play('choose',a.answer);}
+   if(a.type==='choice'){
+    await guided('choose');await play('choose',a.answer);await guided('check');await coachContract();
+    await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);await guided('check');
+    await play('guidance-language','en');await guided('check');await coachContract();await shot('answer-check-coach-en');
+    await play('guidance-language','vi');await guided('check');await shot('answer-check-coach-vi');
+   }
    else if(a.type==='gap'){await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);await guided('check');await page.locator('[data-answer="gap"]').fill('');await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);}
-   else if(a.type==='match')for(const [index,pair] of a.pairs.entries()){await guided('pair-'+index);assert.equal(await page.locator('[data-guide-target]').getAttribute('data-match'),pair.id);await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);}
+   else if(a.type==='match')for(const [index,pair] of a.pairs.entries()){
+    await guided('pair-'+index);assert.equal(await page.locator('[data-guide-target]').getAttribute('data-match'),pair.id);await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);
+    if(index===0){await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);await guided('pair-1');await coachContract();await shot('matching-next-line-coach');}
+   }
    else if(a.type==='order'){
     for(let index=0;index<a.answer.length;index++){
      const id=a.answer[index];let position=await page.locator('.order-list li').evaluateAll((rows,id)=>rows.findIndex(row=>row.querySelector('[data-action="move"]').dataset.id===id),id);

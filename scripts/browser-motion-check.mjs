@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
 export async function verifyMotion({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report}){
- const context=await newContext({viewport:{width:1280,height:800},hasTouch:true}),page=await context.newPage();observe(page);
+ const context=await newContext({viewport:{width:1280,height:800},hasTouch:true,reducedMotion:'no-preference'}),page=await context.newPage();observe(page);
  const shots=[];const shot=async(name)=>{await page.screenshot({path:fileURLToPath(new URL(`release-motion-${name}.png`,directory))});shots.push(name);};
  const control=(name,value)=>page.locator(`[data-action="${name}"]${value===undefined?'':`[data-value="${value}"]`}:visible`).first();
  const play=async(name,value)=>{await control(name,value).click();await ready(page);await noError(page);};

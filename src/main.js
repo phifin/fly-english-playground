@@ -423,7 +423,7 @@ function render(focusHeading=false){
   replacement?.focus({preventScroll:true});
  }
  app.setAttribute('aria-busy',String(ui.busy));
- finishVisual(app,visual,[context,ui.entering,ui.stage,ui.activity,ui.quick?.index,ui.placement?.answers?.length].join(':'));
+ finishVisual(app,visual,[context,ui.entering,ui.stage,ui.activity,ui.quick?.index,ui.placement.length].join(':'));
 }
 
 async function submit(){
@@ -595,7 +595,8 @@ app.addEventListener('input',e=>{
  if(el.hasAttribute('data-world-plan'))ui.worldPlan=el.value;
  if(el.dataset.answer){queueDraft();if(!e.isComposing)refreshGuidance();}
 });
-app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
+app.addEventListener('compositionend',e=>{if(e.target.dataset.answer&&!ui.submitting)refreshGuidance();});
+app.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
 app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
 const handleChange=e=>run(async()=>{
