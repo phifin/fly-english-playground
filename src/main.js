@@ -1,3 +1,4 @@
+import {guideArt} from './guide-art.js';
 import {adventureLibrary} from './adventure-library.js';
 import {learningHome} from './learning-home.js';
 import {mountSpotlight} from './spotlight.js';
@@ -95,7 +96,7 @@ function currentGuideStep(topic){
  return guideStep({topic,answer:ui.answer,activity:currentActivity(),stage:ui.screen==='mission'?ui.stage:null,feedback:['mission','quick'].includes(ui.screen)?ui.feedback:null,moved:ui.guideOrderFor===ui.activity,workshopSelected:ui.workshopSelected,little:ui.little,memory:ui.memory});
 }
 function renderGuidance(previousCoach){
- const topic=guideTopic();if(!topic||ui.responseValidation)return;
+ const topic=guideTopic();if(!topic||ui.responseValidation||errorDialog)return;
  const defaultSelector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
  const step=currentGuideStep(topic);
  const selector=step?.selector??defaultSelector;
@@ -363,7 +364,7 @@ function journalScreen(){
 function reviewScreen(){
  const due=progress.due,weak=Object.values(progress.records).filter(r=>!r.retired&&r.last.result.correct===false&&!due.some(d=>d.id===r.id));
  const recommended=[...due,...weak];
- return `<section class="page-heading"><p class="eyebrow">${t('THE RETURN JOURNEY','HÀNH TRÌNH TRỞ LẠI')}</p><h1>${t('Review and remember','Ôn lại để nhớ lâu')}</h1><p class="lede">${t('Practise recent mistakes and words ready to revisit.','Ôn lại những câu vừa sai và nội dung đã đến lúc luyện lại.')}</p></section><section class="panel"><div class="section-heading"><h2>${recommended.length?t('Ready to practise','Nội dung cần ôn'):t('All caught up','Bạn đã ôn xong rồi')}</h2><span>${recommended.length} ${t('suggestions','gợi ý')}</span></div>${recommended.length?`<div class="review-list">${recommended.slice(0,20).map(r=>{const a=content().activities.get(r.id);return `<article><span class="chip">${r.level}</span><div><h3>${esc(loc(content().missions.get(r.missionId).title))}</h3><p lang="en">${esc(a.focus.replace(/-/g,' '))}</p><small>${r.last.result.correct===false?t('A recent difficulty — try retrieving before opening the answer.','Điểm cần luyện — thử nhớ lại trước khi xem đáp án.'):t('Scheduled recall','Nhớ lại theo lịch')}</small></div>${btn(t('Practice →','Ôn tập →'),'review-item',`data-id="${a.id}"`,'primary')}</article>`;}).join('')}</div>`:`<div class="empty-state">${emblem('leaf')}<p>${t('Nothing needs review yet. Try a short practice session.','Chưa có bài cần ôn. Bạn có thể luyện nhanh vài câu.')}</p>${btn(t('Start practice','Bắt đầu luyện tập'),'quick-start','','primary')}</div>`}<details><summary>${t('How review works','Cách ôn tập hoạt động')}</summary><p class="fineprint">${t('Scheduling uses a simple 1, 3, 7, 14, 30 day heuristic after independent recall on different days. Mistakes return sooner. It is a useful practice aid, not a validated memory model.','Lịch ôn dùng quy tắc đơn giản 1, 3, 7, 14, 30 ngày sau khi nhớ lại độc lập vào các ngày khác nhau. Mục sai trở lại sớm hơn. Đây là công cụ hỗ trợ, không phải mô hình trí nhớ đã được kiểm định.')}</p></details></section>`;
+ return `<section class="page-heading"><p class="eyebrow">${t('THE RETURN JOURNEY','HÀNH TRÌNH TRỞ LẠI')}</p><h1>${t('Review and remember','Ôn lại để nhớ lâu')}</h1><p class="lede">${t('Practise recent mistakes and words ready to revisit.','Ôn lại những câu vừa sai và nội dung đã đến lúc luyện lại.')}</p></section><section class="panel"><div class="section-heading"><h2>${recommended.length?t('Ready to practise','Nội dung cần ôn'):t('All caught up','Bạn đã ôn xong rồi')}</h2><span>${recommended.length} ${t('suggestions','gợi ý')}</span></div>${recommended.length?`<div class="review-list">${recommended.slice(0,20).map(r=>{const a=content().activities.get(r.id);return `<article><span class="chip">${r.level}</span><div><h3>${esc(loc(content().missions.get(r.missionId).title))}</h3><p lang="en">${esc(a.focus.replace(/-/g,' '))}</p><small>${r.last.result.correct===false?t('A recent difficulty — try retrieving before opening the answer.','Điểm cần luyện — thử nhớ lại trước khi xem đáp án.'):t('Scheduled recall','Nhớ lại theo lịch')}</small></div>${btn(t('Practice →','Ôn tập →'),'review-item',`data-id="${a.id}"`,'primary')}</article>`;}).join('')}</div>`:`<div class="empty-state review-empty">${guideArt('beginner')}<p>${t('Nothing needs review yet. Try a short practice session.','Chưa có bài cần ôn. Bạn có thể luyện nhanh vài câu.')}</p>${btn(t('Start practice','Bắt đầu luyện tập'),'quick-start','','primary')}</div>`}<details><summary>${t('How review works','Cách ôn tập hoạt động')}</summary><p class="fineprint">${t('Scheduling uses a simple 1, 3, 7, 14, 30 day heuristic after independent recall on different days. Mistakes return sooner. It is a useful practice aid, not a validated memory model.','Lịch ôn dùng quy tắc đơn giản 1, 3, 7, 14, 30 ngày sau khi nhớ lại độc lập vào các ngày khác nhau. Mục sai trở lại sớm hơn. Đây là công cụ hỗ trợ, không phải mô hình trí nhớ đã được kiểm định.')}</p></details></section>`;
 }
 
 function studioScreen(){return studioView({missions:pack.missions,level:profile.journey.region,language:profile.settings.language,activityId:ui.studioId});}
@@ -397,7 +398,12 @@ function placementScreen(){
 function renderBackground(){
  // Background saving/status changes must not replace an active editor or move
  // its caret. Explicit navigation and account isolation still redraw immediately.
- if(profile&&(['mission','quick','placement'].includes(ui.screen)||document.activeElement?.matches('input,textarea,select,[contenteditable=true]')))return;
+ if(profile&&(['mission','quick','placement'].includes(ui.screen)||document.activeElement?.matches('input,textarea,select,[contenteditable=true]'))){
+  // Connection feedback remains timely, but only its own small surface changes.
+  const notice=app.querySelector('.alert.notice');
+  if(ui.notice&&notice?.dataset.message!==ui.notice){notice?.remove();const node=document.createElement('div');node.className='alert notice';node.setAttribute('role','status');node.dataset.message=ui.notice;node.innerHTML=`${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}`;app.querySelector('main')?.append(node);animateVisual(node,[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}]);}
+  return;
+ }
  render();
 }
 function render(focusHeading=false){
@@ -488,7 +494,7 @@ async function action(name,el){
  if(name==='entry-pictures'||name==='placement-assisted'){await chooseLearningStart('supported-pictures');return;}
  if(name==='entry-manual'||name==='entry-options'){ui.entryManual=name==='entry-manual';ui.screen='entry';render(true);return;}
  if(name==='guide-replay'){ui.guideScrollKey=null;ui.guideReplay=guideTopic();ui.guideCelebrate=null;render();app.querySelector('[data-guide-topic] button')?.focus({preventScroll:true});return;}
- if(name==='guide-skip'||name==='guide-complete'){const topic=guideTopic();await rememberGuide(topic,name==='guide-skip'?'skipped':'completed');ui.guideReplay=null;ui.guideCelebrate=null;render();app.querySelector('[data-guide-target],.help-launcher')?.focus({preventScroll:true});return;}
+ if(name==='guide-skip'||name==='guide-complete'){const topic=guideTopic(),target=app.querySelector('[data-guide-target]');await rememberGuide(topic,name==='guide-skip'?'skipped':'completed');ui.guideReplay=null;ui.guideCelebrate=null;coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();(target?.matches('button,input,textarea,select')?target:app.querySelector('.help-launcher'))?.focus({preventScroll:true});return;}
  if(ui.screen==='home'&&['quick-start','little-open','atlas','adventures','library','memory-open'].includes(name))await rememberGuide('home');
  if(ui.screen==='review'&&name==='review-item')await rememberGuide('review');
  if(ui.screen==='library'&&['studio','review'].includes(name))await rememberGuide('learning');
@@ -628,7 +634,8 @@ function responseValidation(message){
  clearResponseValidation();ui.responseValidation=true;coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
  const area=app.querySelector('.activity-actions,.orientation .button-row');if(!area)return;
  const note=document.createElement('p');note.id='response-validation';note.className='response-validation';note.setAttribute('role','alert');note.textContent=message;area.before(note);
- const target=app.querySelector('[data-answer="gap"],textarea:placeholder-shown,.match-row select:has(option[value=""]:checked),.rubric input:not(:checked),.choice-grid button,[data-answer="writing"]');
+ const emptyEditor=[...app.querySelectorAll('[data-answer="gap"],[data-answer="writing"]')].find(el=>!el.value.trim());
+ const target=emptyEditor??app.querySelector('.match-row select:has(option[value=""]:checked),.rubric input:not(:checked),.choice-grid button,[data-answer="gap"],[data-answer="writing"]');
  if(target){target.setAttribute('aria-invalid','true');target.setAttribute('aria-errormessage',note.id);target.focus({preventScroll:true});}
  note.scrollIntoView({block:'nearest',behavior:'instant'});animateVisual(note,[{opacity:0},{opacity:1}]);
 }
@@ -658,8 +665,8 @@ const handleChange=e=>run(async()=>{
  if(el.dataset.setting==='language')await changeGuidance(el.value);
  else if(el.dataset.setting){await saveDraft();profile=await store.updateProfile(profile.id,{settings:{[el.dataset.setting]:el.dataset.setting==='sound'?el.value==='true':el.value}});setPreferences();render();}
  if(el.dataset.journey){profile=await store.updateProfile(profile.id,{journey:{[el.dataset.journey]:el.value}});render();}
- if(el.dataset.match){ui.answer={...ui.answer,[el.dataset.match]:el.value};queueDraft();refreshGuidance();}
- if(el.dataset.check!==undefined){const set=new Set(ui.answer.checks);el.checked?set.add(Number(el.dataset.check)):set.delete(Number(el.dataset.check));ui.answer={...ui.answer,checks:[...set]};queueDraft();refreshGuidance();}
+ if(el.dataset.match){clearResponseValidation();ui.answer={...ui.answer,[el.dataset.match]:el.value};queueDraft();refreshGuidance();}
+ if(el.dataset.check!==undefined){clearResponseValidation();const set=new Set(ui.answer.checks);el.checked?set.add(Number(el.dataset.check)):set.delete(Number(el.dataset.check));ui.answer={...ui.answer,checks:[...set]};queueDraft();refreshGuidance();}
  if(el.id==='import-file'&&el.files[0]){const file=el.files[0];el.value='';if(file.size>STORE_LIMITS.importBytes)throw new Error(t('Backup is too large.','Bản sao quá lớn.'));const data=JSON.parse(await file.text());await store.importAll(data);await refresh();ui.notice=t('Backup validated and merged. Existing history was preserved.','Bản sao đã kiểm tra và gộp. Lịch sử hiện có được giữ lại.');render();}
 });
 app.addEventListener('change',handleChange);

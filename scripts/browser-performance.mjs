@@ -42,6 +42,7 @@ async function sample(url,label,index){
    const editor=page.locator(`[data-answer="${type}"]`);await editor.click();const handle=await editor.elementHandle();
    await measure(type+'-typing',async()=>{await page.keyboard.type(text,{delay:35});await page.keyboard.press('Backspace');await page.keyboard.type(text.at(-1),{delay:35});});
    run[type]={expected:text,actual:await editor.inputValue(),focused:await editor.evaluate(e=>e===document.activeElement),sameNode:await handle.evaluate(e=>e.isConnected),focusEvents:await page.evaluate(()=>__probe.focus.slice(-8))};
+   if(label==='candidate'&&(run[type].actual!==text||!run[type].focused||!run[type].sameNode))throw new Error(`Continuous ${type} typing lost focus, text or DOM identity`);
    await page.screenshot({path:new URL(`performance-${label}-${index}-${type}.png`,directory).pathname});
    await skip();
   }
