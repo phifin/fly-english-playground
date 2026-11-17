@@ -95,13 +95,23 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
    if(a.type==='choice'){
     await guided('choose');
     const wrong=await page.locator('[data-action="choose"]').evaluateAll((nodes,right)=>nodes.find(n=>n.dataset.value!==right).dataset.value,a.answer);
-    await play('choose',wrong);await guided('check');await play('submit');await guided('retry');await coachContract();await shot('retry-coach-vi');
-    await play('retry');await play('choose',a.answer);await guided('check');await coachContract();
+    await play('choose',wrong);await guided('check');await play('submit');assert.equal(await page.locator('.coach-popover').count(),0,'Submitting a wrong answer releases guidance');await shot('retry-independent-vi');
+    await play('retry');assert.equal(await page.locator('.coach-popover').count(),0,'Retry does not restart a completed control tutorial');await play('choose',a.answer);await play('guide-replay');await guided('check');await coachContract();
     await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);await guided('check');
     await play('guidance-language','en');await guided('check');await coachContract();await shot('answer-check-coach-en');
     await play('guidance-language','vi');await guided('check');await shot('answer-check-coach-vi');
    }
-   else if(a.type==='gap'){await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);await guided('check');await page.locator('[data-answer="gap"]').fill('');await guided('type');await page.locator('[data-answer="gap"]').fill(a.accepted[0]);}
+   else if(a.type==='gap'){
+    await guided('type');const editor=page.locator('[data-answer="gap"]');await editor.click();const node=await editor.elementHandle();
+    await page.keyboard.type(a.accepted[0],{delay:75});await page.keyboard.press('Backspace');await page.keyboard.type(a.accepted[0].at(-1));
+    assert.equal(await editor.inputValue(),a.accepted[0]);assert.equal(await editor.evaluate(e=>e===document.activeElement),true);
+    assert.equal(await page.locator('.coach-popover').getAttribute('data-guide-step'),'type','Typing never moves the guide out from under the editor');
+    await page.evaluate(()=>{window.dispatchEvent(new Event('online'));document.dispatchEvent(new Event('visibilitychange'));window.dispatchEvent(new Event('atlas:store-change'));});
+    await page.waitForTimeout(1800);assert.equal(await node.evaluate(e=>e.isConnected&&e===document.activeElement),true,'Background refresh and actual draft saving preserve the editor and focus');
+    await editor.evaluate(el=>{el.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true,data:'a'}));el.dispatchEvent(new InputEvent('input',{bubbles:true,isComposing:true,data:'a'}));el.dispatchEvent(new KeyboardEvent('keydown',{bubbles:true,key:'Enter',isComposing:true}));el.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:'a'}));});
+    assert.equal(await editor.evaluate(e=>e===document.activeElement),true);assert.equal(await page.locator('.feedback').count(),0,'IME Enter does not submit');
+    await page.keyboard.press('Tab');await guided('check');await shot('continuous-editor-after-save');
+   }
    else if(a.type==='match')for(const [index,pair] of a.pairs.entries()){
     await guided('pair-'+index);assert.equal(await page.locator('[data-guide-target]').getAttribute('data-match'),pair.id);await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);
     if(index===0){await page.evaluate(()=>window.dispatchEvent(new Event('online')));await ready(page);await guided('pair-1');await coachContract();await shot('matching-next-line-coach');}
@@ -113,12 +123,14 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
     }
    }else if(a.type==='writing'){
     await guided('write');
-    await page.locator('[data-answer="writing"]').fill(a.example);
+    const editor=page.locator('[data-answer="writing"]');await editor.click();await page.keyboard.type(a.example,{delay:10});
+    assert.equal(await editor.inputValue(),a.example);assert.equal(await editor.evaluate(e=>e===document.activeElement),true);
+    await page.keyboard.press('Tab');
     await guided('review');
     for(const checkbox of await page.locator('.rubric input[type="checkbox"]').all()){await checkbox.check();await ready(page);}
    }
    await guided('check');assert.equal(await page.locator('[data-guide-target]').getAttribute('data-action'),'submit');
-   await play('submit');await page.locator('.feedback').waitFor();await guided('continue');assert.equal(await page.locator('[data-guide-target]').getAttribute('data-action'),'next');await play('next');
+   await play('submit');await page.locator('.feedback').waitFor();assert.equal(await page.locator('.coach-popover').count(),0,'Feedback belongs to learning, not a mandatory tutorial');await play('next');
   }
   await page.locator('[data-learning-home]').waitFor();
   const completed=await snapshot();assert.equal(completed.events.filter(e=>e.kind==='attempt').length-before.events.filter(e=>e.kind==='attempt').length,6,'Five tasks plus one real incorrect response remain in history');

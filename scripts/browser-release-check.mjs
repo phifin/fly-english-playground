@@ -65,7 +65,7 @@ async function readImportState({ expected = null, expectError = false } = {}) {
     connectedAtChange: observed.connectedAtChange, sawBusy: observed.sawBusy } : null;
   const state = { snapshot, probe, busy: document.querySelector('#app')?.getAttribute('aria-busy') !== 'false',
     notices: [...document.querySelectorAll('.alert.notice')].map(element => element.innerText),
-    errors: [...document.querySelectorAll('.alert.error')].map(element => element.innerText) };
+    errors: [...document.querySelectorAll('.atlas-dialog.error[open]')].map(element => element.innerText) };
   if (expected === null) return state;
   if (!probe?.changeEvents || !probe.sawBusy || state.busy) return false;
   if (state.errors.length) return state;
@@ -165,7 +165,7 @@ try {
     if(!['settings','atlas','adventures','review','studio','start-placement'].includes(name)||await target.locator('[data-action="'+name+'"]:visible').count())return;
     await target.locator('[data-action="'+(name==='settings'?'account':['review','studio','start-placement'].includes(name)?'library':'home')+'"]:visible').first().click();await ready(target);
   }
-  async function noError(target = page) { assert.equal(await target.locator('.alert.error').count(), 0, await target.locator('.alert.error').allTextContents()); }
+  async function noError(target = page) { assert.equal(await target.locator('.atlas-dialog.error[open]').count(), 0, await target.locator('.atlas-dialog.error[open]').allTextContents()); }
   async function revealDetails(locator, target = page) {
     // Follow the same disclosure path as a person. Never force clicks through
     // hidden administrative sections or change their open state in page code.
@@ -628,7 +628,7 @@ try {
     await pclick('placement-begin');
     await pbutton('placement-next').click(); await ready(placementPage);
     assert.equal((await snapshot()).events.length, 0, 'A missing answer cannot advance or record a response.');
-    assert.equal(await placementPage.locator('.alert.error').count(), 1, 'A missing response must have understandable recovery guidance.');
+    assert.equal(await placementPage.locator('.response-validation').count(), 1, 'A missing response must have understandable recovery guidance.');
     const answered = [await answer()];
     const pendingId = await placementPage.locator('[data-placement-item]').getAttribute('data-placement-item');
     const beforeResume = await snapshot();
@@ -1208,9 +1208,10 @@ try {
     };
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  await page.locator('.alert.error').waitFor({ state: 'visible' });
+  await page.locator('.atlas-dialog.error[open]').waitFor({ state: 'visible' });
   assert.equal(await page.locator('#app').getAttribute('aria-busy'), 'true', 'A handled background error must not release the foreground action lock.');
-  await button('mode', '[data-value="serious"]').click();
+  assert.equal(await page.locator('.atlas-dialog.error[open]').evaluate(e=>e.contains(document.activeElement)),true,'Error modal owns keyboard focus');
+  await button('mode', '[data-value="serious"]').dispatchEvent('click');
   assert.equal(await page.locator('body').evaluate(element => element.classList.contains('mode-balanced')), true,
     'A second action cannot change the profile while the first action is pending.');
   await page.evaluate(() => {

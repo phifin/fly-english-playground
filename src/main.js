@@ -1,7 +1,7 @@
 import {adventureLibrary} from './adventure-library.js';
 import {learningHome} from './learning-home.js';
 import {mountSpotlight} from './spotlight.js';
-import {captureVisual,finishVisual,installMotion} from './motion.js';
+import {captureVisual,finishVisual,installMotion,animateVisual} from './motion.js';
 import {welcomeArt} from './welcome-art.js';
 import {guideStep} from './guide-step.js';
 let coachCleanup=()=>{};
@@ -57,8 +57,14 @@ const loc=v=>v?.[language()]??v?.en??'';
 const btn=(label,action,extra='',cls='')=>`<button type="button" class="${cls}" data-action="${action}" ${extra}>${label}</button>`;
 const selected=(a,b)=>a===b?' selected':'';
 const pressed=(a,b)=>`aria-pressed="${a===b}"`;
-const content=()=>indexContent(pack);
-const learningStart=()=>initialLearningState(profile,events,{pack,activities:content().activities,placementItems,assess});
+let indexedPack,indexedContent,startCache;
+const content=()=>{if(indexedPack!==pack){indexedPack=pack;indexedContent=indexContent(pack);}return indexedContent;};
+const learningStart=()=>{
+ if(!startCache||startCache.profile!==profile||startCache.events!==events||startCache.pack!==pack){
+  startCache={profile,events,pack,value:initialLearningState(profile,events,{pack,activities:content().activities,placementItems,assess})};
+ }
+ return startCache.value;
+};
 async function chooseLearningStart(path,level=null){
  await saveDraft();
  await establishLearningStart({path,level,updateProfile:async change=>{profile=await store.updateProfile(profile.id,change);},append});
@@ -89,7 +95,7 @@ function currentGuideStep(topic){
  return guideStep({topic,answer:ui.answer,activity:currentActivity(),stage:ui.screen==='mission'?ui.stage:null,feedback:['mission','quick'].includes(ui.screen)?ui.feedback:null,moved:ui.guideOrderFor===ui.activity,workshopSelected:ui.workshopSelected,little:ui.little,memory:ui.memory});
 }
 function renderGuidance(previousCoach){
- const topic=guideTopic();if(!topic)return;
+ const topic=guideTopic();if(!topic||ui.responseValidation)return;
  const defaultSelector={home:learningStart().readerReady?'[data-home-recommended]':'[data-action="little-open"]',learning:'.learning-actions [data-action="quick-start"]',progress:'[data-progress-review]',adventure:ui.screen==='mission'?'.story-next .primary':'.adventure-primary',choice:ui.answer?'.activity-actions .primary':'.choice-grid',gap:'.answer-label input',match:'.match-grid select',order:'.order-workspace button:not(:disabled)',writing:'.answer-label textarea',memory:'.memory-board button:not(:disabled)',pictures:'.picture-options button:not(:disabled)','picture-explore':'.little-flashcard button','picture-find':'.little-hear','picture-match':'.little-choices button',workshop:ui.workshopSelected?'.workshop-scene [data-action="workshop-place"]':'.workshop-tray button',review:'.review-list button'}[topic];
  const step=currentGuideStep(topic);
  const selector=step?.selector??defaultSelector;
@@ -110,13 +116,16 @@ function renderGuidance(previousCoach){
  coachCleanup=mountSpotlight({root:app,target,bubble,revealTarget,previous:previousCoach,onEscape:()=>run(()=>action('guide-skip',bubble.querySelector('button')))});
 }
 function refreshGuidance({preserveViewport=false}={}){
+ // Typing and IME composition are one interaction, not one tutorial step per
+ // character. Wait until the editor is left before pointing at another control.
+ if(preserveViewport&&document.activeElement?.matches('[data-answer="gap"],[data-answer="writing"]'))return;
  const old=app.querySelector('.coach-popover'),previous=old&&!old.hidden?{box:old.getBoundingClientRect().toJSON()}:null;
  const topic=guideTopic(),step=currentGuideStep(topic);
  // Further keystrokes within one step do not rebuild its overlay or restart motion.
  if(old&&old.dataset.guideTopic===topic&&old.dataset.guideStep===(step?.id??'start'))return;
  coachCleanup();coachCleanup=()=>{};old?.remove();
  // Keep the active editor/caret and viewport. No full view redraw while typing.
- const scroll=scrollY;renderGuidance(previous);if(preserveViewport)scrollTo({top:scroll,behavior:'instant'});
+ renderGuidance(previous);
 }
 const currentPlacementPool=()=>placementPool(pack,ui.placementMethod??NEW_PLACEMENT_METHOD);
 const currentSavedPlacement=()=>savedPlacement(events,{pack,activities:content().activities,grade:assess});
@@ -134,7 +143,7 @@ async function cloudStatusChanged(s){
   let remembered;try{remembered=localStorage.getItem('atlas-active-profile');}catch{}
   if(profiles.some(p=>p.id===remembered&&p.cloudOwnerUid===s.uid)){await selectProfile(remembered);if(ui.cloudStatus!==s)return;}
  }
- if(!ui.busy&&!['mission','placement'].includes(ui.screen))render();
+ if(!ui.busy)renderBackground();
 }
 function currentActivity(){return content().activities.get(ui.activity);}
 function homeScreen(){return homeView({language:language(),name:profile.name,mode:profile.settings.mode,level:profile.journey.region,due:progress.due.length,resume:(savedQuick(events,content().activities)?.index??5)<5,readerReady:learningStart().readerReady});}
@@ -151,7 +160,7 @@ async function handleLittle(name,value){
  if(name==='little-start'||name==='little-restart'){ui.little=createLittleSession(littleWords,{mode:name==='little-start'?value:ui.little?.mode??'explore',offset:name==='little-restart'?(ui.little?.offset??0)+4:0});}
  else if(name==='little-listen'){const word=littleCurrent(ui.little,littleWords);if(word){ui.little=littleAction(ui.little,{type:'listen'},littleWords);try{await append('mission',{experience:'little-play-v1',session:ui.little});}catch(error){ui.little=previous;throw error;}render();try{speakText(ui.little.mode==='find'?word.cue.en:word.word.en);}catch{ui.littleVoiceFailed=true;render();}}return;}
  else ui.little=littleAction(ui.little,{type:name==='little-pick'?'pick':'next',value},littleWords);
- try{await append('mission',{experience:'little-play-v1',session:ui.little});}catch(error){ui.little=previous;throw error;}if(ui.little?.feedback==='found'||(name==='little-next'&&previous?.mode==='explore'))await rememberGuide('picture-'+ui.little.mode);render();
+ try{await append('mission',{experience:'little-play-v1',session:ui.little});}catch(error){ui.little=previous;throw error;}if(name==='little-pick'||(name==='little-next'&&previous?.mode==='explore'))await rememberGuide('picture-'+ui.little.mode);render();
 }
 function currentMission(){return content().missions.get(ui.mission);}
 function setActive(id){try{localStorage.setItem('atlas-active-profile',id??'');}catch{/* IDB is authoritative; this shortcut is optional. */}}
@@ -279,9 +288,8 @@ async function runWorld(added){const board=currentBoard(),prior=progress.worlds.
 
 function header(){
  const navSection=['home','workshop','little','memory','pictures','adventures'].includes(ui.screen)||ui.screen==='mission'&&!ui.studySession?'home':['library','mission','studio','quick'].includes(ui.screen)?'library':['journal','review'].includes(ui.screen)?'journal':null;
- const mode=profile?.settings.mode??'balanced';
- return `<header class="masthead"><a class="wordmark" href="#" data-action="home"><img src="./assets/atlas-mark.svg" alt="" width="34" height="34"><span>The Unfolding <strong>Atlas</strong></span></a><span class="edition">${t('Play. Learn. Grow.','Chơi vui, học mỗi ngày.')}</span><div class="guidance-switch" role="group" aria-label="${t('Guidance language','Ngôn ngữ hướng dẫn')}"><button type="button" data-action="guidance-language" data-value="en" lang="en" aria-pressed="${language()==='en'}">English</button><button type="button" data-action="guidance-language" data-value="vi" lang="vi" aria-pressed="${language()==='vi'}">Tiếng Việt</button><span class="language-marker" aria-hidden="true"></span></div>${accountHeader({status:identityStatus(),profile,language:language()})}</header>
- ${profile&&!['entry','onboard','little','memory','placement'].includes(ui.screen)?`<nav class="main-nav" aria-label="${t('Main navigation','Điều hướng chính')}">${[['home',t('Activities','Hoạt động')],['library',t('Study','Học tiếng Anh')],['journal',t('Progress','Tiến bộ')]].map(([route,label])=>`<button type="button" data-action="${route}" ${navSection===route?'aria-current="page"':''}>${label}${route==='review'&&progress.due.length?` <span class="badge">${progress.due.length}</span>`:''}</button>`).join('')}<span class="nav-mode">${{kids:t('Play first','Chơi để học'),balanced:t('Learn & play','Học và chơi'),serious:t('Study first','Học tập trung')}[mode]}</span></nav>`:''}`;
+ return `<header class="masthead"><a class="wordmark" href="#" data-action="home"><img src="./assets/atlas-mark.svg" alt="" width="34" height="34"><span>The Unfolding <strong>Atlas</strong></span></a><span class="edition">${t('Play. Learn. Grow.','Chơi vui, học mỗi ngày.')}</span><div class="guidance-switch" role="group" aria-label="${t('Guidance language','Ngôn ngữ hướng dẫn')}"><button type="button" data-action="guidance-language" data-value="en" lang="en" aria-pressed="${language()==='en'}">English</button><button type="button" data-action="guidance-language" data-value="vi" lang="vi" aria-pressed="${language()==='vi'}">Tiếng Việt</button><span class="language-marker" aria-hidden="true"></span></div>${accountHeader({status:identityStatus(),profile,language:language()})}
+ ${profile&&!['entry','onboard','little','memory','placement'].includes(ui.screen)?`<nav class="main-nav" aria-label="${t('Main navigation','Điều hướng chính')}">${[['home',t('Activities','Hoạt động')],['library',t('Study','Học tiếng Anh')],['journal',t('Progress','Tiến bộ')]].map(([route,label])=>`<button type="button" data-action="${route}" ${navSection===route?'aria-current="page"':''}>${label}${route==='review'&&progress.due.length?` <span class="badge">${progress.due.length}</span>`:''}</button>`).join('')}</nav>`:''}</header>`;
 }
 
 function footer(){return `<footer class="site-footer"><span>✦ The Unfolding Atlas</span></footer>`;}
@@ -386,7 +394,14 @@ function placementScreen(){
  return `<section class="panel orientation" data-placement-item="${a.id}"><p class="eyebrow">${t('FINDING YOUR START','TÌM ĐIỂM BẮT ĐẦU')} · ${ui.placement.length+1}/10 ${t('at most','tối đa')}</p><h1>${t('Take your time.','Bạn cứ làm từ từ nhé.')}</h1><p>${t('Read on your own. If this feels unfamiliar, choose “Not sure yet”. The next task may be easier.','Hãy tự đọc. Nếu thấy chưa quen, chọn “Tôi chưa chắc”. Câu tiếp theo có thể dễ hơn.')}</p><div class="source-card" lang="en" translate="no">${esc(a.context)}</div><h2 class="activity-prompt" lang="en" translate="no">${esc(a.prompt)}</h2>${activityControls(a,true)}<div class="button-row">${btn(t('Continue','Tiếp tục'),'placement-next','','primary')}${btn(t('Not sure yet','Tôi chưa chắc'),'placement-skip')}${btn(t('Pause and choose another start','Tạm dừng, chọn cách khác'),'placement-exit','','text-button')}</div><p class="fineprint">${t('Completed responses are saved. No timer, hints or translated answers. You can return from your journal.','Câu đã hoàn thành được lưu. Không bấm giờ, không gợi ý hay dịch đáp án. Bạn có thể tiếp tục từ nhật ký.')}</p></section>`;
 }
 
+function renderBackground(){
+ // Background saving/status changes must not replace an active editor or move
+ // its caret. Explicit navigation and account isolation still redraw immediately.
+ if(profile&&(['mission','quick','placement'].includes(ui.screen)||document.activeElement?.matches('input,textarea,select,[contenteditable=true]')))return;
+ render();
+}
 function render(focusHeading=false){
+ clearResponseValidation();
  const visual=captureVisual(app);
  coachCleanup();coachCleanup=()=>{};
  const active=document.activeElement,focusKey=active?.dataset?.focusKey,selection=active&&'selectionStart'in active?[active.selectionStart,active.selectionEnd]:null;
@@ -405,7 +420,7 @@ function render(focusHeading=false){
  })):[];
  const screens={entry:()=>firstStepsView({language:language(),mode:profile.settings.mode,manual:Boolean(ui.entryManual),revisit:learningStart().established}),memory:()=>memoryView({session:ui.memory,words:littleWords,language:language()}),home:homeScreen,quick:quickScreen,little:littleScreen,family:familyScreen,account:accountScreen,starting:()=>startingView({language:language(),saved:currentSavedPlacement(),level:profile.journey.region}),profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,library:()=>learningHome({language:language(),level:profile.journey.region,missions:availableMissions(pack,profile.journey.region,progress),due:progress.due.length}),adventures:atlasScreen,workshop:workshopScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen,pictures:()=>picturePlayView({language:language(),index:ui.pictureIndex,found:ui.pictureFound,feedback:ui.pictureFeedback})};
  document.body.className=`mode-${profile?.settings.mode??'balanced'}`;
- app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.error?`<div class="alert error" role="alert">${esc(ui.error)} ${btn(t('Dismiss','Đóng'),'dismiss-error','','text-button')}</div>`:''}${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main><div class="busy-indicator" role="status">${t('One moment…','Chờ một chút…')}</div>${footer()}`;
+ app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main><div class="busy-indicator" role="status">${t('One moment…','Chờ một chút…')}</div>${footer()}`;
 
  for(const detail of app.querySelectorAll('details')){const key=disclosureKey(detail);if(disclosures.has(key))detail.open=disclosures.get(key);}
  for(const saved of forms){
@@ -438,11 +453,14 @@ function render(focusHeading=false){
 
 async function submit(){
  if(!learningStart().readerReady){await navigate('entry');return;}
- const a=currentActivity(),answer=structuredClone(ui.answer),result=assess(a,answer);if(!result.complete)throw new Error(t(a.type==='writing'?'Write at least a short response and check each self-review point.':'Complete your response first.','Hãy hoàn thành câu trả lời và các mục tự xem lại nếu có.'));
- ui.submitting=true;app.querySelectorAll('.activity-panel button,.activity-panel input,.activity-panel select,.activity-panel textarea').forEach(el=>el.disabled=true);
+ const a=currentActivity(),answer=structuredClone(ui.answer),result=assess(a,answer);
+ // Using Check demonstrates the control, even for an incomplete/wrong answer.
+ await rememberGuide(a.type);ui.guideCelebrate=null;ui.guideReplay=null;
+ coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
+ if(!result.complete){responseValidation(t(a.type==='writing'?'Add a short response and check each review point.':'Complete your response, then check it.','Hoàn thành câu trả lời và các mục tự xem lại, rồi kiểm tra nhé.'));return;}
+ ui.submitting=true;const controls=[...app.querySelectorAll('.activity-panel button,.activity-panel input,.activity-panel select,.activity-panel textarea')].filter(el=>!el.disabled);controls.forEach(el=>el.disabled=true);
  try{await append('attempt',{activityId:a.id,missionId:ui.mission,contentVersion:pack.batchId,answer,supported:ui.supported,mode:profile.settings.mode,...(ui.screen==='quick'?{quickSessionId:ui.quick.sessionId,quickIndex:ui.quick.index}:{})});ui.answer=answer;ui.feedback=result;ui.draftKey=JSON.stringify({answer,supported:ui.supported});}
- finally{ui.submitting=false;}
- if(guideStatus(events,a.type)==='new'){await rememberGuide(a.type);ui.guideCelebrate=a.type;}
+ finally{ui.submitting=false;controls.forEach(el=>el.disabled=false);}
  render();app.querySelector('.feedback')?.focus({preventScroll:true});
 }
 async function advance(){
@@ -529,7 +547,13 @@ async function action(name,el){
  if(name==='world-translate'){ui.worldTranslation=!ui.worldTranslation;await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='world-hint'){ui.worldHint=true;await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
  if(name==='world-route'){ui.worldHint=true;ui.worldRoute=findRoute(currentBoard());await saveWorld(progress.worlds.states[currentBoard().id]?.commands??[]);return;}
- if(name==='choose'){ui.answer=el.dataset.value;ui.guideScrollKey=null;queueDraft();render();return;}
+ if(name==='choose'){
+  ui.answer=el.dataset.value;queueDraft();clearResponseValidation();
+  // Selection changes the answers, not the page. Keep DOM identity, focus,
+  // navigation and all in-flight motion intact.
+  for(const option of app.querySelectorAll('[data-action="choose"]')){const chosen=option.dataset.value===ui.answer;option.classList.toggle('chosen',chosen);option.setAttribute('aria-pressed',String(chosen));}
+  animateVisual(el,[{transform:'scale(.97)'},{transform:'none'}]);refreshGuidance();return;
+ }
  if(name==='move'){const i=ui.answer.indexOf(el.dataset.id),j=i+Number(el.dataset.dir);if(j>=0&&j<ui.answer.length){[ui.answer[i],ui.answer[j]]=[ui.answer[j],ui.answer[i]];ui.guideOrderFor=ui.activity;}queueDraft();render();return;}
  if(name==='submit'){await submit();return;}
  if(['practice-help','practice-word','practice-hint'].includes(name)){
@@ -563,7 +587,7 @@ async function action(name,el){
  }
  if(name==='placement-next'||name==='placement-skip'){
   const a=content().activities.get(ui.placementActivity);if(!a)return;
-  const result=assess(a,ui.answer);if(name==='placement-next'&&!result.complete)throw new Error(t('Choose a response, or choose “Not sure yet”.','Chọn câu trả lời hoặc chọn “Tôi chưa chắc”.'));
+  const result=assess(a,ui.answer);if(name==='placement-next'&&!result.complete){responseValidation(t('Choose a response, or choose “Not sure yet”.','Chọn câu trả lời hoặc chọn “Tôi chưa chắc”.'));return;}
   ui.error='';ui.errorSource=null;
   const next=[...ui.placement,{activityId:a.id,answer:name==='placement-skip'?null:structuredClone(ui.answer),skipped:name==='placement-skip',seenBefore:placementExposures().includes(a.id)}];
   await append('placement',{method:ui.placementMethod,sessionId:ui.placementSession,stage:'progress',responses:next});
@@ -596,16 +620,35 @@ async function action(name,el){
 }
 // Background work may fail while a foreground action still owns the interaction
 // lock. Only run() releases that lock, after its awaited operation finishes.
-function reportError(error){ui.errorSource=error;ui.error=errorMessage(error);render();}
+function clearResponseValidation(){
+ ui.responseValidation=false;app.querySelector('#response-validation')?.remove();
+ for(const el of app.querySelectorAll('[aria-errormessage="response-validation"]')){el.removeAttribute('aria-invalid');el.removeAttribute('aria-errormessage');}
+}
+function responseValidation(message){
+ clearResponseValidation();ui.responseValidation=true;coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
+ const area=app.querySelector('.activity-actions,.orientation .button-row');if(!area)return;
+ const note=document.createElement('p');note.id='response-validation';note.className='response-validation';note.setAttribute('role','alert');note.textContent=message;area.before(note);
+ const target=app.querySelector('[data-answer="gap"],textarea:placeholder-shown,.match-row select:has(option[value=""]:checked),.rubric input:not(:checked),.choice-grid button,[data-answer="writing"]');
+ if(target){target.setAttribute('aria-invalid','true');target.setAttribute('aria-errormessage',note.id);target.focus({preventScroll:true});}
+ note.scrollIntoView({block:'nearest',behavior:'instant'});animateVisual(note,[{opacity:0},{opacity:1}]);
+}
+let errorDialog=null;
+function reportError(error){
+ ui.errorSource=error;ui.error=errorMessage(error);
+ if(errorDialog){const copy=document.querySelector('.atlas-dialog.error #atlas-dialog-message');if(copy)copy.textContent=ui.error;return;}
+ coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
+ errorDialog=showDialog({title:t('Let’s get you back on track','Cùng tiếp tục nhé'),message:ui.error,confirmLabel:t('Back to what I was doing','Quay lại'),error:true}).then(()=>{errorDialog=null;ui.error='';ui.errorSource=null;});
+}
 async function run(task){if(ui.busy)return;ui.busy=true;app.setAttribute('aria-busy','true');try{await task();}catch(error){reportError(error);}finally{ui.busy=false;app.setAttribute('aria-busy','false');}}
 app.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!el)return;e.preventDefault();if(el.disabled)return;run(()=>action(el.dataset.action,el));});
 app.addEventListener('input',e=>{
  const el=e.target;if(ui.submitting)return;if(el.dataset.answer==='gap')ui.answer=el.value;
  if(el.dataset.answer==='writing')ui.answer={...ui.answer,text:el.value};
  if(el.hasAttribute('data-world-plan'))ui.worldPlan=el.value;
- if(el.dataset.answer){queueDraft();if(!e.isComposing)refreshGuidance({preserveViewport:true});}
+ if(el.dataset.answer){clearResponseValidation();queueDraft();if(!e.isComposing)refreshGuidance({preserveViewport:true});}
 });
 app.addEventListener('compositionend',e=>{if(e.target.dataset.answer&&!ui.submitting)refreshGuidance({preserveViewport:true});});
+app.addEventListener('focusout',e=>{if(e.target.matches('[data-answer="gap"],[data-answer="writing"]'))requestAnimationFrame(()=>{if(!ui.busy&&!document.activeElement?.matches('[data-answer="gap"],[data-answer="writing"]'))refreshGuidance();});});
 app.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&e.target.dataset.answer==='gap'&&!ui.feedback){e.preventDefault();run(()=>ui.screen==='placement'?action('placement-next',e.target):submit());}});
 app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',ArrowDown:'S',ArrowLeft:'W'}[e.key];if(direction&&e.target.closest('.expedition-grid')){e.preventDefault();run(async()=>{await action('world-move',{dataset:{value:direction}});app.querySelector('.world-cell.nim-here')?.focus({preventScroll:true});});}});
 app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
@@ -631,10 +674,10 @@ app.addEventListener('submit',e=>{e.preventDefault();const form=e.target,data=ne
  if(form.dataset.form==='rename'){profile=await store.updateProfile(profile.id,{name:data.get('name')});await refresh();ui.notice=t('Name saved.','Đã lưu tên.');render();}
  if(form.dataset.form==='delete'){if(data.get('confirm')!==profile.name)throw new Error(t('The name does not match.','Tên chưa khớp.'));await store.deleteProfile(profile.id);profile=null;setActive('');setPreferences();await refresh();ui.screen='profiles';render(true);}
 });});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&profile)saveDraft().catch(reportError);if(!document.hidden&&profile)refresh().then(()=>{if(!ui.entering&&ui.screen!=='mission'&&ui.screen!=='placement')render();}).catch(reportError);});
-window.addEventListener('atlas:store-change',()=>{if(!ui.busy&&profile)refresh().then(()=>{if(!ui.entering&&!['mission','placement'].includes(ui.screen))render();}).catch(reportError);});
-window.addEventListener('offline',()=>{ui.notice=ui.offlineReady?t('You’re offline. Downloaded journeys and local saving are available. Synchronize when you reconnect.','Bạn đang ngoại tuyến. Hành trình đã tải và lưu trên thiết bị vẫn dùng được. Hãy đồng bộ khi kết nối lại.'):t('You’re offline. Keep this tab open to continue. Local saving works; reopening may need a connection until the offline library is ready.','Bạn đang ngoại tuyến. Giữ thẻ này để tiếp tục. Vẫn lưu trên thiết bị; mở lại có thể cần kết nối nếu thư viện ngoại tuyến chưa sẵn sàng.');render();});
-window.addEventListener('online',()=>{ui.notice=t('You’re back online.','Đã có kết nối mạng.');render();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&profile)saveDraft().catch(reportError);if(!document.hidden&&profile)refresh().then(()=>{if(!ui.entering)renderBackground();}).catch(reportError);});
+window.addEventListener('atlas:store-change',()=>{if(!ui.busy&&profile)refresh().then(()=>{if(!ui.entering)renderBackground();}).catch(reportError);});
+window.addEventListener('offline',()=>{ui.notice=ui.offlineReady?t('You’re offline. Downloaded journeys and local saving are available. Synchronize when you reconnect.','Bạn đang ngoại tuyến. Hành trình đã tải và lưu trên thiết bị vẫn dùng được. Hãy đồng bộ khi kết nối lại.'):t('You’re offline. Keep this tab open to continue. Local saving works; reopening may need a connection until the offline library is ready.','Bạn đang ngoại tuyến. Giữ thẻ này để tiếp tục. Vẫn lưu trên thiết bị; mở lại có thể cần kết nối nếu thư viện ngoại tuyến chưa sẵn sàng.');renderBackground();});
+window.addEventListener('online',()=>{ui.notice=t('You’re back online.','Đã có kết nối mạng.');renderBackground();});
 
 async function boot(){
  try{

@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import {positionCoach} from '../src/spotlight.js';
 import {learningHome} from '../src/learning-home.js';
 import {adventureLibrary} from '../src/adventure-library.js';
+test('coach respects visual viewport offsets from zoom or an onscreen keyboard',()=>{
+ const p=positionCoach({left:140,top:210,bottom:254},{height:120},{width:320,height:400,left:100,top:160});
+ assert.ok(p.left>=112&&p.left+p.width<=408);assert.ok(p.top>=172&&p.top+120<=548);
+});
 test('coach stays on screen beside a small target at narrow and wide sizes',()=>{
  for(const width of [320,390,768,1280,1920])for(const top of [20,300,670]){
   const target={left:width-120,top,bottom:top+44},p=positionCoach(target,{height:150},{width,height:740});

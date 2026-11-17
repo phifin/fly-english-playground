@@ -1,5 +1,21 @@
 /* Surface and motion primitives. Educational text keeps its existing size. */
 :root{--paper:#fffdf7;--surface-soft:#edf1e6;--ink:#244e40;--muted:#486151;--lift:0 7px 24px #2d51410b;--ease-out:cubic-bezier(.2,.75,.25,1);--motion-fast:160ms;--motion-view:220ms}
+/* Related actions share a rhythm; navigation stays compact without shrinking targets. */
+.masthead .main-nav{order:2;flex:1 0 100%;margin:0;border:0;gap:.65rem;padding:.25rem 0 0}
+.masthead .main-nav button{min-height:44px;padding:.55rem .8rem}
+.response-validation{margin:.75rem 0;padding:.7rem .85rem;border-radius:12px;background:#f6e9d5;color:#70441e;font-size:.94rem;line-height:1.5}
+.atlas-dialog.error{max-width:min(430px,calc(100vw - 2rem));text-align:left;color:var(--ink)}
+.atlas-dialog.error .dialog-mark{background:#f6e9d5;color:#895c24}.atlas-dialog.error .button-row{margin-top:1.2rem}
+.activity-actions,.feedback .button-row{gap:.75rem;margin-top:1.15rem;flex-wrap:wrap}
+.match-grid,.rubric{gap:.75rem}.first-steps-choices{gap:.9rem}.learning-actions{gap:1rem}
+.experience-choices{gap:1rem}.study-steps{gap:.5rem}.first-steps-heading{margin-bottom:1.25rem}
+@media(min-width:1100px){
+ .masthead:has(.main-nav){display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:clamp(.6rem,1.5vw,1.25rem)}
+ .masthead:has(.main-nav) .edition{display:none}.masthead .main-nav{grid-column:2;grid-row:1;order:0;justify-content:center;gap:.3rem;padding:0}
+ .masthead:has(.main-nav) .guidance-switch{grid-column:3;grid-row:1}.masthead:has(.main-nav) .account-pill{grid-column:4;grid-row:1;max-width:180px}
+ .masthead:has(.main-nav) .wordmark{font-size:1.08rem}
+}
+@media(max-width:580px){.masthead .main-nav{grid-column:1/-1;justify-content:space-between;gap:.25rem}.masthead .main-nav button{padding:.5rem .3rem;flex:1;font-size:.84rem}.first-steps-choices{gap:.75rem}.activity-actions{gap:.65rem}}
 body{background:#f7f5ee;color:var(--ink)}
 .masthead{border-bottom:1px solid #315e4b14}.main-nav{border-bottom-color:#315e4b14;padding-block:.35rem}
 main#main{padding-top:clamp(1.35rem,2.3vw,2rem)}
