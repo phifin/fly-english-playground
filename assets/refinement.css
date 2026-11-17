@@ -47,6 +47,8 @@ main#main{padding-top:clamp(1.35rem,2.3vw,2rem)}
 #app .guide-bubble.coach-popover{border:0;border-radius:18px;background:#fffaf0;box-shadow:0 14px 44px #18382d29,0 2px 8px #18382d10;padding:.9rem;gap:.65rem;grid-template-columns:40px minmax(0,1fr)}
 #app .coach-popover button{border:0;background:#edf1e5;border-radius:10px;padding:.4rem .65rem}#app .coach-popover p{line-height:1.5}#app .coach-popover>.guide-art{width:40px}
 .alert.notice{animation:none}.atlas-dialog{opacity:0;transform:translateY(8px) scale(.98);transition:opacity 160ms var(--ease-out),transform 160ms var(--ease-out),display 160ms allow-discrete,overlay 160ms allow-discrete}.atlas-dialog[open]{opacity:1;transform:none}.atlas-dialog::backdrop{background:#173f365c;backdrop-filter:none;transition:background-color 160ms,display 160ms allow-discrete,overlay 160ms allow-discrete}.atlas-dialog:not([open])::backdrop{background:#173f3600}
+/* Status text cannot intercept an unrelated activity gesture underneath it. */
+.alert.notice{pointer-events:none}.alert.notice button{pointer-events:auto}
 @starting-style{.atlas-dialog[open]{opacity:0;transform:translateY(8px) scale(.98)}.atlas-dialog[open]::backdrop{background:#173f3600}}
 .atlas-dialog:not([open]),.atlas-dialog:not([open])::backdrop{pointer-events:none}
 button,.button,a.account-pill,input,select,textarea{transition:background-color var(--motion-fast) var(--ease-out),color var(--motion-fast) var(--ease-out),box-shadow var(--motion-fast) var(--ease-out),transform var(--motion-fast) var(--ease-out)}

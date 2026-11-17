@@ -115,6 +115,14 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
     await editor.evaluate(el=>{el.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true,data:'a'}));el.dispatchEvent(new InputEvent('input',{bubbles:true,isComposing:true,data:'a'}));el.dispatchEvent(new KeyboardEvent('keydown',{bubbles:true,key:'Enter',isComposing:true}));el.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:'a'}));});
     assert.equal(await editor.evaluate(e=>e===document.activeElement),true);assert.equal(await page.locator('.feedback').count(),0,'IME Enter does not submit');
     await page.keyboard.press('Tab');await guided('check');await shot('continuous-editor-after-save');
+    await page.evaluate(()=>{const add=IDBObjectStore.prototype.add;IDBObjectStore.prototype.add=function(value,...args){if(this.name==='events'&&value.kind==='attempt'){IDBObjectStore.prototype.add=add;throw new DOMException('Synthetic exercise save failure','QuotaExceededError');}return add.call(this,value,...args);};});
+    await control('submit').click();await ready(page);await page.locator('.atlas-dialog.error[open]').waitFor();
+    assert.equal(await editor.inputValue(),a.accepted[0],'A failed save preserves the response');assert.equal(await node.evaluate(e=>e.isConnected&&!e.disabled),true,'Failure keeps the editor mounted and usable after dismissal');
+    assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,attemptsBefore,'Failed attempt write does not become learning evidence');
+    await shot('exercise-save-recovery');await axe('Exercise save recovery mobile',page);
+    await page.locator('.atlas-dialog [data-action="dismiss-error"]').click();await ready(page);
+    assert.equal(await control('submit').evaluate(e=>e===document.activeElement),true,'Recovery returns focus to the initiating Check control');
+    await play('guide-replay');
    }
    else if(a.type==='match')for(const [index,pair] of a.pairs.entries()){
     await guided('pair-'+index);assert.equal(await page.locator('[data-guide-target]').getAttribute('data-match'),pair.id);await page.locator(`[data-match="${pair.id}"]`).selectOption(pair.id);await ready(page);

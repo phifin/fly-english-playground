@@ -30,7 +30,7 @@ export function mountSpotlight({root,target,bubble,onEscape,revealTarget=true,pr
   const x=Math.max(viewport.left,r.left-5),y=Math.max(viewport.top,r.top-5),right=Math.min(viewport.left+viewport.width,r.right+5),bottom=Math.min(viewport.top+viewport.height,r.bottom+5);
   // Navigation choices follow these primary actions. Keep coaching in the
   // heading area above them when possible instead of covering the next row.
-  const preferAbove=['home','learning','progress','adventure','workshop','review','memory'].includes(bubble.dataset.guideTopic);
+  const preferAbove=['home','learning','progress','adventure','workshop','review','memory','gap','writing','match','choice','order'].includes(bubble.dataset.guideTopic);
   const p=positionCoach(r,coachBox,viewport,{preferAbove});
   Object.assign(shade.style,{left:x+'px',top:y+'px',width:(right-x)+'px',height:(bottom-y)+'px',borderRadius:Math.min(radius+5,(bottom-y)/2)+'px'});
   Object.assign(bubble.style,{left:p.left+'px',top:p.top+'px'});
