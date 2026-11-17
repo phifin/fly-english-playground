@@ -1209,6 +1209,7 @@ try {
     document.dispatchEvent(new Event('visibilitychange'));
   });
   await page.locator('.atlas-dialog.error[open]').waitFor({ state: 'visible' });
+  await page.screenshot({path:fileURLToPath(new URL('release-storage-error-dialog.png',directory))});await axe('Storage failure recovery dialog',page);
   assert.equal(await page.locator('#app').getAttribute('aria-busy'), 'true', 'A handled background error must not release the foreground action lock.');
   assert.equal(await page.locator('.atlas-dialog.error[open]').evaluate(e=>e.contains(document.activeElement)),true,'Error modal owns keyboard focus');
   await button('mode', '[data-value="serious"]').dispatchEvent('click');

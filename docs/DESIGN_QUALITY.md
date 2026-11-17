@@ -1,5 +1,14 @@
 # Design quality standard
 
+## Interaction and performance release gate
+
+- Keep active editors mounted during typing, composition, draft saves and background status changes. Never use `fill()` alone to validate typing: type real sequences, correct/delete characters, trigger a background update and wait through an actual draft save. Simulated composition events check our event handling; they do not certify every real IME.
+- Guidance teaches a control, not English correctness. Check ends automatic exercise guidance for incomplete, wrong and correct answers; local validation and educational feedback handle recovery. Help is explicit and replayable. Do not move an editor's spotlight on the first character; advance when the learner leaves it. Keep existing guidance receipts.
+- A small incomplete answer gets a message beside the answer controls. Saving, import and other blocking failures use a native dialog with a recovery action, preserved answer and focus return. Never clear the foreground action lock from a background error handler.
+- Selecting an answer updates that control group, not `#app.innerHTML`. Derived immutable content indexes may be cached by pack identity; entry decisions must invalidate on profile, history and pack changes. Preserve account isolation before delaying a background redraw.
+- Compare performance against pinned production in the same Chrome process, viewport and CPU-throttling conditions. `browser-performance.mjs` alternates three baseline/candidate samples and saves CDP work, layouts, mutations, frames and CPU profiles. Timings are diagnostic laboratory measurements, not field INP or physical-device guarantees. Gate correctness (text, focus, DOM identity); investigate timing changes rather than asserting noisy arbitrary millisecond limits.
+- Inspect screenshots, including 200% text: a page can have no horizontal overflow while controls collide. Check both document bounds and header child collisions. Normal desktop navigation shares a row; enlarged text may wrap. Verify motion intermediate frames and interruption, not only final screenshots.
+
 ## Player language and structure
 
 Global destinations answer three questions: what can I do (Activities), what can I study (Study), and how am I doing (Progress). Account is the place for learners, saving, settings, backups and authorized family management. Activities remain independently available across experience modes. Never label a local learner as a signed-in Google account.

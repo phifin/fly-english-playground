@@ -102,7 +102,11 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
     await play('guidance-language','vi');await guided('check');await shot('answer-check-coach-vi');
    }
    else if(a.type==='gap'){
-    await guided('type');const editor=page.locator('[data-answer="gap"]');await editor.click();const node=await editor.elementHandle();
+    await guided('type');const attemptsBefore=(await snapshot()).events.filter(e=>e.kind==='attempt').length;
+    await play('submit');assert.equal(await page.locator('.response-validation').count(),1);assert.equal(await page.locator('.coach-popover').count(),0,'An incomplete response does not trap the player in guidance');
+    assert.equal((await snapshot()).events.filter(e=>e.kind==='attempt').length,attemptsBefore,'Validation does not create a learning attempt');
+    assert.equal(await page.locator('[data-answer="gap"]').evaluate(e=>e===document.activeElement),true);await shot('incomplete-response-local');await axe('Incomplete response recovery',page);
+    await play('guide-replay');await guided('type');const editor=page.locator('[data-answer="gap"]');await editor.click();const node=await editor.elementHandle();
     await page.keyboard.type(a.accepted[0],{delay:75});await page.keyboard.press('Backspace');await page.keyboard.type(a.accepted[0].at(-1));
     assert.equal(await editor.inputValue(),a.accepted[0]);assert.equal(await editor.evaluate(e=>e===document.activeElement),true);
     assert.equal(await page.locator('.coach-popover').getAttribute('data-guide-step'),'type','Typing never moves the guide out from under the editor');
@@ -138,6 +142,10 @@ export async function verifyLayout({newContext,observe,ready,noError,axe,base,di
   await play('journal');await axe('Compact learning progress mobile',page);
   await page.setViewportSize({width:1280,height:800});await play('library');
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');await fits();await shot('learning-vi-text-200');
+  assert.equal(await page.locator('.masthead').evaluate(header=>{
+   const boxes=[...header.children].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
+   return boxes.every((a,i)=>boxes.slice(i+1).every(b=>a.right<=b.left+1||b.right<=a.left+1||a.bottom<=b.top+1||b.bottom<=a.top+1));
+  }),true,'Enlarged-text header controls must not collide, even when the document itself does not overflow');
   assert.ok(await page.locator('.skip-link').evaluate(el=>el.getBoundingClientRect().bottom<0),'Unfocused skip link stays offscreen at enlarged text size');
   await page.locator('.skip-link').focus();assert.ok(await page.locator('.skip-link').evaluate(el=>el.getBoundingClientRect().top>=0),'Keyboard skip link remains available');
   await page.evaluate(()=>document.documentElement.style.fontSize='');
