@@ -105,6 +105,27 @@ jobs:
           if [[ "$preview_ready" != true ]]; then cat artifacts/atlas-preview.log; exit 1; fi
           node scripts/verify-deployment.mjs
           node scripts/browser-release-check.mjs
+      - name: Check out the fixed performance baseline
+        uses: actions/checkout@v7
+        with:
+          ref: b1137ace72b1b093bb4b6e4122cff622a51498a3
+          path: .performance-baseline
+          persist-credentials: false
+      - name: Compare interaction performance
+        env:
+          ATLAS_PLAYWRIGHT_MODULE: ${{ runner.temp }}/atlas-browser/node_modules/@playwright/test/index.mjs
+          ATLAS_BROWSER_CHANNEL: chrome
+          ATLAS_BASE_PATH: /${{ github.event.repository.name }}/
+          ATLAS_URL: http://127.0.0.1:4173/${{ github.event.repository.name }}/
+          ATLAS_BASELINE_URL: http://127.0.0.1:4174/${{ github.event.repository.name }}/
+        run: |
+          node .performance-baseline/scripts/build.mjs
+          node scripts/serve.mjs --dist > artifacts/performance-candidate-server.log 2>&1 &
+          candidate_pid=$!
+          PORT=4174 node .performance-baseline/scripts/serve.mjs --dist > artifacts/performance-baseline-server.log 2>&1 &
+          baseline_pid=$!
+          trap 'kill "$candidate_pid" "$baseline_pid"' EXIT
+          node scripts/browser-performance.mjs
       - name: Preserve browser verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -115,6 +136,9 @@ jobs:
             artifacts/release-*.png
             artifacts/deployment-report.json
             artifacts/atlas-preview.log
+            artifacts/performance-*.json
+            artifacts/performance-*.cpuprofile
+            artifacts/performance-*.png
           if-no-files-found: warn
           retention-days: 7
       - uses: actions/configure-pages@v5
