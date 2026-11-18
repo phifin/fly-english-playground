@@ -43,8 +43,7 @@ import {createLittleSession,littleAction,restoreLittleSession,littlePlayView,lit
 import {installWorkshopInput} from './workshop-input.js';
 
 import {installContextHelp} from './context-help.js';
-import {academicView,academicResult,lookupSet} from './academic.js';
-import {academicTracks} from './academic-content.js';
+let academicModule;
 const app=document.querySelector('#app');
 const mountHelp=installContextHelp(app);
 let academic={};
@@ -321,7 +320,7 @@ function modeCards(){return `<div class="mode-cards">${[
  ].map(([id,icon,label,description])=>`<button type="button" class="mode-card ${profile.settings.mode===id?'chosen':''}" data-action="mode" data-value="${id}" ${pressed(profile.settings.mode,id)}><span class="mode-icon">${icon}</span><strong>${label}</strong><span>${description}</span></button>`).join('')}</div>`;}
 function onboardScreen(){return `<section class="onboard panel"><p class="onboard-progress">${t('Your traveler is ready · Step 2 of 3','Đã tạo người khám phá · Bước 2 trong 3')}</p><p class="eyebrow">${t('YOUR ATLAS, YOUR WAY','BẢN ĐỒ THEO CÁCH CỦA BẠN')}</p><h1>${t('Choose your way to explore.','Chọn cách khám phá của bạn.')}</h1><p class="lede">${t('Playful, balanced or focused: choose what feels good today. Every style keeps the same discoveries and learning progress.','Vui chơi, cân bằng hay tập trung: chọn cách bạn thích hôm nay. Mọi cách đều giữ nguyên khám phá và tiến độ học tập.')}</p>${modeCards()}<div class="settings-grid"><label>${t('Guidance language','Ngôn ngữ hướng dẫn')}<select data-setting="language"><option value="en"${selected(profile.settings.language,'en')}>English only</option><option value="vi"${selected(profile.settings.language,'vi')}>Tiếng Việt hỗ trợ</option></select></label></div><details class="range-options"><summary>${t('Already know your English level? Choose a starting region.','Đã biết trình độ tiếng Anh? Chọn vùng đất khởi đầu.')}</summary><div class="settings-grid"><label>${t('Starting practice range','Mức luyện tập ban đầu')}<select data-journey="region">${LEVELS.map(level=>`<option${selected(profile.journey.region,level)}>${level}</option>`).join('')}</select></label></div><p class="fineprint">${t('This is a practice choice, not a test result. You can explore another range whenever you like.','Đây là lựa chọn luyện tập, không phải kết quả đánh giá. Bạn có thể khám phá mức khác bất cứ lúc nào.')}</p></details><div class="onboard-next"><div class="button-row">${btn(t('Start exploring →','Bắt đầu khám phá →'),'finish-onboard','','primary')}${btn(t('Help me find a starting point','Tìm mức học phù hợp'),'start-placement','','text-button')}</div><p class="fineprint">${t('Start with a gentle first island, or try the optional reading orientation. You can change these preferences later.','Bắt đầu ở hòn đảo nhẹ nhàng hoặc thử bài định hướng đọc tùy chọn. Bạn có thể đổi tùy chọn sau.')}</p></div></section>`;}
 
-function atlasScreen(){const seen=guideStatus(events,'adventure')!=='new'||progress.rewards.size>0;
+function atlasScreen(){const seen=events.some(e=>e.kind==='mission'&&['adventure-map-intro-v1','story-v1'].includes(e.payload?.experience));
  return adventureLibrary({brief:ui.briefStep??(seen?'closed':'invitation'),language:language(),level:profile.journey.region,missions:availableMissions(pack,profile.journey.region,progress)});}
 
 function practiceBanner(){
@@ -432,7 +431,7 @@ function render(focusHeading=false){
   disclosures:[...form.querySelectorAll('details')].map(detail=>detail.open),
   controls:[...form.elements].filter(el=>el.name&&el.type!=='file').map(el=>({name:el.name,type:el.type,value:el.value,checked:el.checked})),
  })):[];
- const screens={academic:()=>academicView({language:language(),state:academicState(),events}),entry:()=>firstStepsView({language:language(),mode:profile.settings.mode,manual:Boolean(ui.entryManual),revisit:learningStart().established}),memory:()=>memoryView({session:ui.memory,words:littleWords,language:language()}),home:homeScreen,quick:quickScreen,little:littleScreen,family:familyScreen,account:accountScreen,starting:()=>startingView({language:language(),saved:currentSavedPlacement(),level:profile.journey.region}),profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,library:()=>learningHome({language:language(),level:profile.journey.region,missions:availableMissions(pack,profile.journey.region,progress),due:progress.due.length}),adventures:atlasScreen,workshop:workshopScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen,pictures:()=>picturePlayView({language:language(),index:ui.pictureIndex,found:ui.pictureFound,feedback:ui.pictureFeedback})};
+ const screens={academic:()=>academicModule.academicView({language:language(),state:academicState(),events}),entry:()=>firstStepsView({language:language(),mode:profile.settings.mode,manual:Boolean(ui.entryManual),revisit:learningStart().established}),memory:()=>memoryView({session:ui.memory,words:littleWords,language:language()}),home:homeScreen,quick:quickScreen,little:littleScreen,family:familyScreen,account:accountScreen,starting:()=>startingView({language:language(),saved:currentSavedPlacement(),level:profile.journey.region}),profiles:profilesScreen,onboard:onboardScreen,atlas:atlasScreen,library:()=>learningHome({language:language(),level:profile.journey.region,missions:availableMissions(pack,profile.journey.region,progress),due:progress.due.length}),adventures:atlasScreen,workshop:workshopScreen,mission:missionScreen,journal:journalScreen,review:reviewScreen,settings:settingsScreen,placement:placementScreen,studio:studioScreen,pictures:()=>picturePlayView({language:language(),index:ui.pictureIndex,found:ui.pictureFound,feedback:ui.pictureFeedback})};
  document.body.className=`mode-${profile?.settings.mode??'balanced'}`;
  app.innerHTML=`${header()}<main id="main" tabindex="-1">${ui.notice?`<div class="alert notice" role="status">${esc(ui.notice)} ${btn(t('Dismiss','Đóng'),'dismiss-notice','','text-button')}</div>`:''}${screens[ui.screen]()}</main><div class="busy-indicator" role="status">${t('One moment…','Chờ một chút…')}</div>${footer()}`;
 
@@ -508,12 +507,16 @@ async function continueTrail(){
 async function action(name,el){
  if(profile&&readingActionBlocked(name,learningStart())){await navigate('entry');return;}
  if(name==='adventure-brief'){ui.briefStep=el.dataset.value;render();app.querySelector('[data-brief-focus]')?.focus({preventScroll:true});return;}
- if(name==='academic'){await rememberGuide('learning');await navigate('academic');return;}
+ if(name==='academic'){
+  const learner=profile?.id;academicModule??=await import('./academic.js');
+  if(!learner||profile?.id!==learner)return;
+  await rememberGuide('learning');await navigate('academic');return;
+ }
  if(name.startsWith('academic-')&&ui.screen==='academic'){
   const value=el.dataset.value,state=academicState();
   if(name==='academic-home'){academic={owner:profile.id};}
-  if(name==='academic-track'&&Object.hasOwn(academicTracks,value)){academic={owner:profile.id,track:value};}
-  if(name==='academic-start'){const set=lookupSet(value);if(!set)return;academic={owner:profile.id,track:set.track,set:value,answers:Array(set.items.length).fill('')};}
+  if(name==='academic-track'&&academicModule.isAcademicTrack(value)){academic={owner:profile.id,track:value};}
+  if(name==='academic-start'){const set=academicModule.lookupSet(value);if(!set)return;academic={owner:profile.id,track:set.track,set:value,answers:Array(set.items.length).fill('')};}
   if(name==='academic-record'){state.record=value;state.set=null;}
   render(true);return;
  }
@@ -562,7 +565,10 @@ async function action(name,el){
  if(ui.screen==='library'&&['quick-start','studio','review'].includes(name))await rememberGuide('learning');
  if(ui.screen==='journal'&&name==='review')await rememberGuide('progress');
  if(name==='begin'||name==='investigate'||name==='activity')await rememberGuide('adventure');
- if(name==='begin'){ui.briefStep=null;await beginMission(el.dataset.id);return;}
+ if(name==='begin'){
+  if(ui.screen==='adventures'&&!events.some(e=>e.kind==='mission'&&e.payload?.experience==='adventure-map-intro-v1'))await append('mission',{experience:'adventure-map-intro-v1'});
+  ui.briefStep=null;await beginMission(el.dataset.id);return;
+ }
  if(name==='review-item'){const a=content().activities.get(el.dataset.id);await beginMission(a.missionId,a);return;}
  if(name==='activity'){await saveDraft();initActivity(content().activities.get(el.dataset.id));ui.stage=!ui.studySession&&profile.settings.mode==='kids'&&!ui.review?'clue':'activity';render(true);return;}
  if(name==='investigate'){ui.stage='clue';render(true);return;}
@@ -707,9 +713,9 @@ app.addEventListener('change',handleChange);
 importInput.addEventListener('change',handleChange);
 app.addEventListener('submit',e=>{e.preventDefault();const form=e.target,data=new FormData(form,e.submitter);run(async()=>{
  if(form.dataset.form==='academic-paper'&&ui.screen==='academic'){
-  const state=academicState(),set=lookupSet(state.set);if(!set)return;
+  const state=academicState(),set=academicModule.lookupSet(state.set);if(!set)return;
   const payload={experience:'academic-practice-v1',setId:set.id,answers:set.items.map((_,i)=>String(data.get('q'+i)??'').trim())};
-  if(!academicResult(payload))throw new Error(t('Please answer every question.','Bạn hãy trả lời tất cả các câu.'));
+  if(!academicModule.academicResult(payload))throw new Error(t('Please answer every question.','Bạn hãy trả lời tất cả các câu.'));
   const owner=profile.id,event=newEvent('mission',payload);
   await store.appendEvent(owner,event);await refresh();
   if(profile?.id!==owner||state!==academic||ui.screen!=='academic')return;

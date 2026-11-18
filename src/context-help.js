@@ -44,7 +44,7 @@ export function installContextHelp(root) {
   function defer() {if(!pinned) {clearTimeout(timer); timer=setTimeout(close,200);}}
   const buttonFrom=e=>e.target.closest?.('button[data-explanation]');
   root.addEventListener('pointerover',e=>{const b=buttonFrom(e); if(b&&e.pointerType==='mouse'&&(!pinned||trigger===b))open(b);});
-  root.addEventListener('pointerout',e=>{if(buttonFrom(e)===trigger&&!trigger?.contains(e.relatedTarget))defer();});
+  root.addEventListener('pointerout',e=>{if(trigger&&buttonFrom(e)===trigger&&!trigger.contains(e.relatedTarget))defer();});
   root.addEventListener('focusin',e=>{const b=buttonFrom(e);if(b)open(b);else if(trigger)close();});
   root.addEventListener('focusout',e=>{if(trigger&&e.target===trigger)close();});
   document.addEventListener('click',e=>{
@@ -52,7 +52,8 @@ export function installContextHelp(root) {
     if(b){if(trigger===b&&pinned)close();else {open(b);pinned=true;}}
     else if(popup&&!popup.contains(e.target))close();
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popup){e.preventDefault();close();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popup){e.preventDefault();e.stopPropagation();close();}},true);
+  window.visualViewport?.addEventListener('resize',schedule);
   window.addEventListener('resize',schedule);
   window.addEventListener('scroll',schedule,{capture:true,passive:true});
   return function mount() {

@@ -2,6 +2,7 @@ import {academicSets,academicTracks,academicSkills} from './academic-content.js'
 import {guideArt} from './guide-art.js';
 
 const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const isAcademicTrack=id=>Object.hasOwn(academicTracks,id);
 export const lookupSet=id=>academicSets.find(s=>s.id===id);
 const normalize=value=>value.normalize('NFC').trim().toLowerCase().replace(/\s+/gu,' ');
 
@@ -30,7 +31,7 @@ export function academicView({language,state,events}){
   const docs=s=>`<div class="academic-reading" lang="en" translate="no">${s.docs.map(p=>`<p>${escape(p)}</p>`).join('')}</div>`;
   if(record){
     const {set:s,answers,correct,score}=record.result;
-    return `<section class="academic-room">${button('← '+title,'academic-track',s.track,'back-link')}<header class="academic-heading">${guideArt('celebrate')}<div><p>${t('Answer review','Xem lại đáp án')}</p><h1>${escape(loc(s.title))}</h1><strong>${score} / ${correct.length} · ${t('correct in this set','câu đúng trong bộ này')}</strong></div></header>${docs(s)}<ol class="academic-review">${s.items.map((item,i)=>`<li><strong>${correct[i]?t('✓ Correct','✓ Đúng'):t('Review','Cần ôn')} · ${loc(academicSkills[item.skill])}</strong><p lang="en">${escape(item.prompt)}</p><p>${t('Your answer','Bạn trả lời')} <b lang="en">${escape(answers[i])}</b></p>${correct[i]?'':`<p>${t('Answer','Đáp án')} <b lang="en">${escape(item.keys[0])}</b></p>`}<p>${escape(loc(item.why))}</p></li>`).join('')}</ol>${button(t('Back to practice sets','Về danh sách bài luyện'),'academic-track',s.track,'primary')}</section>`;
+    return `<section class="academic-room">${button('← '+title,'academic-track',s.track,'back-link')}<header class="academic-heading">${guideArt('celebrate')}<div><p>${t('Answer review','Xem lại đáp án')}</p><h1>${escape(loc(s.title))}</h1><strong>${score} / ${correct.length} · ${t('correct in this set','câu đúng trong bộ này')}</strong></div></header><details class="academic-reference"><summary>${t('Read the source again','Đọc lại văn bản')}</summary>${docs(s)}</details><ol class="academic-review">${s.items.map((item,i)=>`<li><strong>${correct[i]?t('✓ Correct','✓ Đúng'):t('Review','Cần ôn')} · ${loc(academicSkills[item.skill])}</strong><p lang="en">${escape(item.prompt)}</p><p>${t('Your answer','Bạn trả lời')} <b lang="en">${escape(answers[i])}</b></p>${correct[i]?'':`<p>${t('Answer','Đáp án')} <b lang="en">${escape(item.keys[0])}</b></p>`}<p>${escape(loc(item.why))}</p></li>`).join('')}</ol>${button(t('Back to practice sets','Về danh sách bài luyện'),'academic-track',s.track,'primary')}</section>`;
   }
   if(set){
     return `<section class="academic-room">${button('← '+title,'academic-track',set.track,'back-link')}<header class="task-heading"><div><p>${loc(academicTracks[set.track])}</p><h1>${escape(loc(set.title))}</h1></div></header><div class="academic-paper">${docs(set)}<form data-form="academic-paper"><p>${t('Answer every question, then check your work.','Trả lời từng câu rồi xem kết quả.')}</p>${set.items.map((item,i)=>{

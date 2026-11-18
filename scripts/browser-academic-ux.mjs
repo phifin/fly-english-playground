@@ -38,7 +38,11 @@ export async function verifyAcademicUX({newContext,observe,ready,noError,axe,bas
   await p.setViewportSize({width:1280,height:800});await shot('answers-desktop');await axe('Saved academic answer review',p);
   await click('academic-track','ielts');await click('academic-home');
   await click('academic-track','toeic');await click('academic-start','training-v1');await p.locator('.academic-reading').waitFor();
-  assert.equal(await p.locator('.academic-paper input[type=radio]').count(),20);await shot('paired-documents');
+  assert.equal(await p.locator('.academic-paper input[type=radio]').count(),20);
+  assert.equal(await p.locator('.academic-paper label:has(input[type=radio])').first().evaluate(el=>{const r=el.querySelector('input').getBoundingClientRect(),s=el.querySelector('span').getBoundingClientRect();return r.right<s.left&&Math.abs((r.top+r.bottom)/2-(s.top+s.bottom)/2)<2;}),true,'Each radio sits beside its answer text');await shot('paired-documents');
+  await click('academic-track','toeic');await click('academic-home');await click('academic-track','school');await click('academic-start','rewrites-v1');
+  for(const [i,word] of ['not until','had the meeting','despite being','sooner had the','no account'].entries())await answer(i,word);
+  await form.locator('button[type="submit"]').click();await ready(p);await p.locator('.academic-review').waitFor();assert.ok((await p.locator('.academic-heading').innerText()).includes('5 / 5'));
   await click('library');await click('review');await skip();const tip=p.getByRole('tooltip'),help=p.locator('button.context-help');
   await help.hover();await tip.waitFor();await help.click();await p.mouse.move(0,0);assert.equal(await help.getAttribute('aria-expanded'),'true');
   await p.keyboard.press('Escape');await tip.waitFor({state:'detached'});await help.blur();await help.focus();await tip.waitFor();
@@ -47,6 +51,8 @@ export async function verifyAcademicUX({newContext,observe,ready,noError,axe,bas
   const box=await tip.boundingBox();assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=321&&box.y+box.height<=641);
   await shot('review-help-vi');await p.locator('h1').tap();await tip.waitFor({state:'detached'});
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+  await click('account');await click('start-traveler');await p.locator('#traveler-name').fill('Another reader');await p.locator('[data-form="create-profile"] [type="submit"]').click();await ready(p);await click('entry-beginner');await skip();
+  await click('library');await skip();await click('academic');await click('academic-track','ielts');assert.equal(await p.locator('[data-action="academic-record"]').count(),0,'Another learner cannot see the first learner’s academic results');
   check('Public recovery, first Adventure invitation, scroll boundaries, saved exam results and keyboard, pointer and touch explanations work through normal navigation.');
  }finally{await ctx.close();}
 }
