@@ -3,7 +3,9 @@ import { copy, notes, instruction, feedback } from './fixtures.js';
 import { scene } from './scene.js';
 import { readGuidance, writeGuidance } from './guidance.js';
 
+import {installContextHelp} from './context-help.js';
 const app = document.querySelector('#app');
+const mountHelp=installContextHelp(app);
 let state = createState();
 let plan = { route: 'roof', shutter: 'open', mirror: 'sky', order: ['shutter', 'light', 'mirror'] };
 const media = matchMedia('(prefers-reduced-motion: reduce)');
@@ -128,7 +130,8 @@ function render() {
       ${resultPanel()}</div>${panel()}</section>
     ${preview ? `<section class="counterexample" role="status"><strong>${ui.lang === 'vi' ? 'Xem thử' : 'Preview'}: ${preview.weather === 'clear' ? text.clear : text.mist}</strong><p>${preview.result.success ? (ui.lang === 'vi' ? 'Kế hoạch này sẽ thành công trong thời tiết được xem thử.' : 'This plan would succeed in the previewed weather.') : `${previewMessage.title} ${previewMessage.body}`}</p><small>${text.counterHint}</small></section>` : ''}
     ${transferPanel()}
-    <footer><details class="visit-details"><summary>${t('About this visit','Về chuyến thăm này')}</summary><p>${t('This light puzzle starts fresh when you reload. It does not change your saved learning progress.','Câu đố ánh sáng bắt đầu lại khi tải trang. Tiến trình học đã lưu của bạn không thay đổi.')}</p></details><button class="footer-motion text-button" data-action="motion" aria-pressed="${quiet()}">${icon('settings')}${quiet() ? text.living : text.settings}</button><span>${ui.lang === 'vi' ? 'Không cần vội. Cứ tò mò.' : 'No rush. Stay curious.'} ${icon('star')}</span></footer></main>${dialog()}`;
+    <footer><template class="visit-details" data-context-help="${t('About this visit','Về chuyến thăm này')}"><p>${t('This light puzzle starts fresh when you reload. It does not change your saved learning progress.','Câu đố ánh sáng bắt đầu lại khi tải trang. Tiến trình học đã lưu của bạn không thay đổi.')}</p></template><button class="footer-motion text-button" data-action="motion" aria-pressed="${quiet()}">${icon('settings')}${quiet() ? text.living : text.settings}</button><span>${ui.lang === 'vi' ? 'Không cần vội. Cứ tò mò.' : 'No rush. Stay curious.'} ${icon('star')}</span></footer></main>${dialog()}`;
+  mountHelp();
   for (const element of app.querySelectorAll('button[data-action], select[id], input[id], textarea[id]')) {
     if (element.dataset.focusKey) continue;
     const region = element.closest('dialog') ? 'dialog' : element.closest('.world-stage') ? 'scene' : element.closest('.plan-panel') ? 'panel' : element.closest('footer') ? 'footer' : 'page';

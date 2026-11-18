@@ -46,7 +46,7 @@ test('bilingual views provide labelled buttons, audio fallback, concise help and
   const menu=littlePlayView({words,language});assert.match(menu,/data-little-mode="menu"/);assert.equal((menu.match(/data-action="little-start"/g)||[]).length,3);assert.match(menu,/data-action="home"/);
   for(const mode of ['explore','find','match']){
    const session=createLittleSession(words,{mode}),html=littlePlayView({words,session,language,audioAvailable:false});
-   assert.match(html,/class="little-play"/);assert.match(html,/data-little-complete="false"/);assert.match(html,/role="status"/);assert.match(html,/<details class="little-grownup">/);assert.match(html,/aria-label=/);assert.equal(html,html.normalize('NFC'));
+   assert.match(html,/class="little-play"/);assert.match(html,/data-little-complete="false"/);assert.match(html,/role="status"/);assert.match(html,/<template class="little-grownup" data-context-help=/);assert.match(html,/aria-label=/);assert.equal(html,html.normalize('NFC'));
    if(mode==='find')assert.match(html,/little-audio-help/);
    if(mode==='match')assert.match(html,/little-model/);
    if(mode!=='explore')assert.equal((html.match(/data-action="little-pick"/g)||[]).length,3);

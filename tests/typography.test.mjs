@@ -25,7 +25,7 @@ test('studio keeps voice privacy visible and assessment limits available without
  for(const language of ['en','vi']){
   const html=studioView({missions,level:'A1',language});
   assert.match(html,language==='en'?/No microphone or recording/:/Không dùng micro hay thu âm/);
-  assert.match(html,/<details class="studio-help"><summary>/);
+  assert.match(html,/<template class="studio-help" data-context-help=/);
   assert.match(html,language==='en'?/ungraded practice/:/luyện tập không chấm điểm/);
   assert.match(html,/<p lang="en" translate="no">A boat waits by the tree\.<\/p>/);
   assert.doesNotMatch(html,/field recording|standardized listening test/);

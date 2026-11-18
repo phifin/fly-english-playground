@@ -1,3 +1,4 @@
+import {verifyAcademicUX} from './browser-academic-ux.mjs';
 import {verifyLayout} from './browser-layout-check.mjs';
 import {verifyMotion} from './browser-motion-check.mjs';
 import {verifyFirstSteps} from './browser-first-steps.mjs';
@@ -1066,7 +1067,9 @@ try {
       const typography=await lightPage.locator('h1').evaluate(el=>({text:el.textContent,spacing:getComputedStyle(el).letterSpacing,size:parseFloat(getComputedStyle(el).fontSize),line:parseFloat(getComputedStyle(el).lineHeight)}));
       assert.equal(typography.text,typography.text.normalize('NFC'));
       if(language==='vi'){assert.equal(typography.spacing,'normal');assert.ok(typography.line>=typography.size*1.3);}
-      assert.equal(await lightPage.locator('.visit-details').evaluate(el=>el.open),false);
+      assert.equal(await lightPage.locator('.context-help').getAttribute('aria-expanded'),'false');
+      await lightPage.locator('.context-help').click();await lightPage.getByRole('tooltip').waitFor();
+      await lightPage.keyboard.press('Escape');await lightPage.getByRole('tooltip').waitFor({state:'detached'});
       await lightPage.screenshot({path:fileURLToPath(new URL(`release-light-${language}-390.png`,directory)),fullPage:true});
     }
     await lightPage.reload();await lightPage.locator('#language').waitFor();
@@ -1443,6 +1446,7 @@ try {
   }
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
+  await verifyAcademicUX({newContext,observe,ready,noError,axe,base,directory,check,readImportState});
   await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   await verifyFirstSteps({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   assert.deepEqual(report.errors, [], 'New design journeys must also complete without console errors or uncaught exceptions.');

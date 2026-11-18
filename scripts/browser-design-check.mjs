@@ -22,7 +22,7 @@ export async function verifyDesign({newContext,observe,ready,noError,axe,base,di
   let release;const gate=new Promise(resolve=>{release=resolve;});
   await page.route('**/src/main.js',async route=>{await gate;await route.continue();});
   await page.goto(base.href,{waitUntil:'commit'});
-  try{await page.locator('.atlas-boot').waitFor();await page.screenshot({path:fileURLToPath(new URL('release-design-loading.png',directory))});}finally{release();}
+  try{await page.locator('.atlas-boot').waitFor();for(const width of [1280,390]){await page.setViewportSize({width,height:844});await page.waitForFunction(()=>{const r=document.querySelector('.atlas-boot').getBoundingClientRect();return r.top===0&&r.left===0&&r.width===document.documentElement.clientWidth&&Math.abs(r.height-innerHeight)<=1;});}await page.screenshot({path:fileURLToPath(new URL('release-design-loading.png',directory))});}finally{release();}
   await ready(page);await page.unroute('**/src/main.js');await play('guidance-language','vi');
   const loaded=await page.evaluate(async()=>{const faces=await document.fonts.load('800 32px Nunito','Tiếng Việt: ă â ê ô ơ ư đ Ắ Ễ Ộ Ự');return faces.length>0&&faces.every(f=>f.status==='loaded');});assert.equal(loaded,true,'Self-hosted display font and Vietnamese subsets load');
   assert.match(await page.locator('h1').evaluate(el=>getComputedStyle(el).fontFamily),/Nunito/,'Vietnamese display headings use the loaded font, not a stale language override');
