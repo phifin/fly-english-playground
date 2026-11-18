@@ -1,7 +1,7 @@
 /** Native modal semantics, text-only messages, and reliable keyboard dismissal. */
-export function showDialog({title,message,confirmLabel,cancelLabel,celebrate=false,error=false}={}) {
+export function showDialog({title,message,confirmLabel,cancelLabel,celebrate=false,error=false,returnFocus=document.activeElement}={}) {
  return new Promise(resolve=>{
-  const previous=document.activeElement,dialog=document.createElement('dialog');
+  const previous=returnFocus,dialog=document.createElement('dialog');
   dialog.className='atlas-dialog'+(error?' error':'');dialog.setAttribute('aria-labelledby','atlas-dialog-title');dialog.setAttribute('aria-describedby','atlas-dialog-message');
   const mark=document.createElement('span');mark.className='dialog-mark';mark.setAttribute('aria-hidden','true');mark.textContent=celebrate?'✦':'◇';
   const heading=document.createElement('h2');heading.id='atlas-dialog-title';heading.textContent=title;heading.tabIndex=-1;

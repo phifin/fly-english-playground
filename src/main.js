@@ -641,14 +641,19 @@ function responseValidation(message){
  note.scrollIntoView({block:'nearest',behavior:'instant'});animateVisual(note,[{opacity:0},{opacity:1}]);
 }
 let errorDialog=null;
-function reportError(error){
+function reportError(error,returnFocus=document.activeElement){
  ui.errorSource=error;ui.error=errorMessage(error);
  if(errorDialog){const copy=document.querySelector('.atlas-dialog.error #atlas-dialog-message');if(copy)copy.textContent=ui.error;return;}
  coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
- errorDialog=showDialog({title:t('Let’s get you back on track','Cùng tiếp tục nhé'),message:ui.error,confirmLabel:t('Back to what I was doing','Quay lại'),error:true}).then(()=>{errorDialog=null;ui.error='';ui.errorSource=null;});
+ errorDialog=showDialog({title:t('Let’s get you back on track','Cùng tiếp tục nhé'),message:ui.error,confirmLabel:t('Back to what I was doing','Quay lại'),error:true,returnFocus}).then(()=>{errorDialog=null;ui.error='';ui.errorSource=null;});
 }
-async function run(task){if(ui.busy)return;ui.busy=true;app.setAttribute('aria-busy','true');try{await task();}catch(error){reportError(error);}finally{ui.busy=false;app.setAttribute('aria-busy','false');}}
-app.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!el)return;e.preventDefault();if(el.disabled)return;run(()=>action(el.dataset.action,el));});
+async function run(task,initiator=document.activeElement){
+ if(ui.busy)return;
+ ui.busy=true;app.setAttribute('aria-busy','true');
+ try{await task();}catch(error){reportError(error,initiator);}
+ finally{ui.busy=false;app.setAttribute('aria-busy','false');}
+}
+app.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!el)return;e.preventDefault();if(el.disabled)return;run(()=>action(el.dataset.action,el),el);});
 app.addEventListener('input',e=>{
  const el=e.target;if(ui.submitting)return;if(el.dataset.answer==='gap')ui.answer=el.value;
  if(el.dataset.answer==='writing')ui.answer={...ui.answer,text:el.value};
