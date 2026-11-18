@@ -50,6 +50,14 @@ export async function verifyAcademicUX({newContext,observe,ready,noError,axe,bas
   await p.setViewportSize({width:320,height:640});await help.tap();await tip.waitFor();assert.match(await tip.innerText(),/Câu bạn/);
   const box=await tip.boundingBox();assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=321&&box.y+box.height<=641);
   await shot('review-help-vi');await p.locator('h1').tap();await tip.waitFor({state:'detached'});
+  await p.setViewportSize({width:320,height:360});
+  await help.tap();await tip.waitFor();
+  await p.evaluate(()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+  await tip.waitFor({state:'detached'});
+  await help.evaluate(b=>{b.blur();b.focus({preventScroll:true});});
+  assert.equal(await help.getAttribute('aria-expanded'),'false','An offscreen trigger cannot leave a floating explanation behind');
+  await help.scrollIntoViewIfNeeded();await help.tap();await tip.waitFor();await p.keyboard.press('Escape');
+  await p.setViewportSize({width:320,height:640});
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
   await click('account');await click('start-traveler');await p.locator('#traveler-name').fill('Another reader');await p.locator('[data-form="create-profile"] [type="submit"]').click();await ready(p);await click('entry-beginner');await skip();
   await click('library');await skip();await click('academic');await click('academic-track','ielts');assert.equal(await p.locator('[data-action="academic-record"]').count(),0,'Another learner cannot see the first learner’s academic results');

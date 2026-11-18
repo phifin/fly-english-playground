@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {academicSets,academicSkills} from '../src/academic-content.js';
 import {academicHistory,academicResult,academicView} from '../src/academic.js';
 import {journeyProgress} from '../src/journey.js';
+import {openMemoryStore} from '../src/storage.js';
 import {readFile} from 'node:fs/promises';
 
 // Independent solution sheet transcribed after solving the six sets from their stimuli.
@@ -42,5 +43,20 @@ test('practice history uses versioned keys, ignores malformed data and awards no
  assert.match(academicView({events:entries,state:{track:'ielts'},language:'en'}),/Previously/);
  const pack=JSON.parse(await readFile(new URL('../data/published/atlas.json',import.meta.url))),boards=JSON.parse(await readFile(new URL('../data/published/boards.json',import.meta.url))).boards;
  assert.deepEqual(journeyProgress(entries,pack,boards),journeyProgress([],pack,boards));
+});
+
+test('an academic backup round trip keeps legacy attempts and learner boundaries across repeated restores',async()=>{
+ const source=await openMemoryStore(),target=await openMemoryStore();
+ const profile=await source.createProfile({name:'Linh',kind:'independent',guardianId:null});
+ const other=await target.createProfile({name:'Minh',kind:'independent',guardianId:null});
+ const at='2026-11-18T09:00:00.000Z';
+ await source.appendEvent(profile.id,{id:'old-attempt',kind:'attempt',at,payload:{activityId:'a1-test-01',answer:'the bag',correct:true}});
+ await source.appendEvent(profile.id,{id:'academic-drill',kind:'mission',at,payload:{experience:'academic-practice-v1',setId:academicSets[0].id,answers:solutions[0]}});
+ const backup=await source.exportAll();
+ assert.equal((await target.importAll(JSON.stringify(backup))).eventsAdded,2);
+ assert.equal((await target.importAll(backup)).eventsAdded,0);
+ assert.deepEqual(await target.getEvents(profile.id),await source.getEvents(profile.id));
+ assert.equal(academicHistory(await target.getEvents(profile.id))[0].result.score,5);
+ assert.deepEqual(await target.getEvents(other.id),[]);
 });
 

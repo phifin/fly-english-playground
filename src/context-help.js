@@ -37,9 +37,9 @@ export function installContextHelp(root) {
     document.body.append(popup);
     button.setAttribute('aria-expanded','true');
     button.setAttribute('aria-describedby',popup.id);
-    position();
     popup.addEventListener('pointerenter',()=>clearTimeout(timer));
     popup.addEventListener('pointerleave',defer);
+    position();
   }
   function defer() {if(!pinned) {clearTimeout(timer); timer=setTimeout(close,200);}}
   const buttonFrom=e=>e.target.closest?.('button[data-explanation]');
@@ -49,7 +49,7 @@ export function installContextHelp(root) {
   root.addEventListener('focusout',e=>{if(trigger&&e.target===trigger)close();});
   document.addEventListener('click',e=>{
     const b=buttonFrom(e);
-    if(b){if(trigger===b&&pinned)close();else {open(b);pinned=true;}}
+    if(b){if(trigger===b&&pinned)close();else {open(b);pinned=trigger===b;}}
     else if(popup&&!popup.contains(e.target))close();
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popup){e.preventDefault();e.stopPropagation();close();}},true);
