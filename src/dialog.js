@@ -3,7 +3,7 @@ export function showDialog({title,message,confirmLabel,cancelLabel,celebrate=fal
  return new Promise(resolve=>{
   const previous=returnFocus,dialog=document.createElement('dialog');
   dialog.className='atlas-dialog'+(error?' error':'');dialog.setAttribute('aria-labelledby','atlas-dialog-title');dialog.setAttribute('aria-describedby','atlas-dialog-message');
-  const mark=document.createElement('span');mark.className='dialog-mark';mark.setAttribute('aria-hidden','true');mark.textContent=celebrate?'✦':'◇';
+  const mark=document.createElement('span');mark.className='dialog-mark';mark.setAttribute('aria-hidden','true');mark.textContent=celebrate?'✦':error?'!':'◇';
   const heading=document.createElement('h2');heading.id='atlas-dialog-title';heading.textContent=title;heading.tabIndex=-1;
   const copy=document.createElement('p');copy.id='atlas-dialog-message';copy.textContent=message;
   const actions=document.createElement('div');actions.className='button-row';

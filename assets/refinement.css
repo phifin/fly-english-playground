@@ -5,7 +5,7 @@
 .masthead .main-nav button{min-height:44px;padding:.55rem .8rem}
 .response-validation{margin:.75rem 0;padding:.7rem .85rem;border-radius:12px;background:#f6e9d5;color:#70441e;font-size:.94rem;line-height:1.5}
 .atlas-dialog.error{max-width:min(430px,calc(100vw - 2rem));text-align:left;color:var(--ink)}
-.atlas-dialog.error .dialog-mark{background:#f6e9d5;color:#895c24}.atlas-dialog.error .button-row{margin-top:1.2rem}
+.atlas-dialog.error .dialog-mark{display:inline-grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:#f6e9d5;color:#79501c;font-size:1.45rem;font-weight:750}.atlas-dialog.error .button-row{margin-top:1.2rem}
 .activity-actions,.feedback .button-row{gap:.75rem;margin-top:1.15rem;flex-wrap:wrap}
 .match-grid,.rubric{gap:.75rem}.first-steps-choices{gap:.9rem}.learning-actions{gap:1rem}
 .experience-choices{gap:1rem}.study-steps{gap:.5rem}.first-steps-heading{margin-bottom:1.25rem}

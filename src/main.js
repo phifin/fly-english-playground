@@ -464,7 +464,15 @@ async function submit(){
  // Using Check demonstrates the control, even for an incomplete/wrong answer.
  await rememberGuide(a.type);ui.guideCelebrate=null;ui.guideReplay=null;
  coachCleanup();coachCleanup=()=>{};app.querySelector('.coach-popover')?.remove();
- if(!result.complete){responseValidation(t(a.type==='writing'?'Add a short response and check each review point.':'Complete your response, then check it.','Hoàn thành câu trả lời và các mục tự xem lại, rồi kiểm tra nhé.'));return;}
+ if(!result.complete){
+  const instructions={
+   gap:['Enter the missing word.','Điền từ còn thiếu nhé.'],
+   choice:['Choose an answer first.','Chọn một câu trả lời nhé.'],
+   match:['Choose a match for each line.','Chọn phần ghép cho từng dòng nhé.'],
+   writing:['Write a short response, then check each review point.','Viết câu trả lời ngắn rồi đánh dấu từng mục đã tự kiểm tra.']
+  };
+  responseValidation(t(...(instructions[a.type]??['Finish your response first.','Hoàn thành câu trả lời trước nhé.'])));return;
+ }
  ui.submitting=true;const controls=[...app.querySelectorAll('.activity-panel button,.activity-panel input,.activity-panel select,.activity-panel textarea')].filter(el=>!el.disabled);controls.forEach(el=>el.disabled=true);
  try{await append('attempt',{activityId:a.id,missionId:ui.mission,contentVersion:pack.batchId,answer,supported:ui.supported,mode:profile.settings.mode,...(ui.screen==='quick'?{quickSessionId:ui.quick.sessionId,quickIndex:ui.quick.index}:{})});ui.answer=answer;ui.feedback=result;ui.draftKey=JSON.stringify({answer,supported:ui.supported});}
  finally{ui.submitting=false;controls.forEach(el=>el.disabled=false);}
