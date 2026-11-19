@@ -1,4 +1,4 @@
-import {littleArt} from './little-play.js';
+import {littleArt,LITTLE_WORD_IDS} from './little-play.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 /** Picture memory is supported exposure, never a CEFR or vocabulary mastery score. */
 export function createMemory(words,offset=0){
@@ -13,7 +13,12 @@ export function createMemory(words,offset=0){
 }
 export function restoreMemory(value,words){
  if(!value||value.version!==1||!Number.isSafeInteger(value.offset)||value.offset<0||value.offset>=words.length)return null;
- const expected=createMemory(words,value.offset);
+ let expected=createMemory(words,value.offset);
+ if(JSON.stringify(value.cards)!==JSON.stringify(expected.cards)){
+  const legacy=words.filter(w=>LITTLE_WORD_IDS.includes(w.id));
+  if(legacy.length!==LITTLE_WORD_IDS.length||value.offset>=legacy.length)return null;
+  expected=createMemory(legacy,value.offset);
+ }
  if(JSON.stringify(value.cards)!==JSON.stringify(expected.cards)||!Array.isArray(value.open)||value.open.length>2||new Set(value.open).size!==value.open.length||value.open.some(i=>!Number.isInteger(i)||i<0||i>5)||!Array.isArray(value.found)||new Set(value.found).size!==value.found.length||value.found.some(id=>!expected.cards.includes(id))||!Number.isSafeInteger(value.turns)||value.turns<value.found.length||value.turns>10000)return null;
  if(value.open.some(i=>value.found.includes(value.cards[i])))return null;
  if(value.open.length===2&&value.cards[value.open[0]]===value.cards[value.open[1]])return null;

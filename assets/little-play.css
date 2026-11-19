@@ -5,3 +5,10 @@
 html[data-quality=eco] .little-play *,html[data-motion=reduced] .little-play *{animation:none!important;transition:none!important}
 html[data-motion=reduced] .little-choice:hover,html[data-motion=reduced] .little-big-picture:active,html[data-motion=reduced] .little-choice:active{transform:none}
 @media(forced-colors:active){.little-game,.little-choice,.little-big-picture,.little-hear{border:2px solid ButtonText}.little-choice.is-found{outline:3px solid Highlight}}
+.little-topic{display:flex;align-items:center;justify-content:center;gap:.7rem;flex-wrap:wrap;margin:0 auto 1.1rem;color:#35594a}
+.little-topic select{max-width:100%;min-height:44px;padding:.45rem .75rem;border:1px solid #799783;border-radius:.65rem;background:#fffaf0;color:inherit;font:inherit}
+.little-topic select:focus-visible{outline:3px solid #28614d;outline-offset:3px}
+.little-example{display:grid;justify-items:center;gap:.25rem;max-width:29rem;margin:.9rem auto .35rem;line-height:1.5}
+.little-example span[lang=vi]{color:#456151;font-size:.92rem}
+.little-example button{display:inline-flex;align-items:center;gap:.35rem;min-height:44px}
+.little-example button svg{width:1.2em;height:1.2em}

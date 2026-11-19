@@ -1,8 +1,9 @@
+import {extendedPictureIds,pictureTopics} from './picture-library.js';
 /** Small supported vocabulary rounds. Participation is not proficiency evidence. */
 const MODES = ['explore','find','match'];
 export const LITTLE_WORD_IDS = Object.freeze(['cat','dog','bird','fish','apple','banana','ball','book','cup','shoe','sun','star']);
 const esc=value=>String(value??'').normalize('NFC').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const list=words=>Array.isArray(words)?words.filter(w=>LITTLE_WORD_IDS.includes(w?.id)&&w.word?.en&&w.word?.vi):[];
+const list=words=>Array.isArray(words)?words.filter(w=>(LITTLE_WORD_IDS.includes(w?.id)||extendedPictureIds.has(w?.id))&&w.word?.en&&w.word?.vi):[];
 const localized=(value,language)=>value?.[language]??value?.en??'';
 const button=(label,action,extra='',classes='')=>`<button type="button" class="${classes}" data-action="${action}" ${extra}>${label}</button>`;
 const sound='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12h6l8-7v22l-8-7H5Z" fill="currentColor"/><path d="M23 10q7 6 0 12m4-16q11 10 0 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
@@ -22,7 +23,9 @@ const drawings={
  sun:'<g fill="none" stroke="#d9a347" stroke-width="7"><path d="M80 9v15m0 112v15M9 80h15m112 0h15M30 30l11 11m78 78 11 11M30 130l11-11m78-78 11-11"/></g><circle cx="80" cy="80" r="43" fill="#f5d477"/><path d="M61 74v1m38-1v1" stroke-width="7"/><path d="M66 93q14 14 28 0" fill="none"/>',
  star:'<path d="m80 13 21 43 47 7-34 34 8 47-42-22-42 22 8-47L12 63l47-7Z" fill="#f1cd76"/><path d="M64 78v1m32-1v1" stroke-width="7"/><path d="M69 96q11 10 22 0" fill="none"/>'
 };
-export function littleArt(id){return `<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false"><g fill="#35594a" stroke="#35594a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${drawings[id]??''}</g></svg>`;}
+export function littleArt(id){
+ if(extendedPictureIds.has(id))return `<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="./assets/picture-garden.svg#${id}"></use></svg>`;
+ return `<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false"><g fill="#35594a" stroke="#35594a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${drawings[id]??''}</g></svg>`;}
 
 export function createLittleSession(words,{mode='explore',offset=0}={}){
  const available=list(words),ids=[...new Set(available.map(w=>w.id))];
@@ -36,7 +39,12 @@ export function restoreLittleSession(value,words){
  if(!value||value.version!==1||!MODES.includes(value.mode)||!Number.isSafeInteger(value.offset)||value.offset<0||value.offset>=ids.size||!Array.isArray(value.deck)||value.deck.length<3||value.deck.length>4||new Set(value.deck).size!==value.deck.length||value.deck.some(id=>!ids.has(id))||!Number.isInteger(value.index)||value.index<0||value.index>value.deck.length||!Array.isArray(value.found)||new Set(value.found).size!==value.found.length||value.found.some(id=>!value.deck.slice(0,Math.min(value.index+1,value.deck.length)).includes(id))||![null,'found','again','heard'].includes(value.feedback)||!(value.lastPick===null||ids.has(value.lastPick))||typeof value.heard!=='boolean')return null;
  if(value.index===value.deck.length&&(value.feedback!==null||value.lastPick!==null||value.heard))return null;
  const expected=createLittleSession(words,{mode:value.mode,offset:value.offset}).deck;
- if(value.deck.length!==expected.length||value.deck.some((id,index)=>id!==expected[index]))return null;
+ if(!value.deck.every((id,index)=>id===expected[index])||value.deck.length!==expected.length){
+  const legacy=list(words).filter(w=>LITTLE_WORD_IDS.includes(w.id));
+  if(legacy.length!==LITTLE_WORD_IDS.length||value.offset>=legacy.length)return null;
+  const prior=createLittleSession(legacy,{mode:value.mode,offset:value.offset}).deck;
+  if(value.deck.length!==prior.length||value.deck.some((id,i)=>id!==prior[i]))return null;
+ }
  if(value.deck.slice(0,value.index).some(id=>!value.found.includes(id)))return null;
  const current=value.deck[value.index],hasCurrent=value.found.includes(current);
  if(value.mode==='explore'){
@@ -80,8 +88,10 @@ export function littleAction(session,action,words){
 export function littlePlayView({words,session=null,language='en',audioAvailable=true,speaking=false}={}){
  const t=(en,vi)=>language==='vi'?vi:en,available=list(words),state=restoreLittleSession(session,words),item=littleCurrent(state,words);
  const help=`<template class="little-grownup" data-context-help="${t('For grown-ups','Dành cho người lớn')}"><p>${t('Say the word and let your child point or tap. Stop whenever they want.','Hãy ở cạnh bé. Gọi tên từng tranh bằng tiếng Anh rồi để bé chỉ hoặc chạm. Nghỉ khi bé muốn.')}</p>${item?.parentTip?`<p>${esc(localized(item.parentTip,language))}</p>`:''}<p>${t('No sound? Say the word yourself or try Picture pairs. Playing together helps build vocabulary.','Nếu không có tiếng, hãy đọc từ cho bé hoặc chọn Ghép tranh. Bé sẽ làm quen với từ mới khi cùng chơi.')}</p></template>`;
+ const topics=pictureTopics.map(topic=>({topic,index:available.findIndex(w=>w.id===topic.words[0]?.id)})).filter(option=>option.index>=0);
+ const topicMenu=!state&&topics.length>1?`<label class="little-topic"><span>${t('Picture topic','Chủ đề tranh')}</span><select data-little-topic>${topics.map(({topic,index})=>`<option value="${index}">${esc(localized(topic.name,language))}</option>`).join('')}</select></label>`:'';
  const header=`<div class="little-top">${button('← '+t('Home','Trang chủ'),'home','','back-link')}${state?button(t('Change game','Đổi trò chơi'),'little-menu','','text-button'):''}</div>`;
- if(!state)return `<section class="little-play" data-little-mode="menu" data-little-complete="false">${header}<h1>${t('Little words, together.','Cùng bé học từ mới')}</h1><p class="little-intro">${t('A picture, a word, a little discovery.','Chọn một trò rồi cùng bé chơi nhé.')}</p><div class="little-games">${[
+ if(!state)return `<section class="little-play" data-little-mode="menu" data-little-complete="false">${header}<h1>${t('Little words, together.','Cùng bé học từ mới')}</h1><p class="little-intro">${t('A picture, a word, a little discovery.','Chọn một trò rồi cùng bé chơi nhé.')}</p>${topicMenu}<div class="little-games">${[
   ['explore','cat',t('Meet the pictures','Xem tranh, nghe từ'),t('Tap a picture. Hear its name.','Chạm vào tranh. Nghe tên gọi.')],
   ['find','bird',t('Hear & find','Nghe và tìm'),t('Hear a word. Find its picture.','Nghe một từ. Tìm bức tranh.')],
   ['match','ball',t('Picture pairs','Ghép tranh'),t('Find the picture that looks the same.','Chọn hình giống tranh mẫu.')]
@@ -89,13 +99,14 @@ export function littlePlayView({words,session=null,language='en',audioAvailable=
  const found=state.found.map(id=>available.find(w=>w.id===id)).filter(Boolean);
  const trail=`<div class="little-trail" role="img" aria-label="${state.found.length} / ${state.deck.length} ${t('pictures found','tranh đã tìm được')}">${state.deck.map((id,index)=>`<span class="${state.found.includes(id)?'is-found':''}" aria-hidden="true">${state.found.includes(id)?littleArt(id):'<span class="little-seed">✦</span>'}</span>`).join('')}</div>`;
  if(!item)return `<section class="little-play little-finished" data-little-mode="${state.mode}" data-little-complete="true">${header}<h1>${t('A lovely little collection!','Bộ sưu tập nhỏ xinh!')}</h1><div class="little-collection">${found.map(w=>`<div>${littleArt(w.id)}<strong lang="en" translate="no">${esc(w.word.en)}</strong></div>`).join('')}</div><p>${t('Say a name together. Can you find one around you?','Cùng gọi tên nhé. Có vật nào ở quanh mình không?')}</p><div class="button-row">${button(t('More pictures →','Thêm tranh nào →'),'little-restart','','primary')}${button(t('All done','Chơi xong rồi'),'home')}</div>${help}</section>`;
+ const example=state.mode==='explore'&&item.example?`<div class="little-example"><span lang="en" translate="no">${esc(item.example.en)}</span>${language==='vi'?`<span lang="vi">${esc(item.example.vi)}</span>`:''}${audioAvailable?button(`${sound} ${t('Hear the sentence','Nghe cả câu')}`,'little-sentence','','text-button'):''}</div>`:'';
  const prompt=state.mode==='explore'?t('Tap to hear','Chạm để nghe'):state.mode==='find'?t('Hear, then find','Nghe rồi tìm'):t('Find its twin','Tìm tranh giống nhau');
  const hearLabel=speaking?t('Speaking…','Đang đọc…'):t('Hear it','Nghe từ');
  const audio=button(`${sound}<span>${hearLabel}</span>`,'little-listen',`aria-label="${esc(hearLabel)}"`,'little-hear');
  const cue=!audioAvailable&&state.mode==='find'?`<p class="little-audio-help">${t('Grown-up: say','Người lớn đọc')} <strong lang="en" translate="no">${esc(item.word.en)}</strong>. ${t('Then let your child choose.','Rồi để bé chọn tranh.')}</p>`:'';
  const feedback=state.feedback==='found'?`${t('There it is!','Đúng rồi!')} <span lang="en" translate="no">${esc(item.word.en)}</span>`:state.feedback==='again'?t('Try another picture.','Thử tranh khác nhé.'):state.feedback==='heard'?`<span lang="en" translate="no">${esc(item.word.en)}</span>`:state.mode==='explore'?t('Say it together.','Cùng nói nào.'):state.mode==='match'?t('Tap the same picture.','Chạm vào tranh giống nhau.'):t('Tap the picture you hear.','Chạm vào tranh vừa nghe.');
  return `<section class="little-play" data-little-mode="${state.mode}" data-little-complete="false" data-little-word="${item.id}">${header}<h1>${prompt}</h1>${trail}
- ${state.mode==='explore'?`<div class="little-flashcard">${button(`${littleArt(item.id)}<strong lang="en" translate="no">${esc(item.word.en)}</strong>${language==='vi'?`<span lang="vi">${esc(item.word.vi)}</span>`:''}<span class="little-card-speaker" aria-hidden="true">${sound}</span>`,'little-listen',`aria-label="${esc(t('Hear','Nghe')+' '+item.word.en)}"`,'little-big-picture')}</div>`:`<div class="little-target">${state.mode==='match'?`<div class="little-model" role="img" aria-label="${esc(localized(item.word,language))}">${littleArt(item.id)}</div>`:'<span class="little-listening-face" aria-hidden="true">♪</span>'}${audio}</div>${cue}<div class="little-choices">${littleOptions(state,words).map(w=>button(`${littleArt(w.id)}${state.feedback==='found'&&w.id===item.id?'<span class="little-correct" aria-hidden="true">✓</span>':''}`,'little-pick',`data-value="${w.id}" aria-label="${esc(localized(w.word,language))}" ${state.feedback==='found'?'disabled':''}`,'little-choice'+(state.feedback==='found'&&w.id===item.id?' is-found':'')+(state.feedback==='again'&&state.lastPick===w.id?' try-another':''))).join('')}</div>`}
+ ${state.mode==='explore'?`<div class="little-flashcard">${button(`${littleArt(item.id)}<strong lang="en" translate="no">${esc(item.word.en)}</strong>${language==='vi'?`<span lang="vi">${esc(item.word.vi)}</span>`:''}<span class="little-card-speaker" aria-hidden="true">${sound}</span>`,'little-listen',`aria-label="${esc(t('Hear','Nghe')+' '+item.word.en)}"`,'little-big-picture')}</div>${example}`:`<div class="little-target">${state.mode==='match'?`<div class="little-model" role="img" aria-label="${esc(localized(item.word,language))}">${littleArt(item.id)}</div>`:'<span class="little-listening-face" aria-hidden="true">♪</span>'}${audio}</div>${cue}<div class="little-choices">${littleOptions(state,words).map(w=>button(`${littleArt(w.id)}${state.feedback==='found'&&w.id===item.id?'<span class="little-correct" aria-hidden="true">✓</span>':''}`,'little-pick',`data-value="${w.id}" aria-label="${esc(localized(w.word,language))}" ${state.feedback==='found'?'disabled':''}`,'little-choice'+(state.feedback==='found'&&w.id===item.id?' is-found':'')+(state.feedback==='again'&&state.lastPick===w.id?' try-another':''))).join('')}</div>`}
  <div class="little-feedback ${state.feedback==='found'?'is-success':''}" role="status" aria-live="polite" aria-atomic="true">${feedback}</div>
  <div class="little-bottom">${state.mode==='explore'||state.feedback==='found'?button(`${arrow}<span>${t('Next picture','Tranh tiếp theo')}</span>`,'little-next','','primary little-next'):state.mode==='find'?button(t('Show me a picture instead','Cho tôi xem tranh mẫu'),'little-start','data-value="match"','text-button'):''}</div>${help}</section>`;
 }

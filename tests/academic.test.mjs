@@ -15,9 +15,11 @@ const solutions=[
  ['not until','had the meeting','despite being','sooner had the','no account']
 ];
 test('reviewed academic keys, task constraints, bilingual explanations and source words',()=>{
- assert.equal(new Set(academicSets.map(s=>s.id)).size,6);
- assert.equal(new Set(academicSets.flatMap(s=>s.items.map(i=>i.prompt))).size,29);
- academicSets.forEach((set,n)=>{
+ const ids=['roof-v1','labels-v1','courier-v1','training-v1','forms-v1','rewrites-v1'];
+ const original=ids.map(id=>academicSets.find(s=>s.id===id));
+ assert.deepEqual(original.map(s=>s.id),ids);
+ assert.equal(new Set(original.flatMap(s=>s.items.map(i=>i.prompt))).size,29);
+ original.forEach((set,n)=>{
   const answers=solutions[n].map((s,i)=>set.track==='toeic'?set.items[i].options[s.charCodeAt(0)-65]:s);
   const payload={experience:'academic-practice-v1',setId:set.id,answers};
   assert.equal(academicResult(payload).score,set.items.length);

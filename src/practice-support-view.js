@@ -1,8 +1,17 @@
 import {littleArt,LITTLE_WORD_IDS} from './little-play.js';
+import {pictureWords} from './picture-library.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Reuse the original picture-game drawings only for an exact object word.
 // Do not infer quantities, colours or spatial relationships from a phrase.
-const termArt=term=>LITTLE_WORD_IDS.includes(term?.text?.toLowerCase())?`<span class="word-picture">${littleArt(term.text.toLowerCase())}</span>`:'';
+const pictureByTerm=new Map(pictureWords.map(w=>[w.word.en,w]));
+function termArt(term){
+ const word=pictureByTerm.get(term?.text?.toLowerCase());
+ if(!word)return '';
+ // An exact bilingual gloss avoids showing a vehicle for the verb "train", for example.
+ const sameSense=term.meaning?.vi?.trim().replace(/[.!?]$/u,'').toLowerCase()===word.word.vi;
+ if(!LITTLE_WORD_IDS.includes(word.id)&&!sameSense)return '';
+ return `<span class="word-picture">${littleArt(word.id)}</span>`;
+}
 // Reveal only after a persisted support receipt. Never mounted in assessments.
 export function practiceSupportView({support,language='en',open=false,index=null,hint=false,afterResponse=false}={}){
  if(!support)return '';

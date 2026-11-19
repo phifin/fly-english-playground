@@ -1,15 +1,22 @@
 // Atlas original material. Format sources and editorial decisions are recorded in docs/academic-practice.md.
 // Published editions are immutable so that a learner's earlier answer key stays reproducible.
+import {ieltsBank} from './academic-bank-ielts.js';
+import {toeicBank} from './academic-bank-toeic.js';
+import {toeflBank} from './academic-bank-toefl.js';
+import {schoolBank} from './academic-bank-school.js';
 const choice = (skill, prompt, options, key, en, vi) => ({skill,prompt,options,keys:[options[key]],why:[en,vi]});
 const written = (skill,prompt,keys,en,vi) => ({skill,prompt,keys,why:[en,vi]});
 const judgement = (prompt,key,en,vi) => choice('evidence',prompt,['TRUE','FALSE','NOT GIVEN'],key,en,vi);
 const completion = (prompt,key,en,vi) => written('detail',prompt,[key],en,vi);
 export const academicTracks = {
-  ielts:['IELTS Academic Reading','IELTS Academic Reading','Compare claims with evidence and complete notes.','Đối chiếu thông tin và điền ghi chú bằng từ trong bài.'],
-  toeic:['TOEIC Reading · Part 7','TOEIC Reading · Part 7','Read workplace messages and connect details across documents.','Đọc thông báo công việc và đối chiếu chi tiết giữa các văn bản.'],
-  school:['Competitive school English','Tiếng Anh nâng cao và thi chuyên','Work on precise word forms and equivalent sentence structures.','Luyện cấu tạo từ và viết lại câu sao cho giữ nguyên nghĩa.']
+  ielts:['IELTS Academic Reading','IELTS Academic Reading','Find evidence, interpret a writer’s view and connect ideas across paragraphs.','Tìm bằng chứng, hiểu quan điểm tác giả và liên kết ý giữa các đoạn.'],
+  toeic:['TOEIC Reading · Parts 5–7','TOEIC Reading · Phần 5–7','Complete workplace sentences and texts, then read single or linked documents.','Hoàn thành câu, điền văn bản và đối chiếu thông tin trong tài liệu công việc.'],
+  toefl:['TOEFL iBT Reading','TOEFL iBT Reading','Reconstruct words, read campus messages and follow short academic passages.','Điền chữ cái còn thiếu, đọc thông báo trong trường và các đoạn văn học thuật ngắn.'],
+  school:['Competitive school English','Tiếng Anh nâng cao và thi chuyên','Practise word formation, transformations, cloze, editing and close reading.','Luyện cấu tạo từ, viết lại câu, điền từ, sửa lỗi và đọc hiểu chuyên sâu.']
 };
 export const academicSkills={
+  grammar:['Grammar in context','Ngữ pháp trong ngữ cảnh'],
+  discourse:['Developing an argument','Theo dõi mạch lập luận'],lexis:['Meaning and word choice','Sắc thái và cách dùng từ'],cohesion:['Connecting language','Liên kết câu và ý'],
   evidence:['Checking claims','Đối chiếu nhận định'],detail:['Finding details','Tìm chi tiết'],purpose:['Purpose and inference','Mục đích và hàm ý'],link:['Connecting documents','Đối chiếu văn bản'],form:['Word formation','Cấu tạo từ'],syntax:['Sentence transformation','Viết lại câu']
 };
 export const academicSets=[
@@ -63,5 +70,6 @@ export const academicSets=[
  written('syntax','DESPITE · 2 words. Although the route was short, it was difficult. → The route was difficult ___ short.',['despite being'],'Despite takes a noun or an -ing form, so despite being short keeps the original contrast.','Sau “despite” có thể dùng dạng -ing. “Despite being short” giữ được quan hệ nhượng bộ.'),
  written('syntax','SOONER · 3 words. The ink dried and immediately the rain began. → No ___ ink dried than the rain began.',['sooner had the'],'The paired frame is no sooner … than. Moving no sooner to the front puts had before the subject.','Cặp liên từ là “no sooner … than”. Khi đưa “no sooner” lên đầu, đảo “had” trước chủ ngữ.'),
  written('syntax','ACCOUNT · 2 words. The door must never be left open. → On ___ must the door be left open.',['no account'],'On no account means under no circumstances. Fronting this phrase explains why must comes before the door.','“On no account” nghĩa là trong bất cứ trường hợp nào cũng không. Khi đưa cụm phủ định lên đầu câu, đảo “must” trước chủ ngữ.')]},
+ ...ieltsBank,...toeicBank,...toeflBank,...schoolBank
 ];
 

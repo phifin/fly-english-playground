@@ -53,6 +53,7 @@ self.addEventListener('install', event => {
     try {
       // Sequential downloads bound peak decoded-memory use on older devices.
       for (const entry of manifest.files) {
+        if (entry.path.startsWith('data/published/reference/') || entry.path.startsWith('assets/listening/')) continue;
         const url = new URL(entry.path, SCOPE).href;
         const resource = await fetch(url, { cache: 'no-store', credentials: 'omit', redirect: 'error' });
         if (!await matchesResource(resource, entry)) throw new Error(`Offline file failed integrity check: ${entry.path}`);
