@@ -25,7 +25,9 @@ const sheet = {
   'school-recast-v1': ['not been','such was','little did we','were made to','no point','having copied','were the glass','no reference'],
   'school-connectors-v1': ['whereas','that','which','of','though','or','the','that'],
   'school-editor-v1': 'BCABDBCA',
-  'school-argument-v1': 'BDCADBCA'
+  'school-argument-v1': 'BDCADBCA',
+  'canal-tiles-check-v1': ['B','A','C','B','B','D','C','D','stands','cable','grip','A','C','B'],
+  'school-journal-check-v1': ['B','C','A','D','B','justification','imperceptible','sequentially','relevance','unintended','not','in','far','be','not until Friday','with a view to','sooner had I','in lieu of']
 };
 const originalIds = ['roof-v1','labels-v1','courier-v1','training-v1','forms-v1','rewrites-v1'];
 const newSets = academicSets.filter(set=>!originalIds.includes(set.id));
@@ -35,7 +37,7 @@ test('the ordinary academic catalogue exposes the reviewed editions and task lab
   assert.deepEqual(newSets.map(s=>s.id).sort(),Object.keys(sheet).sort());
   assert.equal(new Set(academicSets.map(s=>s.id)).size,academicSets.length);
   for(const [id,questions,sets] of [['ielts',46,6],['toeic',43,8],['toefl',32,5],['school',58,8]]){
-    const track=academicSets.filter(s=>s.track===id);
+    const track=academicSets.filter(s=>s.track===id&&!s.checkpoint);
     assert.ok(academicTracks[id]);
     assert.equal(track.length,sets);
     assert.equal(track.reduce((sum,s)=>sum+s.items.length,0),questions);
@@ -71,7 +73,7 @@ for(const set of newSets){
         assert.match(set.docs.join(' ').toLowerCase(),new RegExp('\\b'+item.keys[0]+'\\b'),name);
         assert.match(item.keys[0],/^\w+$/,name);
       }
-      if(set.id==='school-recast-v1'){
+      if(item.skill==='syntax'&&item.prompt.includes(' → ')){
         const [,word,count]=item.prompt.match(/^(\w+) · (\d+) words/);
         for(const key of item.keys){
           assert.equal(key.split(' ').length,Number(count),name);
@@ -99,5 +101,26 @@ test('letter-completion gaps match the connected passage, actual words and numbe
     assert.equal(prefix+suffix,words[i]);
     assert.equal(blanks.length,suffix.length);
   }
+});
+
+test('reserved checkpoints have separate stimuli, an editorial time target and complete transformations',()=>{
+  const checkpoints=academicSets.filter(s=>s.checkpoint);
+  assert.deepEqual(checkpoints.map(s=>[s.id,s.items.length,s.targetMinutes]),[
+    ['canal-tiles-check-v1',14,20],['school-journal-check-v1',18,25]
+  ]);
+  const practice=new Set(academicSets.filter(s=>!s.checkpoint).flatMap(s=>s.docs));
+  const oldPrompts=new Set(academicSets.filter(s=>!s.checkpoint).flatMap(s=>s.items.map(i=>i.prompt)));
+  for(const set of checkpoints){
+    set.docs.forEach(p=>assert.equal(practice.has(p),false,set.id));
+    set.items.forEach(item=>assert.equal(oldPrompts.has(item.prompt),false,item.prompt));
+  }
+  const school=checkpoints.find(s=>s.track==='school');
+  const completed=school.items.slice(-4).map(item=>item.prompt.split(' → ')[1].replace('___',item.keys[0]));
+  assert.deepEqual(completed,[
+    'It was not until Friday that the cast heard the revised lines.',
+    'They widened the doorway with a view to improving access.',
+    'No sooner had I closed the case than I heard a knock.',
+    'The actor accepted two tickets in lieu of payment.'
+  ]);
 });
 

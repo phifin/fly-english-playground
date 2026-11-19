@@ -1,4 +1,6 @@
-import {courseUnits} from './course-bank.js';
+import {courseUnits as coreUnits} from './course-bank.js';
+import {expressionUnits} from './course-expressions.js';
+const courseUnits=[...coreUnits,...expressionUnits];
 import {listeningUnits} from './course-listening.js';
 import {guideArt} from './guide-art.js';
 

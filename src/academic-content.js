@@ -4,6 +4,7 @@ import {ieltsBank} from './academic-bank-ielts.js';
 import {toeicBank} from './academic-bank-toeic.js';
 import {toeflBank} from './academic-bank-toefl.js';
 import {schoolBank} from './academic-bank-school.js';
+import {academicCheckpoints} from './academic-bank-checkpoints.js';
 const choice = (skill, prompt, options, key, en, vi) => ({skill,prompt,options,keys:[options[key]],why:[en,vi]});
 const written = (skill,prompt,keys,en,vi) => ({skill,prompt,keys,why:[en,vi]});
 const judgement = (prompt,key,en,vi) => choice('evidence',prompt,['TRUE','FALSE','NOT GIVEN'],key,en,vi);
@@ -70,6 +71,6 @@ export const academicSets=[
  written('syntax','DESPITE · 2 words. Although the route was short, it was difficult. → The route was difficult ___ short.',['despite being'],'Despite takes a noun or an -ing form, so despite being short keeps the original contrast.','Sau “despite” có thể dùng dạng -ing. “Despite being short” giữ được quan hệ nhượng bộ.'),
  written('syntax','SOONER · 3 words. The ink dried and immediately the rain began. → No ___ ink dried than the rain began.',['sooner had the'],'The paired frame is no sooner … than. Moving no sooner to the front puts had before the subject.','Cặp liên từ là “no sooner … than”. Khi đưa “no sooner” lên đầu, đảo “had” trước chủ ngữ.'),
  written('syntax','ACCOUNT · 2 words. The door must never be left open. → On ___ must the door be left open.',['no account'],'On no account means under no circumstances. Fronting this phrase explains why must comes before the door.','“On no account” nghĩa là trong bất cứ trường hợp nào cũng không. Khi đưa cụm phủ định lên đầu câu, đảo “must” trước chủ ngữ.')]},
- ...ieltsBank,...toeicBank,...toeflBank,...schoolBank
+ ...ieltsBank,...toeicBank,...toeflBank,...schoolBank,...academicCheckpoints
 ];
 

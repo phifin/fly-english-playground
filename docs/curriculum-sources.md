@@ -1,0 +1,14 @@
+# Reading reference and listening sources
+
+The 3,000-entry reading reference uses **Princeton WordNet 3.0**. Each entry retains a primary-sense offset, part of speech and source definition. Matching examples come from the same sense. The original redistribution notice appears in every letter file and in the word finder. A reference entry represents one searchable English meaning. Bilingual lessons, examples and assessed items have their own counts. [WordNet licence](https://wordnet.princeton.edu/license-and-commercial-use)
+
+To reproduce the selection, extract the WordNet 3.0 corpus with its original LICENSE, index.sense and data files. Run `node scripts/build-word-reference.mjs path/to/wordnet`. The source used for this edition was the NLTK distribution of WordNet 3.0, ZIP SHA-256 `cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59`. The selection takes one sense per headword, prioritises attested senses and restricts topic domains. An editorial sample found an obsolete racial classification and unsuitable usage examples. These were excluded and the version fingerprint was recomputed before publication. The reference is intended for readers who can use an English definition. [Source archive](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip)
+
+## Listening
+
+Fourteen unchanged MP3s from two Tatoeba contributors supply short human-voice examples. Each recording was selected by **audio ID** and the contributor’s explicit CC BY 4.0 licence in the English audio export. The transcript, text author, audio contributor, download URL, separate text and audio licences and file checksum are recorded per item. Credit and links are visible beside the player. The original comprehension questions and bilingual explanations are Atlas material. Total audio duration from Windows media metadata is 31.19 seconds. The materials support short everyday comprehension. [Tatoeba downloads](https://tatoeba.org/en/downloads) · [Text licence](https://creativecommons.org/licenses/by/2.0/fr/) · [Recording licence](https://creativecommons.org/licenses/by/4.0/) · [Per-record credits](../data/reviews/listening-recordings.json)
+
+Twelve additional original messages can be read by a device voice. Learners can replay them or open the transcript. An attempt with a transcript, or without completed playback of the requested recording or message, is logged as supported. Device voices vary. There is no fixed audio duration for these messages. Long-form exam Listening and accent-balanced multi-speaker recordings remain outstanding.
+
+The service worker retains the core text lessons for offline use. It fetches each audio or word-reference file when requested and verifies its release checksum before caching it. No learner answers are sent to a dictionary or speech server by Atlas.
+

@@ -53,7 +53,7 @@ export const a2Units = [
     level: "A2",
     kind: "grammar",
     title: ["Telling a short story","Kể chuyện cuối tuần"],
-    objective: ["Use the past simple for a finished time. Some verbs change form, as in go → went. After did or didn't, use the base verb.","Dùng quá khứ đơn cho thời gian đã kết thúc. Một số động từ đổi dạng như go → went. Sau did hoặc didn't, dùng động từ nguyên mẫu."],
+    objective: ["Use the past simple for a finished time. Some verbs change form, as in come → came. After did or didn't, use the base verb.","Dùng quá khứ đơn cho thời gian đã kết thúc. Một số động từ đổi dạng như come → came. Sau did hoặc didn't, dùng động từ nguyên mẫu."],
     examples: ["We visited a friend yesterday. She took us to the park.","Did you enjoy it? We didn't stay long."],
     lexicon: [
       {"term":"yesterday","kind":"word","en":"the day before today","vi":"hôm qua","example":"I saw her yesterday."},

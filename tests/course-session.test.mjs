@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {courseUnits} from '../src/course-bank.js';
+import {expressionUnits} from '../src/course-expressions.js';
 import {listeningUnits} from '../src/course-listening.js';
 import {academicSets} from '../src/academic-content.js';
 import {newCourseState,openUnit,startCoursePractice,courseSubmission,courseResult,courseProgress,courseView} from '../src/course.js';
@@ -35,7 +36,7 @@ test('audio, transcript and assisted reading evidence are distinct',()=>{
  assert.equal(submit(script).supported,true);
 });
 test('all course and listening editions produce bilingual accessible practice and can be scored',()=>{
- for(const u of [...courseUnits,...listeningUnits]){
+ for(const u of [...courseUnits,...expressionUnits,...listeningUnits]){
   assert.equal(courseResult(submit(u)).correct.filter(Boolean).length,u.items.length);
   const s=newCourseState('a',u.level);openUnit(s,u.id);startCoursePractice(s,[]);
   for(const language of ['en','vi']){const html=courseView({state:s,language,events:[]});assert.match(html,/data-form="course-paper"/);assert.ok(!html.includes('undefined'));assert.equal(html.split('<fieldset>').length-1,u.items.length);}
