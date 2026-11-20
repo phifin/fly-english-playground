@@ -10,6 +10,7 @@ import {contentHash} from './content.mjs';
 import { validCloudConfig } from '../src/cloud.js';
 import {checkWorkshop} from './accept-workshop.mjs';
 import {checkPlacement} from './accept-placement.mjs';
+import {verifyPreservedEditions} from './check-course-editions.mjs';
 import {checkLittle} from './accept-little.mjs';
 import {checkPracticeRelease} from './validate-practice-edition.mjs';
 
@@ -35,6 +36,7 @@ export async function build({ sourceRoot = defaultRoot, config = null } = {}) {
     await checkWorkshop();
     await checkPlacement();
     await checkLittle();
+    await verifyPreservedEditions();
     const accepted=await acceptedContent(),actual=JSON.parse(await readFile(join(sourceRoot,'data/published/atlas.json'),'utf8'));
     if(contentHash(accepted)!==contentHash(actual))throw new Error('Published learning data is not the reviewed library.');
     const worlds=await acceptedBoards(actual.missions),published=JSON.parse(await readFile(join(sourceRoot,'data/published/boards.json'),'utf8'));

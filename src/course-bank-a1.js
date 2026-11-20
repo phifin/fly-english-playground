@@ -5,7 +5,7 @@ export const a1Units = [
     level: "A1",
     kind: "grammar",
     title: ["Meeting someone","Làm quen với người mới"],
-    objective: ["Use am with I, is with one other person and are with you or we. Ask a name with What is your name?","Dùng am với I, is với một người khác và are với you hoặc we. Hỏi tên bằng What is your name?"],
+    objective: ["Use am with I, is with one other person and are with you or we. Use what to ask for a name.","Dùng am với I, is với một người khác và are với you hoặc we. Dùng what khi hỏi tên."],
     examples: ["I am Linh. My name is Linh.","This is Bao. We are friends."],
     lexicon: [
       {"term":"name","kind":"word","en":"the word people call you","vi":"tên","example":"My name is Mai."},

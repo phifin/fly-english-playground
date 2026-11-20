@@ -87,6 +87,21 @@ async function cachedManifest() {
   return manifestPromise;
 }
 
+// Some mobile media players request byte ranges even for a short recording.
+async function serveMedia(resource, range, bytes) {
+  if (!range) return resource;
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  if (!match || (!match[1] && !match[2])) return resource;
+  const start = match[1] ? Number(match[1]) : Math.max(0, bytes - Number(match[2]));
+  const end = match[1] && match[2] ? Math.min(bytes - 1, Number(match[2])) : bytes - 1;
+  if (!Number.isSafeInteger(start) || start < 0 || start > end || start >= bytes)
+    return new Response(null, {status:416, headers:{'Content-Range':'bytes */'+bytes}});
+  const data = await resource.arrayBuffer();
+  return new Response(data.slice(start,end+1), {status:206, headers:{
+    'Content-Type':'audio/mpeg','Accept-Ranges':'bytes','Content-Length':String(end-start+1),
+    'Content-Range':'bytes '+start+'-'+end+'/'+bytes
+  }});
+}
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
@@ -101,13 +116,14 @@ self.addEventListener('fetch', event => {
       if (!entry) return fetch(request);
       const cache = await caches.open(CACHE_NAME);
       const cached = await cache.match(new URL(path, SCOPE).href);
-      if (cached) return cached;
+      const range = path.startsWith('assets/listening/') && path.endsWith('.mp3') ? request.headers.get('range') : null;
+      if (cached) return serveMedia(cached,range,entry.bytes);
       // A partial cache loss must never combine this release's shell with a
       // newer deployment's modules or content. Recover only the exact file.
       const resource = await fetch(new URL(path, SCOPE).href, { cache: 'no-store', credentials: 'omit', redirect: 'error' });
       if (!await matchesResource(resource, entry)) return unavailable();
       try { await cache.put(new URL(path, SCOPE).href, resource.clone()); } catch { /* A verified response still works when device caching is full. */ }
-      return resource;
+      return serveMedia(resource,range,entry.bytes);
     } catch { return unavailable(); }
     // There is deliberately no HTML fallback for missing JSON, JS, auth, or URLs.
   })());

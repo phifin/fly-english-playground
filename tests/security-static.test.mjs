@@ -95,6 +95,19 @@ test('a missing release manifest or offline cache entry fails closed without rep
   assert.equal(await next.request('src/main.js', { headers: { Authorization: 'Bearer private' } }), null);
 });
 
+test('on-demand recordings serve verified mobile range requests online and offline', async () => {
+  const sw=await worker(), path='assets/listening/clip.mp3', body='0123456789';
+  sw.resources.set(path,body);
+  sw.manifest.files.push({path,bytes:body.length,sha256:createHash('sha256').update(body).digest('hex')});
+  await sw.install();
+  assert.equal(sw.calls.some(call=>call.url.endsWith(path)),false);
+  const first=await sw.request(path,{headers:{range:'bytes=0-1'}});
+  assert.equal(first.status,206); assert.equal(first.headers.get('content-range'),'bytes 0-1/10'); assert.equal(await first.text(),'01');
+  sw.offline();
+  assert.equal(await (await sw.request(path,{headers:{range:'bytes=-3'}})).text(),'789');
+  assert.equal((await sw.request(path,{headers:{range:'bytes=10-'}})).status,416);
+});
+
 test('worker installation checks declared bytes and rejects invalid manifest paths before activation', async () => {
   const wrongSize = await worker(); wrongSize.manifest.files[0].bytes++;
   await assert.rejects(wrongSize.install(), /integrity check/);

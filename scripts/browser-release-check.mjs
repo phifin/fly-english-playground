@@ -1,3 +1,4 @@
+import {verifyCurriculum} from './browser-curriculum.mjs';
 import {verifyAcademicUX} from './browser-academic-ux.mjs';
 import {verifyLayout} from './browser-layout-check.mjs';
 import {verifyMotion} from './browser-motion-check.mjs';
@@ -1446,6 +1447,7 @@ try {
   }
   assert.deepEqual(report.errors, [], 'No browser console errors or uncaught exceptions.');
   check(`${report.cloudSdk.configured ? 'Optional cloud requests stay within approved origins' : 'Default play makes no external requests'}; public files contain no credential markers and private paths stay inaccessible.`);
+  await verifyCurriculum({newContext,observe,ready,noError,axe,base,directory,check,readImportState});
   await verifyAcademicUX({newContext,observe,ready,noError,axe,base,directory,check,readImportState});
   await verifyDesign({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
   await verifyFirstSteps({newContext,observe,ready,noError,axe,base,directory,check,readImportState,report});
