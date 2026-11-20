@@ -22,7 +22,10 @@ export async function verifyCurriculum({newContext,observe,ready,noError,axe,bas
  try{
   const {p,go,skip,shot,snapshot,button}=kid;
   const topic=p.locator('[data-little-topic]');
-  await topic.selectOption('60');await go('little-start','explore');await skip();
+  await topic.selectOption('60');await go('guidance-language','vi');
+  assert.equal(await topic.inputValue(),'60','The chosen picture topic survives a localized redraw');
+  await go('guidance-language','en');assert.equal(await topic.inputValue(),'60');
+  await go('little-start','explore');await skip();
   assert.equal(await p.locator('[data-little-word]').getAttribute('data-little-word'),'drum');
   await p.waitForFunction(()=>document.querySelector('.little-big-picture use')?.getBBox().width>40);
   assert.match(await p.locator('.little-example').innerText(),/I tap the drum/);

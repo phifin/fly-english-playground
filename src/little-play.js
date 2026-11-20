@@ -85,11 +85,11 @@ export function littleAction(session,action,words){
  return next;
 }
 
-export function littlePlayView({words,session=null,language='en',audioAvailable=true,speaking=false}={}){
+export function littlePlayView({words,session=null,language='en',audioAvailable=true,speaking=false,topicOffset=0}={}){
  const t=(en,vi)=>language==='vi'?vi:en,available=list(words),state=restoreLittleSession(session,words),item=littleCurrent(state,words);
  const help=`<template class="little-grownup" data-context-help="${t('For grown-ups','Dành cho người lớn')}"><p>${t('Say the word and let your child point or tap. Stop whenever they want.','Hãy ở cạnh bé. Gọi tên từng tranh bằng tiếng Anh rồi để bé chỉ hoặc chạm. Nghỉ khi bé muốn.')}</p>${item?.parentTip?`<p>${esc(localized(item.parentTip,language))}</p>`:''}<p>${t('No sound? Say the word yourself or try Picture pairs. Playing together helps build vocabulary.','Nếu không có tiếng, hãy đọc từ cho bé hoặc chọn Ghép tranh. Bé sẽ làm quen với từ mới khi cùng chơi.')}</p></template>`;
  const topics=pictureTopics.map(topic=>({topic,index:available.findIndex(w=>w.id===topic.words[0]?.id)})).filter(option=>option.index>=0);
- const topicMenu=!state&&topics.length>1?`<label class="little-topic"><span>${t('Picture topic','Chủ đề tranh')}</span><select data-little-topic>${topics.map(({topic,index})=>`<option value="${index}">${esc(localized(topic.name,language))}</option>`).join('')}</select></label>`:'';
+ const topicMenu=!state&&topics.length>1?`<label class="little-topic"><span>${t('Picture topic','Chủ đề tranh')}</span><select data-little-topic>${topics.map(({topic,index})=>`<option value="${index}"${index===topicOffset?' selected':''}>${esc(localized(topic.name,language))}</option>`).join('')}</select></label>`:'';
  const header=`<div class="little-top">${button('← '+t('Home','Trang chủ'),'home','','back-link')}${state?button(t('Change game','Đổi trò chơi'),'little-menu','','text-button'):''}</div>`;
  if(!state)return `<section class="little-play" data-little-mode="menu" data-little-complete="false">${header}<h1>${t('Little words, together.','Cùng bé học từ mới')}</h1><p class="little-intro">${t('A picture, a word, a little discovery.','Chọn một trò rồi cùng bé chơi nhé.')}</p>${topicMenu}<div class="little-games">${[
   ['explore','cat',t('Meet the pictures','Xem tranh, nghe từ'),t('Tap a picture. Hear its name.','Chạm vào tranh. Nghe tên gọi.')],

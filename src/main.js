@@ -160,12 +160,12 @@ function quickScreen(){const q=ui.quick;if(!q)return homeScreen();if(q.index>=q.
 async function openQuick(){if(!learningStart().readerReady){await navigate('entry');return;}await saveDraft();ui.quick=savedQuick(events,content().activities);if(!ui.quick||ui.quick.index>=5){ui.quick={sessionId:crypto.randomUUID(),ids:quickActivities(pack,progress,profile.journey.region),index:0};await append('mission',{experience:'quick-practice-v1',...ui.quick});}prepareQuick();ui.screen='quick';render(true);}
 function prepareQuick(){const a=content().activities.get(ui.quick.ids[ui.quick.index]);if(!a)return;ui.mission=a.missionId;ui.review=false;ui.stage='activity';initActivity(a);const prior=[...events].reverse().find(e=>e.kind==='attempt'&&e.payload?.quickSessionId===ui.quick.sessionId&&e.payload.quickIndex===ui.quick.index);if(prior){ui.answer=prior.payload.answer;ui.supported=prior.payload.supported;ui.feedback=assess(a,ui.answer);}}
 function littleSaved(){const matches=events.filter(e=>e.kind==='mission'&&e.payload?.experience==='little-play-v1').sort((a,b)=>b.at.localeCompare(a.at)||b.id.localeCompare(a.id));for(const e of matches){try{const value=restoreLittleSession(e.payload.session,littleWords);if(value)return value;}catch{}}return null;}
-function littleScreen(){return littlePlayView({words:littleWords,session:ui.little??null,language:language(),audioAvailable:'speechSynthesis'in window&&!ui.littleVoiceFailed});}
+function littleScreen(){return littlePlayView({words:littleWords,topicOffset:ui.littleTopic??0,session:ui.little??null,language:language(),audioAvailable:'speechSynthesis'in window&&!ui.littleVoiceFailed});}
 async function handleLittle(name,value){
  const previous=ui.little;
  if(name==='little-open'){await saveDraft();ui.little=littleSaved();ui.screen='little';render(true);return;}
  if(name==='little-menu'){ui.little=null;render(true);return;}
- if(name==='little-start'||name==='little-restart'){ui.little=createLittleSession(littleWords,{mode:name==='little-start'?value:ui.little?.mode??'explore',offset:name==='little-restart'?(ui.little?.offset??0)+4:Number(app.querySelector('[data-little-topic]')?.value??ui.little?.offset??0)});}
+ if(name==='little-start'||name==='little-restart'){ui.little=createLittleSession(littleWords,{mode:name==='little-start'?value:ui.little?.mode??'explore',offset:name==='little-restart'?(ui.little?.offset??0)+4:(ui.littleTopic??0)});}
  else if(name==='little-listen'||name==='little-sentence'){const word=littleCurrent(ui.little,littleWords);if(word){ui.little=littleAction(ui.little,{type:'listen'},littleWords);try{await append('mission',{experience:'little-play-v1',session:ui.little});}catch(error){ui.little=previous;throw error;}render();try{speakText(name==='little-sentence'?word.example.en:ui.little.mode==='find'?word.cue.en:word.word.en);}catch{ui.littleVoiceFailed=true;render();}}return;}
  else ui.little=littleAction(ui.little,{type:name==='little-pick'?'pick':'next',value},littleWords);
  try{await append('mission',{experience:'little-play-v1',session:ui.little});}catch(error){ui.little=previous;throw error;}if(name==='little-pick'||(name==='little-next'&&previous?.mode==='explore'))await rememberGuide('picture-'+ui.little.mode);render();
@@ -190,7 +190,7 @@ async function refresh(){
  const preferencesChanged=JSON.stringify(profile?.settings)!==JSON.stringify(nextProfile?.settings);
  profiles=nextProfiles;profile=nextProfile;events=nextEvents;progress=journeyProgress(events,pack,boards);if(id&&!profile)ui.screen='profiles';if(preferencesChanged)setPreferences();
 }
-async function selectProfile(id){academic={};courseState=null;ui.briefStep=null;ui.linkConfirm=false;ui.error='';ui.errorSource=null;ui.notice='';globalThis.speechSynthesis?.cancel();++refreshGeneration;const candidate=await store.getProfile(id);if(!candidate||!accessibleProfiles(await store.listProfiles(),ui.cloudStatus).some(p=>p.id===id))throw new Error(t('Sign in to the account that owns this learner.','Đăng nhập tài khoản sở hữu người học này.'));profile=candidate;setActive(id);ui.workshopProfile=null;ui.screen='home';ui.mission=null;ui.activity=null;ui.guideReplay=null;ui.guideCelebrate=null;ui.entryManual=false;await refresh();ui.screen=learningDestination('home',learningStart());setPreferences();}
+async function selectProfile(id){academic={};courseState=null;ui.littleTopic=0;ui.briefStep=null;ui.linkConfirm=false;ui.error='';ui.errorSource=null;ui.notice='';globalThis.speechSynthesis?.cancel();++refreshGeneration;const candidate=await store.getProfile(id);if(!candidate||!accessibleProfiles(await store.listProfiles(),ui.cloudStatus).some(p=>p.id===id))throw new Error(t('Sign in to the account that owns this learner.','Đăng nhập tài khoản sở hữu người học này.'));profile=candidate;setActive(id);ui.workshopProfile=null;ui.screen='home';ui.mission=null;ui.activity=null;ui.guideReplay=null;ui.guideCelebrate=null;ui.entryManual=false;await refresh();ui.screen=learningDestination('home',learningStart());setPreferences();}
 function setPreferences(){qualityCleanup();document.documentElement.lang=language();const skip=document.querySelector('.skip-link');if(skip)skip.textContent=t('Skip to content','Đến nội dung chính');if(profile)qualityCleanup=applyQuality(profile.settings);}
 async function changeGuidance(value){
  if(!['en','vi'].includes(value))return;
@@ -555,7 +555,7 @@ async function action(name,el){
  if(ui.screen==='journal'&&name==='review')await rememberGuide('progress');
  if(name==='memory-open'||name==='memory-again'){
   await saveDraft();const saved=[...events].reverse().find(e=>e.kind==='mission'&&e.payload?.experience==='memory-pairs-v1'&&restoreMemory(e.payload.session,littleWords));
-  const topic=Number(app.querySelector('[data-little-topic]')?.value??0);
+  const topic=ui.screen==='little'?(ui.littleTopic??0):0;
   ui.memory=name==='memory-open'&&!topic&&saved?(restoreMemory(saved.payload.session,littleWords)??createMemory(littleWords)):createMemory(littleWords,name==='memory-again'?(ui.memory?.offset??0)+3:topic);ui.screen='memory';render(true);return;
  }
  if(name==='memory-flip'){
@@ -714,6 +714,7 @@ app.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!
 app.addEventListener('ended',e=>{if(ui.screen==='course'&&e.target.matches?.('audio[data-course-clip]'))courseState?.heard?.add(e.target.dataset.courseClip);},true);
 app.addEventListener('input',e=>{
  const el=e.target;if(ui.submitting)return;
+ if(el.hasAttribute('data-little-topic')){ui.littleTopic=Number(el.value);return;}
  if(ui.screen==='course'&&el.hasAttribute('data-course-index')&&courseState?.answers){courseState.answers[Number(el.dataset.courseIndex)]=el.value;return;}
  if(ui.screen==='academic'&&el.hasAttribute('data-academic-index')){const state=academicState();if(state.answers)state.answers[Number(el.dataset.academicIndex)]=el.value;return;}
  if(el.dataset.answer==='gap')ui.answer=el.value;
@@ -728,6 +729,7 @@ app.addEventListener('keydown',e=>{const direction={ArrowUp:'N',ArrowRight:'E',A
 app.addEventListener('toggle',e=>{if(e.target.classList?.contains('cloud-panel')&&app.contains(e.target)){const opening=e.target.open&&!ui.showCloud;ui.showCloud=e.target.open;if(opening)cloud?.prepare().catch(reportError);}},true);
 const handleChange=e=>run(async()=>{
  const el=e.target;
+ if(el.hasAttribute('data-little-topic')){ui.littleTopic=Number(el.value);return;}
  if(el.hasAttribute('data-studio-item')){ui.studioId=el.value;globalThis.speechSynthesis?.cancel();render();}
  if(el.dataset.setting==='language')await changeGuidance(el.value);
  else if(el.dataset.setting){await saveDraft();profile=await store.updateProfile(profile.id,{settings:{[el.dataset.setting]:el.dataset.setting==='sound'?el.value==='true':el.value}});setPreferences();render();}

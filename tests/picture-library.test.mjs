@@ -39,7 +39,10 @@ test('Each themed deck is reachable and playable in both recognition games and i
  const menu=littlePlayView({words:pictureWords,language:'vi'});
  let offset=0;
  for(const topic of pictureTopics){
-  assert.ok(menu.includes('<option value="'+offset+'">'+topic.name.vi+'</option>'));
+  assert.ok(menu.includes('<option value="'+offset+'"'+(offset===0?' selected':'')+'>'+topic.name.vi+'</option>'));
+  const redraw=littlePlayView({words:pictureWords,language:'en',topicOffset:offset});
+  assert.ok(redraw.includes('<option value="'+offset+'" selected>'+topic.name.en+'</option>'));
+  assert.equal(redraw.match(/ selected>/g).length,1);
   for(let start=offset;start<offset+topic.words.length;start+=4){
    for(const mode of ['explore','find','match']){
     let session=createLittleSession(pictureWords,{mode,offset:start});
